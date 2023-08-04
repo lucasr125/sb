@@ -1,0 +1,5 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+game:GetService("GuiService"):ClearError() --Remove any Roblox error message
