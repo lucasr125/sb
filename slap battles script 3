@@ -22,6 +22,7 @@ return Namecall(self, ...)
 end)
 
 -- Values
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/More%20Gloves.lua"))()
 local Player = game.Players.LocalPlayer.Character.Name
 
 local function getGlove()
