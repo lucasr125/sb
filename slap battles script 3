@@ -153,7 +153,7 @@ while _G.RhythmSpam do
 game:GetService("ReplicatedStorage").rhythmevent:FireServer("AoeExplosion",0)
 task.wait()
 end
-end)}
+end})
 Tab2:AddToggle({Name = "Rojo Spam (WORKS WITH ALL GLOVES)",Default = false,Callback = function(Value)
 if Person == nil then
 Person = game.Players.LocalPlayer.Name
@@ -165,7 +165,7 @@ task.wait()
 end
 end})
 
-Tab2:AddTextBox({Name = "Make person use rojo spam",Default = "Username",TextDisappear = false,Callback = function(Value)
+Tab2:AddTextbox({Name = "Make person use rojo spam",Default = "Username",TextDisappear = false,Callback = function(Value)
 if Value == "Me" or Value == "me" or Value == "Username" or Value == "" then
 Person = game.Players.LocalPlayer.Name
 else
