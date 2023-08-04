@@ -3,3 +3,8 @@ if not game:IsLoaded() then
 end
 
 game:GetService("GuiService"):ClearError() --Remove any Roblox error message
+
+if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then --Check if its Slap Battles or Slap Battles NO ONE SHOT
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua')))()
+local Window = OrionLib:MakeWindow({Name = (("Slap Battles 👏").." - ".. identifyexecutor()), HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
+end
