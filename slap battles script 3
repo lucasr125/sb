@@ -5,6 +5,67 @@ end
 game:GetService("GuiService"):ClearError() --Remove any Roblox error message
 
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then --Check if its Slap Battles or Slap Battles NO ONE SHOT
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = (("Slap Battles 👏").." - ".. identifyexecutor()), HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
+local Lib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
+local Win = Lib:MakeWindow({Name = "Slap Battles Script", HidePremium = false, SaveConfig = true, IntroEnabled = true, ConfigFolder = "SB-Folder"})
+
+-- Anti Cheat for goofy ahh game 
+local Namecall
+Namecall = hookmetamethod(game, '__namecall', function(self, ...)
+if getnamecallmethod() == 'FireServer' and tostring(self) == 'Ban' then
+return
+elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'WalkSpeedChanged' then
+return
+elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'AdminGUI' then
+return
+end
+return Namecall(self, ...)
+end)
+
+-- Values
+local Player = game.Players.LocalPlayer.Character.Name
+
+local function getGlove()
+    return game.Players.LocalPlayer.leaderstats.Glove.Value
+end
+
+-- SafeSpot
+
+if not workspace:FindFirstChild("Spot") then
+local SafeSpot = Instance.new("Part", workspace)
+SafeSpot.Position = Vector3.new(-1500,100,-1500)
+SafeSpot.Name = "Spot"
+SafeSpot.Size = Vector3.new(100,1,100)
+SafeSpot.Anchored = true
+SafeSpot.Transparency = .7
+end
+
+-- AntiVoid
+
+local AntiVoid = Instance.new("Part", workspace)
+AntiVoid.Name = "AntiVoid"
+AntiVoid.Size = Vector3.new(2047, 0.009, 2019)
+AntiVoid.Position = Vector3.new(-80.5, -10.005, -246.5)
+AntiVoid.CanCollide = false
+AntiVoid.Anchored = true
+AntiVoid.Transparency = 1
+
+-- AntiArenaVoid
+local arenaVoid = Instance.new("Part", workspace)
+arenaVoid.Name = "arenaVoid"
+arenaVoid.Size = Vector3.new(798, 1, 1290)
+arenaVoid.Position = Vector3.new(3450, 59.009, 68)
+arenaVoid.CanCollide = false
+arenaVoid.Anchored = true
+arenaVoid.Transparency = 1
+
+-- Anti Obby
+function disable(username, cantouch)
+if workspace:FindFirstChild("ObbyItem"..username.."LavaBlock") then
+workspace:FindFirstChild("ObbyItem"..username.."LavaBlock").CanTouch = cantouch
+elseif workspace:FindFirstChild("ObbyItem"..username.."LavaSpinner") then
+workspace:FindFirstChild("ObbyItem"..username.."LavaSpinner").CanTouch = cantouch
+end
+end
+
+
 end
