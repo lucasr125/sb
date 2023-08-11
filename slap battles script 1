@@ -2005,6 +2005,7 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddLabel("Version 1.05")
 Tab4:AddButton({
 	Name = "View Testing Server (Good for glove leaking)",
 	Callback = function()
@@ -2190,6 +2191,10 @@ On = Value
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
 wait(5.1)
+end
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
+game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+wait()
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort" do
 game:GetService("ReplicatedStorage").Fortlol:FireServer()
