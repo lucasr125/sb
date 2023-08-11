@@ -36,35 +36,30 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   shared.createBed()
 
-  -- Anti Void
-  if not workspace:FindFirstChild("Spot") then
-    local SafeSpot = Instance.new("Part", workspace)
-    SafeSpot.Position = Vector3.new(-1500,100,-1500)
-    SafeSpot.Name = "Spot"
-    SafeSpot.Size = Vector3.new(100,1,100)
-    SafeSpot.Anchored = true
-    SafeSpot.Transparency = .7
-  end
+  -- Anti Voids
 
-  if not workspace:FindFirstChild("AntiVoid") then
-    local AntiVoid = Instance.new("Part", workspace)
-    AntiVoid.Name = "AntiVoid"
-    AntiVoid.Size = Vector3.new(2047, 0.009, 2019)
-    AntiVoid.Position = Vector3.new(-80.5, -10.005, -246.5)
-    AntiVoid.CanCollide = false
-    AntiVoid.Anchored = true
-    AntiVoid.Transparency = 1
-  end
+  local SafeSpot = Instance.new("Part", workspace)
+  SafeSpot.Position = Vector3.new(-1500,100,-1500)
+  SafeSpot.Name = "Spot"
+  SafeSpot.Size = Vector3.new(100,1,100)
+  SafeSpot.Anchored = true
+  SafeSpot.Transparency = .7
 
-  if not workspace:FindFirstChild("arenaVoid") then
-    local arenaVoid = Instance.new("Part", workspace)
-    arenaVoid.Name = "arenaVoid"
-    arenaVoid.Size = Vector3.new(798, 1, 1290)
-    arenaVoid.Position = Vector3.new(3450, 59.009, 68)
-    arenaVoid.CanCollide = false
-    arenaVoid.Anchored = true
-    arenaVoid.Transparency = 1
-  end
+  local AntiVoid = Instance.new("Part", workspace)
+  AntiVoid.Name = "AntiVoid"
+  AntiVoid.Size = Vector3.new(2047, 0.009, 2019)
+  AntiVoid.Position = Vector3.new(-80.5, -10.005, -246.5)
+  AntiVoid.CanCollide = false
+  AntiVoid.Anchored = true
+  AntiVoid.Transparency = 1
+
+  local arenaVoid = Instance.new("Part", workspace)
+  arenaVoid.Name = "arenaVoid"
+  arenaVoid.Size = Vector3.new(798, 1, 1290)
+  arenaVoid.Position = Vector3.new(3450, 59.009, 68)
+  arenaVoid.CanCollide = false
+  arenaVoid.Anchored = true
+  arenaVoid.Transparency = 1
 
   -- Anti Obby
 
