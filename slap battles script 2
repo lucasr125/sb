@@ -618,78 +618,51 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab4:AddToggle({
-	Name = "Autofram Brick [ Get Trap ] [ Auto E ] [ you on keybroad ]",
-	Default = false,
-	Callback = function(Value)
-	    _G.FarmBrick = Value
-while _G.FarmBrick do
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
-task.wait()
-game.VirtualInputManager:SendKeyEvent(true, "E", false, game)
-task.wait(5.2)
-end
-end
-	end    
-})   
+  Tab4:AddToggle({Name = "AutoFarm Brick [ Get Trap ] [ Auto E ]",Default = false,Callback = function(Value)
+        _G.FarmBrick = Value
+        while _G.FarmBrick do
+          if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
+            task.wait()
+            game.VirtualInputManager:SendKeyEvent(true, "E", false, game)
+            task.wait(5.2)
+          end
+        end
+      end})   
 
-Tab4:AddToggle({
-	Name = "AutoFarm Brick [ Fast ] [ Don't Lag ]",
-	Default = false,
-	Callback = function(Value)
-_G.Brick = Value
-while _G.Brick do
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
-task.wait()
-game:GetService("Players").LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game:GetService("Players").LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1
-game:GetService("ReplicatedStorage").lbrick:FireServer()
-wait(2.3)
-end
-end
-	end    
-})
+  Tab4:AddToggle({Name = "Auto TP Plate [ Get Tycoon ]",Default = false,Callback = function(Value)
+        _G.AutoTpPlate = Value
+        if game.Players.LocalPlayer.Character:FindFirstChild("entered") then
+          while _G.AutoTpPlate do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
+            task.wait()
+          end
+        else
+          firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 0)
+          firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 1)
+          while _G.AutoTpPlate do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
+            task.wait()
+          end
+        end})
 
-Tab4:AddToggle({
-	Name = "Auto TP Plate [ 600 second ] [ Get Tycoon ]",
-	Default = false,
-	Callback = function(Value)
-	   _G.AutoTpPlate = Value
-firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 0)
-firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 1)
-while _G.AutoTpPlate do
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
-task.wait()
-end
-	end    
-})
-
-Tab11:AddTextbox({
-	Name = "Reach Glove",
-	Default = "",
-	TextDisappear = false,
-	Callback = function(Value)
-if shared.SizeGlove == nil then
-   shared.SizeGlove = Value
-end
-
-if setfpscap then
-    setfpscap(60)
-end
-
-function supaSiza(v)
-   if v:IsA("Tool") then
-       v.Glove.Transparency = 1
-       v.Glove.Size = Vector3.new(shared.SizeGlove, shared.SizeGlove, shared.SizeGlove)
-   end
-end
-
-game.Players.LocalPlayer.Character.ChildAdded:Connect(supaSiza)
-
-game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
-   char.ChildAdded:Connect(supaSiza)
-end)
-	end	  
-})
+    Tab11:AddTextbox({Name = "Reach Glove",Default = "",TextDisappear = false,Callback = function(Value)
+          if shared.SizeGlove == nil then
+            shared.SizeGlove = Value
+          end
+          if setfpscap then
+            setfpscap(60)
+          end
+          function supaSiza(v)
+            if v:IsA("Tool") then
+              v.Glove.Transparency = 1
+              v.Glove.Size = Vector3.new(shared.SizeGlove, shared.SizeGlove, shared.SizeGlove)
+            end
+          end
+          game.Players.LocalPlayer.Character.ChildAdded:Connect(supaSiza)
+          game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+              char.ChildAdded:Connect(supaSiza)
+            end)
+	        end})
 
 Tab11:AddTextbox({
 	Name = "hitbox [ Reach ]",
