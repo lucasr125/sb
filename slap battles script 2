@@ -100,89 +100,60 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab17 = Window:MakeTab({Name = "Cradit",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 
-OrionLib:MakeNotification({
-	Name = "Script slap battles.",
-	Content = "ID: 6403373529",
-	Time = 17
-})
+  OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: 6403373529",Time = 5})
+  OrionLib:MakeNotification({Name = "Your name is "..Player..".",Content = "Name is "..Player..".",Time = 5})
+  OrionLib:MakeNotification({Name = "Loading...",Content = "loading game...",Time = 5})
 
-OrionLib:MakeNotification({
-	Name = "Your name is "..Player..".",
-	Content = "Name is "..Player..".",
-	Time = 17
-})
+  local Section = Tab:AddSection({Name = "Main"})
 
-OrionLib:MakeNotification({
-	Name = "Loading...",
-	Content = "loading game...",
-	Time = 5
-})
+  Tab:AddButton({Name = "Keyboard Script",Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+      end})
 
-local Section = Tab:AddSection({
-	Name = "Main"
-})
+  Tab:AddButton({Name = "Rejoin",Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+      end})
 
-Tab:AddButton({
-	Name = "keyboard [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-  	end    
-})
+  Tab3:AddLabel("Not for weak machines")
 
-Tab:AddButton({
-	Name = "Rejoin game [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/SB-ok/main/Rejoin"))()
-  	end    
-})
-
-Tab3:AddLabel("Not for weak machines")
-
-Tab3:AddButton({
-	Name = "Auto Keypad [ Auto Serverhop, Not Server Keypad ]",
-	Callback = function()
-if not game:IsLoaded() then
-	game.Loaded:Wait()
-end
-wait(1.5)
-if not workspace:FindFirstChild("Keypad") then
-	for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-    	if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
-        	wait(2.5)
-        	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
-    	end
-	end
-else
-	pcall(function()
-		repeat task.wait()
-			firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 0)
-			firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 1)
-		until game.Players.LocalPlayer.Character:FindFirstChild("entered") ~= nil
-	end)
-    fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
-    local digits = tostring((#game.Players:GetPlayers() * 25) + 1100 - 7)
-    for i = 1, #digits do
-        wait(.5)
-        local digit = digits:sub(i, i)
-        fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
-    end
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
-    wait(1)
-    fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
-    wait(1)
-        fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
-    local digits = tostring((#game.Players:GetPlayers() * 25) + 1100 - 7)
-    for i = 1, #digits do
-        wait(.5)
-        local digit = digits:sub(i, i)
-        fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
-    end
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
-    wait(1)
-    fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
-end
-  	end    
-})
+  Tab3:AddButton({Name = "Auto Keypad [ Auto Serverhop, Not Server Keypad ]",Callback = function()
+        if not workspace:FindFirstChild("Keypad") then
+          for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+            if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
+              wait(2.5)
+              game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
+            end
+          end
+        else
+          pcall(function()
+              repeat task.wait()
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 0)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 1)
+              until game.Players.LocalPlayer.Character:FindFirstChild("entered") ~= nil
+            end)
+          fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
+          local digits = tostring((#game.Players:GetPlayers() * 25) + 1100 - 7)
+          for i = 1, #digits do
+            wait(.5)
+            local digit = digits:sub(i, i)
+            fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
+          end
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
+          wait(1)
+          fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
+          wait(1)
+          fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
+          local digits = tostring((#game.Players:GetPlayers() * 25) + 1100 - 7)
+          for i = 1, #digits do
+            wait(.5)
+            local digit = digits:sub(i, i)
+            fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
+          end
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
+          wait(1)
+          fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
+        end
+      end})
 
 Tab3:AddButton({
 	Name = "Auto Get Code And Notification Keypad Spam",
