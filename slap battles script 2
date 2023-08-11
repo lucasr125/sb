@@ -80,7 +80,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab2 = Window:MakeTab({Name = "Anti void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab3 = Window:MakeTab({Name = "Auto Keypad",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab4 = Window:MakeTab({Name = "Bagdes",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab19 = Window:MakeTab({Name = "Bagdes Time",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab7 = Window:MakeTab({Name = "Local",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab8 = Window:MakeTab({Name = "Animations",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab9 = Window:MakeTab({Name = "TP",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -443,7 +442,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab7:AddSlider({Name = "WalkSpeed",Min = 20,Max = 1000,Default = 20,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "WalkSpeed",Callback = function(WS)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = WS
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
         WS1 = WS
       end})
 
@@ -465,7 +464,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         WS2 = JP
       end})
 
-  Tab7:AddToggle({Name = "Auto JumpPower",Default = false,Save = true,Flag = "JumppowerSet",Callback = function(Value)
+  Tab7:AddToggle({Name = "Auto JumpPower",Default = false,Save = true,Flag = "JumpPowerSet",Callback = function(Value)
         _G.AutoJumpPower = Value
         if _G.AutoJumpPower == true then
           while _G.AutoJumpPower do
@@ -483,7 +482,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         WS3 = HT
       end})
 
-  Tab7:AddToggle({Name = "Auto Hip Height",Default = false,Save = true,Flag = "HipHeightset",Callback = function(Value)
+  Tab7:AddToggle({Name = "Auto Hip Height",Default = false,Save = true,Flag = "HipHeightSet",Callback = function(Value)
         _G.AutoHipHeight = Value
         if _G.AutoHipHeight == true then
           while _G.AutoHipHeight do
@@ -496,348 +495,128 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab19:AddToggle({
-	Name = "Time Diamond [ Get Megarock ]",
-	Default = false,
-	Callback = function(Value)
-	Time = 0
-	_G.AutoTime = Value
-while _G.AutoTime do
 
-task.wait(1)
-
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Diamond" then
-
-Time = Time + 1
-
-OrionLib:MakeNotification({
-	Name = "Time Diamond : "..Time.." / Until Bagde Why / Really",
-	Content = "You Afk Kick you ",
-	Image = "rbxassetid://7743873443",
-	Time = 1
-})
-
-else
-
-Time = 0
-
-end
-end
-	end    
-})
-
-Tab4:AddToggle({
-	Name = "Get bob [ You Epin Replica ] [ Fast ]",
-	Default = false,
-	Callback = function(Value)
-	    bobFarm = Value
-        if Value == true then
-            while bobFarm do
-                task.wait()
-                    if getGlove() == "Replica" and bobFarm and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2125950512) then
-                    game.ReplicatedStorage.Duplicate:FireServer(true)
-                    task.wait()
-                    tick = os.time()
-                    repeat task.wait()
-                    until os.time() - tick >= 5.2
-                    end
-            end
-            else
-            task.wait(10.2)
-        end
-	end    
-})
-
-Tab19:AddToggle({
-	Name = "Time ZZZZZZZ [ Get Fish ]",
-	Default = false,
-	Callback = function(Value)
-	
-        fishFarm = Value
-    
-        if Value == true then
-            
-        if game.Players.LocalPlayer.Character:FindFirstChild("entered") and getGlove() == "ZZZZZZZ" then
-            
-            print("READY")
-
+  Tab4:AddToggle({Name = "Get bob",Default = false,Callback = function(Value)
+        _G.BobFarm = Value
+        if _G.BobFarm == true then
+          while _G.BobFarm do
             task.wait()
-            
-            print("-------------------------------------------")
-            
-            task.wait()
-            
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Bed"].Bed3.CFrame * CFrame.new(0,0,-1)
-            
-            task.wait(.5)
-            
-            game:GetService("ReplicatedStorage").ZZZZZZZSleep:FireServer()
-            
+            if getGlove() == "Replica" and _G.BobFarm and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2125950512) then
+              game.ReplicatedStorage.Duplicate:FireServer(true)
+              task.wait()
+              tick = os.time()
+              repeat task.wait()
+              until os.time() - tick >= 5.2
+            end
+          end
         else
-            
-        OrionLib:MakeNotification({
-	        Name = "FAILED TO TELEPORT TO SAFE SPOT PLEASE DO IT MANUALLY",
-	        Content = "You Tp bed",
-	        Time = 5
-	    })
-        
+          task.wait(10.2)
         end
-        
-        task.wait()
-        
-            while fishFarm and task.wait() do
-        
-                if getGlove() == "ZZZZZZZ" and workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChild("entered") then
-                
-                    if workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChild("Ragdolled").Value then
-                    
-                        task.wait(1)
-                    
-                        Time += 1
-                        
-                            OrionLib:MakeNotification({
-	                            Name = "[ ZZZZZZZ ] : "..Time.." / Afk then Kick you",
-	                            Image = "rbxassetid://7743873443",
-	                            Content = "Until Bagde Fish",
-	                            Time = 1
-	                         })
-                    
-                    else
-                    
-                    Time = 0
-                    
-                    end
-                
-                end
+      end})
 
+  Tab4:AddToggle({Name = "AutoSlap Baller [ Equip Baller ]",Default = false,Save = true,Flag = "AutoSlapBaller",Callback = function(Value)
+        _G.BallerFarm = Value
+        while _G.BallerFarm do
+          task.wait()
+          for _, v in ipairs(workspace:GetChildren()) do
+            if string.sub(v.Name, 3, 8) == "Baller" then
+              game:GetService("ReplicatedStorage").GeneralHit:FireServer(v:WaitForChild("HumanoidRootPart"))
             end
-    
+          end
+        end
+      end})
+
+  Tab4:AddToggle({Name = "AutoSlap Replica [ Enter Default Arena ]",Default = false,Save = true,Flag = "AutoSlapReplica",Callback = function(Value)
+        _G.SlapReplica = Value
+        while _G.SlapReplica do
+          task.wait()
+          for _, replica in pairs(workspace:GetChildren()) do
+            if string.find(replica.Name, "Å") then
+              game:GetService("ReplicatedStorage").b:FireServer(replica:WaitForChild("HumanoidRootPart"))
+            end
+          end
+        end
+      end})
+
+  Tab10:AddToggle({Name = "Auto Enter Arena",Default = false,Save = true,Flag = "AutoEnterArena",Callback = function(Value)
+        _G.AutoEnterArena = Value
+        if _G.AutoEnterArena == true then
+          while _G.AutoEnterArena do
+            wait()
+            repeat task.wait() until game.Players.LocalPlayer.Character
+            if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+              repeat task.wait(.005)
+                firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
+                firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
+              until game.Players.LocalPlayer.Character:FindFirstChild("entered")
+            end
+          end
+        end
+      end})
+
+  Tab10:AddToggle({Name = "Auto Enter Default Only Arena",Default = false,Save = true,Flag = "AutoEnterDefault",Callback = function(Value)
+        _G.AutoEnterDefault = Value
+        if _G.AutoEnterDefault == true then
+          while _G.AutoEnterDefault do
+            wait()
+            repeat task.wait() until game.Players.LocalPlayer.Character
+            if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+              repeat task.wait(.005)
+                firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 0)
+                firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 1)
+              until game.Players.LocalPlayer.Character:FindFirstChild("entered")
+            end
+          end
+        end
+      end})
+
+  Tab2:AddToggle({Name = "AntiVoid Tournament",Default = false,Save = true,Flag = "AntiVoidTournament",Callback = function(state)
+        if state then
+          arenaVoid.CanCollide = true
+          arenaVoid.Anchored = true
+          arenaVoid.Transparency = 0.5
         else
-        
-            game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        
+          arenaVoid.CanCollide = false
+          arenaVoid.Anchored = true
+          arenaVoid.Transparency = 1
         end
-	end    
-})
+      end})
 
-Tab19:AddToggle({
-	Name = "Time Ghost [ Get Voodoo ]",
-	Default = false,
-	Callback = function(Value)
-	Time = 0
-	_G.AutoTimeGhost = Value
-while _G.AutoTimeGhost do
+  Tab2:AddToggle({Name = "Arena Anti-Void",Default = false,Save = true,Flag = "AntiVoidArena",Callback = function(state)
+        if state then
+          AntiVoid.CanCollide = true
+          AntiVoid.Anchored = true
+          AntiVoid.Transparency = 0.5
+        else
+          AntiVoid.CanCollide = false
+          AntiVoid.Anchored = true
+          AntiVoid.Transparency = 1
+        end
+      end})
 
-task.wait(1)
-
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Ghost" then
-
-Time = Time + 1
-
-OrionLib:MakeNotification({
-	Name = "Time Ghost : "..Time.." / Until Get Voodoo",
-	Content = "You TP SafeSpot the Farm",
-	Image = "rbxassetid://7743873443",
-	Time = 1
-})
-
-else
-
-Time = 0
-
-end
-end
-	end    
-})
-
-Tab4:AddToggle({
-	Name = "Autofarm Slap Baller [ You Epin Glove Baller ]",
-	Default = false,
-	Callback = function(Value)
-		_G.SlapBaller = Value
-while _G.SlapBaller do
-task.wait()
-for _, v in ipairs(workspace:GetChildren()) do
-if string.sub(v.Name, 3, 8) == "Baller" then
-game:GetService("ReplicatedStorage").GeneralHit:FireServer(v:WaitForChild("HumanoidRootPart"))
-end
-end
-end
-	end    
-})
-
-Tab4:AddToggle({
-	Name = "Auto Slap Replica [ You Enter Arena Default ]",
-	Default = false,
-	Callback = function(Value)
-_G.SlapReplica = Value
-while _G.SlapReplica do
-task.wait()
-for _, replica in pairs(workspace:GetChildren()) do
-if string.find(replica.Name, "Å") then
-game:GetService("ReplicatedStorage").b:FireServer(replica:WaitForChild("HumanoidRootPart"))
-end
-end
-end
-	end    
-})
-
-Tab10:AddToggle({
-	Name = "Auto Enter Arena",
-	Default = false,
-	Callback = function(Value)
-		
-        getgenv().autoJoin = Value
-
-            if Value == true then
-
-                while getgenv().autoJoin do
-
-                    wait()
-                        
-                        repeat task.wait() until game.Players.LocalPlayer.Character
-                    
-                        if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                            
-                            repeat task.wait(.005)
-                                
-                            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
-                            
-                            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
-
-                            until game.Players.LocalPlayer.Character:FindFirstChild("entered")
-                            
-                        end
-                
-                end
-                
-            end
-	end    
-})
-
-Tab10:AddToggle({
-	Name = "Auto Enter Default Only Arena",
-	Default = false,
-	Callback = function(Value)
-		
-        getgenv().autoJoin = Value
-
-            if Value == true then
-
-                while getgenv().autoJoin do
-
-                    wait()
-                        
-                        repeat task.wait() until game.Players.LocalPlayer.Character
-                    
-                        if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                            
-                            repeat task.wait(.005)
-                                
-                            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 0)
-                            
-                            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 1)
-
-                            until game.Players.LocalPlayer.Character:FindFirstChild("entered")
-                            
-                        end
-                
-                end
-                
-            end
-	end    
-})
-
-Tab2:AddToggle({
-	Name = "100 Slaps Fight Arena (Can't Lose)",
-	Default = false,
-	Save = true,
-    Flag = "AntiVoid100Slap",
-	Callback = function(state)
-		if state then
-
-	arenaVoid.CanCollide = true
-	arenaVoid.Anchored = true
-	arenaVoid.Transparency = 0.5
-
-    else
-
-	arenaVoid.CanCollide = false
-	arenaVoid.Anchored = true
-	arenaVoid.Transparency = 1
-    end
-	end    
-})
-
-Tab2:AddToggle({
-	Name = "Normal Arena Anti-Void",
-	Default = false,
-	Save = true,
-    Flag = "AntiVoid",
-	Callback = function(state)
-		if state then
-	AntiVoid.CanCollide = true
-	AntiVoid.Anchored = true
-	AntiVoid.Transparency = 0.5
-    else
-
-	AntiVoid.CanCollide = false
-	AntiVoid.Anchored = true
-	AntiVoid.Transparency = 1
-    end
-	end    
-})
-
-Tab2:AddToggle({
-	Name = "Anti Void [ Cradit Anakin ]",
-	Default = false,
-	Save = true,
-    Flag = "AntiVoidAnakin",
-	Callback = function(Value)
-		
+  Tab2:AddToggle({Name = "Anti Void [ Credit Anakin ]",Default = false,Save = true,Flag = "AntiVoidAnakin",Callback = function(Value)
         if Value == true then
-            
-            for i,v in pairs(game.Workspace:GetDescendants()) do
-                
-                if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then
-           
-                    if v.CanCollide == false then
-               
-                        v.CanCollide = true
-                        
-                        v.Material = "ForceField"
-                        
-                        v.Color = Color3.new(255,255,255)
-                        
-                        v.Transparency = .9
-               
-                    end
-           
-                end
-                
+          for i,v in pairs(game.Workspace:GetDescendants()) do
+            if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then
+              if v.CanCollide == false then
+                v.CanCollide = true
+                v.Material = "ForceField"
+                v.Color = Color3.new(255,255,255)
+                v.Transparency = .9
+              end
             end
-            
-            else
-                
-            for i,v in pairs(game.Workspace:GetDescendants()) do
-                
-                if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then
-           
-                    if v.CanCollide == true then
-               
-                        v.CanCollide = false
-                        
-                        v.Transparency = 1
-               
-                    end
-           
-                end
-                
+          end
+        else
+          for i,v in pairs(game.Workspace:GetDescendants()) do
+            if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then
+              if v.CanCollide == true then
+                v.CanCollide = false
+                v.Transparency = 1
+              end
             end
-        
+          end
         end
-	end    
-})
+      end})
 
 Tab4:AddToggle({
 	Name = "Autofram Brick [ Get Trap ] [ Auto E ] [ you on keybroad ]",
