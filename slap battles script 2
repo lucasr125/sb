@@ -114,9 +114,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
       end})
 
-  Tab3:AddLabel("Not for weak machines")
-
-  Tab3:AddButton({Name = "Auto Keypad [ Auto Serverhop, Not Server Keypad ]",Callback = function()
+  Tab3:AddButton({Name = "Auto Keypad",Callback = function()
         if not workspace:FindFirstChild("Keypad") then
           for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
             if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
@@ -155,29 +153,17 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab3:AddButton({
-	Name = "Auto Get Code And Notification Keypad Spam",
-	Callback = function()
-if not workspace:FindFirstChild("Keypad") then
-OrionLib:MakeNotification({
-	Name = "Not The Server Keypad",
-	Content = "You is Serverhop the Spam Keypad",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-end
-task.wait(0.1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
-task.wait(0.1)
-print(#game.Players:GetPlayers() * 25 + 1100 - 7)
-OrionLib:MakeNotification({
-	Name = "Check Console",
-	Content = "PC : On F9 / PE : Chat /console",
-	Image = "rbxassetid://4483345998",
-	Time = 9
-})
-  	end    
-})
+
+  Tab3:AddButton({Name = "ELUDE Maze Code",Callback = function()
+        if not workspace:FindFirstChild("Keypad") then
+          OrionLib:MakeNotification({Name = "Error",Content = "Could not find keypad!",Image = "rbxassetid://4483345998",Time = 5})
+        end
+        wait(0.5)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
+        task.wait(0.1)
+        print(#game.Players:GetPlayers() * 25 + 1100 - 7)
+        OrionLib:MakeNotification({Name = "Check Console",Content = #game.Players:GetPlayers() * 25 + 1100 - 7,Image = "rbxassetid://4483345998",Time = 5})
+      end})
 
 Tab3:AddButton({
 	Name = "Check Console",
