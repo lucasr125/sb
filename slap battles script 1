@@ -2192,7 +2192,7 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
 wait(5.1)
 end
-while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
 game:GetService("ReplicatedStorage").CloudAbility:FireServer()
 wait()
 end
