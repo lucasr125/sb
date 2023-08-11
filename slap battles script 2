@@ -88,7 +88,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab18 = Window:MakeTab({Name = "Auto Equip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab13 = Window:MakeTab({Name = "AutoFarm Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab14 = Window:MakeTab({Name = "Trol Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab14 = Window:MakeTab({Name = "Troll Server",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
