@@ -3469,6 +3469,6 @@ end
                     end    
                 })
 
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/More%20Gloves.lua"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 Player = game.Players.LocalPlayer.Character.Name
 end
