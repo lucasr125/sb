@@ -209,7 +209,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Bed"].Bed3.CFrame * CFrame.new(0,0,-1)
       end})
 
-  Tab4:AddButton({Name = "Get Chain [ Needs 1k slaps ]",Callback = function()
+  Tab4:AddButton({Name = "Get Chain [ Requires 1k Slaps ]",Callback = function()
         if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
           local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
           if teleportFunc then
@@ -390,100 +390,59 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab4:AddButton({
-	Name = "Get [Redacted] [ 5000 Slap ]",
-	Callback = function()
-if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
-Door = 0
-for i = 1, 10 do
-Door = Door + 1
-        if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
-        else
-        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
-wait(4)
-end
-end
-else
-OrionLib:MakeNotification({
-	Name = "You Have 5K Slap",
-	Content = "5K Slap Get Bagde",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
+  Tab4:AddButton({Name = "Get [REDACTED] [ Requires 5k Slaps ]",Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
+          Door = 0
+          for i = 1, 10 do
+            Door = Door + 1
+            if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
+              OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+            else
+              firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
+              firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
+              wait(4)
             end
-  	end    
-})
+          end
+        else
+          OrionLib:MakeNotification({Name = "Error",Content = "You need 5k Slaps",Image = "rbxassetid://4483345998",Time = 5})
+        end
+      end})
 
-Tab4:AddButton({
-	Name = "Get Duck Bagde",
-	Callback = function()
-if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916) then
-     fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
-else
-OrionLib:MakeNotification({
-	Name = "You have bagde",
-	Content = "Not Click",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-end
-  	end 
-})
+  Tab4:AddButton({Name = "Get Duck Badge",Callback = function()
+        if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916) then
+          fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
+        else
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+        end
+      end})
 
-Tab4:AddButton({
-	Name = "Get Orange Bagde",
-	Callback = function()
-if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) then
-    fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
-else
-OrionLib:MakeNotification({
-	Name = "You Have Bagde",
-	Content = "Not Click",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-end
-  	end 
-})
+  Tab4:AddButton({Name = "Get Orange Badge",Callback = function()
+        if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) then
+          fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
+        else
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+        end
+      end})
 
-Tab4:AddButton({
-	Name = "Get Knife Bagde",
-	Callback = function()
-if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
-    fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector)
-else
-OrionLib:MakeNotification({
-	Name = "You Have Bagde",
-	Content = "Not Click",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-end
-  	end 
-})
+  Tab4:AddButton({Name = "Get Knife Badge",Callback = function()
+        if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
+          fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector)
+        else
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+        end
+      end})
 
-Tab4:AddBind({
-	Name = "Get Toolbox [ You On Keyboard ]",
-	Default = Enum.KeyCode.H,
-	Hold = false,
-	Callback = function()
-if not workspace:FindFirstChild("Toolbox") then
-OrionLib:MakeNotification({
-	Name = "People not Spam Toolbox",
-	Content = "Don't You Spam Toolbox 😃",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-end
-task.wait()
-for i,v in pairs(workspace.Toolbox:GetDescendants()) do
-if v:IsA("ClickDetector") then
-fireclickdetector(v)
-end
-end
-	end    
-})
+  Tab4:AddButton({Name = "Get Toolbox",Callback = function()
+        if not workspace:FindFirstChild("Toolbox") then
+          OrionLib:MakeNotification({Name = "Error",Content = "There is no toolbox for now.",Image = "rbxassetid://4483345998",Time = 5})
+        end
+        task.wait()
+        for i,v in pairs(workspace.Toolbox:GetDescendants()) do
+          if v:IsA("ClickDetector") then
+            fireclickdetector(v)
+          end
+        end
+      end})
 
 Tab7:AddSlider({
 	Name = "WalkSpeed",
