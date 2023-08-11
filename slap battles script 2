@@ -76,27 +76,27 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   end
 
   local Tab = Window:MakeTab({Name = "Main",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab1 = Window:MakeTab({Name = "Script",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab2 = Window:MakeTab({Name = "Anti void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab1 = Window:MakeTab({Name = "Scripts",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab2 = Window:MakeTab({Name = "Anti Void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab3 = Window:MakeTab({Name = "Auto Keypad",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab4 = Window:MakeTab({Name = "Bagdes",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab4 = Window:MakeTab({Name = "Badges",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab7 = Window:MakeTab({Name = "Local",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab8 = Window:MakeTab({Name = "Animations",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab9 = Window:MakeTab({Name = "TP",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab9 = Window:MakeTab({Name = "Teleports",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab10 = Window:MakeTab({Name = "Auto Join",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab11 = Window:MakeTab({Name = "Misc",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab18 = Window:MakeTab({Name = "Auto Epin Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab13 = Window:MakeTab({Name = "Autofram Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab14 = Window:MakeTab({Name = "Troller Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab21 = Window:MakeTab({Name = "TP Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab18 = Window:MakeTab({Name = "Auto Equip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab13 = Window:MakeTab({Name = "AutoFarm Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab14 = Window:MakeTab({Name = "Trol Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab17 = Window:MakeTab({Name = "Cradit",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab17 = Window:MakeTab({Name = "Credits",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 
-  OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: 6403373529",Time = 5})
-  OrionLib:MakeNotification({Name = "Your name is "..Player..".",Content = "Name is "..Player..".",Time = 5})
-  OrionLib:MakeNotification({Name = "Loading...",Content = "loading game...",Time = 5})
+  OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: "..game.PlaceId,Time = 5})
+  wait(.5)
+  OrionLib:MakeNotification({Name = "Loading...",Content = "Loading script...",Time = 5})
 
   local Section = Tab:AddSection({Name = "Main"})
 
@@ -495,7 +495,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-
   Tab4:AddToggle({Name = "Get bob",Default = false,Callback = function(Value)
         _G.BobFarm = Value
         if _G.BobFarm == true then
@@ -643,14 +642,12 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
             task.wait()
           end
+        end
         end})
 
     Tab11:AddTextbox({Name = "Reach Glove",Default = "",TextDisappear = false,Callback = function(Value)
           if shared.SizeGlove == nil then
             shared.SizeGlove = Value
-          end
-          if setfpscap then
-            setfpscap(60)
           end
           function supaSiza(v)
             if v:IsA("Tool") then
@@ -664,26 +661,17 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             end)
 	        end})
 
-Tab11:AddTextbox({
-	Name = "hitbox [ Reach ]",
-	Default = "",
-	TextDisappear = false,
-	Callback = function(Value)
-if shared.Size == nil then
-    shared.Size = Value
-end
-
-if setfpscap then
-    setfpscap(1269)
-end
-
-for i,x in pairs(game.Players:GetPlayers()) do
-    if x ~= game.Players.LocalPlayer and x.Character ~= nil and x.Character:FindFirstChild("HumanoidRootPart") then
-        x.Character:WaitForChild("HumanoidRootPart").Size = Vector3.new(shared.Size, shared.Size, shared.Size) 
-        x.Character:WaitForChild("HumanoidRootPart").Color = Color3.fromRGB(0, 255, 255)
-        x.Character:WaitForChild("HumanoidRootPart").Material = "Neon"
-        x.Character:WaitForChild("HumanoidRootPart").Transparency = .9
-        task.wait(.1)
+  Tab11:AddTextbox({Name = "hitbox [ Reach ]",Default = "",TextDisappear = false,Callback = function(Value)
+        if shared.Size == nil then
+          shared.Size = Value
+        end
+        for i,x in pairs(game.Players:GetPlayers()) do
+          if x ~= game.Players.LocalPlayer and x.Character ~= nil and x.Character:FindFirstChild("HumanoidRootPart") then
+            x.Character:WaitForChild("HumanoidRootPart").Size = Vector3.new(shared.Size, shared.Size, shared.Size) 
+            x.Character:WaitForChild("HumanoidRootPart").Color = Color3.fromRGB(0, 255, 255)
+            x.Character:WaitForChild("HumanoidRootPart").Material = "Neon"
+            x.Character:WaitForChild("HumanoidRootPart").Transparency = .9
+            task.wait(.1)
             x.CharacterAdded:Connect(function(x)
                 repeat task.wait() until x:FindFirstChild("HumanoidRootPart")
                 task.wait(.35)
@@ -691,135 +679,92 @@ for i,x in pairs(game.Players:GetPlayers()) do
                 x.HumanoidRootPart.Color = Color3.fromRGB(0, 255, 255)
                 x.HumanoidRootPart.Material = "Neon"
                 x.HumanoidRootPart.Transparency = .9
-            end)
-    end
-end
-
-game.Players.PlayerAdded:Connect(function(Child)
-    Child.CharacterAdded:Connect(function(x)
-        repeat task.wait() until x:FindFirstChild("HumanoidRootPart")
-        task.wait(.35)
-        x.HumanoidRootPart.Size = Vector3.new(shared.Size, shared.Size, shared.Size) 
-        x.HumanoidRootPart.Color = Color3.fromRGB(0, 255, 255)
-        x.HumanoidRootPart.Material = "Neon"
-        x.HumanoidRootPart.Transparency = .9
-    end)
-end)
-	end	  
-})
-
-Tab11:AddBind({
-	Name = "Kick Player [ Glove Za Hanh ]",
-	Default = Enum.KeyCode.Z,
-	Hold = false,
-	Callback = function()
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Za Hando" then
-OGWS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
-OGJP = game.Players.LocalPlayer.Character.Humanoid.JumpPower
-for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
-                    if v.ClassName == "Part" then
-                        v.CanTouch = false
-                    end
-                end
-game:GetService("ReplicatedStorage").Erase:FireServer()
-wait(0.47)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = 0
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(1022,213.8,1498)
-wait(3.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.Rock.CFrame
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = OGWS
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = OGJP
-for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
-                    if v.ClassName == "Part" then
-                        v.CanTouch = true
-                    end
-                end
-else
-game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Za Hando equipped"})
-end
-	end    
-})
-
-Tab11:AddButton({
-	Name = "Give others 20 kill Reaper [ Player Slap You ]",
-	Callback = function()
-for i = 1, 20 do
-        game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(x,false)
-end
-for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v.Name == "DeathMark" then
-                    game:GetService("ReplicatedStorage").ReaperGone:FireServer(game:GetService("Players").LocalPlayer.Character.DeathMark)
-                    game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
-                    end 
-                end
-  	end    
-})
-
-Tab11:AddButton({
-	Name = "Destroy All Tycoon [ others and You ]",
-	Callback = function()
-for _, tycoon in pairs(workspace:GetChildren()) do
-        if string.find(tycoon.Name, "ÅTycoon") then
-            for i = 0,100 do
-                fireclickdetector(tycoon.Destruct.ClickDetector, 0)
-                fireclickdetector(tycoon.Destruct.ClickDetector, 1)
-            end
+              end)
+          end
         end
-    end
-  	end    
-})
+        game.Players.PlayerAdded:Connect(function(Child)
+            Child.CharacterAdded:Connect(function(x)
+                repeat task.wait() until x:FindFirstChild("HumanoidRootPart")
+                task.wait(.35)
+                x.HumanoidRootPart.Size = Vector3.new(shared.Size, shared.Size, shared.Size) 
+                x.HumanoidRootPart.Color = Color3.fromRGB(0, 255, 255)
+                x.HumanoidRootPart.Material = "Neon"
+                x.HumanoidRootPart.Transparency = .9
+              end)
+          end)
+      end})
 
-Tab11:AddButton({
-	Name = "Godmode [ All Glove ] [ Not The Free Kill and Reaper ]",
-	Callback = function()
-if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
-wait(0.5)
-for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        v.Parent = game.LogService
-                    end
-                end
-game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
-wait(4)
-for i,v in pairs(game.LogService:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        v.Parent = game.Players.LocalPlayer.Character
-                    end
-                end
-game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                    end
-                end 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
-elseif game.Players.LocalPlayer.Character:FindFirstChild("entered") then
-game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        v.Parent = game.LogService
-                    end
-                end
-game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
-wait(4)
-for i,v in pairs(game.LogService:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        v.Parent = game.Players.LocalPlayer.Character
-                    end
-                end
-game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ClassName == "Tool" then
-                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                    end
-                end 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
-end
-  	end    
-})
+
+  Tab11:AddButton({Name = "Give reaper 20 kill",Callback = function()
+        for i = 1, 20 do
+          game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(x,false)
+        end
+        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+          if v.Name == "DeathMark" then
+            game:GetService("ReplicatedStorage").ReaperGone:FireServer(game:GetService("Players").LocalPlayer.Character.DeathMark)
+            game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
+          end 
+        end
+      end})
+
+  Tab11:AddButton({Name = "Destroy All Tycoons",Callback = function()
+        for _, tycoon in pairs(workspace:GetChildren()) do
+          if string.find(tycoon.Name, "ÅTycoon") then
+            for i = 0,100 do
+              fireclickdetector(tycoon.Destruct.ClickDetector, 0)
+              fireclickdetector(tycoon.Destruct.ClickDetector, 1)
+            end
+          end
+        end
+      end})
+
+  Tab11:AddButton({Name = "Godmode [ All Glove ]",Callback = function()
+        if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
+          firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
+          firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
+          wait(0.5)
+          for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+            if v.ClassName == "Tool" then
+              v.Parent = game.LogService
+            end
+          end
+          game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
+          wait(4)
+          for i,v in pairs(game.LogService:GetChildren()) do
+            if v.ClassName == "Tool" then
+              v.Parent = game.Players.LocalPlayer.Character
+            end
+          end
+          game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+          for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v.ClassName == "Tool" then
+              game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            end
+          end 
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("entered") then
+          game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+          for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v.ClassName == "Tool" then
+              v.Parent = game.LogService
+            end
+          end
+          game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
+          wait(4)
+          for i,v in pairs(game.LogService:GetChildren()) do
+            if v.ClassName == "Tool" then
+              v.Parent = game.Players.LocalPlayer.Character
+            end
+          end
+          game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+          for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v.ClassName == "Tool" then
+              game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            end
+          end 
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
+        end
+      end})
 
 Tab11:AddToggle({
 	Name = "Auto Click Tycoon",
