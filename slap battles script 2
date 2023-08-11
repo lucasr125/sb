@@ -148,7 +148,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-
   Tab3:AddButton({Name = "ELUDE Maze Code",Callback = function()
         if not workspace:FindFirstChild("Keypad") then
           OrionLib:MakeNotification({Name = "Error",Content = "Could not find keypad!",Image = "rbxassetid://4483345998",Time = 5})
@@ -203,7 +202,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           OrionLib:MakeNotification({Name = "Error",Content = "You need join in arena.",Image = "rbxassetid://4483345998",Time = 5})
         end
       end})
-
 
   Tab4:AddButton({Name = "TP To Bed",Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace["Bed"].Bed3.CFrame * CFrame.new(0,0,-1)
@@ -444,104 +442,59 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab7:AddSlider({
-	Name = "WalkSpeed",
-	Min = 20,
-	Max = 1000,
-	Default = 20,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "WalkSpeed",
-	Callback = function(WS)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = WS
+  Tab7:AddSlider({Name = "WalkSpeed",Min = 20,Max = 1000,Default = 20,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "WalkSpeed",Callback = function(WS)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = WS
         WS1 = WS
-	end    
-})
+      end})
 
-Tab7:AddToggle({
-	Name = "Walkspeed Set Auto",
-	Default = false,
-	Save = true,
-    Flag = "WalkSpeedSet",
-	Callback = function(Value)
-		autoSet1 = Value
-        if Value == true then
-            while autoSet1 do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= WS1 then
-                    Character:FindFirstChild("Humanoid").WalkSpeed = WS1
-                end
+  Tab7:AddToggle({Name = "Auto Walkspeed",Default = false,Save = true,Flag = "WalkSpeedSet",Callback = function(Value)
+        _G.AutoWalkspeed = Value
+        if _G.AutoWalkspeed == true then
+          while _G.AutoWalkspeed do
+            task.wait()
+            local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= WS1 then
+              Character:FindFirstChild("Humanoid").WalkSpeed = WS1
             end
+          end
         end
-	end    
-})
+      end})
 
-Tab7:AddSlider({
-	Name = "JumpPower",
-	Min = 50,
-	Max = 1000,
-	Default = 50,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "JumpPower",
-	Callback = function(JP)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
+  Tab7:AddSlider({Name = "JumpPower",Min = 50,Max = 1000,Default = 50,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "JumpPower",Callback = function(JP)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
         WS2 = JP
-	end    
-})
+      end})
 
-Tab7:AddToggle({
-	Name = "Jumppower Set Auto",
-	Default = false,
-	Save = true,
-    Flag = "JumppowerSet",
-	Callback = function(Value)
-		autoSet2 = Value
-        if Value == true then
-            while autoSet2 do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= WS2 then
-                    Character:FindFirstChild("Humanoid").JumpPower = WS2
-                end
+  Tab7:AddToggle({Name = "Auto JumpPower",Default = false,Save = true,Flag = "JumppowerSet",Callback = function(Value)
+        _G.AutoJumpPower = Value
+        if _G.AutoJumpPower == true then
+          while _G.AutoJumpPower do
+            task.wait()
+            local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= WS2 then
+              Character:FindFirstChild("Humanoid").JumpPower = WS2
             end
+          end
         end
-	end    
-})
+      end})
 
-Tab7:AddSlider({
-	Name = "Hip Height",
-	Min = 0,
-	Max = 100,
-	Default = 1,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Hip Height",
-	Callback = function(HT)
-		game.Players.LocalPlayer.Character.Humanoid.HipHeight = HT
+  Tab7:AddSlider({Name = "Hip Height",Min = 0,Max = 100,Default = 1,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "Hip Height",Callback = function(HT)
+        game.Players.LocalPlayer.Character.Humanoid.HipHeight = HT
         WS3 = HT
-	end    
-})
+      end})
 
-Tab7:AddToggle({
-	Name = "Hip Height Set Auto",
-	Default = false,
-	Save = true,
-    Flag = "HipHeightset",
-	Callback = function(Value)
-		autoSet3 = Value
-        if Value == true then
-            while autoSet3 do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= WS3 then
-                    Character:FindFirstChild("Humanoid").HipHeight  = WS3
-                end
+  Tab7:AddToggle({Name = "Auto Hip Height",Default = false,Save = true,Flag = "HipHeightset",Callback = function(Value)
+        _G.AutoHipHeight = Value
+        if _G.AutoHipHeight == true then
+          while _G.AutoHipHeight do
+            task.wait()
+            local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= WS3 then
+              Character:FindFirstChild("Humanoid").HipHeight  = WS3
             end
+          end
         end
-	end    
-})
+      end})
 
 Tab19:AddToggle({
 	Name = "Time Diamond [ Get Megarock ]",
