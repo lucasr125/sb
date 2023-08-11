@@ -8,10 +8,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua')))()
   local Window = OrionLib:MakeWindow({Name = (("Slap Battles 👏").." - ".. identifyexecutor()), HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
 
-
   -- Bypass
-
-
   local Namecall
   Namecall = hookmetamethod(game, '__namecall', function(self, ...)
       if getnamecallmethod() == 'FireServer' and tostring(self) == 'Ban' then
@@ -25,12 +22,11 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
     end)
 
   -- Player
-
   local Player = game.Players.LocalPlayer.Character.Name
   if setfpscap then
     setfpscap(12569)
   end
-    
+
   local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
   local Beds = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/slap-battles/main/File/Bed.lua"))()
 
@@ -39,7 +35,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   end
 
   shared.createBed()
-  
+
   -- Anti Void
   if not workspace:FindFirstChild("Spot") then
     local SafeSpot = Instance.new("Part", workspace)
@@ -70,132 +66,39 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
     arenaVoid.Transparency = 1
   end
 
---Anti Obby
+  -- Anti Obby
 
-function disable(username, cantouch)
-    warn(username)
+
+  function disable(username, cantouch)
+    print(username)
     if workspace:FindFirstChild("ObbyItem"..username.."LavaBlock") then
-       warn("ObbyItem"..username.."LavaBlock")
-       workspace:FindFirstChild("ObbyItem"..username.."LavaBlock").CanTouch = cantouch
+      print("ObbyItem"..username.."LavaBlock")
+      workspace:FindFirstChild("ObbyItem"..username.."LavaBlock").CanTouch = cantouch
     elseif workspace:FindFirstChild("ObbyItem"..username.."LavaSpinner") then
-    warn("ObbyItem"..username.."LavaSpinner")
-    workspace:FindFirstChild("ObbyItem"..username.."LavaSpinner").CanTouch = cantouch
- end
-end
+      print("ObbyItem"..username.."LavaSpinner")
+      workspace:FindFirstChild("ObbyItem"..username.."LavaSpinner").CanTouch = cantouch
+    end
+  end
 
-local Tab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab1 = Window:MakeTab({
-	Name = "Script",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab2 = Window:MakeTab({
-	Name = "Anti void",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab3 = Window:MakeTab({
-	Name = "Auto Keypad",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab4 = Window:MakeTab({
-	Name = "Bagdes",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab19 = Window:MakeTab({
-	Name = "Bagdes Time",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab7 = Window:MakeTab({
-	Name = "Local",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab8 = Window:MakeTab({
-	Name = "Animations",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab9 = Window:MakeTab({
-	Name = "TP",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab10 = Window:MakeTab({
-	Name = "Auto Join",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab11 = Window:MakeTab({
-	Name = "Misc",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab12 = Window:MakeTab({
-	Name = "Game",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab18 = Window:MakeTab({
-	Name = "Auto Epin Glove",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab13 = Window:MakeTab({
-	Name = "Autofram Slap",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab14 = Window:MakeTab({
-	Name = "Troller Sever",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab21 = Window:MakeTab({
-	Name = "TP Player",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab15 = Window:MakeTab({
-	Name = "Ability Spams",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab16 = Window:MakeTab({
-	Name = "Auto Join game",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Tab17 = Window:MakeTab({
-	Name = "Cradit",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+  local Tab = Window:MakeTab({Name = "Main",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab1 = Window:MakeTab({Name = "Script",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab2 = Window:MakeTab({Name = "Anti void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab3 = Window:MakeTab({Name = "Auto Keypad",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab4 = Window:MakeTab({Name = "Bagdes",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab19 = Window:MakeTab({Name = "Bagdes Time",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab7 = Window:MakeTab({Name = "Local",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab8 = Window:MakeTab({Name = "Animations",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab9 = Window:MakeTab({Name = "TP",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab10 = Window:MakeTab({Name = "Auto Join",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab11 = Window:MakeTab({Name = "Misc",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab18 = Window:MakeTab({Name = "Auto Epin Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab13 = Window:MakeTab({Name = "Autofram Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab14 = Window:MakeTab({Name = "Troller Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab21 = Window:MakeTab({Name = "TP Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab17 = Window:MakeTab({Name = "Cradit",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 
 OrionLib:MakeNotification({
 	Name = "Script slap battles.",
