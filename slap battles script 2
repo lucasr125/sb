@@ -11,14 +11,11 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   -- Bypass
   local Namecall
   Namecall = hookmetamethod(game, '__namecall', function(self, ...)
-      if getnamecallmethod() == 'Fir
-        eServer' and tostring(self) == 'Ban' then
+      if getnamecallmethod() == 'FireServer' and tostring(self) == 'Ban' then
         return
-      elseif getnamecallmethod() == 'Fir
-        eServer' and tostring(self) == 'WalkSpeedChanged' then
+      elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'WalkSpeedChanged' then
         return
-      elseif getnamecallmethod() == 'Fir
-        eServer' and tostring(self) == 'AdminGUI' then
+      elseif getnamecallmethod() == 'FirFeServer' and tostring(self) == 'AdminGUI' then
         return
       end
       return Namecall(self, ...)
@@ -171,8 +168,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         while _G.SlappleFarm do
           task.wait()
           spawn(function()
-              for i, v in pairs(game:GetService("Workspace").
-                Arena.island5.Slapples:GetDescendants()) do
+              for i, v in pairs(game:GetService("Workspace").Arena.island5.Slapples:GetDescendants()) do
                 if v:IsA("TouchTransmitter") then
                   firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 0)
                   task.wait()
@@ -183,19 +179,14 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab:AddToggle({Name = "Au
-      to Farm Candy",Default = false,Save = true,Flag = "
-      AutoFarmCandy",Callback = function(Value)
-   
+  Tab:AddToggle({Name = "Auto Farm Candy",Default = false,Save = true,Flag = "AutoFarmCandy",Callback = function(Value)
+
         _G.CandyFarm = Value
-        w
-        hile _G.CandyFarm do
+        while _G.CandyFarm do
           task.wait()
           spawn(function()
-              for i,v in pairs(game:GetService("Work
-                  space").CandyCorns:GetDescendants()) do
-                if v.Name == ("TouchIn
-                    terest") and v.Parent then
+              for i,v in pairs(game:GetService("Workspace").CandyCorns:GetDescendants()) do
+                if v.Name == ("TouchInterest") and v.Parent then
                   firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 0)
                   task.wait()
                   firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 1)
@@ -219,8 +210,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   Tab4:AddButton({Name = "Get Chain [ Requires 1k Slaps ]",Callback = function()
         if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
-          local teleportFunc = queueonteleport or queue_on_telepor
-          t or syn and syn.queue_on_teleport
+          local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
           if teleportFunc then
             teleportFunc([[
               if not game:IsLoaded() then
@@ -419,8 +409,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   Tab4:AddButton({Name = "Get Duck Badge",Callback = function()
         if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916) then
-          fireclickdetector(game.Workspace.Arena["de
-            fault island"]["Rubber Ducky"].ClickDetector)
+          fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
         else
           OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
         end
@@ -428,8 +417,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   Tab4:AddButton({Name = "Get Orange Badge",Callback = function()
         if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) then
-          fireclickdetector(game.Workspace.
-            Arena.island5.Orange.ClickDetector)
+          fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
         else
           OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
         end
@@ -466,8 +454,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.AutoWalkspeed do
             task.wait()
             local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-            if Character:FindFirstChild("Humanoid"
-              ) ~= nil and Character.Humanoid.WalkSpeed ~= WS1 then
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= WS1 then
               Character:FindFirstChild("Humanoid").WalkSpeed = WS1
             end
           end
@@ -485,8 +472,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.AutoJumpPower do
             task.wait()
             local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-            if Character:FindFirstChild("Humanoid"
-              ) ~= nil and Character.Humanoid.JumpPower ~= WS2 then
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= WS2 then
               Character:FindFirstChild("Humanoid").JumpPower = WS2
             end
           end
@@ -504,8 +490,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.AutoHipHeight do
             task.wait()
             local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-            if Character:FindFirstChild("Humanoid"
-              ) ~= nil and Character.Humanoid.HipHeight ~= WS3 then
+            if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= WS3 then
               Character:FindFirstChild("Humanoid").HipHeight  = WS3
             end
           end
@@ -517,9 +502,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         if _G.BobFarm == true then
           while _G.BobFarm do
             task.wait()
-            if getGlove() == "
-              Replica" and _G
-              .BobFarm and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2125950512) then
+            if getGlove() == "Replica" and _G.BobFarm and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2125950512) then
               game.ReplicatedStorage.Duplicate:FireServer(true)
               task.wait()
               tick = os.time()
@@ -562,8 +545,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.AutoEnterArena do
             wait()
             repeat task.wait() until game.Players.LocalPlayer.Character
-            if not game.Players.LocalPlayer.Character:FindFirstChild("e
-                ntered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
               repeat task.wait(.005)
                 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
                 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
@@ -579,8 +561,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.AutoEnterDefault do
             wait()
             repeat task.wait() until game.Players.LocalPlayer.Character
-            if not game.Players.LocalPlayer.Character:FindFirstChild("e
-                ntered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if not game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
               repeat task.wait(.005)
                 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 0)
                 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2.TouchInterest.Parent, 1)
@@ -641,8 +622,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   Tab4:AddToggle({Name = "AutoFarm Brick [ Get Trap ] [ Auto E ]",Default = false,Save = true,Flag = "AutoBrick",Callback = function(Value)
         _G.FarmBrick = Value
         while _G.FarmBrick do
-          if game.Players.LocalPlayer.leaderstats.Glove.Value ==
-            "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
+          if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
             task.wait()
             game.VirtualInputManager:SendKeyEvent(true, "E", false, game)
             task.wait(5.2)
@@ -688,9 +668,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           shared.Size = Value
         end
         for i,x in pairs(game.Players:GetPlayers()) do
-          if x ~= game.Players.Loc
-            alPlayer and x.Characte
-            r ~= nil and x.Character:FindFirstChild("HumanoidRootPart") then
+          if x ~= game.Players.LocalPlayer and x.Character ~= nil and x.Character:FindFirstChild("HumanoidRootPart") then
             x.Character:WaitForChild("HumanoidRootPart").Size = Vector3.new(shared.Size, shared.Size, shared.Size) 
             x.Character:WaitForChild("HumanoidRootPart").Color = Color3.fromRGB(0, 255, 255)
             x.Character:WaitForChild("HumanoidRootPart").Material = "Neon"
@@ -793,15 +771,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   Tab11:AddToggle({Name = "Auto Click Tycoon",Default = false,Save = true,Flag = "AutoClickTycoon",Callback = function(Value)
         _G.AutoTycoon = Value
         for i,v in pairs(workspace:GetDescendants()) do
-          if v.Name 
-            == "End" and v.ClassName == "Part" then
+          if v.Name == "End" and v.ClassName == "Part" then
             v.Size = Vector3.new(28, 0.3, 4)
           end
         end
         while _G.AutoTycoon do
           for i,v in pairs(workspace:GetDescendants()) do
-            if v.Name ==
-              "Click" and v:FindFirstChild("ClickDetector") then
+            if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
               fireclickdetector(v.ClickDetector)
             end
           end
@@ -819,23 +795,18 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-
   Tab11:AddToggle({Name = "Auto Rainbow [ Equip Golden ]",Default = false,Save = true,Flag = "RainbowGolden",Callback = function(Value)
         _G.Rainbow = Value
         while _G.Rainbow do
-        
-          local randomnumber
-          = math.random(1004, 1032)
+          local randomnumber = math.random(1004, 1032)
           local args = {
             [1] = false,
-            [2] = BrickCo
-            lor.new(randomnumber)
+            [2] = BrickColor.new(randomnumber)
           }
           game:GetService("ReplicatedStorage").Goldify:FireServer(unpack(args))
           task.wait(0.075)
         end
       end})
-
 
   Tab13:AddToggle({Name = "Slap Aura [ All Gloves ]",Default = false,Save = true,Flag = "SlapAura",Callback = function(Value)		
         _G.SlapAura = Value
@@ -844,14 +815,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             task.wait()
             pcall(function()
                 for Index, Player in next, game.Players:GetPlayers() do
-                  if Player ~= game.Players.Loc
-                    alPlayer and Player.C
-                    haracter and Player.Character:FindFirstChild("entered") then
+                  if Player ~= game.Players.LocalPlayer and Player.Character and Player.Character:FindFirstChild("entered") then
                     if Player.Character:FindFirstChild("Head") then
-                      if Player.Character.Head:FindFirstChild("UnoReverseCard"
-                        ) == nil and Player.Character:FindFirstChild("rock") == nil then
-                        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRo
-                            otPart") and not game.Players.LocalPlayer:IsFriendsWith(Player.UserId) then
+                      if Player.Character.Head:FindFirstChild("UnoReverseCard") == nil and Player.Character:FindFirstChild("rock") == nil then
+                        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and not game.Players.LocalPlayer:IsFriendsWith(Player.UserId) then
                           local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
                           if 25 >= Magnitude then
                             shared.gloveHits[getGlove()]:FireServer(Player.Character:WaitForChild("Head"))
@@ -870,10 +837,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         _G.AntiAdmin = Value
         if _G.AntiAdmin == true then
           game.Players.PlayerAdded:Connect(function(Plr)
-              if Plr:GetRankInGroup(
-                  9950771) and 7 <= Plr:GetRankInGroup(
-                  9950771) and _G.AntiAdmin then
-                game.Players.LocalPlayer:Kick("Admin Cummer Detected 🔥")
+              if Plr:GetRankInGroup(9950771) and 7 <= Plr:GetRankInGroup(9950771) and _G.AntiAdmin then
+                game.Players.LocalPlayer:Kick("Admin Detected")
               end
             end)
         end
@@ -966,22 +931,12 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             task.wait()
             pcall(function()
                 for Index, Human in next, game.Players:GetPlayers() do
-                  if Human ~= game.Players.Loc
-                    alPlayer and Human.C
-                    haracter and not Human.Character:FindFirstChild("isPartici
-                      pating") and Human.Character:FindFirstChild(
-                      "Torso") and Human.Character:FindFirstChild
-                    ("Head") and Human.Character:FindFirstChild("e
-                      ntered") and Human.Character.Head:FindFirstChild("UnoReverseCard"
-                    ) == nil and Human.Character:FindFirstChild("rock"
-                    ) == nil and Human.Character.Ragdolled.Value == false then
-                    if game.Players.LocalPlayer.Character:FindFirstChild("e
-                        ntered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                  if Human ~= game.Players.LocalPlayer and Human.Character and not Human.Character:FindFirstChild("isParticipating") and Human.Character:FindFirstChild("Torso") and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                       task.wait(.1)
                       game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Right Leg").CFrame * CFrame.new(6,-2,6)
                       task.wait()
-                      game.Players.LocalPlayer.Character:WaitForChild("Humanoid").P
-                      latformStand = true
+                      game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
                       wait(.1)
                       shared.gloveHits[getGlove()]:FireServer(Human.Character:FindFirstChild("Torso"))
                       wait(.1)
@@ -994,11 +949,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           workspace.DEATHBARRIER.CanTouch = true
           workspace.DEATHBARRIER2.CanTouch = true
           workspace.dedBarrier.CanTouch = true
-          if game.Players.LocalPlayer.Character.Humanoid.P
-            latformStand == true then
+          if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
             task.wait(3)
-            game.Players.LocalPlayer.Character.Humanoid.P
-            latformStand = false
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
           end
         end
       end})
@@ -1058,7 +1011,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Brazil [ The not kick ]",Default = false,Save = true,Flag = "AntiBrazil",Callback = function(Value)
+  Tab11:AddToggle({Name = "Anti Brazil",Default = false,Save = true,Flag = "AntiBrazil",Callback = function(Value)
         _G.AntiBrazil = Value
         if _G.AntiBrazil == true then
           for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
@@ -1083,24 +1036,16 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             wait()
             pcall(function()
                 for Index, Human in next, game.Players:GetPlayers() do
-                  if Human ~= game.Players.Loc
-                    alPlayer and Human.C
-                    haracter and Human.Character:FindFirstChild
-                    ("Head") and Human.Character:FindFirstChild("e
-                      ntered") and Human.Character.Head:FindFirstChild("UnoReverseCard"
-                    ) == nil and Human.Character:FindFirstChild("rock"
-                    ) == nil and Human.Character.Ragdolled.Value == false then
-                    if game.Players.LocalPlayer.Character:FindFirstChild("e
-                        ntered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                  if Human ~= game.Players.LocalPlayer and Human.Character and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                       task.wait(.1)
                       if getGlove() == "Ghost" then
                         game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Torso").CFrame * CFrame.new(6,-2,6)
                         task.wait()
-                        game.Players.LocalPlayer.Character:WaitForChild("Humanoid").P
-                        latformStand = true
-                        wait(.25)
+                        game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
+                        wait(.1)
                         game.ReplicatedStorage.GhostHit:FireServer(Human.Character:WaitForChild(toHit))
-                        wait(.25)
+                        wait(.1)
                       end
                     end
                   end
@@ -1109,25 +1054,18 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           end
         else
           game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer()
-          if game.Players.LocalPlayer.Character.Humanoid.P
-            latformStand == true then
+          if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
             task.wait(3)
-            game.Players.LocalPlayer.Character.Humanoid.P
-            latformStand = false
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
           end
         end
       end})
 
-  Tab11:AddToggle({Name = 
-      "Anti ZaHando",Default = false,Save = true,Flag =
-      "AntiZaHando",Callback = function(Value)
-        _
-        G.AntiZaHando = Value
-        while _
-        G.AntiZaHando do
+  Tab11:AddToggle({Name = "Anti ZaHando",Default = false,Save = true,Flag = "AntiZaHando",Callback = function(Value)
+        _G.AntiZaHando = Value
+        while _G.AntiZaHando do
           for i,v in pairs(game.Workspace:GetChildren()) do
-            if v.ClassName =
-              = "Part" and v.Name == "Part" then
+            if v.ClassName == "Part" and v.Name == "Part" then
               v:Destroy()
             end
           end
@@ -1198,10 +1136,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   Tab11:AddToggle({Name = "Anti Stun",Default = false,Save = true,Flag = "AntiStun",Callback = function(Value)
         _G.AntiStun = Value
         while _G.AntiStun do
-          if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"
-            ) ~= nil and game.Workspace:FindFirstChild("Shockwave") then
-            game.Players.LocalPlayer.Character.Humanoid.P
-            latformStand = false
+          if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
           end
           task.wait()
         end
@@ -1224,8 +1160,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         _G.DisableDB = Value
         if _G.DisableDB == true then
           for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
-            if v.ClassName =
-              = "Part" and v.Name == "BLOCK" then
+            if v.ClassName == "Part" and v.Name == "BLOCK" then
               v.CanTouch = false
             end
           end
@@ -1236,8 +1171,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           workspace.AntiDefaultArena.CanTouch = false
         else
           for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
-            if v.ClassName =
-              = "Part" and v.Name == "BLOCK" then
+            if v.ClassName == "Part" and v.Name == "BLOCK" then
               v.CanTouch = true
             end
           end
@@ -1249,7 +1183,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = " Auto Remove Nametag",Default = false,Save = true,Flag = "RemoveNameTag",Callback = function(Value)		 
+  Tab11:AddToggle({Name = "Auto Remove Nametag",Default = false,Save = true,Flag = "RemoveNameTag",Callback = function(Value)		 
         _G.AutoRemoveNametag = Value
         if _G.AutoRemoveNametag == true then
           game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
@@ -1273,8 +1207,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
               local Character = game.Workspace[game.Players.LocalPlayer.Name]
               task.wait()
               Character:WaitForChild("Ragdolled").Changed:Connect(function()
-                  if Character:WaitForChild("Ragdolled").Value
-                    == true and _G.AntiRagdoll == true then
+                  if Character:WaitForChild("Ragdolled").Value == true and _G.AntiRagdoll == true then
                     repeat task.wait()
                       Character.Torso.Anchored = true
                     until Character:FindFirstChild("Torso") == nil or Character:WaitForChild("Ragdolled").Value == false
@@ -1289,8 +1222,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         _G.InvisibleReverse = Value
         if _G.InvisibleReverse == true then
           while _G.InvisibleReverse do
-            repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Selection
-              Box", 1) and game.Players.LocalPlayer.Character:FindFirstChild("Head"):FindFirstChild("UnoReverseCard")
+            repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("SelectionBox", 1) and game.Players.LocalPlayer.Character:FindFirstChild("Head"):FindFirstChild("UnoReverseCard")
             game.Players.LocalPlayer.Character.Head["UnoReverseCard"]:Destroy()
             for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
               if v.Name == "SelectionBox" then
@@ -1307,8 +1239,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           while _G.InfiniteReverse do
             task.wait()
             local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-            if game.Players.LocalPlayer.leaderstats.Glove.Value == "
-              Reverse" and Character:FindFirstChild("entered") then
+            if game.Players.LocalPlayer.leaderstats.Glove.Value == "Reverse" and Character:FindFirstChild("entered") then
               task.wait(5.7)
               game:GetService("ReplicatedStorage"):WaitForChild("ReverseAbility"):FireServer()
             end
@@ -1327,21 +1258,18 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = Vector3.new(-180, Orbit, -180)
           if game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
             for i,v in pairs(game.Workspace:GetChildren()) do
-              if v.ClassName =
-                = "Part" and v.Name == PingPongBall then
+              if v.ClassName == "Part" and v.Name == PingPongBall then
                 v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15)
               end
             end
             for i,v in pairs(game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()) do
-              if v.ClassName =
-                = "Part" and v.Name == PingPongBall then
+              if v.ClassName == "Part" and v.Name == PingPongBall then
                 v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(180), math.rad(0), math.rad(0))
               end
             end
           elseif game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[1] or game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
             for i,v in pairs(game.Workspace:GetChildren()) do
-              if v.ClassName =
-                = "Part" and v.Name == PingPongBall then
+              if v.ClassName == "Part" and v.Name == PingPongBall then
                 v.Parent = game.Players.LocalPlayer.Character.Torso.RadioPart
                 break
               end
@@ -1407,8 +1335,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             end
           end)
         game:GetService("RunService").Heartbeat:Connect(function()
-            if E
-              P ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRo
+            if EP ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRo
                 otPart") and Floss.IsPlaying or Groove.IsPlaying or Headless.IsPlaying or Helicopter.IsPlaying or Kick.IsPlaying or L.IsPlaying or Laugh.IsPlaying or Parker.IsPlaying or Spasm.IsPlaying or Thriller.IsPlaying then
               Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - EP).Magnitude
               if Magnitude > 1 then
@@ -1447,18 +1374,15 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3034.03369, 144.78009, -5.25375271, 0.935709953, 0.160234556, -0.314279824, 0.00408654613, 0.885907471, 0.463844001, 0.352746665, -0.435307741, 0.828297615)
       end})
 
-  Tab9:AddButton({Name = "
-      TP To island 1",Callback = function()
+  Tab9:AddButton({Name = "TP To island 1",Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559, -0.0225322824, 1.83683113e-08, -0.999746144, -1.83560154e-08, 1, 1.87866842e-08, 0.999746144, 1.87746618e-08, -0.0225322824)
       end})
 
-  Tab9:AddButton({Name = "
-      TP To island 2",Callback = function()
+  Tab9:AddButton({Name = "TP To island 2",Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741, -0.98216176, -3.48867246e-09, -0.188037917, -4.19987778e-09, 1, 3.38382322e-09, 0.188037917, 4.11319823e-09, -0.98216176)
       end})
 
-  Tab9:AddButton({Name = "
-      TP To island 3",Callback = function()
+  Tab9:AddButton({Name = "TP To island 3",Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378, 0.945777893, 2.52095178e-10, 0.324814111, -3.7823856e-08, 1, 1.09357536e-07, -0.324814111, -1.15713661e-07, 0.945777893)
       end})
 
@@ -1476,8 +1400,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         local mouse = plr:GetMouse()
         local tool = Instance.new("Tool")
 
-        tool.
-        RequiresHandle = false
+        tool.RequiresHandle = false
         tool.Name = "Click Teleport"
         tool.Activated:Connect(function()
             local root = plr.Character.HumanoidRootPart
@@ -1493,7 +1416,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         wait(1.5)
         for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
           if v:IsA("Tool") then
-            if v.Glove.Mesh or v.Glove.Cuff then
+            if v.Glove.Mesh or v.Glove.Cuff.Mesh then
               v.Glove.Mesh:Destroy()
               v.Glove.Cuff.Mesh:Destroy()
             end
@@ -1502,8 +1425,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab12:AddButton({Name = "View Testing Server [ Good for glove leaking ]",Callback = function()
-        local teleportFunc = queueonteleport or queue_on_telepor
-        t or syn and syn.queue_on_teleport
+        local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
         if teleportFunc then
           teleportFunc([[
             if not game:IsLoaded() then
@@ -1649,8 +1571,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             task.wait()
             if getGlove() == "Space" then
               game.ReplicatedStorage["ZeroGSound"]:FireServer()
-              game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidSt
-                ateType.Landed)
+              game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Landed)
             end
           end
         else
@@ -2007,8 +1928,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
             Tab16:AddButton({Name = "Serverhop",Callback = function()
                   for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                    if server.playing < server.ma
-                      xPlayers and server.JobId ~= game.JobId then
+                    if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
                       game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
                     end
                   end
