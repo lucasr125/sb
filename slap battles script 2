@@ -6,7 +6,7 @@ game:GetService("GuiService"):ClearError()
 
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua')))()
-  local Window = OrionLib:MakeWindow({Name = (("Slap Battles 👏").." - ".. identifyexecutor()), HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
+  local Window = OrionLib:MakeWindow({Name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.." Script" or "Slap Battles Script", HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
 
   -- Bypass
   local Namecall
@@ -920,7 +920,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-
   Tab13:AddToggle({Name = "AutoSlap",Default = false,Callback = function(Value)
         _G.SlapFarm = Value
         if _G.SlapFarm == true then
@@ -1028,7 +1027,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           end
         end
       end})
-
 
   Tab13:AddToggle({Name = "Ghost Autofarm Slap",Default = false,Callback = function(Value)
         _G.GhostFarm = Value
@@ -1220,10 +1218,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
 	      end})
 
-Tab11:AddToggle({
-	Name = "Invisible Reverse [ FE ]",
-	Default = false,
-	Callback = function(Value)
+  Tab11:AddToggle({Name = "Invisible Reverse [ FE ]",Default = false,Callback = function(Value)
 		
         Invis_Reverse = Value
         
