@@ -74,7 +74,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
     end
   end
 
-  OrionLib:MakeNotification({Name = "Version",Content = "1.0.5",Image = "rbxassetid://7733956210",Time = 5})
+  OrionLib:MakeNotification({Name = "Version",Content = "1.0.51",Image = "rbxassetid://7733956210",Time = 5})
   local Tab = Window:MakeTab({Name = "Main",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab1 = Window:MakeTab({Name = "Scripts",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab2 = Window:MakeTab({Name = "Anti Void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
