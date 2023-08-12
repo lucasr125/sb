@@ -63,7 +63,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   -- Anti Obby
 
-
   function disable(username, cantouch)
     print(username)
     if workspace:FindFirstChild("ObbyItem"..username.."LavaBlock") then
@@ -149,13 +148,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   Tab3:AddButton({Name = "ELUDE Maze Code",Callback = function()
         if not workspace:FindFirstChild("Keypad") then
-          OrionLib:MakeNotification({Name = "Error",Content = "Could not find keypad!",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "Could not find keypad!",Image = "rbxassetid://7743878496",Time = 5})
         end
         wait(0.5)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
         task.wait(0.1)
         print(#game.Players:GetPlayers() * 25 + 1100 - 7)
-        OrionLib:MakeNotification({Name = "Check Console",Content = #game.Players:GetPlayers() * 25 + 1100 - 7,Image = "rbxassetid://4483345998",Time = 5})
+        OrionLib:MakeNotification({Name = "Code",Content = #game.Players:GetPlayers() * 25 + 1100 - 7,Image = "rbxassetid://7733777166",Time = 5})
       end})
 
   Tab:AddButton({Name = "Infinite Yield",Callback = function()
@@ -198,7 +197,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("entered") then
           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,50,0)
         else
-          OrionLib:MakeNotification({Name = "Error",Content = "You need join in arena.",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "You need join in arena.",Image = "rbxassetid://7743878496",Time = 5})
         end
       end})
 
@@ -393,7 +392,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           for i = 1, 10 do
             Door = Door + 1
             if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
-              OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+              OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
             else
               firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
               firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
@@ -401,7 +400,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             end
           end
         else
-          OrionLib:MakeNotification({Name = "Error",Content = "You need 5k Slaps",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "You need 5k Slaps",Image = "rbxassetid://7743878496",Time = 5})
         end
       end})
 
@@ -409,7 +408,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916) then
           fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
         else
-          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
         end
       end})
 
@@ -417,7 +416,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) then
           fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
         else
-          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
         end
       end})
 
@@ -425,13 +424,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
           fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector)
         else
-          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "You already have the badge!",Image = "rbxassetid://7743878496",Time = 5})
         end
       end})
 
   Tab4:AddButton({Name = "Get Toolbox",Callback = function()
         if not workspace:FindFirstChild("Toolbox") then
-          OrionLib:MakeNotification({Name = "Error",Content = "There is no toolbox for now.",Image = "rbxassetid://4483345998",Time = 5})
+          OrionLib:MakeNotification({Name = "Error",Content = "There is no toolbox for now.",Image = "rbxassetid://7743878496",Time = 5})
         end
         task.wait()
         for i,v in pairs(workspace.Toolbox:GetDescendants()) do
@@ -1219,487 +1218,224 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	      end})
 
   Tab11:AddToggle({Name = "Invisible Reverse [ FE ]",Default = false,Callback = function(Value)
-		
-        Invis_Reverse = Value
-        
-        if Value == true then
-        
-        while Invis_Reverse do
-        
+        _G.InvisibleReverse = Value
+        if _G.InvisibleReverse == true then
+          while _G.InvisibleReverse do
             repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("SelectionBox", 1) and game.Players.LocalPlayer.Character:FindFirstChild("Head"):FindFirstChild("UnoReverseCard")
-
             game.Players.LocalPlayer.Character.Head["UnoReverseCard"]:Destroy()
-
             for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-    
-                if v.Name == "SelectionBox" then
-                
+              if v.Name == "SelectionBox" then
                 v:Destroy()
-        
-                end
-            
+              end
             end
-        
+          end
         end
-        
+      end})
+
+  Tab11:AddToggle({Name = "Infinite Reverse",Default = false,Callback = function(Value)
+        _G.InfiniteReverse = Value
+        if _G.InfiniteReverse == true then
+          while _G.InfiniteReverse do
+            task.wait()
+            local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+            if game.Players.LocalPlayer.leaderstats.Glove.Value == "Reverse" and Character:FindFirstChild("entered") then
+              task.wait(5.7)
+              game:GetService("ReplicatedStorage"):WaitForChild("ReverseAbility"):FireServer()
+            end
+          end
         end
-	end    
-})
+      end})
 
-Tab11:AddToggle({
-	Name = "Infinite Reverse",
-	Default = false,
-	Callback = function(Value)
-		
-	    autoReverse = Value
-	    
-	    if Value == true then
-		
-	    while autoReverse do
-	       
-	    task.wait()
-	    
-	    local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-	    
-	    if game.Players.LocalPlayer.leaderstats.Glove.Value == "Reverse" and Character:FindFirstChild("entered") then
-	        
-            task.wait(5.7)
-            
-            game:GetService("ReplicatedStorage"):WaitForChild("ReverseAbility"):FireServer()
-
-        
-	        
-	    end
-
-	    end
-	    
+  Tab11:AddToggle({Name = "Ping Pong Orbit",Default = false,Callback = function(Value)
+        _G.PingPongOrbit = Value
+        game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = game.Players.LocalPlayer.Character.HumanoidRootPart.Rotation
+        Orbit = "0"
+        PingPongBall = game.Players.LocalPlayer.Name.."_PingPongBall"
+        while _G.PingPongOrbit do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+          Orbit = Orbit + OrbitSpeed
+          game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = Vector3.new(-180, Orbit, -180)
+          if game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
+            for i,v in pairs(game.Workspace:GetChildren()) do
+              if v.ClassName == "Part" and v.Name == PingPongBall then
+                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15)
+              end
+            end
+            for i,v in pairs(game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()) do
+              if v.ClassName == "Part" and v.Name == PingPongBall then
+                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(180), math.rad(0), math.rad(0))
+              end
+            end
+          elseif game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[1] or game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
+            for i,v in pairs(game.Workspace:GetChildren()) do
+              if v.ClassName == "Part" and v.Name == PingPongBall then
+                v.Parent = game.Players.LocalPlayer.Character.Torso.RadioPart
+                break
+              end
+            end
+          end
+          task.wait(0.01)
         end
-	end    
-})
+      end})
 
-Tab11:AddToggle({
-	Name = "Ping Pong Orbit",
-	Default = false,
-	Callback = function(Value)
-		PingPongOrbit = Value
-game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = game.Players.LocalPlayer.Character.HumanoidRootPart.Rotation
-Orbit = "0"
-PingPongBall = game.Players.LocalPlayer.Name.."_PingPongBall"
-while PingPongOrbit do
-game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
-Orbit = Orbit + OrbitSpeed
-game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = Vector3.new(-180, Orbit, -180)
-if game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15)
-                    end
-                end
-for i,v in pairs(game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-                        v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(180), math.rad(0), math.rad(0))
-                    end
-                end
-elseif game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[1] or game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-v.Parent = game.Players.LocalPlayer.Character.Torso.RadioPart
-break
-                    end
-                end
-end
-task.wait(0.01)
-end
-	end    
-})
+  Tab11:AddSlider({Name = "Ping Pong Orbit Speed",Min = 0,Max = 100,Default = 10,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "Speed",Callback = function(Value)
+        OrbitSpeed = Value
+      end})
 
-Tab11:AddSlider({
-	Name = "Ping Pong Orbit Speed",
-	Min = 0,
-	Max = 100,
-	Default = 10,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Speed",
-	Callback = function(Value)
-		OrbitSpeed = Value
-	end    
-})
+  Tab1:AddButton({Name = "Simple Spy",Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))()
+      end})
 
-Tab1:AddButton({
-	Name = "drippy hub",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/ZombieGamesYT/DrippyHub-1.1/main/DrippyHub%201.2"))()
-  	end    
-})
+  Tab8:AddButton({Name = "Script All Animations [ /e emotename]",Callback = function()
+        Floss = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, game.Players.LocalPlayer.Character.Humanoid)
+        Groove = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, game.Players.LocalPlayer.Character.Humanoid)
+        Headless = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Headless, game.Players.LocalPlayer.Character.Humanoid)
+        Helicopter = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Helicopter, game.Players.LocalPlayer.Character.Humanoid)
+        Kick = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Kick, game.Players.LocalPlayer.Character.Humanoid)
+        L = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.L, game.Players.LocalPlayer.Character.Humanoid)
+        Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Laugh, game.Players.LocalPlayer.Character.Humanoid)
+        Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
+        Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
+        Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
+        game.Players.LocalPlayer.Chatted:connect(function(msg)
+            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+              Floss = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, game.Players.LocalPlayer.Character.Humanoid)
+              Groove = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, game.Players.LocalPlayer.Character.Humanoid)
+              Headless = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Headless, game.Players.LocalPlayer.Character.Humanoid)
+              Helicopter = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Helicopter, game.Players.LocalPlayer.Character.Humanoid)
+              Kick = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Kick, game.Players.LocalPlayer.Character.Humanoid)
+              L = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.L, game.Players.LocalPlayer.Character.Humanoid)
+              Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Laugh, game.Players.LocalPlayer.Character.Humanoid)
+              Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
+              Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
+              Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
+              if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
+                Floss:Play()
+              elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
+                Groove:Play()
+              elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
+                Headless:Play()
+              elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
+                Helicopter:Play()
+              elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
+                Kick:Play()
+              elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
+                L:Play()
+              elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
+                Laugh:Play()
+              elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
+                Parker:Play()
+              elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
+                Spasm:Play()
+              elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
+                Thriller:Play()
+              end
+              EP = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            end
+          end)
+        game:GetService("RunService").Heartbeat:Connect(function()
+            if EP ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and Floss.IsPlaying or Groove.IsPlaying or Headless.IsPlaying or Helicopter.IsPlaying or Kick.IsPlaying or L.IsPlaying or Laugh.IsPlaying or Parker.IsPlaying or Spasm.IsPlaying or Thriller.IsPlaying then
+              Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - EP).Magnitude
+              if Magnitude > 1 then
+                Floss:Stop(); Groove:Stop(); Headless:Stop(); Helicopter:Stop(); Kick:Stop(); L:Stop(); Laugh:Stop(); Parker:Stop(); Spasm:Stop(); Thriller:Stop()
+              end
+            end
+          end)
+      end})
 
-Tab1:AddButton({
-	Name = "Fe fly V3",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/SB-ok/main/Fly%20v3"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Arena",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 0, 0)
+      end})
 
-Tab1:AddButton({
-	Name = "MoonUI v10",
-	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/IlikeyocutgHAH12/MoonUI-v10-/main/MoonUI%20v10'))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Spam Player",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-339.448792, 324.929474, -1.96081245)
+      end})
 
-Tab1:AddButton({
-	Name = "Cheesy UI",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Cheesy-Ui.lua"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Brazil",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
+      end})
 
-Tab1:AddButton({
-	Name = "Btool Cute",
-	Callback = function()
-      		loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Island Slapple",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399.643463, 50.7640572, -15.5156841, -0.219157591, -0, -0.97568953, -0, 1.00000012, -0, 0.97568953, 0, -0.219157591)
+      end})
 
-Tab1:AddButton({
-	Name = "Dex V2",
-	Callback = function()
-      		loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Plate",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
+      end})
 
-Tab1:AddButton({
-	Name = "Dex V3",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Arena Default",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103.019653, 359.984283, -9.12073612, 0.00716629531, -7.62347554e-08, -0.99997431, 5.0424859e-08, 1, -7.58753416e-08, 0.99997431, -4.98798194e-08, 0.00716629531)
+      end})
 
-Tab1:AddButton({
-	Name = "Control player",
-	Callback = function()
-      		loadstring(game:HttpGet("https://pastebin.com/raw/YuwF041a"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Round",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3034.03369, 144.78009, -5.25375271, 0.935709953, 0.160234556, -0.314279824, 0.00408654613, 0.885907471, 0.463844001, 0.352746665, -0.435307741, 0.828297615)
+      end})
 
-Tab1:AddButton({
-	Name = "slap Royale R20",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/Roblox-Scripts/main/Slap_Royale.lua"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To island 1",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559, -0.0225322824, 1.83683113e-08, -0.999746144, -1.83560154e-08, 1, 1.87866842e-08, 0.999746144, 1.87746618e-08, -0.0225322824)
+      end})
 
-Tab1:AddButton({
-	Name = "TP gui player",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/SB-ok/main/TP%20gui"))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To island 2",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741, -0.98216176, -3.48867246e-09, -0.188037917, -4.19987778e-09, 1, 3.38382322e-09, 0.188037917, 4.11319823e-09, -0.98216176)
+      end})
 
-Tab1:AddButton({
-	Name = "Turies Spy",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/SB-ok/main/Reamsrpy", true))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To island 3",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378, 0.945777893, 2.52095178e-10, 0.324814111, -3.7823856e-08, 1, 1.09357536e-07, -0.324814111, -1.15713661e-07, 0.945777893)
+      end})
 
-Tab1:AddButton({
-	Name = "Simple Spy",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))()
-  	end    
-})
+  Tab9:AddButton({Name = "TP To Moyai",Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227.625656, -15.7160769, -12.4729147, -0.00455607148, 0, 0.999989569, 0, 1, -0, -0.999989688, 0, -0.00455607101)
+      end})
 
-Tab8:AddButton({
-	Name = "Script All Animations [ You chat /e Name Animation]",
-	Callback = function()
-Floss = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, game.Players.LocalPlayer.Character.Humanoid)
-Groove = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, game.Players.LocalPlayer.Character.Humanoid)
-Headless = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Headless, game.Players.LocalPlayer.Character.Humanoid)
-Helicopter = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Helicopter, game.Players.LocalPlayer.Character.Humanoid)
-Kick = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Kick, game.Players.LocalPlayer.Character.Humanoid)
-L = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.L, game.Players.LocalPlayer.Character.Humanoid)
-Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Laugh, game.Players.LocalPlayer.Character.Humanoid)
-Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
-Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
-Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-game.Players.LocalPlayer.Chatted:connect(function(msg)
-if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-Floss = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, game.Players.LocalPlayer.Character.Humanoid)
-Groove = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, game.Players.LocalPlayer.Character.Humanoid)
-Headless = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Headless, game.Players.LocalPlayer.Character.Humanoid)
-Helicopter = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Helicopter, game.Players.LocalPlayer.Character.Humanoid)
-Kick = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Kick, game.Players.LocalPlayer.Character.Humanoid)
-L = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.L, game.Players.LocalPlayer.Character.Humanoid)
-Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Laugh, game.Players.LocalPlayer.Character.Humanoid)
-Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
-Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
-Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
-Floss:Play()
-elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
-Groove:Play()
-elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
-Headless:Play()
-elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
-Helicopter:Play()
-elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
-Kick:Play()
-elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
-L:Play()
-elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
-Laugh:Play()
-elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
-Parker:Play()
-elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
-Spasm:Play()
-elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
-Thriller:Play()
-end
-EP = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-end
-end)
-game:GetService("RunService").Heartbeat:Connect(function()
-if EP ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and Floss.IsPlaying or Groove.IsPlaying or Headless.IsPlaying or Helicopter.IsPlaying or Kick.IsPlaying or L.IsPlaying or Laugh.IsPlaying or Parker.IsPlaying or Spasm.IsPlaying or Thriller.IsPlaying then
-Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - EP).Magnitude
-if Magnitude > 1 then
-Floss:Stop(); Groove:Stop(); Headless:Stop(); Helicopter:Stop(); Kick:Stop(); L:Stop(); Laugh:Stop(); Parker:Stop(); Spasm:Stop(); Thriller:Stop()
-end
-end
-end)
-  	end    
-})
+  Tab9:AddButton({Name = "Join Tournament",Callback = function()
+        game:GetService("ReplicatedStorage").EventAnswered:FireServer(true)
+      end})
 
-Tab8:AddButton({
-	Name = "Spasm",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Spasm,game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
 
-Tab8:AddButton({
-	Name = "Groove",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Groove, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
+  Tab12:AddButton({Name = "Tool Click Tp",Callback = function()
+        local plr = game:GetService("Players").LocalPlayer
+        local mouse = plr:GetMouse()
+        local tool = Instance.new("Tool")
 
-Tab8:AddButton({
-	Name = "Headless",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Headless, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
+        tool.RequiresHandle = false
+        tool.Name = "Click Teleport"
+        tool.Activated:Connect(function()
+            local root = plr.Character.HumanoidRootPart
+            local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+            local offset = pos-root.Position
+            root.CFrame = root.CFrame+offset
+          end)
+        tool.Parent = plr.Backpack
+      end})
 
-Tab8:AddButton({
-	Name = "L",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.L,game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
+  Tab12:AddButton({Name = "Make the Glove turn into a block",Callback = function()
+        OrionLib:MakeNotification({Name = "Warning",Content = "May not work on some gloves.",Image = "rbxassetid://7733956210",Time = 5})
+        wait(1.5)
+        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+          if v:IsA("Tool") then
+            if v.Glove.Mesh or v.Glove.Cuff.Mesh then
+              v.Glove.Mesh:Destroy()
+              v.Glove.Cuff.Mesh:Destroy()
+            end
+          end
+        end
+      end})
 
-Tab8:AddButton({
-	Name = "Floss",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Floss, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab8:AddButton({
-	Name = "Kick",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Kick,game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab8:AddButton({
-	Name = "parker",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab8:AddButton({
-	Name = "Laugh",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Laugh, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab8:AddButton({
-	Name = "Thriller",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab8:AddButton({
-	Name = "Helicopter",
-	Callback = function()
-local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game:GetService("ReplicatedStorage").AnimationPack.Helicopter, game.Players.LocalPlayer.Character.Humanoid)
-Anim:Play()
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Arena",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 0, 0)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Spam Player",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-339.448792, 324.929474, -1.96081245)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Brazil",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Island Slapple",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399.643463, 50.7640572, -15.5156841, -0.219157591, -0, -0.97568953, -0, 1.00000012, -0, 0.97568953, 0, -0.219157591)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Plate",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Arena Default",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103.019653, 359.984283, -9.12073612, 0.00716629531, -7.62347554e-08, -0.99997431, 5.0424859e-08, 1, -7.58753416e-08, 0.99997431, -4.98798194e-08, 0.00716629531)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Round",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3034.03369, 144.78009, -5.25375271, 0.935709953, 0.160234556, -0.314279824, 0.00408654613, 0.885907471, 0.463844001, 0.352746665, -0.435307741, 0.828297615)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To island 1",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559, -0.0225322824, 1.83683113e-08, -0.999746144, -1.83560154e-08, 1, 1.87866842e-08, 0.999746144, 1.87746618e-08, -0.0225322824)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To island 2",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741, -0.98216176, -3.48867246e-09, -0.188037917, -4.19987778e-09, 1, 3.38382322e-09, 0.188037917, 4.11319823e-09, -0.98216176)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To island 3",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378, 0.945777893, 2.52095178e-10, 0.324814111, -3.7823856e-08, 1, 1.09357536e-07, -0.324814111, -1.15713661e-07, 0.945777893)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "TP To Moyai",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227.625656, -15.7160769, -12.4729147, -0.00455607148, 0, 0.999989569, 0, 1, -0, -0.999989688, 0, -0.00455607101)
-  	end    
-})
-
-Tab9:AddButton({
-	Name = "Join 100 slap the win",
-	Callback = function()
-      		game:GetService("ReplicatedStorage").EventAnswered:FireServer(true)
-  	end    
-})
-
-Tab12:AddButton({
-	Name = "Inf Jump",
-	Callback = function()
-      		local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-	if InfiniteJumpEnabled then
-		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	end
-end)
-  	end    
-})
-
-Tab12:AddButton({
-	Name = "Tool Click Tp",
-	Callback = function()
-local plr = game:GetService("Players").LocalPlayer
-local mouse = plr:GetMouse()
-
-local tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Click Teleport"
-
-tool.Activated:Connect(function()
-local root = plr.Character.HumanoidRootPart
-local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
-local offset = pos-root.Position
-root.CFrame = root.CFrame+offset
-end)
-
-tool.Parent = plr.Backpack
-  	end    
-})
-
-Tab12:AddButton({
-	Name = "Glove make block [ Default And Extended ]",
-	Callback = function()
-for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-if v:IsA("Tool") then
-if v.Glove.Mesh or v.Glove.Cuff.Mesh then
-v.Glove.Mesh:Destroy()
-v.Glove.Cuff.Mesh:Destroy()
-end
-end
-end
-  	end    
-})
-
-Tab12:AddButton({
-	Name = "View Testing Server [ Good for glove leaking ]",
-	Callback = function()
-local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
-if teleportFunc then
-    teleportFunc([[
-        if not game:IsLoaded() then
+  Tab12:AddButton({Name = "View Testing Server [ Good for glove leaking ]",Callback = function()
+        local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
+        if teleportFunc then
+          teleportFunc([[
+            if not game:IsLoaded() then
             game.Loaded:Wait()
+          end
+            local localPlr = game:GetService("Players").LocalPlayer
+            repeat wait() until localPlr
+            game:GetService("RunService").RenderStepped:Connect(function()
+            game:GetService("GuiService"):ClearError()
+          end)]])
         end
-        local localPlr = game:GetService("Players").LocalPlayer
-        repeat wait() until localPlr
-        game:GetService("RunService").RenderStepped:Connect(function()
-game:GetService("GuiService"):ClearError()
-        end)
-    ]])
-end
-game:GetService("TeleportService"):Teleport(9020359053)
-  	end    
-})
+        game:GetService("TeleportService"):Teleport(9020359053)
+      end})
 
 Tab21:AddTextbox({
 	Name = "Player",
