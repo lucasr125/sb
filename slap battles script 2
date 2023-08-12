@@ -88,7 +88,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab18 = Window:MakeTab({Name = "Auto Equip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab13 = Window:MakeTab({Name = "AutoFarm Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab14 = Window:MakeTab({Name = "Troll Server",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab14 = Window:MakeTab({Name = "Trol Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -617,7 +617,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab4:AddToggle({Name = "AutoFarm Brick [ Get Trap ] [ Auto E ]",Default = false,Callback = function(Value)
+  Tab4:AddToggle({Name = "AutoFarm Brick [ Get Trap ] [ Auto E ]",Default = false,Save = true,Flag = "AutoBrick",Callback = function(Value)
         _G.FarmBrick = Value
         while _G.FarmBrick do
           if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
@@ -628,7 +628,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})   
 
-  Tab4:AddToggle({Name = "Auto TP Plate [ Get Tycoon ]",Default = false,Callback = function(Value)
+  Tab4:AddToggle({Name = "Auto TP Plate [ Get Tycoon ]",Default = false,Save = true,Flag = "AutoPlate",Callback = function(Value)
         _G.AutoTpPlate = Value
         if game.Players.LocalPlayer.Character:FindFirstChild("entered") then
           while _G.AutoTpPlate do
@@ -766,742 +766,459 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-Tab11:AddToggle({
-	Name = "Auto Click Tycoon",
-	Default = false,
-	Callback = function(Value)
-		_G.AutoTycoon = Value
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v.Name == "End" and v.ClassName == "Part" then
+  Tab11:AddToggle({Name = "Auto Click Tycoon",Default = false,Save = true,Flag = "AutoClickTycoon",Callback = function(Value)
+        _G.AutoTycoon = Value
+        for i,v in pairs(workspace:GetDescendants()) do
+          if v.Name == "End" and v.ClassName == "Part" then
             v.Size = Vector3.new(28, 0.3, 4)
-        end
-    end
-while _G.AutoTycoon do
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
-            fireclickdetector(v.ClickDetector)
-        end
-    end
-    task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Rhythm Note Spam + Auto Press [ Equip Rhythm ]",
-	Default = false,
-	Callback = function(Value)
-		_G.RhythmNoteSpam = Value
-while _G.RhythmNoteSpam do
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
-game.Players.LocalPlayer.Character.Rhythm:Activate()
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Auto Rainbow [ Glove gold ]",
-	Default = false,
-	Callback = function(Value)
-		_G.Rainbow = Value
-while _G.Rainbow do
-local randomnumber = math.random(1004, 1032)
-local args = {
-    [1] = false,
-    [2] = BrickColor.new(randomnumber)
-}
-
-game:GetService("ReplicatedStorage").Goldify:FireServer(unpack(args))
-task.wait(0.075)
-end
-	end    
-})
-
-Tab13:AddToggle({
-	Name = "Slap Arua [ All Glove ] [ You kick and banned ]",
-	Default = false,
-	Callback = function(Value)
-		
-        getgenv().SlapAura = Value
-
-            if Value == true then
-
-                while getgenv().SlapAura do
-
-                    task.wait()
-                        
-                        pcall(function()
-                            
-                        for Index, Player in next, game.Players:GetPlayers() do
-                            
-                            if Player ~= game.Players.LocalPlayer and Player.Character and Player.Character:FindFirstChild("entered") then
-                                
-                                if Player.Character:FindFirstChild("Head") then
-                                    
-                                if Player.Character.Head:FindFirstChild("UnoReverseCard") == nil and Player.Character:FindFirstChild("rock") == nil then
-                                    
-                                    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and not game.Players.LocalPlayer:IsFriendsWith(Player.UserId) then
-
-                                    local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
-                                    
-                                    if 50 >= Magnitude then
-                                        
-                                        shared.gloveHits[getGlove()]:FireServer(Player.Character:WaitForChild("Head"))
-                                        
-                                end
-                                    
-                                    end
-                            end
-                                
-                                end
-                        end
-                        
-                        end
-                    end)
-                end
-                
-            end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Admin [ Kick you the Admin / Mod Join ]",
-	Default = false,
-	Save = true,
-    Flag = "AntiAdmin",
-	Callback = function(Value)
-		
-    antiAdmins = Value
-    
-    if Value == true then
-           
-        game.Players.PlayerAdded:Connect(function(Plr)
-            
-            if Plr:GetRankInGroup(9950771) and 7 <= Plr:GetRankInGroup(9950771) and antiAdmins then
-                game.Players.LocalPlayer:Kick("Admin Cummer Detected 🔥")
-            end
-            
-        end)
-        
-    end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Kick",
-	Default = false,
-	Save = true,
-    Flag = "AntiKick",
-	Callback = function(Value)
-	_G.AntiKick = Value
-while _G.AntiKick do
-for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
-                    if v.Name == "ErrorPrompt" then
-game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Obby",
-	Default = false,
-	Save = true,
-    Flag = "AntiObby",
-	Callback = function(Value)
-		getgenv().disable = Value
-if getgenv().disable == false then
-for i,v in pairs(game.Players:GetChildren()) do
-if v.leaderstats.Glove.Value == "Obby" then
-disable(v.Name, true)
-end
-end
-end
-while getgenv().disable do
-for i,v in pairs(game.Players:GetChildren()) do
-if v.leaderstats.Glove.Value == "Obby" then
-disable(v.Name, false)
-end
-end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Megarock / Custom",
-	Default = false,
-	Save = true,
-    Flag = "AntiMegarock",
-	Callback = function(Value)
-		AntiRock = Value
-while AntiRock do
-for i,v in pairs(game.Workspace:GetDescendants()) do
-                    if v.Name == "rock" then
-                        v.CanTouch = false
-                        v.CanQuery = false
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Mail",
-	Default = false,
-	Save = true,
-    Flag = "AntiMail",
-	Callback = function(Value)
-game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Value
-AntiMail = Value
-while AntiMail do
-if game.Players.LocalPlayer.Character:FindFirstChild("YouHaveGotMail") then
-        game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = true
-end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Hallow - Jack",
-	Default = false,
-	Save = true,
-    Flag = "AntiHallow-Jack",
-	Callback = function(Value)
-		antiHallow = Value
-        if Value == true then
-            game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = true
-        else
-            game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Enabled = true
-        end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Booster",
-	Default = false,
-	Save = true,
-    Flag = "AntiBooster",
-	Callback = function(Value)
-		_G.AntiBooster = Value
-while _G.AntiBooster do
-for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                    if v.Name == "BoosterObject" then
-                        v:Destroy()
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab13:AddToggle({
-	Name = "All Glove AutoFarm Slap [ You make banned ]",
-	Default = false,
-	Callback = function(Value)
-		
-            allFarming = Value
-
-                if Value == true then
-                    
-                    if setfpscap then
-                        
-                        setfpscap(50)
-                    
-                    end
-                    
-                    workspace.DEATHBARRIER.CanTouch = false
-                    workspace.DEATHBARRIER2.CanTouch = false
-                    workspace.dedBarrier.CanTouch = false
-            
-                    task.wait()
-
-                    while allFarming do
-
-                        task.wait()
-                        
-                        pcall(function()
-                        
-                        for Index, Human in next, game.Players:GetPlayers() do
-                            
-                            if Human ~= game.Players.LocalPlayer and Human.Character and not Human.Character:FindFirstChild("isParticipating") and Human.Character:FindFirstChild("Torso") and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
-                                
-                                if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                                
-                                task.wait(.1)
-                                
-                                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Right Leg").CFrame * CFrame.new(6,-2,6)
-                                        
-                                        task.wait()
-                                        
-                                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
-                                    
-                                        wait(.25)
-                                        
-                                    shared.gloveHits[getGlove()]:FireServer(Human.Character:FindFirstChild("Torso"))
-                                        
-                                        wait(.25)
-                                    
-                                    end
-                                end
-                        end
-                        
-                        end)
-                        
-                        end
-                    
-                    
-                    else
-                    
-                    if setfpscap then
-                    
-                    setfpscap(1269)
-                    
-                    end
-                    
-                    workspace.DEATHBARRIER.CanTouch = true
-                    workspace.DEATHBARRIER2.CanTouch = true
-                    workspace.dedBarrier.CanTouch = true
-                    
-                    if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
-                        
-                        task.wait(3)
-                        
-                        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-                        
-                    end
-                    
-                end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Squid",
-	Default = false,
-	Save = true,
-    Flag = "AntiSpuid",
-	Callback = function(Value)
-	_G.AntiSquid = Value
-if _G.AntiSquid == false then
-        game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = true
-        end
-while _G.AntiSquid do
-if game.Players.LocalPlayer.PlayerGui:FindFirstChild("SquidInk") then
-        game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = false
-end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Conveyor",
-	Default = false,
-	Save = true,
-    Flag = "AntiConveyor",
-	Callback = function(Value)
-	if Value == true then
-          game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = true
-    else
-          game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Enabled = true
-    end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Time Stop",
-	Default = false,
-	Save = true,
-    Flag = "AntiTimeStop",
-	Callback = function(Value)
-	_G.AntiTimestop = Value
-while _G.AntiTimestop do
-                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v.ClassName == "Part" then
-                        v.Anchored = false
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Brick",
-	Default = false,
-	Save = true,
-    Flag = "AntiBrick",
-	Callback = function(Value)
-	while Value == true do
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.Name == "Union" then
-                        v.CanTouch = false
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti [REDACTED]",
-	Default = false,
-	Save = true,
-    Flag = "Anti[REDACTED]",
-	Callback = function(Value)
-	if Value == true then
-           game.Players.LocalPlayer.PlayerScripts.Well.Disabled = true
-    else
-           game.Players.LocalPlayer.PlayerScripts.Well.Enabled = true
-    end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Brazil [ The not kick ]",
-	Default = false,
-	Save = true,
-    Flag = "AntiBrazil",
-	Callback = function(Value)
-	if Value == true then
-for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
-                    if v.ClassName == "Part" then
-                        v.CanTouch = false
-                    end
-                end
-else
-for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
-                    if v.ClassName == "Part" then
-                        v.CanTouch = true
-                    end
-                end
-end
-	end    
-})
-
-Tab13:AddToggle({
-	Name = "Ghost Autofarm Slap [ You make banned ]",
-	Default = false,
-	Callback = function(Value)
-		Farming = Value
-
-                if Value == true then
-                    
-                    game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
-                    
-                    if setfpscap then
-                        
-                        setfpscap(50)
-                        
-                    end
-                    
-                    while Farming do
-
-                        wait()
-                        
-                        pcall(function()
-                            
-                        for Index, Human in next, game.Players:GetPlayers() do
-                                
-                            if Human ~= game.Players.LocalPlayer and Human.Character and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
-                                
-                                if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                                
-                                task.wait(.1)
-                                
-                                if getGlove() == "Ghost" then
-
-                                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Torso").CFrame * CFrame.new(6,-2,6)
-                                        
-                                        task.wait()
-                                        
-                                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
-                                    
-                                        wait(.25)
-                                        
-                                    game.ReplicatedStorage.GhostHit:FireServer(Human.Character:WaitForChild(toHit))
-                                    
-                                        wait(.25)
-                                    
-                                    end
-                                end
-                            end
-                        end
-                        end)
-                    end
-                    
-                else
-                    
-                game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer()
-                
-                    if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
-                        
-                        task.wait(3)
-                        
-                        game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-                        
-                    end
-
-                if setfpscap then
-                    
-                    setfpscap(1269)
-                    
-                end
-                
-                end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Za Hando",
-	Default = false,
-	Save = true,
-    Flag = "AntiZaHando",
-	Callback = function(Value)
-	AntiZaHando = Value
-            while AntiZaHando do
-                for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == "Part" then
-                        v:Destroy()
-                    end
-                end
-task.wait()
-            end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Reaper",
-	Default = false,
-	Save = true,
-    Flag = "AntiReaper",
-	Callback = function(Value)
-	AntiReaper = Value
-            while AntiReaper do
-for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                    if v.Name == "DeathMark" then
-                        game:GetService("ReplicatedStorage").ReaperGone:FireServer(game.Players.LocalPlayer.Character.DeathMark)
-                    game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Pusher",
-	Default = false,
-	Save = true,
-    Flag = "AntiPusher",
-	Callback = function(Value)
-		AntiPusher = Value
-while AntiPusher do
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.Name == "wall" then
-                        v.CanCollide = false
-                    end
-                end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Barrier",
-	Default = false,
-	Save = true,
-    Flag = "AntiBarrier",
-	Callback = function(Value)
-	_G.NoclipBarrier = Value
-if _G.NoclipBarrier == false then
-for i,v in pairs(game.Workspace:GetChildren()) do
-if string.find(v.Name, "ÅBarrier") then
-v.CanCollide = true
-end
-end
-end
-while _G.NoclipBarrier do
-for i,v in pairs(game.Workspace:GetChildren()) do
-if string.find(v.Name, "ÅBarrier") then
-v.CanCollide = false
-end
-end
-task.wait()
-end
-	end    
-})
-
-Tab11:AddToggle({
-	Name = "Anti Bubble",
-	Default = false,
-	Save = true,
-    Flag = "AntiBubble",
-	Callback = function(Value)
-		 _G.AntiBubble = Value
-    if Value == true then
-while _G.AntiBubble do
-        task.wait()
-        for i,v in pairs(workspace:GetChildren()) do
-           if v.Name == "BubbleObject" then
-             if v:FindFirstChild("Weld") then
-              v:FindFirstChild("Weld"):Destroy()
-           end
           end
-         end
         end
-       end
-	end    
-})
+        while _G.AutoTycoon do
+          for i,v in pairs(workspace:GetDescendants()) do
+            if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
+              fireclickdetector(v.ClickDetector)
+            end
+          end
+          task.wait()
+        end
+      end})
 
-Tab11:AddToggle({
-	Name = "Anti Stun",
-	Default = false,
-	Save = true,
-    Flag = "AntiStun",
-	Callback = function(Value)
-		AntiStun = Value
-while AntiStun do
-if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
-game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-end
-task.wait()
-end
-	end    
-})
+  Tab11:AddToggle({Name = "Rhythm Note Spam + Auto Press [ Equip Rhythm ]",Default = false,Save = true,Flag = "RhythmNoteSpam",Callback = function(Value)
+        _G.RhythmNoteSpam = Value
+        while _G.RhythmNoteSpam do
+          game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
+          game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
+          game.Players.LocalPlayer.Character.Rhythm:Activate()
+          task.wait()
+        end
+      end})
 
-Tab11:AddToggle({
-	Name = "Disable Cube Of Death",
-	Default = false,
-	Save = true,
-    Flag = "AntiCubeOfDeath",
-	Callback = function(Value)
-		if Value == true then
-if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
-workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
-end
-else
-if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
-workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = true
-end
-end
-	end    
-})
 
-Tab11:AddToggle({
-	Name = "Disable Death Barriers",
-	Default = false,
-	Save = true,
-    Flag = "AntiDeathBarriers",
-	Callback = function(Value)
-		if Value == true then
-for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == "BLOCK" then
-                        v.CanTouch = false
-                    end
-                end
-workspace.DEATHBARRIER.CanTouch = false
-workspace.DEATHBARRIER2.CanTouch = false
-workspace.dedBarrier.CanTouch = false
-workspace.ArenaBarrier.CanTouch = false
-workspace.AntiDefaultArena.CanTouch = false
-else
-for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == "BLOCK" then
-                        v.CanTouch = true
-                    end
-                end
-workspace.DEATHBARRIER.CanTouch = true
-workspace.DEATHBARRIER2.CanTouch = true
-workspace.dedBarrier.CanTouch = true
-workspace.ArenaBarrier.CanTouch = true
-workspace.AntiDefaultArena.CanTouch = true
-end
-	end    
-})
+  Tab11:AddToggle({Name = "Auto Rainbow [ Equip Golden ]",Default = false,Save = true,Flag = "RainbowGolden",Callback = function(Value)
+        _G.Rainbow = Value
+        while _G.Rainbow do
+          local randomnumber = math.random(1004, 1032)
+          local args = {
+            [1] = false,
+            [2] = BrickColor.new(randomnumber)
+          }
+          game:GetService("ReplicatedStorage").Goldify:FireServer(unpack(args))
+          task.wait(0.075)
+        end
+      end})
 
-Tab11:AddToggle({
-	Name = " Auto Remove nametag",
-	Default = false,
-	Save = true,
-    Flag = "RemoveNameTag",
-	Callback = function(Value)
-		 
-        Auto_Remove = Value
-        
-        if Value == true then
-        
-        game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
-            
+
+  Tab13:AddToggle({Name = "Slap Aura [ All Gloves ]",Default = false,Save = true,Flag = "SlapAura",Callback = function(Value)		
+        _G.SlapAura = Value
+        if _G.SlapAura == true then
+          while _G.SlapAura do
             task.wait()
-            
-            game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                
-                if Auto_Remove == true then
-                    
+            pcall(function()
+                for Index, Player in next, game.Players:GetPlayers() do
+                  if Player ~= game.Players.LocalPlayer and Player.Character and Player.Character:FindFirstChild("entered") then
+                    if Player.Character:FindFirstChild("Head") then
+                      if Player.Character.Head:FindFirstChild("UnoReverseCard") == nil and Player.Character:FindFirstChild("rock") == nil then
+                        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and not game.Players.LocalPlayer:IsFriendsWith(Player.UserId) then
+                          local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
+                          if 25 >= Magnitude then
+                            shared.gloveHits[getGlove()]:FireServer(Player.Character:WaitForChild("Head"))
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end)
+          end
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Admin [ Kick You When Mod/Admin Joins ]",Default = false,Save = true,Flag = "AntiAdmin",Callback = function(Value)
+        _G.AntiAdmin = Value
+        if _G.AntiAdmin == true then
+          game.Players.PlayerAdded:Connect(function(Plr)
+              if Plr:GetRankInGroup(9950771) and 7 <= Plr:GetRankInGroup(9950771) and _G.AntiAdmin then
+                game.Players.LocalPlayer:Kick("Admin Cummer Detected 🔥")
+              end
+            end)
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Kick",Default = false,Save = true,Flag = "AntiKick",Callback = function(Value)
+        _G.AntiKick = Value
+        while _G.AntiKick do
+          for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
+            if v.Name == "ErrorPrompt" then
+              game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Obby",Default = false,Save = true,Flag = "AntiObby",Callback = function(Value)
+        _G.Disable = Value
+        if _G.Disable == false then
+          for i,v in pairs(game.Players:GetChildren()) do
+            if v.leaderstats.Glove.Value == "Obby" then
+              disable(v.Name, true)
+            end
+          end
+        end
+        while _G.Disable do
+          for i,v in pairs(game.Players:GetChildren()) do
+            if v.leaderstats.Glove.Value == "Obby" then
+              disable(v.Name, false)
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Megarock / Custom",Default = false,Save = true,Flag = "AntiRocks",Callback = function(Value)
+        _G.AntiRocks = Value
+        while _G.AntiRocks do
+          for i,v in pairs(game.Workspace:GetDescendants()) do
+            if v.Name == "rock" then
+              v.CanTouch = false
+              v.CanQuery = false
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Mail",Default = false,Save = true,Flag = "AntiMails",Callback = function(Value)
+        game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Value
+        _G.AntiMail = Value
+        while _G.AntiMail do
+          if game.Players.LocalPlayer.Character:FindFirstChild("YouHaveGotMail") then
+            game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = true
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti HallowJack",Default = false,Save = true,Flag = "AntiHallowJack",Callback = function(Value)
+        _G.AntiHallowJack = Value
+        if _G.AntiHallowJack == true then
+          game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = true
+        else
+          game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Enabled = true
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Booster",Default = false,Save = true,Flag = "AntiBooster",Callback = function(Value)
+        _G.AntiBooster = Value
+        while _G.AntiBooster do
+          for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "BoosterObject" then
+              v:Destroy()
+            end
+          end
+          task.wait()
+        end
+      end})
+
+
+  Tab13:AddToggle({Name = "AutoSlap",Default = false,Callback = function(Value)
+        _G.SlapFarm = Value
+        if _G.SlapFarm == true then
+          workspace.DEATHBARRIER.CanTouch = false
+          workspace.DEATHBARRIER2.CanTouch = false
+          workspace.dedBarrier.CanTouch = false
+          task.wait()
+          while _G.SlapFarm do
+            task.wait()
+            pcall(function()
+                for Index, Human in next, game.Players:GetPlayers() do
+                  if Human ~= game.Players.LocalPlayer and Human.Character and not Human.Character:FindFirstChild("isParticipating") and Human.Character:FindFirstChild("Torso") and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                      task.wait(.1)
+                      game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Right Leg").CFrame * CFrame.new(6,-2,6)
+                      task.wait()
+                      game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
+                      wait(.1)
+                      shared.gloveHits[getGlove()]:FireServer(Human.Character:FindFirstChild("Torso"))
+                      wait(.1)
+                    end
+                  end
+                end
+              end)
+          end
+        else
+          workspace.DEATHBARRIER.CanTouch = true
+          workspace.DEATHBARRIER2.CanTouch = true
+          workspace.dedBarrier.CanTouch = true
+          if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
+            task.wait(3)
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+          end
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Squid",Default = false,Save = true,Flag = "AntiSquid",Callback = function(Value)
+        _G.AntiSquid = Value
+        if _G.AntiSquid == false then
+          game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = true
+        end
+        while _G.AntiSquid do
+          if game.Players.LocalPlayer.PlayerGui:FindFirstChild("SquidInk") then
+            game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = false
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Conveyor",Default = false,Save = true,Flag = "AntiConveyor",Callback = function(Value)
+        _G.AntiConv = Value
+        if _G.AntiConv == true then
+          game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = true
+        else
+          game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Enabled = true
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti TimeStop",Default = false,Save = true,Flag = "AntiTimeStop",Callback = function(Value)
+        _G.AntiTimestop = Value
+        while _G.AntiTimestop do
+          for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+            if v.ClassName == "Part" then
+              v.Anchored = false
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Brick",Default = false,Save = true,Flag = "AntiBrick",Callback = function(Value)
+        _G.AntiBrick == Value
+        while _G.AntiBrick == true do
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if v.Name == "Union" then
+              v.CanTouch = false
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti [REDACTED]",Default = false,Save = true,Flag = "Anti[REDACTED]",Callback = function(Value)
+        _G.AntiRedacted == Value
+        if _G.AntiRedacted == true then
+          game.Players.LocalPlayer.PlayerScripts.Well.Disabled = true
+        else
+          game.Players.LocalPlayer.PlayerScripts.Well.Enabled = true
+        end
+      end})
+
+  Tab11:AddToggle({	Name = "Anti Brazil [ The not kick ]",Default = false,Save = true,Flag = "AntiBrazil",Callback = function(Value)
+        _G.AntiBrazil == Value
+        if _G.AntiBrazil == true then
+          for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+            if v.ClassName == "Part" then
+              v.CanTouch = false
+            end
+          end
+        else
+          for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+            if v.ClassName == "Part" then
+              v.CanTouch = true
+            end
+          end
+        end
+      end})
+
+
+  Tab13:AddToggle({Name = "Ghost Autofarm Slap",Default = false,Callback = function(Value)
+        _G.GhostFarm = Value
+        if _G.GhostFarm == true then
+          game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
+          while _G.GhostFarm do
+            wait()
+            pcall(function()
+                for Index, Human in next, game.Players:GetPlayers() do
+                  if Human ~= game.Players.LocalPlayer and Human.Character and Human.Character:FindFirstChild("Head") and Human.Character:FindFirstChild("entered") and Human.Character.Head:FindFirstChild("UnoReverseCard") == nil and Human.Character:FindFirstChild("rock") == nil and Human.Character.Ragdolled.Value == false then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("entered") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                      task.wait(.1)
+                      if getGlove() == "Ghost" then
+                        game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = Human.Character:FindFirstChild("Torso").CFrame * CFrame.new(6,-2,6)
+                        task.wait()
+                        game.Players.LocalPlayer.Character:WaitForChild("Humanoid").PlatformStand = true
+                        wait(.25)
+                        game.ReplicatedStorage.GhostHit:FireServer(Human.Character:WaitForChild(toHit))
+                        wait(.25)
+                      end
+                    end
+                  end
+                end
+              end)
+          end
+        else
+          game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer()
+          if game.Players.LocalPlayer.Character.Humanoid.PlatformStand == true then
+            task.wait(3)
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+          end
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti ZaHando",Default = false,Save = true,Flag = "AntiZaHando",Callback = function(Value)
+        _G.AntiZaHando = Value
+        while _G.AntiZaHando do
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if v.ClassName == "Part" and v.Name == "Part" then
+              v:Destroy()
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Reaper",Default = false,Save = true,Flag = "AntiReaper",Callback = function(Value)
+        _G.AntiReaper = Value
+        while _G.AntiReaper do
+          for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "DeathMark" then
+              game:GetService("ReplicatedStorage").ReaperGone:FireServer(game.Players.LocalPlayer.Character.DeathMark)
+              game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Pusher",Default = false,Save = true,Flag = "AntiPusher",Callback = function(Value)
+        _G.AntiPusher = Value
+        while _G.AntiPusher do
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if v.Name == "wall" then
+              v.CanCollide = false
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Barrier",Default = false,Save = true,Flag = "AntiBarrier",Callback = function(Value)
+        _G.NoclipBarrier = Value
+        if _G.NoclipBarrier == false then
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if string.find(v.Name, "ÅBarrier") then
+              v.CanCollide = true
+            end
+          end
+        end
+        while _G.NoclipBarrier do
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if string.find(v.Name, "ÅBarrier") then
+              v.CanCollide = false
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Bubble",Default = false,Save = true,Flag = "AntiBubble",Callback = function(Value)
+        _G.AntiBubble = Value
+        if _G.AntiBubble == true then
+          while _G.AntiBubble do
+            task.wait()
+            for i,v in pairs(workspace:GetChildren()) do
+              if v.Name == "BubbleObject" then
+                if v:FindFirstChild("Weld") then
+                  v:FindFirstChild("Weld"):Destroy()
+                end
+              end
+            end
+          end
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Anti Stun",Default = false,Save = true,Flag = "AntiStun",Callback = function(Value)
+        _G.AntiStun = Value
+        while _G.AntiStun do
+          if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
+            game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+          end
+          task.wait()
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Disable Cube Of Death",Default = false,Save = true,Flag = "AntiCubeOfDeath",Callback = function(Value)
+        _G.DisableCOD == Value
+        if _G.DisableCOD == true then
+          if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
+            workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
+          end
+        else
+          if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
+            workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = true
+          end
+        end
+      end})
+
+  Tab11:AddToggle({Name = "Disable Death Barriers",Default = false,Save = true,Flag = "AntiDeathBarriers",Callback = function(Value)
+        _G.DisableDB == Value
+        if _G.DisableDB == true then
+          for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
+            if v.ClassName == "Part" and v.Name == "BLOCK" then
+              v.CanTouch = false
+            end
+          end
+          workspace.DEATHBARRIER.CanTouch = false
+          workspace.DEATHBARRIER2.CanTouch = false
+          workspace.dedBarrier.CanTouch = false
+          workspace.ArenaBarrier.CanTouch = false
+          workspace.AntiDefaultArena.CanTouch = false
+        else
+          for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
+            if v.ClassName == "Part" and v.Name == "BLOCK" then
+              v.CanTouch = true
+            end
+          end
+          workspace.DEATHBARRIER.CanTouch = true
+          workspace.DEATHBARRIER2.CanTouch = true
+          workspace.dedBarrier.CanTouch = true
+          workspace.ArenaBarrier.CanTouch = true
+          workspace.AntiDefaultArena.CanTouch = true
+        end
+      end})
+
+  Tab11:AddToggle({Name = " Auto Remove Nametag",Default = false,Save = true,Flag = "RemoveNameTag",Callback = function(Value)		 
+        _G.AutoRemoveNametag = Value
+        if _G.AutoRemoveNametag == true then
+          game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
+          task.wait()
+          game.Players.LocalPlayer.CharacterAdded:Connect(function()
+              if _G.AutoRemoveNametag == true then
                 repeat task.wait()
-                    
                 until game.Players.LocalPlayer.Character:FindFirstChild("Head")
-                
                 game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
-                    
-                end
-                
+              end
             end)
-    
         end
-        
-	end    
-})
+      end})
 
-Tab11:AddToggle({
-	Name = "Anti Ragdoll",
-	Default = false,
-	Save = true,
-    Flag = "AntiRagdoll",
-	Callback = function(Value)
-		
-        antiRagdoll = Value
-        
-        if Value == true then
-            
-        game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        
-        task.wait()
-        
-        game.Players.LocalPlayer.CharacterAdded:Connect(function()
-
-            local Character = game.Workspace[game.Players.LocalPlayer.Name]
-            
-            task.wait()
-            
-            Character:WaitForChild("Ragdolled").Changed:Connect(function()
-                
-                if Character:WaitForChild("Ragdolled").Value == true and antiRagdoll == true then
-                    
+  Tab11:AddToggle({Name = "Anti Ragdoll",Default = false,Save = true,Flag = "AntiRagdoll",Callback = function(Value)
+        _G.AntiRagdoll = Value
+        if _G.AntiRagdoll == true then
+          game.Players.LocalPlayer.Character.Humanoid.Health = 0
+          task.wait()
+          game.Players.LocalPlayer.CharacterAdded:Connect(function()
+              local Character = game.Workspace[game.Players.LocalPlayer.Name]
+              task.wait()
+              Character:WaitForChild("Ragdolled").Changed:Connect(function()
+                  if Character:WaitForChild("Ragdolled").Value == true and _G.AntiRagdoll == true then
                     repeat task.wait()
-                        
-                    Character.Torso.Anchored = true
-                        
+                      Character.Torso.Anchored = true
                     until Character:FindFirstChild("Torso") == nil or Character:WaitForChild("Ragdolled").Value == false
-                    
                     Character.Torso.Anchored = false
-
-                end
-                
+                  end
+                end)
             end)
-            
-        end)
-        
         end
-	end    
-})
+	      end})
 
 Tab11:AddToggle({
 	Name = "Invisible Reverse [ FE ]",
