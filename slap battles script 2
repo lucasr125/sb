@@ -74,7 +74,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
     end
   end
 
-  OrionLib:MakeNotification({Name = "Version",Content = "1.0.52",Image = "rbxassetid://7733956210",Time = 5})
+  OrionLib:MakeNotification({Name = "Version",Content = "1.0.53",Image = "rbxassetid://7733956210",Time = 5})
   local Tab = Window:MakeTab({Name = "Main",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab1 = Window:MakeTab({Name = "Scripts",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab2 = Window:MakeTab({Name = "Anti Void",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -111,8 +111,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   Tab3:AddButton({Name = "Auto Keypad",Callback = function()
         if not workspace:FindFirstChild("Keypad") then
           for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-            if server.playing < server.ma
-              xPlayers and server.JobId ~= game.JobId then
+            if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
               wait(2.5)
               game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
             end
@@ -1335,8 +1334,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             end
           end)
         game:GetService("RunService").Heartbeat:Connect(function()
-            if EP ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRo
-                otPart") and Floss.IsPlaying or Groove.IsPlaying or Headless.IsPlaying or Helicopter.IsPlaying or Kick.IsPlaying or L.IsPlaying or Laugh.IsPlaying or Parker.IsPlaying or Spasm.IsPlaying or Thriller.IsPlaying then
+            if EP ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and Floss.IsPlaying or Groove.IsPlaying or Headless.IsPlaying or Helicopter.IsPlaying or Kick.IsPlaying or L.IsPlaying or Laugh.IsPlaying or Parker.IsPlaying or Spasm.IsPlaying or Thriller.IsPlaying then
               Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - EP).Magnitude
               if Magnitude > 1 then
                 Floss:Stop(); Groove:Stop(); Headless:Stop(); Helicopter:Stop(); Kick:Stop(); L:Stop(); Laugh:Stop(); Parker:Stop(); Spasm:Stop(); Thriller:Stop()
@@ -1357,8 +1355,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
       end})
 
-  Tab9:AddButton({Name = "
-      TP To Island Slapple",Callback = function()
+  Tab9:AddButton({Name = "TP To Island Slapple",Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399.643463, 50.7640572, -15.5156841, -0.219157591, -0, -0.97568953, -0, 1.00000012, -0, 0.97568953, 0, -0.219157591)
       end})
 
@@ -1455,8 +1452,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             for i,v in pairs(game:GetService("Players"):GetPlayers()) do
               table.insert(Found,v)
             end
-          elseif s
-            trl == "Random" then
+          elseif strl == "Random" then
             for i,v in pairs(game:GetService("Players"):GetPlayers()) do
               if v.Name ~= lplayer.Name then
                 table.insert(Found,v)
@@ -1479,8 +1475,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
         function ahh(thing)
           local asd = {'yeet','gui','yeet gui'}
-          local f = string.upper(a
-            sd[math.random(1,#asd)])
+          local f = string.upper(asd[math.random(1,#asd)])
           return f
         end
         local target = unpack(GetPlayer(PlayerTP)).Character
@@ -1577,8 +1572,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         else
           for x = 1,5 do
             task.wait()
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidSt
-              ateType.Landed)
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Landed)
           end
         end
       end})
