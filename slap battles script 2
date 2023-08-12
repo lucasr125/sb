@@ -92,7 +92,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab17 = Window:MakeTab({Name = "Credits",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 
   OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: "..game.PlaceId,Time = 5})
   wait(.5)
@@ -1799,235 +1798,148 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
                   end
                 end})
             
-            Tab15:AddToggle({Name = "Spam Detonator",Default = false,Callback = function(Value)
-                  _G.DetonatorSpam = Value
-                  while _G.DetonatorSpam do
-                    game:GetService("ReplicatedStorage").Fart:FireServer()
-                    task.wait()
-                  end
-                end})
 
-            Tab15:AddToggle({Name = "Spam Counter",Default = false,Callback = function(Value)
-                  _G.CounterSpam = Value
-                  while _G.CounterSpam do
-                    game:GetService("ReplicatedStorage").Counter:FireServer()
-                    wait(6.2)
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam HomeRun Max",Default = false,Callback = function(Value)
-                  _G.HomeRunMaxSpam = Value
-                  while _G.HomeRunMaxSpam do
-                    local args = {
-                      [1] = {
-                        ["start"] = true
-                      }
-                    }
-                    game:GetService("ReplicatedStorage").HomeRun:FireServer(unpack(args))
-                    task.wait(3.05)
-                  end 
-                end})
-
-            Tab15:AddToggle({Name = "Spam Voodoo",Default = false,Callback = function(Value)
-                  _G.VoodooSpam = Value
-                  while _G.VoodooSpam do
-                    game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
-                    task.wait(6.27)
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Phase",Default = false,Callback = function(Value)
-                  _G.PhaseSpam = Value
-                  while _G.PhaseSpam do
-                    game:GetService("ReplicatedStorage").PhaseA:FireServer()
-                    task.wait(8.2)
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Sparky",Default = false,Callback = function(Value)
-                  _G.SparkySpam = Value
-                  while _G.SparkySpam do
-                    game:GetService("ReplicatedStorage").Sparky:FireServer(game:GetService("Players").LocalPlayer.Character.Sparky)
-                    task.wait()
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Rhythm Explosion Spam [ WORKS WITH ALL GLOVES ]",Default = false,Callback = function(Value)
-                  _G.RhythmSpam = Value
-                  while _G.RhythmSpam do
-                    game:GetService("ReplicatedStorage").rhythmevent:FireServer("AoeExplosion",0)
-                    task.wait()
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Adios",Default = false,Callback = function(Value)
-                  _G.AdiosSpam = Value
-                  while _G.AdiosSpam do
-                    game:GetService("ReplicatedStorage").AdiosActivated:FireServer()
-                    wait(8.3)
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Balloony",Default = false,Callback = function(Value)
-
-                  _G.BalloonySpam = Value
-                  while _G.BalloonySpam do
-                    game:GetService("ReplicatedStorage").GeneralAbility:FireServer(game:GetService("Players").LocalPlayer.Character.Balloony)
-                    task.wait()
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Pop Balloony",Default = false,Callback = function(Value)
-                  _G.BalloonySpam = Value
-                  while _G.BalloonySpam do
-                    game:GetService("ReplicatedStorage").Events.PopBalloon:FireServer()
-                    task.wait()
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Berserk",Default = false,Callback = function(Value)
-                  _G.BerserkSpam = Value
-                  while _G.BerserkSpam do
-                    game:GetService("ReplicatedStorage").BerserkCharge:FireServer(game:GetService("Players").LocalPlayer.Character.Berserk)
-                    wait(2.1)
-                  end
-                end})
-
-            Tab15:AddToggle({Name = "Spam Rojo [ WORKS WITH ALL GLOVES ]",Default = false,Callback = function(Value)
-                  if Person == nil then
-                    Person = game.Players.LocalPlayer.Name
-                  end
-                  _G.RojoSpam = Value
-                  while _G.RojoSpam do
-                    game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release", {game.Players[Person].Character.HumanoidRootPart.CFrame})
-                    task.wait()
-                  end
-                end})
-
-            Tab16:AddButton({Name = "Enter Slap Royale",Callback = function()
-                  if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
-                    game:GetService"TeleportService":Teleport(9426795465)
-                  else
-                    OrionLib:MakeNotification({})
-                  end
-                end})
-
-            Tab16:AddButton({Name = "Enter SB [ KillStreak Mode ]",Callback = function()
-                  game:GetService"TeleportService":Teleport(11520107397)
-                end})
-
-            Tab16:AddButton({Name = "Enter SB [ NO ONESHOT GLOVES ]",Callback = function()
-                  game:GetService"TeleportService":Teleport(9015014224)
-                end})
-
-            Tab16:AddButton({Name = "Serverhop",Callback = function()
-                  for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                    if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
-                      game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
-                    end
-                  end
-                end})
-
-Tab18:AddTextbox({
-Name = "Glove",Default = "Glove Name",
-	TextDisappear = false,
-Callback = function(Value)
-		EpinGlove = Value
-	end	  
-})
-
-Tab18:AddButton({
-Name = "Epin Glove",
-Callback = function()
-if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
-  fireclickdetector(game.Workspace.Lobby[EpinGlove].ClickDetector)
-end
-  	end    
-})
-
-Tab17:AddLabel("Creating Script Giang")
-
-Tab17:AddButton({
-Name = "Copy anakinn#3568",
-Callback = function()
-        if setclipboard then
-            setclipboard("anakinn#3568")
-            OrionLib:MakeNotification({
-                 Name = "Copy Success",
-                 Content = "Join in friends",
-                 Image = "rbxassetid://7733734762",
-                 Time = 5
-            })
+  Tab15:AddToggle({Name = "Spam Detonator",Default = false,Callback = function(Value)
+        _G.DetonatorSpam = Value
+        while _G.DetonatorSpam do
+          game:GetService("ReplicatedStorage").Fart:FireServer()
+          task.wait()
         end
-  	end    
-})
+      end})
 
-Tab17:AddButton({
-Name = "Copy Guy that exists#1915",
-Callback = function()
-        if setclipboard then
-            setclipboard("Guy that exists#1915")
-            OrionLib:MakeNotification({
-                 Name = "Copy Success",
-                 Content = "Join in friends",
-                 Image = "rbxassetid://7733734762",
-                 Time = 5
-            })
+  Tab15:AddToggle({Name = "Spam Counter",Default = false,Callback = function(Value)
+        _G.CounterSpam = Value
+        while _G.CounterSpam do
+          game:GetService("ReplicatedStorage").Counter:FireServer()
+          wait(6.2)
         end
-  	end    
-})
+      end})
 
-Tab17:AddButton({
-Name = "Copy Join Discord R2O",
-Callback = function()
-      	if setclipboard then
-            setclipboard("https://discord.gg/zty372wma5")
-            OrionLib:MakeNotification({
-                 Name = "Copy Success",
-                 Content = "Join the discord",
-                 Image = "rbxassetid://7733734762",
-                 Time = 5
-            })
+  Tab15:AddToggle({Name = "Spam HomeRun Max",Default = false,Callback = function(Value)
+        _G.HomeRunMaxSpam = Value
+        while _G.HomeRunMaxSpam do
+          local args = {
+            [1] = {
+              ["start"] = true
+            }
+          }
+          game:GetService("ReplicatedStorage").HomeRun:FireServer(unpack(args))
+          task.wait(3.05)
+        end 
+      end})
+
+  Tab15:AddToggle({Name = "Spam Voodoo",Default = false,Callback = function(Value)
+        _G.VoodooSpam = Value
+        while _G.VoodooSpam do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+          task.wait(6.27)
         end
-  	end    
-})
+      end})
 
-Tab17:AddButton({
-Name = "Copy Join Discord Mundion Exploits",
-Callback = function()
-      	if setclipboard then
-            setclipboard("https://discord.gg/jZFEk7Vn")
-            OrionLib:MakeNotification({
-                 Name = "Copy Success",
-                 Content = "Join the discord",
-                 Image = "rbxassetid://7733734762",
-                 Time = 5
-            })
+  Tab15:AddToggle({Name = "Spam Phase",Default = false,Callback = function(Value)
+        _G.PhaseSpam = Value
+        while _G.PhaseSpam do
+          game:GetService("ReplicatedStorage").PhaseA:FireServer()
+          task.wait(8.2)
         end
-  	end    
-})
+      end})
 
-Tab17:AddButton({
-Name = "Copy Subscribe Mundion Exploits",
-Callback = function()
-      	if setclipboard then
-            setclipboard("www.youtube.com/@MundionExploits")
-            OrionLib:MakeNotification({
-                 Name = "Copy Success",
-                 Content = "Join the Youtube",
-                 Image = "rbxassetid://7733734762",
-                 Time = 5
-            })
+  Tab15:AddToggle({Name = "Spam Sparky",Default = false,Callback = function(Value)
+        _G.SparkySpam = Value
+        while _G.SparkySpam do
+          game:GetService("ReplicatedStorage").Sparky:FireServer(game:GetService("Players").LocalPlayer.Character.Sparky)
+          task.wait()
         end
-  	end    
-})
+      end})
 
-Tab17:AddButton({
-Name = "Destroy GUI",
-Callback = function()
-      		OrionLib:Destroy()
-  	end 
-})
+  Tab15:AddToggle({Name = "Rhythm Explosion Spam [ WORKS WITH ALL GLOVES ]",Default = false,Callback = function(Value)
+        _G.RhythmSpam = Value
+        while _G.RhythmSpam do
+          game:GetService("ReplicatedStorage").rhythmevent:FireServer("AoeExplosion",0)
+          task.wait()
+        end
+      end})
 
-OrionLib:Init()
+  Tab15:AddToggle({Name = "Spam Adios",Default = false,Callback = function(Value)
+        _G.AdiosSpam = Value
+        while _G.AdiosSpam do
+          game:GetService("ReplicatedStorage").AdiosActivated:FireServer()
+          wait(8.3)
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Spam Balloony",Default = false,Callback = function(Value)
+        _G.BalloonySpam = Value
+        while _G.BalloonySpam do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer(game:GetService("Players").LocalPlayer.Character.Balloony)
+          task.wait()
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Spam Pop Balloony",Default = false,Callback = function(Value)
+        _G.BalloonyPopSpam = Value
+        while _G.BalloonyPopSpam do
+          game:GetService("ReplicatedStorage").Events.PopBalloon:FireServer()
+          task.wait()
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Spam Berserk",Default = false,Callback = function(Value)
+        _G.BerserkSpam = Value
+        while _G.BerserkSpam do
+          game:GetService("ReplicatedStorage").BerserkCharge:FireServer(game:GetService("Players").LocalPlayer.Character.Berserk)
+          wait(2.1)
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Spam Rojo [ WORKS WITH ALL GLOVES ]",Default = false,Callback = function(Value)
+        if Person == nil then
+          Person = game.Players.LocalPlayer.Name
+        end
+        _G.RojoSpam = Value
+        while _G.RojoSpam do
+          game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release", {game.Players[Person].Character.HumanoidRootPart.CFrame})
+          task.wait()
+        end
+      end})
+
+  Tab16:AddButton({Name = "Enter Slap Royale",Callback = function()
+        if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
+          game:GetService"TeleportService":Teleport(9426795465)
+        else
+          OrionLib:MakeNotification({})
+        end
+      end})
+
+  Tab16:AddButton({Name = "Enter SB [ KillStreak Mode ]",Callback = function()
+        game:GetService"TeleportService":Teleport(11520107397)
+      end})
+
+  Tab16:AddButton({Name = "Enter SB [ NO ONESHOT GLOVES ]",Callback = function()
+        game:GetService"TeleportService":Teleport(9015014224)
+      end})
+
+  Tab16:AddButton({Name = "Serverhop",Callback = function()
+        for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+          if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
+          end
+        end
+      end})
+  
+  Tab18:AddTextbox({Name = "Equip Glove",Default = "Glove Name",TextDisappear = false,Callback = function(Value)
+        EquipGlove = Value
+      end})
+
+  Tab18:AddButton({Name = "Equip Glove",Callback = function()
+        if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
+          fireclickdetector(game.Workspace.Lobby[EquipGlove].ClickDetector)
+        end
+      end})
+
+  Tab:AddButton({Name = "Destroy GUI",Callback = function()
+        OrionLib:Destroy()
+      end})
+
+  OrionLib:Init()
 end
