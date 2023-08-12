@@ -88,7 +88,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab18 = Window:MakeTab({Name = "Auto Equip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab13 = Window:MakeTab({Name = "AutoFarm Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab14 = Window:MakeTab({Name = "Trol Sever",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab14 = Window:MakeTab({Name = "Troll Server",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -992,8 +992,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab11:AddToggle({Name = "Anti Brick",Default = false,Save = true,Flag = "AntiBrick",Callback = function(Value)
-        _G.AntiBrick == Value
-        while _G.AntiBrick == true do
+        _G.AntiBrick = Value
+        while _G.AntiBrick do
           for i,v in pairs(game.Workspace:GetChildren()) do
             if v.Name == "Union" then
               v.CanTouch = false
@@ -1004,7 +1004,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab11:AddToggle({Name = "Anti [REDACTED]",Default = false,Save = true,Flag = "Anti[REDACTED]",Callback = function(Value)
-        _G.AntiRedacted == Value
+        _G.AntiRedacted = Value
         if _G.AntiRedacted == true then
           game.Players.LocalPlayer.PlayerScripts.Well.Disabled = true
         else
@@ -1013,7 +1013,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab11:AddToggle({	Name = "Anti Brazil [ The not kick ]",Default = false,Save = true,Flag = "AntiBrazil",Callback = function(Value)
-        _G.AntiBrazil == Value
+        _G.AntiBrazil = Value
         if _G.AntiBrazil == true then
           for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
             if v.ClassName == "Part" then
@@ -1146,7 +1146,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab11:AddToggle({Name = "Disable Cube Of Death",Default = false,Save = true,Flag = "AntiCubeOfDeath",Callback = function(Value)
-        _G.DisableCOD == Value
+        _G.DisableCOD = Value
         if _G.DisableCOD == true then
           if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
             workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
@@ -1159,7 +1159,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
       end})
 
   Tab11:AddToggle({Name = "Disable Death Barriers",Default = false,Save = true,Flag = "AntiDeathBarriers",Callback = function(Value)
-        _G.DisableDB == Value
+        _G.DisableDB = Value
         if _G.DisableDB == true then
           for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
             if v.ClassName == "Part" and v.Name == "BLOCK" then
