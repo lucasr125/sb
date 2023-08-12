@@ -1417,7 +1417,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
             if v.Glove.Mesh or v.Glove.Cuff.Mesh then
               v.Glove.Mesh:Destroy()
               v.Glove.Cuff.Mesh:Destroy()
-            elseif v.Glove.MeshId then
               v.Glove.MeshId = nil
             end
           end
