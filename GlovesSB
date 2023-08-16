@@ -1,5 +1,6 @@
     shared.gloveHits = {
-    
+
+    --Missing gloves: Spin; Recall; Quake; Kraken 
     ["Default"] = game.ReplicatedStorage.b,
     ["Extended"] = game.ReplicatedStorage.b,
     
