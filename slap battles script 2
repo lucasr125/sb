@@ -15,7 +15,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         return
       elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'WalkSpeedChanged' then
         return
-      elseif getnamecallmethod() == 'FirFeServer' and tostring(self) == 'AdminGUI' then
+      elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'AdminGUI' then
         return
       end
       return Namecall(self, ...)
