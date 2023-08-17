@@ -5,7 +5,7 @@ end
 game:GetService("GuiService"):ClearError()
 
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
-  local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua')))()
+  local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
   local Window = OrionLib:MakeWindow({Name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.." Script" or "Slap Battles Script", HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
 
   -- Bypass
