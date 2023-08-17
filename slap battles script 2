@@ -1279,12 +1279,12 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           if game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
             for i,v in pairs(game.Workspace:GetChildren()) do
               if v.ClassName == "Part" and v.Name == PingPongBall then
-                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15)
+                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
               end
             end
             for i,v in pairs(game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()) do
               if v.ClassName == "Part" and v.Name == PingPongBall then
-                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(180), math.rad(0), math.rad(0))
+                v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
               end
             end
           elseif game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[1] or game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
