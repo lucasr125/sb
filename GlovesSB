@@ -1,11 +1,10 @@
     shared.gloveHits = {
 
-    --Missing gloves: Spin; Recall; Quake; Kraken 
     ["Default"] = game.ReplicatedStorage.b,
     ["Extended"] = game.ReplicatedStorage.b,
     
     ----------------------------------------
-     
+
     ["T H I C K"] = game.ReplicatedStorage.GeneralHit,
     ["Squid"] = game.ReplicatedStorage.GeneralHit,
     ["Gummy"] = game.ReplicatedStorage.GeneralHit,
@@ -40,6 +39,8 @@
     ["Excavator"] = game.ReplicatedStorage.GeneralHit,
     ["Home Run"] = game.ReplicatedStorage.GeneralHit,
     ["Psycho"] = game.ReplicatedStorage.GeneralHit,
+    ["Quake"] = game.ReplicatedStorage.GeneralHit,
+    ["Kraken"] = game.ReplicatedStorage.GeneralHit,
     
     ----------------------------------------
     
@@ -116,9 +117,11 @@
     ["Retro"] = game.ReplicatedStorage.RetroHit,
     ["Custom"] = game.ReplicatedStorage.CustomHit,
     ["Cloud"] = game.ReplicatedStorage.CloudHit,
+    ["spin"] = game.ReplicatedStorage.spinhit,
     
     ----------------------------------------
 
+    ["Recall"] = game.ReplicatedStorage.HtStun,
     ["Balloony"] = game.ReplicatedStorage.HtStun,
     ["Sparky"] = game.ReplicatedStorage.HtStun,
     ["Boogie"] = game.ReplicatedStorage.HtStun,
