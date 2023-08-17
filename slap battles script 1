@@ -1984,7 +1984,7 @@ TournamentAntiVoid.Transparency = 1
                 })
 
 Tab:AddLabel("If you have problems then message Guy that exists#1915")
-
+Tab:AddLabel("Version 1.05")
 Tab:AddButton({
 	Name = "Infinite Yield",
 	Callback = function()
@@ -2409,8 +2409,11 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Thor" do
 game:GetService("ReplicatedStorage").ThorAbility:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 task.wait()
 end
-                    end   
-})
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
+game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+wait()
+end
+end})
 
 Tab2:AddButton({
 	Name = "Kick player (Needs Za Hando) (Inconsistent)",
@@ -3470,6 +3473,6 @@ end
                     end    
                 })
 
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/More%20Gloves.lua"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 Player = game.Players.LocalPlayer.Character.Name
 end
