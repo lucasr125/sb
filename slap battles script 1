@@ -131,9 +131,10 @@ if game.Players.LocalPlayer.Character:WaitForChild("inMatch").Value == true then
             for i, v in ipairs(game.Workspace:GetChildren()) do
                 if v.ClassName == "Tool" then
  game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
                 end
             end
+repeat task.wait() until game.Workspace:FindFirstChildWhichIsA("Tool") == nil
+game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 end
   	end    
 })
@@ -1107,26 +1108,6 @@ task.wait()
 })
 
 Tab5:AddButton({
-                    Name = "Get [REDACTED]",
-Callback = function()
-if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
-Door = 0
-for i = 1, 10 do
-Door = Door + 1
-        if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
-        else
-        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
-wait(4)
-end
-end
-else
-game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need 5000 slaps"})
-            end
-end
-                    })
-
-Tab5:AddButton({
 	Name = "Get Elude",
 	Callback = function()
 local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
@@ -1341,6 +1322,26 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Pla
 until game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text == "Plate Counter: 600"
                     end    
                 })
+
+Tab5:AddButton({
+                    Name = "Get [REDACTED] (Needs 5k slaps)",
+Callback = function()
+if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
+Door = 0
+for i = 1, 10 do
+Door = Door + 1
+        if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
+        else
+        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
+wait(4)
+end
+end
+else
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need 5000 slaps"})
+            end
+end
+                    })
 
 Tab5:AddButton({
 	Name = "Get Brazil badge",
@@ -2005,7 +2006,6 @@ Tab:AddButton({
   	end    
 })
 
-Tab:AddLabel("Version 1.05")
 Tab4:AddButton({
 	Name = "View Testing Server (Good for glove leaking)",
 	Callback = function()
@@ -2191,10 +2191,6 @@ On = Value
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
 wait(5.1)
-end
-while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
-game:GetService("ReplicatedStorage").CloudAbility:FireServer()
-wait()
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort" do
 game:GetService("ReplicatedStorage").Fortlol:FireServer()
@@ -2858,26 +2854,6 @@ task.wait()
 })
 
 Tab5:AddButton({
-                    Name = "Get [REDACTED]",
-Callback = function()
-if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
-Door = 0
-for i = 1, 10 do
-Door = Door + 1
-        if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
-        else
-        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
-wait(4)
-end
-end
-else
-game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need 5000 slaps"})
-            end
-end
-                    })
-
-Tab5:AddButton({
 	Name = "Get Elude",
 	Callback = function()
 local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
@@ -3092,6 +3068,26 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Pla
 until game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text == "Plate Counter: 600"
                     end    
                 })
+
+Tab5:AddButton({
+                    Name = "Get [REDACTED] (Needs 5k slaps)",
+Callback = function()
+if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
+Door = 0
+for i = 1, 10 do
+Door = Door + 1
+        if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
+        else
+        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
+wait(4)
+end
+end
+else
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need 5000 slaps"})
+            end
+end
+                    })
 
 Tab5:AddButton({
 	Name = "Get Trap (Only 20 mins)",
@@ -3474,6 +3470,6 @@ end
                     end    
                 })
 
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/More%20Gloves.lua"))()
 Player = game.Players.LocalPlayer.Character.Name
 end
