@@ -15,7 +15,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         return
       elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'WalkSpeedChanged' then
         return
-      elseif getnamecallmethod() == 'FireServer' and tostring(self) == 'AdminGUI' then
+      elseif getnamecallmethod() == 'FirFeServer' and tostring(self) == 'AdminGUI' then
         return
       end
       return Namecall(self, ...)
@@ -97,19 +97,15 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local Tab7 = Window:MakeTab({Name = "Local",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab8 = Window:MakeTab({Name = "Animations",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab9 = Window:MakeTab({Name = "Teleports",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab10 = Window:MakeTab({Name = "Auto Join",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab10 = Window:MakeTab({Name = "AutoJoin",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab11 = Window:MakeTab({Name = "Misc",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab18 = Window:MakeTab({Name = "Auto Equip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
+  local Tab18 = Window:MakeTab({Name = "AutoEquip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab13 = Window:MakeTab({Name = "AutoFarm Slap",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab14 = Window:MakeTab({Name = "Troll Server",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab21 = Window:MakeTab({Name = "Teleport Player",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab15 = Window:MakeTab({Name = "Ability Spams",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab16 = Window:MakeTab({Name = "Auto Join game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-
-  OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: "..game.PlaceId,Time = 5})
-  wait(.5)
-  OrionLib:MakeNotification({Name = "Loading...",Content = "Loading script...",Time = 5})
+  local Tab16 = Window:MakeTab({Name = "Games",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 
   local Section = Tab:AddSection({Name = "Main"})
 
@@ -1606,6 +1602,15 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         On = Value
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
           game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+          wait()
+        end
+        while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Whirlwind" do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+          wait()
+        end
+        while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Phantom" do
+          local Phantom = workspace[Player].Phantom
+          game:GetService("ReplicatedStorage").PhantomDash:InvokeServer(Phantom)
           wait()
         end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" do
