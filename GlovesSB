@@ -118,6 +118,7 @@
     ["Custom"] = game.ReplicatedStorage.CustomHit,
     ["Cloud"] = game.ReplicatedStorage.CloudHit,
     ["spin"] = game.ReplicatedStorage.spinhit,
+    ["Null"] = game.ReplicatedStorage.NullHit,
     
     ----------------------------------------
 
