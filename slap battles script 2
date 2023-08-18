@@ -1651,7 +1651,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "rob" do
           game:GetService("ReplicatedStorage"):WaitForChild("rob"):FireServer()
-          wait(15)
+          wait()
         end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Kraken" do
           game:GetService("ReplicatedStorage").KrakenArm:FireServer()
@@ -1914,6 +1914,22 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         _G.RojoSpam = Value
         while _G.RojoSpam do
           game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release", {game.Players[Person].Character.HumanoidRootPart.CFrame})
+          task.wait()
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Null Minions Spam [ WORKS WITH ALL GLOVES ] [ 1s ]",Default = false,Callback = function(Value)
+        _G.NullSpam = Value
+        while _G.NullSpam do
+          game:GetService("ReplicatedStorage").NullAbility:FireServer()
+          task.wait(1)
+        end
+      end})
+
+  Tab15:AddToggle({Name = "Null Minions Spam [ WORKS WITH ALL GLOVES ] [ 0s ]",Default = false,Callback = function(Value)
+        _G.NullSpam0s = Value
+        while _G.NullSpam0s do
+          game:GetService("ReplicatedStorage").NullAbility:FireServer()
           task.wait()
         end
       end})
