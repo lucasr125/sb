@@ -1599,6 +1599,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           game:GetService("ReplicatedStorage").CloudAbility:FireServer()
           wait()
         end
+	while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Gravity" do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+          wait()
+        end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Whirlwind" do
           game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
           wait()
