@@ -41,6 +41,7 @@
     ["Psycho"] = game.ReplicatedStorage.GeneralHit,
     ["Quake"] = game.ReplicatedStorage.GeneralHit,
     ["Kraken"] = game.ReplicatedStorage.GeneralHit,
+    ["Gravity"] = game.ReplicatedStorage.GeneralHit,
     
     ----------------------------------------
     
