@@ -866,7 +866,7 @@ end
                 })
 
                 Tab2:AddToggle({
-                    Name = "Rhythm Explosion Spam (WORKS WITH ALL GLOVES)",
+                    Name = "Rhythm Explosion Spam (All gloves)",
                     Default = false,
                     Callback = function(Value)
 RhythmSpam = Value
@@ -877,8 +877,20 @@ end
                     end    
                 })
 
+                Tab2:AddToggle({
+                    Name = "Null Spam (All gloves) (Credits to lloyd#5746)",
+                    Default = false,
+                    Callback = function(Value)
+NullSpam = Value
+while NullSpam do
+game:GetService("ReplicatedStorage").NullAbility:FireServer()
+task.wait()
+end
+                    end    
+                })
+
 Tab2:AddToggle({
-                    Name = "Rojo Spam (WORKS WITH ALL GLOVES)",
+                    Name = "Rojo Spam (All gloves)",
                     Default = false,
                     Callback = function(Value)
 if Person == nil then
@@ -904,18 +916,6 @@ Person = Value
 end
 	end	  
 })
-
-                Tab4:AddToggle({
-                    Name = "Spam Error Sound (Works with all gloves)",
-                    Default = false,
-                    Callback = function(Value)
-ErrorSoundSpam = Value
-while ErrorSoundSpam do
-game.ReplicatedStorage.ErrorDeath:FireServer()
-task.wait()
-end
-                    end    
-                })
 
                 Tab2:AddToggle({
                     Name = "Killstreak Soul Snatcher Spam",
@@ -945,7 +945,26 @@ end
                 })
 
 Tab4:AddToggle({
-                    Name = "Remove Nametag (Breaks killstreak)",
+                    Name = "Null Slap Farm (All gloves)",
+                    Default = false,
+                    Callback = function(Value)
+NullSlapFarm = Value
+                while NullSlapFarm do
+game:GetService("ReplicatedStorage").NullAbility:FireServer()
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "Imp" then
+if v:FindFirstChild("Body") then
+game.ReplicatedStorage.KSHit:FireServer(v.Body)
+end
+end
+                end
+wait()
+end
+end
+                })
+
+Tab4:AddToggle({
+                    Name = "Remove Nametag (Breaks killstreak) (Clientside)",
                     Default = false,
                     Callback = function(Value)
 AutoRemoveNameTag = Value
@@ -1050,6 +1069,18 @@ game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Cha
 end
 	end    
 })
+
+                Tab4:AddToggle({
+                    Name = "Spam Error Sound (All gloves)",
+                    Default = false,
+                    Callback = function(Value)
+ErrorSoundSpam = Value
+while ErrorSoundSpam do
+game.ReplicatedStorage.ErrorDeath:FireServer()
+task.wait()
+end
+                    end    
+                })
 
 Tab6:AddSlider({
 	Name = "Walkspeed",
@@ -1984,7 +2015,7 @@ TournamentAntiVoid.Transparency = 1
                 })
 
 Tab:AddLabel("If you have problems then message Guy that exists#1915")
-Tab:AddLabel("Version 1.05")
+
 Tab:AddButton({
 	Name = "Infinite Yield",
 	Callback = function()
@@ -2057,6 +2088,8 @@ Tab4:AddButton({
 loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()
                     end    
                 })
+
+Tab4:AddLabel("When in KS only there is a null farm feature")
 
 Tab2:AddToggle({
                     Name = "Slap Aura",
@@ -2132,7 +2165,7 @@ end
                 })
 
                 Tab2:AddToggle({
-                    Name = "Rhythm Explosion Spam (WORKS WITH ALL GLOVES)",
+                    Name = "Rhythm Explosion Spam (All gloves)",
                     Default = false,
                     Callback = function(Value)
 RhythmSpam = Value
@@ -2143,8 +2176,20 @@ end
                     end    
                 })
 
+                Tab2:AddToggle({
+                    Name = "Null Spam (All gloves) (Credits to lloyd#5746)",
+                    Default = false,
+                    Callback = function(Value)
+NullSpam = Value
+while NullSpam do
+game:GetService("ReplicatedStorage").NullAbility:FireServer()
+task.wait()
+end
+                    end    
+                })
+
 Tab2:AddToggle({
-                    Name = "Rojo Spam (WORKS WITH ALL GLOVES)",
+                    Name = "Rojo Spam (All gloves)",
                     Default = false,
                     Callback = function(Value)
 if Person == nil then
@@ -2170,18 +2215,6 @@ Person = Value
 end
 	end	  
 })
-
-                Tab4:AddToggle({
-                    Name = "Spam Error Sound (Works with all gloves)",
-                    Default = false,
-                    Callback = function(Value)
-ErrorSoundSpam = Value
-while ErrorSoundSpam do
-game.ReplicatedStorage.ErrorDeath:FireServer()
-task.wait()
-end
-                    end    
-                })
 
                 Tab2:AddToggle({
                     Name = "Ability Spam (Can work in lobby)",
@@ -2409,11 +2442,8 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Thor" do
 game:GetService("ReplicatedStorage").ThorAbility:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 task.wait()
 end
-while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
-game:GetService("ReplicatedStorage").CloudAbility:FireServer()
-wait()
-end
-end})
+                    end   
+})
 
 Tab2:AddButton({
 	Name = "Kick player (Needs Za Hando) (Inconsistent)",
@@ -2512,7 +2542,7 @@ end
                 })
 
 Tab4:AddToggle({
-                    Name = "Remove Nametag (Breaks killstreak)",
+                    Name = "Remove Nametag (Breaks killstreak) (Clientside)",
                     Default = false,
                     Callback = function(Value)
 AutoRemoveNameTag = Value
@@ -2628,6 +2658,18 @@ game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Cha
 end
 	end    
 })
+
+                Tab4:AddToggle({
+                    Name = "Spam Error Sound (All gloves)",
+                    Default = false,
+                    Callback = function(Value)
+ErrorSoundSpam = Value
+while ErrorSoundSpam do
+game.ReplicatedStorage.ErrorDeath:FireServer()
+task.wait()
+end
+                    end    
+                })
 
 Tab4:AddButton({
 	Name = "Turn glove into a block (Doesn't work with all gloves)",
@@ -3473,6 +3515,6 @@ end
                     end    
                 })
 
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/More%20Gloves.lua"))()
 Player = game.Players.LocalPlayer.Character.Name
 end
