@@ -750,7 +750,6 @@ if teleportFunc then
         if not game:IsLoaded() then
             game.Loaded:Wait()
         end
-        repeat wait() until game.Players.LocalPlayer
         game:GetService("RunService").RenderStepped:Connect(function()
             game:GetService("GuiService"):ClearError()
         end)
