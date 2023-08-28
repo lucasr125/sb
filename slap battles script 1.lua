@@ -750,6 +750,7 @@ if teleportFunc then
         if not game:IsLoaded() then
             game.Loaded:Wait()
         end
+        repeat wait() until game.Players.LocalPlayer
         game:GetService("RunService").RenderStepped:Connect(function()
             game:GetService("GuiService"):ClearError()
         end)
@@ -943,40 +944,34 @@ end
 end
                 })
 
-Tab4:AddToggle({
-                    Name = "Null Slap Farm (All gloves)",
-                    Default = false,
-                    Callback = function(Value)
-NullSlapFarm = Value
-                while NullSlapFarm do
-game:GetService("ReplicatedStorage").NullAbility:FireServer()
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.Name == "Imp" then
-if v:FindFirstChild("Body") then
-game.ReplicatedStorage.KSHit:FireServer(v.Body)
-end
-end
-                end
-wait()
-end
-end
-                })
+Tab4:AddButton({
+	Name = "Spawn cloud (All gloves)",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+  	end    
+})
+
+Tab4:AddButton({
+	Name = "Spawn nimbus cloud (All gloves)",
+	Callback = function()
+      		game.ReplicatedStorage.NimbusAbility:FireServer()
+  	end    
+})
 
 Tab4:AddToggle({
-                    Name = "Remove Nametag (Breaks killstreak) (Clientside)",
+                    Name = "Auto Remove Nametag (Breaks killstreak) (Clientside)",
                     Default = false,
                     Callback = function(Value)
 AutoRemoveNameTag = Value
-        if AutoRemoveNameTag then
-        game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
+        if AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+        game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+end
             game.Players.LocalPlayer.CharacterAdded:Connect(function()
                 if AutoRemoveNameTag then
-                repeat task.wait()
-                until game.Players.LocalPlayer.Character:FindFirstChild("Head")
-                game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true)
+                game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
                 end
             end)
-        end
 end
                 })
 
@@ -1442,8 +1437,7 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
 game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Changed:Connect(function()
 if game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true and AntiRagdoll then
-repeat task.wait()
-game.Players.LocalPlayer.Character.Torso.Anchored = true
+repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
 until game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
 game.Players.LocalPlayer.Character.Torso.Anchored = false
 end
@@ -2088,8 +2082,6 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmo
                     end    
                 })
 
-Tab4:AddLabel("When in KS only there is a null farm feature")
-
 Tab2:AddToggle({
                     Name = "Slap Aura",
                     Default = false,
@@ -2540,21 +2532,34 @@ end
 end
                 })
 
+Tab4:AddButton({
+	Name = "Spawn cloud (All gloves)",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+  	end    
+})
+
+Tab4:AddButton({
+	Name = "Spawn nimbus cloud (All gloves)",
+	Callback = function()
+      		game.ReplicatedStorage.NimbusAbility:FireServer()
+  	end    
+})
+
 Tab4:AddToggle({
-                    Name = "Remove Nametag (Breaks killstreak) (Clientside)",
+                    Name = "Auto Remove Nametag (Breaks killstreak) (Clientside)",
                     Default = false,
                     Callback = function(Value)
 AutoRemoveNameTag = Value
-        if AutoRemoveNameTag then
-        game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
+        if AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+        game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+end
             game.Players.LocalPlayer.CharacterAdded:Connect(function()
                 if AutoRemoveNameTag then
-                repeat task.wait()
-                until game.Players.LocalPlayer.Character:FindFirstChild("Head")
-                game.Players.LocalPlayer.Character:FindFirstChild("Head").Nametag.TextLabel:Destroy()
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true)
+                game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
                 end
             end)
-        end
 end
                 })
 
@@ -3248,8 +3253,7 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
 game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Changed:Connect(function()
 if game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true and AntiRagdoll then
-repeat task.wait()
-game.Players.LocalPlayer.Character.Torso.Anchored = true
+repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
 until game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
 game.Players.LocalPlayer.Character.Torso.Anchored = false
 end
