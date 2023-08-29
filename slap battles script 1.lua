@@ -616,7 +616,7 @@ Tab5:AddToggle({
 KeepWalkspeed = Value
             while KeepWalkspeed do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Walkspeed
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
                 end
 task.wait()
             end
@@ -644,7 +644,7 @@ Tab5:AddToggle({
 KeepJumppower = Value
             while KeepJumppower do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = Jumppower
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jumppower
                 end
 task.wait()
             end
@@ -1097,7 +1097,7 @@ Tab6:AddToggle({
 KeepWalkspeed = Value
             while KeepWalkspeed do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Walkspeed
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
                 end
 task.wait()
             end
@@ -1125,7 +1125,7 @@ Tab6:AddToggle({
 KeepJumppower = Value
             while KeepJumppower do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = Jumppower
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jumppower
                 end
 task.wait()
             end
@@ -1638,7 +1638,7 @@ Tab4:AddToggle({
 KeepWalkspeed = Value
             while KeepWalkspeed do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Walkspeed
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
                 end
 task.wait()
             end
@@ -1666,7 +1666,7 @@ Tab4:AddToggle({
 KeepJumppower = Value
             while KeepJumppower do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = Jumppower
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jumppower
                 end
 task.wait()
             end
@@ -2867,7 +2867,7 @@ Tab6:AddToggle({
 KeepWalkspeed = Value
             while KeepWalkspeed do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Walkspeed
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
                 end
 task.wait()
             end
@@ -2895,7 +2895,7 @@ Tab6:AddToggle({
 KeepJumppower = Value
             while KeepJumppower do
                 if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower then
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = Jumppower
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jumppower
                 end
 task.wait()
             end
@@ -3178,8 +3178,8 @@ Tab5:AddToggle({
                     Callback = function(Value)
 BobFarm = Value
 while BobFarm do
-game:GetService("ReplicatedStorage").Duplicate:FireServer()
-wait(Random.new():NextNumber(5.2,5.4))
+game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
+wait(5.05)
 end
                     end    
                 })
@@ -3517,7 +3517,6 @@ task.wait()
 end
                     end    
                 })
-
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 Player = game.Players.LocalPlayer.Character.Name
 end
