@@ -83,7 +83,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
     end
   end
 
-  OrionLib:MakeNotification({Name = "Version",Content = "1.0.7",Image = "rbxassetid://7733956210",Time = 5})
+  OrionLib:MakeNotification({Name = "Version",Content = "1.0.8",Image = "rbxassetid://7733956210",Time = 5})
   wait(.5)
   OrionLib:MakeNotification({Name = "Slap Battles Script",Content = "ID: "..game.PlaceId,Time = 5})
   wait(.5)
@@ -1626,6 +1626,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
   Tab15:AddToggle({Name = "Auto Spam Ability",Default = false,Callback = function(Value)
         On = Value
+        while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Gravity" do
+          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+          wait()
+        end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
           game:GetService("ReplicatedStorage").CloudAbility:FireServer()
           wait()
@@ -2035,7 +2039,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           getTool().Glove.Transparency = 0
           getTool().Glove.Size = Vector3.new(3, 3, 3.7)
         elseif GloveExtend == false then
-          print("Glove Extend option false.")
+          getTool().Glove.Transparency = 0
+          getTool().Glove.Size = Vector3.new(2.5, 2.5, 1.7)
         end
       end
 
