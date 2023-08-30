@@ -94,7 +94,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   local BadgesTab = Window:MakeTab({Name = "Badges",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local LocalTab = Window:MakeTab({Name = "Local",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local TelepTab = Window:MakeTab({Name = "Teleports",Icon = "rbxassetid://4483345998",PremiumOnly = false})
-  local Tab10 = Window:MakeTab({Name = "AutoJoin",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab11 = Window:MakeTab({Name = "Misc",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab12 = Window:MakeTab({Name = "Game",Icon = "rbxassetid://4483345998",PremiumOnly = false})
   local Tab18 = Window:MakeTab({Name = "AutoEquip Glove",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -280,6 +279,30 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
               end
             end
           end
+        end
+      end})
+
+  BadgesTab:AddToggle({Name = "AutoGet Jet Orb [ 10% to Spawn ]",Default = false,Callback = function(Value)
+        _G.GetJetOrb = Value
+        while _G.GetJetOrb do
+          for _, v in pairs(workspace:GetChildren()) do
+            if v.Name == "JetOrb" then
+              v.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            end
+          end
+          task.wait()
+        end
+      end})
+
+  BadgesTab:AddToggle({Name = "AutoGet Phase Orb [ 5% to Spawn ]",Default = false,Callback = function(Value)
+        _G.GetPhaseOrb = Value
+        while _G.GetPhaseOrb do
+          for _, v in pairs(workspace:GetChildren()) do
+            if v.Name == "PhaseOrb" then
+              v.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            end
+          end
+          task.wait()
         end
       end})
 
@@ -728,7 +751,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         game:GetService("ReplicatedStorage").EventAnswered:FireServer(true)
       end})
 
-  Tab10:AddToggle({Name = "Auto Enter Arena",Default = false,Callback = function(Value)
+  Tab11:AddToggle({Name = "Auto Enter Arena",Default = false,Callback = function(Value)
         _G.AutoEnterArena = Value
         if _G.AutoEnterArena == true then
           while _G.AutoEnterArena do
@@ -744,7 +767,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab10:AddToggle({Name = "Auto Enter Default Only Arena",Default = false,Callback = function(Value)
+  Tab11:AddToggle({Name = "Auto Enter Default Only Arena",Default = false,Callback = function(Value)
         _G.AutoEnterDefault = Value
         if _G.AutoEnterDefault == true then
           while _G.AutoEnterDefault do
@@ -958,7 +981,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         AutoClick = bool
       end})
 
-  Tab11:AddToggle({Name = "Anti Admin [ Kick You When Mod/Admin Joins ]",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Admin [ Kick You When Mod/Admin Joins ]",Default = false,Callback = function(Value)
         _G.AntiAdmin = Value
         if _G.AntiAdmin == true then
           game.Players.PlayerAdded:Connect(function(Plr)
@@ -969,7 +992,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Kick",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Kick",Default = false,Callback = function(Value)
         _G.AntiKick = Value
         while _G.AntiKick do
           for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
@@ -981,7 +1004,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Obby",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Obby",Default = false,Callback = function(Value)
         _G.Disable = Value
         if _G.Disable == false then
           for i,v in pairs(game.Players:GetChildren()) do
@@ -1000,7 +1023,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Megarock / Custom",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Megarock / Custom",Default = false,Callback = function(Value)
         _G.AntiRocks = Value
         while _G.AntiRocks do
           for i,v in pairs(game.Workspace:GetDescendants()) do
@@ -1013,7 +1036,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Mail",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Mail",Default = false,Callback = function(Value)
         game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Value
         _G.AntiMail = Value
         while _G.AntiMail do
@@ -1024,7 +1047,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti HallowJack",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti HallowJack",Default = false,Callback = function(Value)
         _G.AntiHallowJack = Value
         if _G.AntiHallowJack == true then
           game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = true
@@ -1033,7 +1056,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Booster",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Booster",Default = false,Callback = function(Value)
         _G.AntiBooster = Value
         while _G.AntiBooster do
           for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
@@ -1081,7 +1104,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Squid",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Squid",Default = false,Callback = function(Value)
         _G.AntiSquid = Value
         if _G.AntiSquid == false then
           game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = true
@@ -1094,7 +1117,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Conveyor",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Conveyor",Default = false,Callback = function(Value)
         _G.AntiConv = Value
         if _G.AntiConv == true then
           game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = true
@@ -1103,7 +1126,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti TimeStop",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti TimeStop",Default = false,Callback = function(Value)
         _G.AntiTimestop = Value
         while _G.AntiTimestop do
           for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
@@ -1115,7 +1138,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Brick",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Brick",Default = false,Callback = function(Value)
         _G.AntiBrick = Value
         while _G.AntiBrick do
           for i,v in pairs(game.Workspace:GetChildren()) do
@@ -1127,7 +1150,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti [REDACTED]",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti [REDACTED]",Default = false,Callback = function(Value)
         _G.AntiRedacted = Value
         if _G.AntiRedacted == true then
           game.Players.LocalPlayer.PlayerScripts.Well.Disabled = true
@@ -1136,7 +1159,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Brazil",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Brazil",Default = false,Callback = function(Value)
         _G.AntiBrazil = Value
         if _G.AntiBrazil == true then
           for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
@@ -1186,7 +1209,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti ZaHando",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti ZaHando",Default = false,Callback = function(Value)
         _G.AntiZaHando = Value
         while _G.AntiZaHando do
           for i,v in pairs(game.Workspace:GetChildren()) do
@@ -1198,7 +1221,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Reaper",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Reaper",Default = false,Callback = function(Value)
         _G.AntiReaper = Value
         while _G.AntiReaper do
           for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
@@ -1211,7 +1234,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Pusher",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Pusher",Default = false,Callback = function(Value)
         _G.AntiPusher = Value
         while _G.AntiPusher do
           for i,v in pairs(game.Workspace:GetChildren()) do
@@ -1223,7 +1246,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Barrier",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Barrier",Default = false,Callback = function(Value)
         _G.NoclipBarrier = Value
         if _G.NoclipBarrier == false then
           for i,v in pairs(game.Workspace:GetChildren()) do
@@ -1242,7 +1265,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Bubble",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Bubble",Default = false,Callback = function(Value)
         _G.AntiBubble = Value
         if _G.AntiBubble == true then
           while _G.AntiBubble do
@@ -1258,7 +1281,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Stun",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Stun",Default = false,Callback = function(Value)
         _G.AntiStun = Value
         while _G.AntiStun do
           if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
@@ -1268,7 +1291,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Disable Cube Of Death",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Disable Cube Of Death",Default = false,Callback = function(Value)
         _G.DisableCOD = Value
         if _G.DisableCOD == true then
           if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
@@ -1281,7 +1304,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Disable Death Barriers",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Disable Death Barriers",Default = false,Callback = function(Value)
         _G.DisableDB = Value
         if _G.DisableDB == true then
           for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
@@ -1323,7 +1346,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab11:AddToggle({Name = "Anti Ragdoll",Default = false,Callback = function(Value)
+  AntiTab:AddToggle({Name = "Anti Ragdoll",Default = false,Callback = function(Value)
         _G.AntiRagdoll = Value
         if _G.AntiRagdoll == true then
           game.Players.LocalPlayer.Character.Humanoid.Health = 0
@@ -1593,14 +1616,18 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
+  Tab15:AddButton({Name = "Spawn nimbus cloud ( All gloves )",Callback = function()
+        game.ReplicatedStorage.NimbusAbility:FireServer()
+      end})
+
+  Tab15:AddButton({Name = "Spawn cloud ( All gloves )",Callback = function()
+        game:GetService("ReplicatedStorage").CloudAbility:FireServer()
+      end})
+
   Tab15:AddToggle({Name = "Auto Spam Ability",Default = false,Callback = function(Value)
         On = Value
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud" do
           game:GetService("ReplicatedStorage").CloudAbility:FireServer()
-          wait()
-        end
-	while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Gravity" do
-          game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
           wait()
         end
         while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Whirlwind" do
@@ -1914,7 +1941,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab15:AddTextbox({Name = "Make person use rojo spam",Default = "Username",TextDisappear = false,Callback = function(Value)
+  Tab15:AddTextbox({Name = "Make person use Rojo Spam",Default = "Username",TextDisappear = false,Callback = function(Value)
         if Value == "Me" or Value == "me" or Value == "Username" or Value == "" then
           Person = game.Players.LocalPlayer.Name
         else
@@ -1933,17 +1960,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
         end
       end})
 
-  Tab15:AddToggle({Name = "Null Minions Spam [ WORKS WITH ALL GLOVES ] [ 1s ]",Default = false,Callback = function(Value)
+  Tab15:AddToggle({Name = "Null Minions Spam [ WORKS WITH ALL GLOVES ]",Default = false,Callback = function(Value)
         _G.NullSpam = Value
         while _G.NullSpam do
-          game:GetService("ReplicatedStorage").NullAbility:FireServer()
-          task.wait(1)
-        end
-      end})
-
-  Tab15:AddToggle({Name = "Null Minions Spam [ WORKS WITH ALL GLOVES ] [ 0s ]",Default = false,Callback = function(Value)
-        _G.NullSpam0s = Value
-        while _G.NullSpam0s do
           game:GetService("ReplicatedStorage").NullAbility:FireServer()
           task.wait()
         end
@@ -1952,11 +1971,15 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
   Tab15:AddToggle({Name = "AutoSlap Null Minions",Default = false,Callback = function(Value)
         _G.SlapNull = Value
         while _G.SlapNull do
-          task.wait()
-          local args = {
-            [1] = workspace:WaitForChild("Imp"):WaitForChild("Body")
-          }
-          shared.gloveHits[getGlove()]:FireServer(unpack(args))
+          game:GetService("ReplicatedStorage").NullAbility:FireServer()
+          for i,v in pairs(game.Workspace:GetChildren()) do
+            if v.Name == "Imp" then
+              if v:FindFirstChild("Body") then
+                shared.gloveHits[getGlove()]:FireServer(v.Body)
+              end
+            end
+          end
+          wait()
         end
       end})
 
@@ -2012,8 +2035,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
           getTool().Glove.Transparency = 0
           getTool().Glove.Size = Vector3.new(3, 3, 3.7)
         elseif GloveExtend == false then
-          getTool().Glove.Transparency = 0
-          getTool().Glove.Size = Vector3.new(2.5, 2.5, 1.7)
+          print("Glove Extend option false.")
         end
       end
 
