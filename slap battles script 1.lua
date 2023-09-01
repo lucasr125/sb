@@ -37,7 +37,7 @@ if game.PlaceId == 9431156611 then
 	AntiAcid.Transparency = 1
 	AntiLava.CanCollide = false
 
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 
 	local Window = OrionLib:MakeWindow({Name = "Slap Royale hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -678,7 +678,7 @@ elseif game.PlaceId == 11520107397 then
 	TournamentAntiVoid.CanCollide = false
 	TournamentAntiVoid.Transparency = 1
 
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 
 	local Window = OrionLib:MakeWindow({Name = "Slap Battles KS Only hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -1521,7 +1521,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 
 elseif game.PlaceId == 11828384869 then
 
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 
 	local Window = OrionLib:MakeWindow({Name = "Elude Maze hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -1885,7 +1885,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 
 elseif game.PlaceId == 9020359053 or game.PlaceId == 9412268818 then
 
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 
 	local Window = OrionLib:MakeWindow({Name = "SB Testing Server hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -1967,7 +1967,7 @@ else
 	TournamentAntiVoid.CanCollide = false
 	TournamentAntiVoid.Transparency = 1
 
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 
 	local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
