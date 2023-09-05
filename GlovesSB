@@ -99,7 +99,7 @@
     ["potato"] = game.ReplicatedStorage.potatohit,
     ["CULT"] = game.ReplicatedStorage.CULTHit,
     ["bob"] = game.ReplicatedStorage.bobhit,
-    ["Buddies"] = game.ReplicatedStorage.buddiesHIT,
+    ["buddies"] = game.ReplicatedStorage.buddiesHIT,
     ["Spy"] = game.ReplicatedStorage.SpyHit,
     ["Detonator"] = game.ReplicatedStorage.DetonatorHit,
     ["Rage"] = game.ReplicatedStorage.GRRRR,
