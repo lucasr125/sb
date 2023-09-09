@@ -1,4 +1,4 @@
--- if you have problems message Guy that exists#1915
+-- if you have issues message Guy that exists#1915
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
@@ -25,6 +25,15 @@ SafeSpot.Name = "Spot"
 SafeSpot.Size = Vector3.new(500,50,500)
 SafeSpot.Anchored = true
 SafeSpot.Transparency = .5
+end
+if workspace:FindFirstChild("TAntiVoid") == nil then
+local TournamentAntiVoid = Instance.new("Part", workspace)
+TournamentAntiVoid.Name = "TAntiVoid"
+TournamentAntiVoid.Size = Vector3.new(2048, 15, 2048)
+TournamentAntiVoid.Position = Vector3.new(3420, 70, 3)
+TournamentAntiVoid.CanCollide = false
+TournamentAntiVoid.Transparency = 1
+TournamentAntiVoid.Anchored = true
 end
 end
 
@@ -93,7 +102,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ion
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have problems then message Guy that exists#1915")
+Tab:AddLabel("If you have issues then message Guy that exists#1915")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -670,15 +679,6 @@ task.wait()
 })
 
 elseif game.PlaceId == 11520107397 then
-
-if workspace:FindFirstChild("TAntiVoid") == nil then
-local TournamentAntiVoid = Instance.new("Part", workspace)
-TournamentAntiVoid.Name = "TAntiVoid"
-TournamentAntiVoid.Size = Vector3.new(2048, 3, 2048)
-TournamentAntiVoid.Position = Vector3.new(3417, 72, 2)
-TournamentAntiVoid.CanCollide = false
-TournamentAntiVoid.Transparency = 1
-end
                 
                 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
@@ -720,7 +720,7 @@ end
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have problems then message Guy that exists#1915")
+Tab:AddLabel("If you have issues then message Guy that exists#1915")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -840,7 +840,7 @@ for i,v in pairs(game.LogService:GetChildren()) do
 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                         game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                 end 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
                     end    
                 })
 
@@ -1033,18 +1033,25 @@ end)
                     end    
                 })
 
-Tab4:AddButton({
-	Name = "TP to Safe spot",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
-  	end    
-})
-
-Tab4:AddButton({
-	Name = "TP back to arena",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.Rock.CFrame
-  	end    
+Tab4:AddDropdown({
+	Name = "Teleport",
+	Default = "",
+	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
+	Callback = function(Value)
+if Value == "Safe spot" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+elseif Value == "Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
+elseif Value == "Moai Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+elseif Value == "Slapple Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
+elseif Value == "Plate" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
+elseif Value == "Tournament" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+end
+	end    
 })
 
 Tab4:AddDropdown({
@@ -1558,7 +1565,7 @@ elseif game.PlaceId == 11828384869 then
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have problems then message Guy that exists#1915")
+Tab:AddLabel("If you have issues then message Guy that exists#1915")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -1947,15 +1954,6 @@ else
 
 Glove = game.Players.LocalPlayer.leaderstats.Glove.Value
 
-if workspace:FindFirstChild("TAntiVoid") == nil then
-local TournamentAntiVoid = Instance.new("Part", workspace)
-TournamentAntiVoid.Name = "TAntiVoid"
-TournamentAntiVoid.Size = Vector3.new(2048, 3, 2048)
-TournamentAntiVoid.Position = Vector3.new(3417, 72, 2)
-TournamentAntiVoid.CanCollide = false
-TournamentAntiVoid.Transparency = 1
-end
-                
                 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
                 local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
@@ -1996,7 +1994,7 @@ end
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have problems then message Guy that exists#1915")
+Tab:AddLabel("If you have issues then message Guy that exists#1915")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -2118,7 +2116,7 @@ for i,v in pairs(game.LogService:GetChildren()) do
 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                         game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
                 end 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Origo.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
                     end    
                 })
 
@@ -2216,13 +2214,12 @@ game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(C
 wait(3.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Shukuchi" do
-local LocalPlayer = game.Players.LocalPlayer
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character.isInArena.Value == true
-PersonToKill = RandomPlayer
-game:GetService("ReplicatedStorage").SM:FireServer(PersonToKill)
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+Target = RandomPlayer
+game:GetService("ReplicatedStorage").SM:FireServer(Target)
 wait(0.01)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Slicer" do
@@ -2277,13 +2274,12 @@ game:GetService("ReplicatedStorage").PusherWall:FireServer()
 wait(5.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Jet" do
-local LocalPlayer = game.Players.LocalPlayer
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character.isInArena.Value == true
-PersonToKill = RandomPlayer
-game:GetService("ReplicatedStorage").AirStrike:FireServer(PersonToKill.Character)
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+Target = RandomPlayer
+game:GetService("ReplicatedStorage").AirStrike:FireServer(Target.Character)
 wait(5.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Tableflip" do
@@ -2317,7 +2313,7 @@ game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 wait(4.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Stun" do
-game:GetService("ReplicatedStorage").StunR:FireServer(game.Players.LocalPlayer.Character.Stun)
+game.ReplicatedStorage.StunR:FireServer(game.Players.LocalPlayer.Character.Stun)
 wait(10.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "STOP" do
@@ -2325,13 +2321,12 @@ game:GetService("ReplicatedStorage").STOP:FireServer(true)
 wait(4.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Track" do
-local LocalPlayer = game.Players.LocalPlayer
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character.isInArena.Value == true
-PersonToKill = RandomPlayer
-game:GetService("ReplicatedStorage").GeneralAbility:FireServer(PersonToKill.Character)
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+Target = RandomPlayer
+game:GetService("ReplicatedStorage").GeneralAbility:FireServer(Target.Character)
 wait(10.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Mail" do
@@ -2355,8 +2350,15 @@ game:GetService("ReplicatedStorage").funnyTree:FireServer(game.Players.LocalPlay
 wait(3.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Kinetic" do
+OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i = 1,100 do
+game.ReplicatedStorage.SelfKnockback:FireServer({["Force"] = 0,["Direction"] = Vector3.new(0,0.01,0)})
+wait(0.05)
+end
+wait(1.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 game:GetService("ReplicatedStorage").KineticExpl:FireServer(game.Players.LocalPlayer.Character.Kinetic, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-wait(9.1)
+wait(2.65)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Dominance" do
 game:GetService("ReplicatedStorage").DominanceAc:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
@@ -2430,6 +2432,7 @@ Tab2:AddButton({
 	Name = "Kick player (Needs Za Hando) (Inconsistent)",
 	Callback = function()
 if game.Players.LocalPlayer.leaderstats.Glove.Value == "Za Hando" then
+OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 OGWS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 OGJP = game.Players.LocalPlayer.Character.Humanoid.JumpPower
 for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
@@ -2439,9 +2442,9 @@ game:GetService("ReplicatedStorage").Erase:FireServer()
 wait(0.47)
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = 0
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(1022,213.8,1498)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-485,310,-2)
 wait(3.75)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.Rock.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = OGWS
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = OGJP
 for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
@@ -2546,18 +2549,25 @@ end
 	end	  
 })
 
-Tab4:AddButton({
-	Name = "TP to Safe spot",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
-  	end    
-})
-
-Tab4:AddButton({
-	Name = "TP back to arena",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.Rock.CFrame
-  	end    
+Tab4:AddDropdown({
+	Name = "Teleport",
+	Default = "",
+	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
+	Callback = function(Value)
+if Value == "Safe spot" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+elseif Value == "Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
+elseif Value == "Moai Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+elseif Value == "Slapple Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
+elseif Value == "Plate" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
+elseif Value == "Tournament" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+end
+	end    
 })
 
 Tab4:AddButton({
@@ -3074,8 +3084,37 @@ end
                     })
 
 Tab5:AddButton({
-	Name = "Get Trap (Only 20 mins)",
+                    Name = "Get Kinetic (~10 mins) (Blatant)",
+Callback = function()
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Stun" then
+OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i = 1,100 do
+game.ReplicatedStorage.SelfKnockback:FireServer({["Force"] = 0,["Direction"] = Vector3.new(0,0.01,0)})
+wait(0.05)
+end
+wait(1.5)
+repeat
+local players = game.Players:GetChildren()
+local RandomPlayer = players[math.random(1, #players)]
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+Target = RandomPlayer
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame * CFrame.new(0,-20,0)
+wait(0.25)
+game.ReplicatedStorage.StunR:FireServer(game.Players.LocalPlayer.Character.Stun)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+wait(9.9)
+until game.Players.LocalPlayer.Character:FindFirstChild("EMPStunBadgeCounter") and game.Players.LocalPlayer.Character.EMPStunBadgeCounter.Value >= 50
+else
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Stun equipped"})
+end
+end
+                    })
+
+Tab5:AddButton({
+	Name = "Get Trap (~20 mins)",
 	Callback = function()
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" then
 for i = 1, 200 do
 game:GetService("ReplicatedStorage").lbrick:FireServer()
 game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1;
@@ -3092,6 +3131,9 @@ wait(Random.new():NextNumber(1.1,1.4))
 game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
 wait(Random.new():NextNumber(1.1,1.4))
 end
+else
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Brick equipped"})
+end
                     end    
                 })
 
@@ -3100,9 +3142,13 @@ Tab5:AddToggle({
 	Default = false,
 	Callback = function(Value)
 Brickfarm = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" then
 while Brickfarm do
 game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
-task.wait(5.01)
+task.wait(5.05)
+end
+elseif Value == true then
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Brick equipped"})
 end
 	end    
 })
@@ -3112,9 +3158,13 @@ Tab5:AddToggle({
                     Default = false,
                     Callback = function(Value)
 BobFarm = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" then
 while BobFarm do
 game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
 wait(5.05)
+end
+elseif Value == true then
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Replica equipped"})
 end
                     end    
                 })
