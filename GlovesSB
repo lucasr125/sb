@@ -58,7 +58,6 @@
     ["Dice"] = game.ReplicatedStorage.DiceHit,
     ["Ghost"] = game.ReplicatedStorage.GhostHit,
     ["Thanos"] = game.ReplicatedStorage.ThanosHit,
-    ["Stun"] = game.ReplicatedStorage.HtStun,
     ["Za Hando"] = game.ReplicatedStorage.zhramt,
     ["Fort"] = game.ReplicatedStorage.Fort,
     ["Magnet"] = game.ReplicatedStorage.MagnetHIT,
@@ -131,6 +130,7 @@
     ["Boogie"] = game.ReplicatedStorage.HtStun,
     ["Stun"] = game.ReplicatedStorage.HtStun,
     ["Coil"] = game.ReplicatedStorage.HtStun,
+    ["Stun"] = game.ReplicatedStorage.HtStun,
 
     ----------------------------------------
     
