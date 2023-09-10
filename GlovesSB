@@ -1,8 +1,9 @@
-    shared.gloveHits = {
+    -- TIME TO RE WRITE THIS!!!!!!!!!
+shared.gloveHits = {
 
     ["Default"] = game.ReplicatedStorage.b,
     ["Extended"] = game.ReplicatedStorage.b,
-    
+    -- b llol
     ----------------------------------------
 
     ["T H I C K"] = game.ReplicatedStorage.GeneralHit,
