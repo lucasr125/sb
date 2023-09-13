@@ -74,11 +74,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		Walkspeed = 20,
 		JumpPower = 50,
 		HipHeight = 0,
-		Gravity = 196.6,
-		AutoWS = false,
-		AutoJPower = false,
+		Gravity = 196.2,
+		AutoWalkspeed = false,
+		AutoJumpPower = false,
 		AutoHipHeight = false,
 		AutoGravity = false,
+    ESP = false,
+    ESPColor = "255, 255, 255",
 	}
 	-- Bypass
 	local bypass;
@@ -750,6 +752,21 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end
 					end
 				end})
+        local NoGloveCooldown = GloveSection:Button({Name = "No Glove Cooldown",Side = "Left",Callback = function()
+					local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local tool = character:FindFirstChildOfClass("Tool") or player.Backpack:FindFirstChildOfClass("Tool")
+
+while character.Humanoid.Health ~= 0 do
+local localscript = tool:FindFirstChildOfClass("LocalScript")
+local localscriptclone = localscript:Clone()
+localscriptclone = localscript:Clone()
+localscriptclone:Clone()
+localscript:Destroy()
+localscriptclone.Parent = tool
+wait(0.1)
+end
+				end})
 			end
 
 			local AbilitySection = CombatTab:Section({Name = "Ability Spam",Side = "Right"}) do
@@ -1237,7 +1254,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 			end
-			local ExtraFuncSection = MiscTab:Section({Name = "Extra Functions",Side = "Right"}) do
+			local ExtraFuncSection = MiscTab:Section({Name = "Gaming Features",Side = "Right"}) do
 				local Give20KillsReaper = ExtraFuncSection:Button({Name = "Give 20 Kills Reaper",Side = "Left",Callback = function() 
 					for i = 1, 20 do
 						game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(x,false)
@@ -1337,7 +1354,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
 				local SelfKnockback = ExtraFuncSection:Toggle({Name = "Self Knockback ( ONLY KINETIC )",Flag = "SelfKnockback",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.SelfKnockback = Toggle_Bool
-					while getgenv().settings.SelfKnockback do
+          while getgenv().settings.SelfKnockback do
 						if getGlove() == "Kinetic" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
 							local settings = {
 								["Force"] = 0,
@@ -1351,105 +1368,71 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 		local LocalTab = Window:Tab({Name = "Local"}) do
-			local LocalPlayer = LocalTab:Section({Name = "Character Movement",Side = "Left"}) do
-        --[[Tab7:AddSlider({
-	Name = "WalkSpeed",
-	Min = 20,
-	Max = 1000,
-	Default = 20,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "WalkSpeed",
-	Callback = function(WS)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = WS
-        WS1 = WS
-	end    
-})
-
-Tab7:AddToggle({
-	Name = "Walkspeed automatic",
-	Default = false,
-	Save = true,
-    Flag = "WalkSpeedSet",
-	Callback = function(Value)
-		autoSet1 = Value
-        if Value == true then
-            while autoSet1 do
+			local CharacterMovement = LocalTab:Section({Name = "Character Movement",Side = "Left"}) do
+        local WalkspeedValue = CharacterMovement:Slider({Name = "Walkspeed Value",Flag = "WalkspeedValue",Side = "Left",Min = 20,Max = 1000,Value = 20,Precise = 0,Unit = "",Callback = function(Value_Number) 
+					getgenv().settings.Walkspeed = Value_Number
+              game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().settings.Walkspeed
+				end})
+        local AutomaticWalkspeed = CharacterMovement:Toggle({Name = "Automatic Set Walkspeed",Flag = "AutomaticWalkspeed",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.AutoWalkspeed = Toggle_Bool
+					if getgenv().settings.AutoWalkspeed == true then
+            while getgenv().settings.AutoWalkspeed do
                 task.wait()
                 local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= WS1 then
-                    Character:FindFirstChild("Humanoid").WalkSpeed = WS1
+                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= getgenv().settings.Walkspeed then
+                    Character:FindFirstChild("Humanoid").WalkSpeed = getgenv().settings.Walkspeed
                 end
             end
         end
-	end    
-})
-
-Tab7:AddSlider({
-	Name = "JumpPower",
-	Min = 50,
-	Max = 1000,
-	Default = 50,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "JumpPower",
-	Callback = function(JP)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
-        WS2 = JP
-	end    
-})
-
-Tab7:AddToggle({
-	Name = "Jumppower automatic",
-	Default = false,
-	Save = true,
-    Flag = "JumppowerSet",
-	Callback = function(Value)
-		autoSet2 = Value
-        if Value == true then
-            while autoSet2 do
+				end})
+        ---------
+        local JumpPowerValue = CharacterMovement:Slider({Name = "JumpPower Value",Flag = "JumpPowerValue",Side = "Left",Min = 50,Max = 1000,Value = 50,Precise = 0,Unit = "",Callback = function(Value_Number) 
+					getgenv().settings.JumpPower = Value_Number
+              game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().settings.JumpPower
+				end})
+        local AutomaticJumpPower = CharacterMovement:Toggle({Name = "Automatic Set JumpPower",Flag = "AutomaticJumpPower",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.AutoJumpPower = Toggle_Bool
+					if getgenv().settings.AutoJumpPower == true then
+            while getgenv().settings.AutoJumpPower do
                 task.wait()
                 local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= WS2 then
-                    Character:FindFirstChild("Humanoid").JumpPower = WS2
+                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= getgenv().settings.JumpPower then
+                    Character:FindFirstChild("Humanoid").JumpPower = getgenv().settings.JumpPower
                 end
             end
         end
-	end    
-})
-
-Tab7:AddSlider({
-	Name = "Hip Height",
-	Min = 0,
-	Max = 100,
-	Default = 1,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Hip Height",
-	Callback = function(HT)
-		game.Players.LocalPlayer.Character.Humanoid.HipHeight = HT
-        WS3 = HT
-	end    
-})
-
-Tab7:AddToggle({
-	Name = "Hip Height automatic",
-	Default = false,
-	Save = true,
-    Flag = "HipHeightset",
-	Callback = function(Value)
-		autoSet3 = Value
-        if Value == true then
-            while autoSet3 do
+				end})
+        
+        local HipHeightValue = CharacterMovement:Slider({Name = "HipHeight Value",Flag = "HipHeightValue",Side = "Left",Min = 0,Max = 100,Value = 0,Precise = 0,Unit = "",Callback = function(Value_Number) 
+					getgenv().settings.HipHeight = Value_Number
+              game.Players.LocalPlayer.Character.Humanoid.HipHeight = getgenv().settings.HipHeight
+				end})
+        local AutomaticHipHeight = CharacterMovement:Toggle({Name = "Automatic Set HipHeight",Flag = "AutomaticHipHeight",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.AutoHipHeight = Toggle_Bool
+					if getgenv().settings.AutoHipHeight == true then
+            while getgenv().settings.AutoHipHeight do
                 task.wait()
                 local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= WS3 then
-                    Character:FindFirstChild("Humanoid").HipHeight  = WS3
+                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= getgenv().settings.HipHeight then
+                    Character:FindFirstChild("Humanoid").HipHeight = getgenv().settings.HipHeight
                 end
             end
         end
-	end    
-})]]
+				end})
+
+        local GravityValue = CharacterMovement:Slider({Name = "Gravity Value",Flag = "GravityValue",Side = "Left",Min = 0,Max = 1000,Value = 196.2,Precise = 2,Unit = "",Callback = function(Value_Number) 
+					getgenv().settings.Gravity = Value_Number
+              game.Workspace.Gravity = getgenv().settings.Gravity
+				end})
+        local AutomaticGravity = CharacterMovement:Toggle({Name = "Automatic Set Gravity",Flag = "AutomaticGravity",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.AutoGravity = Toggle_Bool
+					if getgenv().settings.AutoGravity == true then
+            while getgenv().settings.AutoGravity do
+                task.wait()
+                    game.Workspace.Gravity = getgenv().settings.Gravity
+            end
+        end
+				end})
 			end
 		end
 	end
