@@ -145,7 +145,7 @@ for i,v in pairs(game.Players:GetChildren()) do
 if v.Character:FindFirstChild("Dead") == nil and v.Character:FindFirstChild("HumanoidRootPart") then
 Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
                         if 25 >= Magnitude then
-game.ReplicatedStorage.Events.Slap:FireServer(v.Character:WaitForChild("Head"))
+game.ReplicatedStorage.Events.Slap:FireServer(v.Character:WaitForChild("HumanoidRootPart"))
                     end
 end
 end
@@ -806,7 +806,7 @@ for i,v in pairs(game.Players:GetChildren()) do
 if v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("HumanoidRootPart") then
 Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
                         if 25 >= Magnitude then
-game.ReplicatedStorage.KSHit:FireServer(v.Character:WaitForChild("Head"))
+game.ReplicatedStorage.KSHit:FireServer(v.Character:WaitForChild("HumanoidRootPart"))
                     end
 end
 end
@@ -2079,7 +2079,7 @@ if v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("Humanoi
 if v.Character.Head:FindFirstChild("UnoReverseCard") == nil or game.Players.LocalPlayer.leaderstats.Glove.Value == "Error" then
 Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
                         if 25 >= Magnitude then
-shared.gloveHits[game.Players.LocalPlayer.leaderstats.Glove.Value]:FireServer(v.Character:WaitForChild("Head"),true)
+shared.gloveHits[game.Players.LocalPlayer.leaderstats.Glove.Value]:FireServer(v.Character:WaitForChild("HumanoidRootPart"),true)
                     end
 end
 end
@@ -3158,6 +3158,23 @@ end
 end
                     })
 
+Tab5:AddToggle({
+	Name = "Phase Farm",
+	Default = false,
+	Callback = function(Value)
+Phasefarm = Value
+while Phasefarm do
+for i,v in pairs(game.Workspacey:GetChildren()) do
+                    if v.Name == "PhaseOrb" and v:FindFirstChild("TouchInterest") then
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+                    end
+                end
+task.wait()
+end
+	end    
+})
+
 Tab5:AddButton({
 	Name = "Get Trap (~20 mins)",
 	Callback = function()
@@ -3490,7 +3507,7 @@ end
                     Callback = function(Value)
 AntiPusher = Value
             while AntiPusher do
-for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+for i,v in pairs(game.Workspace:GetChildren()) do
                     if v.Name == "wall" then
                         v.CanCollide = false
                     end
