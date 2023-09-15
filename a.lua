@@ -79,8 +79,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		AutoJumpPower = false,
 		AutoHipHeight = false,
 		AutoGravity = false,
-    ESP = false,
-    ESPColor = "255, 255, 255",
 	}
 	-- Bypass
 	local bypass;
@@ -260,8 +258,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 		local AntiTab = Window:Tab({Name = "Antis"}) do
-			local AntiSection = AntiTab:Section({Name = "Anti",Side = "Left"}) do
-				local AntiAdmin = AntiSection:Toggle({Name = "Anti Admin",Flag = "AntiAdmin",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+			local AntiVisualSection = AntiTab:Section({Name = "Anti Visuals",Side = "Left"}) do
+				local AntiAdmin = AntiVisualSection:Toggle({Name = "Anti Admin",Flag = "AntiAdmin",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiAdmin = Toggle_Bool
 					if getgenv().settings.AntiAdmin == true then
 						game.Players.PlayerAdded:Connect(function(Plr)
@@ -272,7 +270,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiKick = AntiSection:Toggle({Name = "Anti Kick",Flag = "AntiKick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiKick = AntiVisualSection:Toggle({Name = "Anti Kick",Flag = "AntiKick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiKick = Toggle_Bool
 					while getgenv().settings.AntiKick do
 						for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
@@ -284,13 +282,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiRagdoll = AntiSection:Toggle({Name = "Anti Ragdoll",Flag = "AntiRagdoll",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiRagdoll = AntiVisualSection:Toggle({Name = "Anti Ragdoll",Flag = "AntiRagdoll",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiRagdoll = Toggle_Bool
 					if getgenv().settings.AntiRagdoll then
 						game.Players.LocalPlayer.Character.Humanoid.Health = 0
 						game.Players.LocalPlayer.CharacterAdded:Connect(function()
 							game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Changed:Connect(function()
-								if game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true and AntiRagdoll then
+								if game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true and getgenv().settings.AntiRagdoll then
 									repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
 									until game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
 									game.Players.LocalPlayer.Character.Torso.Anchored = false
@@ -300,12 +298,110 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiVoid = AntiSection:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiTS = AntiVisualSection:Toggle({Name = "Anti Timestop ( credits: guy that exists )",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiTimestop = Toggle_Bool
+					while getgenv().settings.AntiTimestop do
+						for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+							if v.ClassName == "Part" then
+								v.Anchored = false
+							end
+						end
+						task.wait()
+					end
+				end})
+
+				local AntiSquid = AntiVisualSection:Toggle({Name = "Anti Squid",Flag = "AntiSquid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiSquid = Toggle_Bool
+
+					if getgenv().settings.AntiSquid == false then
+						game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = true
+					end
+
+					while getgenv().settings.AntiSquid do
+						if game.Players.LocalPlayer.PlayerGui:FindFirstChild("SquidInk") then
+							game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = false
+						end
+						task.wait()
+					end
+				end})
+
+				local AntiHallowJack = AntiVisualSection:Toggle({Name = "Anti Hallow Jack",Flag = "AntiHallowJack",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = Toggle_Bool
+				end})
+
+				local AntiConveyor = AntiVisualSection:Toggle({Name = "Anti Conveyor",Flag = "AntiConveyor",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = Toggle_Bool
+				end})
+
+				local AntiREDACTED = AntiVisualSection:Toggle({Name = "Anti [ REDACTED ]",Flag = "AntiREDACTED",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					game.Players.LocalPlayer.PlayerScripts.Well.Disabled = Toggle_Bool
+				end})
+
+				local AntiZaHando = AntiVisualSection:Toggle({Name = "Anti Za Hando",Flag = "AntiZaHando",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiZaHando = Toggle_Bool
+					while getgenv().settings.AntiZaHando do
+						for i,v in pairs(game.Workspace:GetChildren()) do
+							if v.ClassName == "Part" and v.Name == "Part" then
+								v:Destroy()
+							end
+						end
+						task.wait()
+					end
+				end})
+
+				local AntiReaper = AntiVisualSection:Toggle({Name = "Anti Reaper",Flag = "AntiReaper",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiReaper = Toggle_Bool
+					while getgenv().settings.AntiReaper do
+						for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+							if v.Name == "DeathMark" then
+								game:GetService("ReplicatedStorage").ReaperGone:FireServer(game.Players.LocalPlayer.Character.DeathMark)
+								game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
+							end
+						end
+						task.wait()
+					end
+				end})
+
+				local AntiMail = AntiVisualSection:Toggle({Name = "Anti Mail",Flag = "AntiMail",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiMail = Toggle_Bool
+					game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Toggle_Bool
+					while getgenv().settings.AntiMail do
+						if game.Players.LocalPlayer.Character:FindFirstChild("YouHaveGotMail") then
+							game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = true
+						end
+						task.wait()
+					end
+				end})
+
+				local AntiStun = AntiVisualSection:Toggle({Name = "Anti Stun",Flag = "AntiStun",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiStun = Toggle_Bool
+					while getgenv().settings.AntiStun do
+						if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
+							game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+						end
+						task.wait()
+					end
+				end})
+        
+				local AntiNightmare = AntiVisualSection:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiNightmare = Toggle_Bool
+					if getgenv().settings.AntiNightmare == true then
+						local nightmare = game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect
+
+						nightmare.Parent = game.Lighting
+					else
+						nightmare.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
+					end
+				end})
+      end
+      
+			local AntiAccidSection = AntiTab:Section({Name = "Anti Accident Itens",Side = "Right"}) do
+        local AntiVoid = AntiAccidSection:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					game.Workspace.dedBarrier.CanCollide = Toggle_Bool
 					game.Workspace.arenaVoid.CanCollide = Toggle_Bool
 				end})
 
-				local AntiDB = AntiSection:Toggle({Name = "Anti Death Barrier",Flag = "AntiDB",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiDB = AntiAccidSection:Toggle({Name = "Anti Death Barrier",Flag = "AntiDB",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiDB = Toggle_Bool
 
 					if getgenv().settings.AntiDB == true then
@@ -333,7 +429,19 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiBrazil = AntiSection:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+        local AntiBrick = AntiAccidSection:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiBrick = Toggle_Bool
+					while getgenv().settings.AntiBrick do
+						for i,v in pairs(game.Workspace:GetChildren()) do
+							if v.Name == "Union" then
+								v.CanTouch = false
+							end
+						end
+						task.wait()
+					end
+				end})
+
+        local AntiBrazil = AntiAccidSection:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrazil = Toggle_Bool
 
 					if getgenv().settings.AntiBrazil == true then
@@ -351,7 +459,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiCOD = AntiSection:Toggle({Name = "Anti Cube Of Death",Flag = "AntiCOD",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiCOD = AntiAccidSection:Toggle({Name = "Anti Cube Of Death",Flag = "AntiCOD",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					if Toggle_Bool == true then
 						workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
 					else
@@ -359,86 +467,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiTS = AntiSection:Toggle({Name = "Anti Timestop ( credits: guy that exists )",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiTimestop = Toggle_Bool
-					while getgenv().settings.AntiTimestop do
-						for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-							if v.ClassName == "Part" then
-								v.Anchored = false
-							end
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiSquid = AntiSection:Toggle({Name = "Anti Squid",Flag = "AntiSquid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiSquid = Toggle_Bool
-
-					if getgenv().settings.AntiSquid == false then
-						game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = true
-					end
-
-					while getgenv().settings.AntiSquid do
-						if game.Players.LocalPlayer.PlayerGui:FindFirstChild("SquidInk") then
-							game.Players.LocalPlayer.PlayerGui.SquidInk.Enabled = false
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiHallowJack = AntiSection:Toggle({Name = "Anti Hallow Jack",Flag = "AntiHallowJack",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = Toggle_Bool
-				end})
-
-				local AntiConveyor = AntiSection:Toggle({Name = "Anti Conveyor",Flag = "AntiConveyor",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = Toggle_Bool
-				end})
-
-				local AntiBrick = AntiSection:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiBrick = Toggle_Bool
-					while getgenv().settings.AntiBrick do
-						for i,v in pairs(game.Workspace:GetChildren()) do
-							if v.Name == "Union" then
-								v.CanTouch = false
-							end
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiREDACTED = AntiSection:Toggle({Name = "Anti [ REDACTED ]",Flag = "AntiREDACTED",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					game.Players.LocalPlayer.PlayerScripts.Well.Disabled = Toggle_Bool
-				end})
-
-				local AntiZaHando = AntiSection:Toggle({Name = "Anti Za Hando",Flag = "AntiZaHando",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiZaHando = Toggle_Bool
-					while getgenv().settings.AntiZaHando do
-						for i,v in pairs(game.Workspace:GetChildren()) do
-							if v.ClassName == "Part" and v.Name == "Part" then
-								v:Destroy()
-							end
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiReaper = AntiSection:Toggle({Name = "Anti Reaper",Flag = "AntiReaper",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiReaper = Toggle_Bool
-					while getgenv().settings.AntiReaper do
-						for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-							if v.Name == "DeathMark" then
-								game:GetService("ReplicatedStorage").ReaperGone:FireServer(game.Players.LocalPlayer.Character.DeathMark)
-								game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
-							end
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiPusher = AntiSection:Toggle({Name = "Anti Pusher",Flag = "AntiPusher",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+        local AntiPusher = AntiAccidSection:Toggle({Name = "Anti Pusher",Flag = "AntiPusher",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiPusher = Toggle_Bool
 					while getgenv().settings.AntiPusher do
-						for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+						for i,v in pairs(game.Workspace:GetChildren()) do
 							if v.Name == "wall" then
 								v.CanCollide = false
 							end
@@ -447,7 +479,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiBooster = AntiSection:Toggle({Name = "Anti Booster",Flag = "AntiBooster",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBooster = AntiAccidSection:Toggle({Name = "Anti Booster",Flag = "AntiBooster",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBooster = Toggle_Bool
 					while getgenv().settings.AntiBooster do
 						for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
@@ -459,28 +491,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiMail = AntiSection:Toggle({Name = "Anti Mail",Flag = "AntiMail",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiMail = Toggle_Bool
-					game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Toggle_Bool
-					while getgenv().settings.AntiMail do
-						if game.Players.LocalPlayer.Character:FindFirstChild("YouHaveGotMail") then
-							game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = true
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiStun = AntiSection:Toggle({Name = "Anti Stun",Flag = "AntiStun",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiStun = Toggle_Bool
-					while getgenv().settings.AntiStun do
-						if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
-							game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-						end
-						task.wait()
-					end
-				end})
-
-				local AntiRock = AntiSection:Toggle({Name = "Anti Rock",Flag = "AntiRock",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+        local AntiRock = AntiAccidSection:Toggle({Name = "Anti Rock",Flag = "AntiRock",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiRock = Toggle_Bool
 					while getgenv().settings.AntiRock do
 						for i,v in pairs(game.Workspace:GetDescendants()) do
@@ -493,7 +504,20 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiBarrier = AntiSection:Toggle({Name = "Anti Barrier",Flag = "AntiBarrier",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+        local AntiIce = AntiAccidSection:Toggle({Name = "Anti Ice",Flag = "AntiIce",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AntiIce = Toggle_Bool
+					local function AntiIceCube()
+						local ice = game.Players.LocalPlayer.Character.Icecube
+						ice:Destroy()
+					end
+					while getgenv().settings.AntiIce do
+						local success, error_message = pcall(AntiIceCube)
+						if not success then end
+						wait(0.02)
+					end
+				end})
+
+        local AntiBarrier = AntiAccidSection:Toggle({Name = "Anti Barrier",Flag = "AntiBarrier",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBarrier = Toggle_Bool
 					if getgenv().settings.AntiBarrier == false then
 						for i,v in pairs(game.Workspace:GetChildren()) do
@@ -513,7 +537,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiBubble = AntiSection:Toggle({Name = "Anti Bubble",Flag = "AntiBubble",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBubble = AntiAccidSection:Toggle({Name = "Anti Bubble",Flag = "AntiBubble",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBubble = Toggle_Bool
 					if getgenv().settings.AntiBubble == true then
 						while getgenv().settings.AntiBubble do
@@ -529,20 +553,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiIce = AntiSection:Toggle({Name = "Anti Ice",Flag = "AntiIce",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiIce = Toggle_Bool
-					local function AntiIceCube()
-						local ice = game.Players.LocalPlayer.Character.Icecube
-						ice:Destroy()
-					end
-					while getgenv().settings.AntiIce do
-						local success, error_message = pcall(AntiIceCube)
-						if not success then end
-						wait(0.02)
-					end
-				end})
-
-				local AntiBus = AntiSection:Toggle({Name = "Anti Bus",Flag = "AntiBus",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBus = AntiAccidSection:Toggle({Name = "Anti Bus",Flag = "AntiBus",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBus = Toggle_Bool
 					local function AntiBus()
 						local bus = game.Workspace.BusModel
@@ -555,21 +566,17 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiNightmare = AntiSection:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AntiNightmare = Toggle_Bool
-					if getgenv().settings.AntiNightmare == true then
-						local nightmare = game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect
-
-						nightmare.Parent = game.Lighting
-					else
-						nightmare.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
-					end
-				end})
-
-        --[[local AntiObby = AntiSection:Toggle({Name = "Anti Obby",Flag = "AntiObby",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+        local AntiObby = AntiAccidSection:Toggle({Name = "Anti Obby",Flag = "AntiObby",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiObby = Toggle_Bool
-					
-				end})]]
+              obby_value = getgenv().settings.AntiObby
+for _, child in pairs(game.Workspace:GetChildren()) do
+    local name = child.Name
+    if (string.find(name, "LavaSpinner") or string.find(name, "LavaBlock")) and getgenv().settings.AntiObby then
+        child.CanTouch = obby_value
+    end
+end
+
+				end})
 			end
 		end
 		local CombatTab = Window:Tab({Name = "Combat"}) do
@@ -1060,6 +1067,10 @@ end
 						game:GetService("ReplicatedStorage").BerserkCharge:FireServer(game:GetService("Players").LocalPlayer.Character.Berserk)
 						wait(2.1)
 					end
+          while getGlove() == "Meteor" and getgenv().settings.AbilitySpam do
+						game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+						wait()
+					end
 				end})
 				local HomeRunMax = AbilitySection:Toggle({Name = "Spam HomeRun Max",Flag = "HomeRunMax",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.HomeRunMax = Toggle_Bool
@@ -1361,8 +1372,8 @@ end
 								["Direction"] = 0, 0.10000000149011612, 0
 							}
 							game:GetService("ReplicatedStorage").SelfKnockback:FireServer(settings)
-							task.wait()
 						end
+                task.wait()
 					end
 				end})
 			end
@@ -1433,7 +1444,7 @@ end
             end
         end
 				end})
-			end
+      end
 		end
 	end
 	print(getGlove())
