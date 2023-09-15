@@ -43,6 +43,7 @@ shared.gloveHits = {
 	["Gravity"] = game.ReplicatedStorage.GeneralHit,
 	["Lure"] = game.ReplicatedStorage.GeneralHit,
 	["Jebaited"] = game.ReplicatedStorage.GeneralHit,
+	["Meteor] = game.ReplicatedStorage.GeneralHit,
 
 	----------------------------------------
 
