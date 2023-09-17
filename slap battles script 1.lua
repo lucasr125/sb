@@ -782,16 +782,9 @@ game:GetService("TeleportService"):Teleport(9412268818)
                 })
 
 Tab4:AddButton({
-	Name = "Slap Farm (This copies the script, put it in autoexec)",
+	Name = "Slap Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()")
-                    end    
-                })
-
-Tab4:AddButton({
-	Name = "Start Slap Farm (Take the script out of autoexec to stop)",
-	Callback = function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()
                     end    
                 })
 
@@ -920,7 +913,7 @@ RetroAbility = Value
                     Default = false,
                     Callback = function(Value)
 On = Value
-while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Killstreak" and game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills") and game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= "75" do
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Killstreak" do
 game:GetService("ReplicatedStorage").KSABILI:FireServer()
 wait(6.1)
 end
@@ -942,20 +935,6 @@ end
 end
                 })
 
-Tab4:AddButton({
-	Name = "Spawn cloud (All gloves)",
-	Callback = function()
-      		game:GetService("ReplicatedStorage").CloudAbility:FireServer()
-  	end    
-})
-
-Tab4:AddButton({
-	Name = "Spawn nimbus cloud (All gloves)",
-	Callback = function()
-      		game.ReplicatedStorage.NimbusAbility:FireServer()
-  	end    
-})
-
 Tab4:AddToggle({
                     Name = "Auto Remove Nametag (Breaks killstreak) (Clientside)",
                     Default = false,
@@ -970,6 +949,44 @@ repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Name
                 game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
                 end
             end)
+end
+                })
+
+Tab4:AddDropdown({
+	Name = "Teleport",
+	Default = "",
+	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
+	Callback = function(Value)
+if Value == "Safe spot" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+elseif Value == "Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
+elseif Value == "Moai Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+elseif Value == "Slapple Island" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
+elseif Value == "Plate" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
+elseif Value == "Tournament" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+end
+	end    
+})
+
+Tab4:AddToggle({
+                    Name = "Slapple Farm",
+                    Default = false,
+                    Callback = function(Value)
+SlappleFarm = Value
+while SlappleFarm do
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
+                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+                end
+            end
+task.wait()
+end
 end
                 })
 
@@ -1032,27 +1049,6 @@ end
 end)
                     end    
                 })
-
-Tab4:AddDropdown({
-	Name = "Teleport",
-	Default = "",
-	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
-	Callback = function(Value)
-if Value == "Safe spot" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
-elseif Value == "Arena" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
-elseif Value == "Moai Island" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
-elseif Value == "Slapple Island" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
-elseif Value == "Plate" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
-elseif Value == "Tournament" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
-end
-	end    
-})
 
 Tab4:AddDropdown({
 	Name = "Rojo Charge VFX (Will fling you if spammed)",
@@ -1402,17 +1398,19 @@ fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
                 })
 
 Tab3:AddToggle({
-                    Name = "Anti Admins (Credits to R2O)",
+                    Name = "Anti Admins",
                     Default = false,
                     Callback = function(bool)
-antiAdmins = bool
-    if bool == true then
-        game.Players.PlayerAdded:Connect(function(Plr)
-            if Plr:GetRankInGroup(9950771) and 2 <= Plr:GetRankInGroup(9950771) and antiAdmins then
-                game.Players.LocalPlayer:Kick("Admin/High Rank Player Detected")
-            end
-        end)
-    end
+AntiAdmins = Value
+while AntiAdmins do
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v:GetRankInGroup(9950771) >= 2 then
+                        game.Players.LocalPlayer:Kick("High Rank Player Detected.".." ("..v.Name..")")
+                        break
+                    end
+                end
+task.wait()
+end
 end
 })
 
@@ -1620,16 +1618,9 @@ game:GetService("TeleportService"):Teleport(9412268818)
                 })
 
 Tab2:AddButton({
-	Name = "Slap Farm (This copies the script, put it in autoexec)",
+	Name = "Slap Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()")
-                    end    
-                })
-
-Tab2:AddButton({
-	Name = "Start Slap Farm (Take the script out of autoexec to stop)",
-	Callback = function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()
                     end    
                 })
 
@@ -2054,16 +2045,9 @@ game:GetService("TeleportService"):Teleport(9412268818)
                 })
 
 Tab4:AddButton({
-	Name = "Slap Farm (This copies the script, put it in autoexec)",
+	Name = "Slap Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()")
-                    end    
-                })
-
-Tab4:AddButton({
-	Name = "Start Slap Farm (Take the script out of autoexec to stop)",
-	Callback = function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()
                     end    
                 })
 
@@ -2272,7 +2256,7 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Psycho" do
 game:GetService("ReplicatedStorage").Psychokinesis:InvokeServer({["grabEnabled"] = true})
 task.wait()
 end
-while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Killstreak" and game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills") and game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= "75" do
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Killstreak" do
 game:GetService("ReplicatedStorage").KSABILI:FireServer()
 wait(6.1)
 end
@@ -2384,13 +2368,18 @@ wait(3.1)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Kinetic" do
 OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 for i = 1,100 do
 game.ReplicatedStorage.SelfKnockback:FireServer({["Force"] = 0,["Direction"] = Vector3.new(0,0.01,0)})
 wait(0.05)
 end
 wait(1.5)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Kinetic") then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Kinetic)
+end
 game:GetService("ReplicatedStorage").KineticExpl:FireServer(game.Players.LocalPlayer.Character.Kinetic, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 wait(2.7)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Dominance" do
@@ -2456,6 +2445,10 @@ task.wait()
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Quake" do
 game:GetService("ReplicatedStorage"):WaitForChild("QuakeQuake"):FireServer({["start"] = true})
+task.wait()
+end
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Meteor" do
+game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer()
 task.wait()
 end
                     end   
@@ -2530,11 +2523,15 @@ end
                     Default = false,
                     Callback = function(Value)
 RhythmNoteSpam = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Rhythm" then
 while RhythmNoteSpam do
 game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
 game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
 game.Players.LocalPlayer.Character.Rhythm:Activate()
 task.wait()
+end
+elseif RhythmNoteSpam == true then
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Rhythm equipped"})
 end
                     end    
                 })
@@ -2571,16 +2568,19 @@ repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Name
 end
                 })
 
-Tab4:AddTextbox({
-	Name = "Equip Glove (Only use in lobby)",
-	Default = "Glove Name",
-	TextDisappear = true,
-	Callback = function(Value)
-if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
-		fireclickdetector(workspace.Lobby[Value].ClickDetector)
+Tab4:AddButton({
+	Name = "Infinite Invisibility (Use in lobby) (Glove still visible)",
+	Callback = function()
+if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil and game.Players.LocalPlayer.leaderstats.Slaps.Value >= 666 then
+OGlove = game.Players.LocalPlayer.leaderstats.Glove.Value
+fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
+game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
+fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
+else
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need to be in lobby and have 666+ slaps"})
 end
-	end	  
-})
+                    end    
+                })
 
 Tab4:AddDropdown({
 	Name = "Teleport",
@@ -2601,6 +2601,34 @@ elseif Value == "Tournament" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
 end
 	end    
+})
+
+Tab4:AddToggle({
+                    Name = "Slapple Farm",
+                    Default = false,
+                    Callback = function(Value)
+SlappleFarm = Value
+while SlappleFarm do
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
+                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+                end
+            end
+task.wait()
+end
+end
+                })
+
+Tab4:AddTextbox({
+	Name = "Equip Glove (Only use in lobby)",
+	Default = "Glove Name",
+	TextDisappear = true,
+	Callback = function(Value)
+if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
+		fireclickdetector(workspace.Lobby[Value].ClickDetector)
+end
+	end	  
 })
 
 Tab4:AddButton({
@@ -2679,20 +2707,6 @@ end
 })
 
 Tab4:AddButton({
-	Name = "Infinite Invisibility (Use in lobby) (Glove still visible)",
-	Callback = function()
-if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil and game.Players.LocalPlayer.leaderstats.Slaps.Value >= 666 then
-OGlove = game.Players.LocalPlayer.leaderstats.Glove.Value
-fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
-game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
-fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
-else
-game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You need to be in lobby and have 666+ slaps"})
-end
-                    end    
-                })
-
-Tab4:AddButton({
 	Name = "Infinite Golden (Use in arena)",
 	Callback = function()
 game:GetService("ReplicatedStorage").Goldify:FireServer(true)
@@ -2744,6 +2758,7 @@ Tab4:AddToggle({
                     Default = false,
                     Callback = function(Value)
 PingPongOrbit = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Ping Pong" then
 game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = game.Players.LocalPlayer.Character.HumanoidRootPart.Rotation
 Orbit = "0"
 PingPongBall = game.Players.LocalPlayer.Name.."_PingPongBall"
@@ -2771,6 +2786,9 @@ break
                 end
 end
 task.wait(0.01)
+end
+elseif Value == true then
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Ping Pong equipped"})
 end
 end
                 })
@@ -3224,8 +3242,12 @@ Tab5:AddToggle({
 BobFarm = Value
 if game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" then
 while BobFarm do
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
 game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
-wait(5.05)
+game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
+wait(3.5)
 end
 elseif Value == true then
 game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Replica equipped"})
@@ -3262,17 +3284,19 @@ fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
                 })
 
 Tab3:AddToggle({
-                    Name = "Anti Admins (Credits to R2O)",
+                    Name = "Anti Admins",
                     Default = false,
-                    Callback = function(bool)
-antiAdmins = bool
-    if bool == true then
-        game.Players.PlayerAdded:Connect(function(Plr)
-            if Plr:GetRankInGroup(9950771) and 2 <= Plr:GetRankInGroup(9950771) and antiAdmins then
-                game.Players.LocalPlayer:Kick("Admin/High Rank Player Detected")
-            end
-        end)
-    end
+                    Callback = function(Value)
+AntiAdmins = Value
+while AntiAdmins do
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v:GetRankInGroup(9950771) >= 2 then
+                        game.Players.LocalPlayer:Kick("High Rank Player Detected.".." ("..v.Name..")")
+                        break
+                    end
+                end
+task.wait()
+end
 end
 })
 
@@ -3554,7 +3578,7 @@ end
                     Callback = function(Value)
 AntiStun = Value
 while AntiStun do
-if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") then
+if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Workspace:FindFirstChild("Shockwave") and game.Players.LocalPlayer.Character.Ragdolled.Value == false then
 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
 end
 task.wait()
@@ -3581,3 +3605,8 @@ end
 
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 end
+for i,v in pairs(gethui().Orion:GetDescendants()) do
+                    if v.ClassName == "Frame" and v.BackgroundTransparency < 0.5 then
+v.BackgroundTransparency = 0.05
+                    end
+                end
