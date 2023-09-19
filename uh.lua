@@ -1,4 +1,4 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Tab = Window:MakeTab({Name = "Tab 1",Icon = "rbxassetid://4483345998",PremiumOnly = false})
 local CustomizeGui = Window:MakeTab({Name = "GUI Customization ( WIP )",Icon = "rbxassetid://4483345998",PremiumOnly = false})
@@ -27,4 +27,11 @@ Tab:AddBind({	Name = "Bind",Default = Enum.KeyCode.E,Hold = false,Callback = fun
 	end})
 Tab:AddDropdown({Name = "Dropdown",Default = "1",Options = {"1", "2"},Callback = function(Value)
 		print(Value)
+	end})
+CustomizeGui:AddSlider({Name = "Transparency",Min = 0,Max = 0.29,Default = 0,Color = Color3.fromRGB(255,255,255),Increment = 0.01,ValueName = "bananas",Callback = function(Value)
+for i,v in pairs(game.CoreGui.Orion:GetDescendants()) do
+	if v.ClassName == "Frame" and v.BackgroundTransparency < 0.3 then
+		v.BackgroundTransparency = Value
+	end
+end
 	end})
