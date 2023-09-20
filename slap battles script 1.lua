@@ -1,10 +1,12 @@
--- if you have issues message Guy that exists#1915
+-- Message Guy that exists#1915 if you have issues
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
 
 game:GetService("GuiService"):ClearError()
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
 if game.PlaceId == 11520107397 or game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 local bypass;
@@ -67,8 +69,6 @@ AntiAcid.Size = Vector3.new(155, 35, 144)
 AntiAcid.Anchored = true
 AntiAcid.Transparency = 1
 AntiLava.CanCollide = false
-
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
                 local Window = OrionLib:MakeWindow({Name = "Slap Royale hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -102,7 +102,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ion
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have issues then message Guy that exists#1915")
+Tab:AddLabel("Message Guy that exists#1915 if you have issues")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -587,25 +587,25 @@ Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.Replicate
 Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
 Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
 Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
+if string.lower(msg) == "/e floss" then
 Floss:Play()
-elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
+elseif string.lower(msg) == "/e groove" then
 Groove:Play()
-elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
+elseif string.lower(msg) == "/e headless" then
 Headless:Play()
-elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
+elseif string.lower(msg) == "/e helicopter" then
 Helicopter:Play()
-elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
+elseif string.lower(msg) == "/e kick" then
 Kick:Play()
-elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
+elseif string.lower(msg) == "/e l" then
 L:Play()
-elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
+elseif string.lower(msg) == "/e laugh" then
 Laugh:Play()
-elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
+elseif string.lower(msg) == "/e parker" then
 Parker:Play()
-elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
+elseif string.lower(msg) == "/e spasm" then
 Spasm:Play()
-elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
+elseif string.lower(msg) == "/e thriller" then
 Thriller:Play()
 end
 EP = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -627,7 +627,7 @@ Tab5:AddSlider({
 	Min = 20,
 	Max = 1000,
 	Default = 20,
-	Color = Color3.fromRGB(0,162,255),
+	Color = Color3.fromRGB(140, 185, 255),
 	Increment = 1,
 	ValueName = "WS",
 	Callback = function(Value)
@@ -655,7 +655,7 @@ Tab5:AddSlider({
 	Min = 50,
 	Max = 1000,
 	Default = 50,
-	Color = Color3.fromRGB(255,154,0),
+	Color = Color3.fromRGB(255, 185, 140),
 	Increment = 1,
 	ValueName = "JP",
 	Callback = function(Value)
@@ -679,8 +679,6 @@ task.wait()
 })
 
 elseif game.PlaceId == 11520107397 then
-                
-                local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
                 local Window = OrionLib:MakeWindow({Name = "Slap Battles KS Only hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -720,7 +718,7 @@ elseif game.PlaceId == 11520107397 then
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have issues then message Guy that exists#1915")
+Tab:AddLabel("Message Guy that exists#1915 if you have issues")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -1015,25 +1013,25 @@ Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.Replicate
 Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
 Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
 Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
+if string.lower(msg) == "/e floss" then
 Floss:Play()
-elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
+elseif string.lower(msg) == "/e groove" then
 Groove:Play()
-elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
+elseif string.lower(msg) == "/e headless" then
 Headless:Play()
-elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
+elseif string.lower(msg) == "/e helicopter" then
 Helicopter:Play()
-elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
+elseif string.lower(msg) == "/e kick" then
 Kick:Play()
-elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
+elseif string.lower(msg) == "/e l" then
 L:Play()
-elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
+elseif string.lower(msg) == "/e laugh" then
 Laugh:Play()
-elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
+elseif string.lower(msg) == "/e parker" then
 Parker:Play()
-elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
+elseif string.lower(msg) == "/e spasm" then
 Spasm:Play()
-elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
+elseif string.lower(msg) == "/e thriller" then
 Thriller:Play()
 end
 EP = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -1052,7 +1050,7 @@ end)
 
 Tab4:AddDropdown({
 	Name = "Rojo Charge VFX (Will fling you if spammed)",
-	Default = "1",
+	Default = "",
 	Options = {"Attack", "No Attack"},
 	Callback = function(Value)
 if Value == "Attack" then
@@ -1082,7 +1080,7 @@ Tab6:AddSlider({
 	Min = 20,
 	Max = 1000,
 	Default = 20,
-	Color = Color3.fromRGB(0,162,255),
+	Color = Color3.fromRGB(140, 185, 255),
 	Increment = 1,
 	ValueName = "WS",
 	Callback = function(Value)
@@ -1110,7 +1108,7 @@ Tab6:AddSlider({
 	Min = 50,
 	Max = 1000,
 	Default = 50,
-	Color = Color3.fromRGB(255,154,0),
+	Color = Color3.fromRGB(255, 185, 140),
 	Increment = 1,
 	ValueName = "JP",
 	Callback = function(Value)
@@ -1535,8 +1533,6 @@ end
 
 elseif game.PlaceId == 11828384869 then
                 
-                local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
-                
                 local Window = OrionLib:MakeWindow({Name = "Elude Maze hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
                 local Tab = Window:MakeTab({
@@ -1563,7 +1559,7 @@ elseif game.PlaceId == 11828384869 then
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have issues then message Guy that exists#1915")
+Tab:AddLabel("Message Guy that exists#1915 if you have issues")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -1629,7 +1625,7 @@ Tab4:AddSlider({
 	Min = 20,
 	Max = 1000,
 	Default = 20,
-	Color = Color3.fromRGB(0,162,255),
+	Color = Color3.fromRGB(140, 185, 255),
 	Increment = 1,
 	ValueName = "WS",
 	Callback = function(Value)
@@ -1657,7 +1653,7 @@ Tab4:AddSlider({
 	Min = 50,
 	Max = 1000,
 	Default = 50,
-	Color = Color3.fromRGB(255,154,0),
+	Color = Color3.fromRGB(255, 185, 140),
 	Increment = 1,
 	ValueName = "JP",
 	Callback = function(Value)
@@ -1890,8 +1886,6 @@ end
 })
 
 elseif game.PlaceId == 9020359053 or game.PlaceId == 9412268818 then
-
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
                 local Window = OrionLib:MakeWindow({Name = "SB Testing Server hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -1942,8 +1936,6 @@ game:GetService("TeleportService"):Teleport(game.PlaceId)
 })
 
 else
-
-                local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
                 
                 local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
@@ -1983,7 +1975,7 @@ else
                     PremiumOnly = false
                 })
 
-Tab:AddLabel("If you have issues then message Guy that exists#1915")
+Tab:AddLabel("Message Guy that exists#1915 if you have issues")
 
 Tab:AddButton({
 	Name = "Infinite Yield",
@@ -2075,8 +2067,8 @@ end
                 })
 
 Tab2:AddDropdown({
-	Name = "Godmode",
-	Default = "1",
+	Name = "Godmode (Resets character) (Breaks killstreak)",
+	Default = "",
 	Options = {"Godmode", "Godmode + Invisibility"},
 	Callback = function(Value)
 if Value == "Godmode" then
@@ -2294,7 +2286,7 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Jet" do
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
 repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil
 Target = RandomPlayer
 game:GetService("ReplicatedStorage").AirStrike:FireServer(Target.Character)
 wait(5.1)
@@ -2445,6 +2437,7 @@ task.wait()
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Quake" do
 game:GetService("ReplicatedStorage"):WaitForChild("QuakeQuake"):FireServer({["start"] = true})
+game:GetService("ReplicatedStorage"):WaitForChild("QuakeQuake"):FireServer({["finished"] = true})
 task.wait()
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Meteor" do
@@ -2518,24 +2511,6 @@ end
                     end    
                 })
 
-                Tab4:AddToggle({
-                    Name = "Rhythm Note Spam + Auto Press (Equip Rhythm)",
-                    Default = false,
-                    Callback = function(Value)
-RhythmNoteSpam = Value
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Rhythm" then
-while RhythmNoteSpam do
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
-game.Players.LocalPlayer.Character.Rhythm:Activate()
-task.wait()
-end
-elseif RhythmNoteSpam == true then
-game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Rhythm equipped"})
-end
-                    end    
-                })
-
 Tab2:AddToggle({
                     Name = "Auto Enter Arena",
                     Default = false,
@@ -2546,6 +2521,43 @@ if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil and game.
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
     end
+task.wait()
+end
+end
+                })
+
+Tab2:AddToggle({
+                    Name = "Glove ESP",
+                    Default = false,
+                    Callback = function(Value)
+GloveESP = Value
+if GloveESP == false then
+for i, v in ipairs(game.Players:GetChildren()) do
+                if v.Character and v.Character:FindFirstChild("Head") and v.Character.Head:FindFirstChild("GloveEsp") then
+ v.Character.Head.GloveEsp:Destroy()
+                end
+            end
+end
+while GloveESP do
+for i, v in ipairs(game.Players:GetChildren()) do
+                if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Head") and v.Character:FindFirstChild("entered") and v.Character.IsInDefaultArena.Value == false and v.Character.Head:FindFirstChild("GloveEsp") == nil then
+GloveEsp = Instance.new("BillboardGui", v.Character.Head)
+GloveEsp.Adornee = v.Character.Head
+GloveEsp.Name = "GloveEsp"
+GloveEsp.Size = UDim2.new(0, 100, 0, 150)
+GloveEsp.StudsOffset = Vector3.new(0, 1, 0)
+GloveEsp.AlwaysOnTop = true
+GloveEsp.StudsOffset = Vector3.new(0, 3, 0)
+GloveEspText = Instance.new("TextLabel", GloveEsp)
+GloveEspText.BackgroundTransparency = 1
+GloveEspText.Size = UDim2.new(0, 100, 0, 100)
+GloveEspText.TextSize = 25
+GloveEspText.Font = Enum.Font.SourceSansSemibold
+GloveEspText.TextColor3 = Color3.new(255, 255, 255)
+GloveEspText.TextStrokeTransparency = 0
+GloveEspText.Text = v.leaderstats.Glove.Value
+                end
+            end
 task.wait()
 end
 end
@@ -2631,6 +2643,24 @@ end
 	end	  
 })
 
+                Tab4:AddToggle({
+                    Name = "Rhythm Note Spam + Auto Press (Equip Rhythm)",
+                    Default = false,
+                    Callback = function(Value)
+RhythmNoteSpam = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Rhythm" then
+while RhythmNoteSpam do
+game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
+game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
+game.Players.LocalPlayer.Character.Rhythm:Activate()
+task.wait()
+end
+elseif RhythmNoteSpam == true then
+game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text = "You don't have Rhythm equipped"})
+end
+                    end    
+                })
+
 Tab4:AddButton({
 	Name = "Free Emotes (Type /e emotename)",
 	Callback = function()
@@ -2656,25 +2686,25 @@ Laugh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.Replicate
 Parker = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, game.Players.LocalPlayer.Character.Humanoid)
 Spasm = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, game.Players.LocalPlayer.Character.Humanoid)
 Thriller = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, game.Players.LocalPlayer.Character.Humanoid)
-if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
+if string.lower(msg) == "/e floss" then
 Floss:Play()
-elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
+elseif string.lower(msg) == "/e groove" then
 Groove:Play()
-elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
+elseif string.lower(msg) == "/e headless" then
 Headless:Play()
-elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
+elseif string.lower(msg) == "/e helicopter" then
 Helicopter:Play()
-elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
+elseif string.lower(msg) == "/e kick" then
 Kick:Play()
-elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
+elseif string.lower(msg) == "/e l" then
 L:Play()
-elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
+elseif string.lower(msg) == "/e laugh" then
 Laugh:Play()
-elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
+elseif string.lower(msg) == "/e parker" then
 Parker:Play()
-elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
+elseif string.lower(msg) == "/e spasm" then
 Spasm:Play()
-elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
+elseif string.lower(msg) == "/e thriller" then
 Thriller:Play()
 end
 EP = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -2693,7 +2723,7 @@ end)
 
 Tab4:AddDropdown({
 	Name = "Rojo Charge VFX (Will fling you if spammed)",
-	Default = "1",
+	Default = "",
 	Options = {"Attack", "No Attack"},
 	Callback = function(Value)
 if Value == "Attack" then
@@ -2861,7 +2891,7 @@ Tab6:AddSlider({
 	Min = 20,
 	Max = 1000,
 	Default = 20,
-	Color = Color3.fromRGB(0,162,255),
+	Color = Color3.fromRGB(140, 185, 255),
 	Increment = 1,
 	ValueName = "WS",
 	Callback = function(Value)
@@ -2889,7 +2919,7 @@ Tab6:AddSlider({
 	Min = 50,
 	Max = 1000,
 	Default = 50,
-	Color = Color3.fromRGB(255,154,0),
+	Color = Color3.fromRGB(255, 185, 140),
 	Increment = 1,
 	ValueName = "JP",
 	Callback = function(Value)
@@ -3177,12 +3207,29 @@ end
                     })
 
 Tab5:AddToggle({
+	Name = "Jet Farm",
+	Default = false,
+	Callback = function(Value)
+Jetfarm = Value
+while Jetfarm do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "JetOrb" and v:FindFirstChild("TouchInterest") then
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+                    end
+                end
+task.wait()
+end
+	end    
+})
+
+Tab5:AddToggle({
 	Name = "Phase Farm",
 	Default = false,
 	Callback = function(Value)
 Phasefarm = Value
 while Phasefarm do
-for i,v in pairs(game.Workspacey:GetChildren()) do
+for i,v in pairs(game.Workspace:GetChildren()) do
                     if v.Name == "PhaseOrb" and v:FindFirstChild("TouchInterest") then
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
@@ -3605,8 +3652,15 @@ end
 
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 end
+OrionLib:Init()
 for i,v in pairs(gethui().Orion:GetDescendants()) do
-                    if v.ClassName == "Frame" and v.BackgroundTransparency < 0.5 then
+                    if v.ClassName == "Frame" and v.BackgroundTransparency < 0.3 then
 v.BackgroundTransparency = 0.05
                     end
                 end
+for i,v in pairs(gethui().Orion:GetDescendants()) do
+                    if v.ClassName == "Frame" and v.BackgroundTransparency < 0.3 and v.BackgroundColor3 == Color3.fromRGB(32, 32, 42) then
+v.BackgroundTransparency = 1
+                    end
+                end
+gethui().Orion.Name = "OrionEdited"
