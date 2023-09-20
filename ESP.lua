@@ -9,7 +9,7 @@ local ESPTextColor = Color3.new(1, 0, 0)
 local ShowName = true
 local ShowHealth = true
 local ShowDistance = true
-local PlayerSettings = {}
+local ShowGlove = true
 
 local function CreateBodyESP(player)
     if not ESPEnabled then return end
@@ -65,6 +65,12 @@ local function CreateHeadESP(player)
                 if ShowDistance then
                     espTextValue = espTextValue .. "Distance: " .. string.format("%.1f", distance) .. "\n"
                 end
+                if ShowGlove then
+                  if player.Character:FindFirstChild("entered") and player.Character.IsInDefaultArena.Value == false then
+                    local gloveValue = player.leaderstats.Glove.Value 
+                    espTextValue = espTextValue .. "Glove: " .. gloveValue .. "\n"
+                  end
+                end
                 espText.Text = espTextValue
             else
                 espText.Text = ""
@@ -81,6 +87,7 @@ local function CreateHeadESP(player)
         table.insert(ESPObjects, espBillboard)
     end
 end
+
 local function ClearESP()
     for _, espObject in pairs(ESPObjects) do
         espObject:Destroy()
@@ -91,7 +98,7 @@ end
 local function UpdateESP()
     ClearESP()
     for _, player in pairs(Players:GetPlayers()) do
-        if player ~= LocalPlayer then
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
             CreateBodyESP(player)
             CreateHeadESP(player)
         end
@@ -106,6 +113,7 @@ local function ToggleESP()
         ClearESP()
     end
 end
+
 local function ToggleInformation(type)
     if type == "Name" then
         ShowName = not ShowName
@@ -113,16 +121,21 @@ local function ToggleInformation(type)
         ShowHealth = not ShowHealth
     elseif type == "Distance" then
         ShowDistance = not ShowDistance
+    elseif type == "Glove" then
+        ShowGlove = not ShowGlove
     end
     UpdateESP()
 end
+
 UserInputService.InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.N then
         ToggleInformation("Name")
     elseif input.KeyCode == Enum.KeyCode.H then
         ToggleInformation("Health")
-    elseif input.KeyCode == Enum.KeyCode.D then
+    elseif input.KeyCode == Enum.KeyCode.F then
         ToggleInformation("Distance")
+    elseif input.KeyCode == Enum.KeyCode.G then
+        ToggleInformation("Glove")
     end
 end)
 
