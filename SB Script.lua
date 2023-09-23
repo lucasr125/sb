@@ -1,13 +1,9 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
-
 game:GetService("GuiService"):ClearError()
-
 local game_name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name or "Slap Battles Script"
-
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
-
 	getgenv().settings = {
 		-- Main:
 		AutoFarmSlapple = false,
@@ -93,7 +89,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	local ShowHealth = false
 	local ShowDistance = false
 	local ShowGlove = false
-
 	local function CreateBodyESP(player)
 		if not ESPEnabled then return end
 		local character = player.Character
@@ -112,7 +107,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 	end
-
 	local function CreateHeadESP(player)
 		if not ESPEnabled then return end
 		local character = player.Character
@@ -134,7 +128,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			espText.TextStrokeColor3 = Color3.new(0, 0, 0)
 			espText.TextYAlignment = Enum.TextYAlignment.Bottom
 			espText.Parent = espBillboard
-
 			local function UpdateESP()
 				if player.Character and player.Character:FindFirstChild("Humanoid") then
 					local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -159,25 +152,20 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					espText.Text = ""
 				end
 			end
-
 			espBillboard:GetPropertyChangedSignal("Adornee"):Connect(function()
 				UpdateESP()
 			end)
-
 			UpdateESP()
-
 			espBillboard.AlwaysOnTop = true
 			table.insert(ESPObjects, espBillboard)
 		end
 	end
-
 	local function ClearESP()
 		for _, espObject in pairs(ESPObjects) do
 			espObject:Destroy()
 		end
 		ESPObjects = {}
 	end
-
 	local function UpdateESP()
 		ClearESP()
 		for _, player in pairs(Players:GetPlayers()) do
@@ -187,9 +175,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 	end
-
 	RunService.RenderStepped:Connect(UpdateESP)
-
 	-- Bypass
 	local bypass;
 	bypass = hookmetamethod(game, "__namecall", function(method, ...) 
@@ -202,7 +188,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		end
 		return bypass(method, ...)
 	end)
-
 	-- Variables
 	local Player = game.Players.LocalPlayer.Character.Name
 	local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
