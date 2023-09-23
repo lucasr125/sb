@@ -86,109 +86,109 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	local UserInputService = game:GetService("UserInputService")
 	local LocalPlayer = Players.LocalPlayer
 	local ESPObjects = {}
-  local ESPEnabled = false
-  local ESPColor = Color3.new(1, 0, 1)
-  local ESPTextColor = Color3.new(1, 0, 0)
-  local ShowName = false
-  local ShowHealth = false
-  local ShowDistance = false
-  local ShowGlove = false
-  
-  local function CreateBodyESP(player)
-    if not ESPEnabled then return end
-    local character = player.Character
-    if character then
-        for _, bodyPart in pairs(character:GetChildren()) do
-            if bodyPart:IsA("BasePart") then
-                local espBox = Instance.new("BoxHandleAdornment")
-                espBox.Adornee = bodyPart
-                espBox.Size = bodyPart.Size + Vector3.new(0.1, 0.1, 0.1)
-                espBox.Color3 = ESPColor
-                espBox.Transparency = 0.6
-                espBox.Parent = bodyPart
-                espBox.AlwaysOnTop = true
-                table.insert(ESPObjects, espBox)
-            end
-        end
-    end
-end
-  
+	local ESPEnabled = false
+	local ESPColor = Color3.new(1, 0, 1)
+	local ESPTextColor = Color3.new(1, 0, 0)
+	local ShowName = false
+	local ShowHealth = false
+	local ShowDistance = false
+	local ShowGlove = false
+
+	local function CreateBodyESP(player)
+		if not ESPEnabled then return end
+		local character = player.Character
+		if character then
+			for _, bodyPart in pairs(character:GetChildren()) do
+				if bodyPart:IsA("BasePart") then
+					local espBox = Instance.new("BoxHandleAdornment")
+					espBox.Adornee = bodyPart
+					espBox.Size = bodyPart.Size + Vector3.new(0.1, 0.1, 0.1)
+					espBox.Color3 = ESPColor
+					espBox.Transparency = 0.6
+					espBox.Parent = bodyPart
+					espBox.AlwaysOnTop = true
+					table.insert(ESPObjects, espBox)
+				end
+			end
+		end
+	end
+
 	local function CreateHeadESP(player)
-    if not ESPEnabled then return end
-    local character = player.Character
-    if character and character:FindFirstChild("Head") then
-        local head = character.Head
-        local espBillboard = Instance.new("BillboardGui")
-        espBillboard.Adornee = head
-        espBillboard.Size = UDim2.new(2, 0, 1, 0)
-        espBillboard.StudsOffset = Vector3.new(0, 3, 0)
-        espBillboard.Parent = head
+		if not ESPEnabled then return end
+		local character = player.Character
+		if character and character:FindFirstChild("Head") then
+			local head = character.Head
+			local espBillboard = Instance.new("BillboardGui")
+			espBillboard.Adornee = head
+			espBillboard.Size = UDim2.new(2, 0, 1, 0)
+			espBillboard.StudsOffset = Vector3.new(0, 3, 0)
+			espBillboard.Parent = head
 
-        local espText = Instance.new("TextLabel")
-        espText.BackgroundTransparency = 1.0
-        espText.Size = UDim2.new(1, 0, 1, 0)
-        espText.Font = Enum.Font.SourceSansBold
-        espText.TextSize = 14
-        espText.TextStrokeTransparency = 0
-        espText.TextColor3 = ESPTextColor
-        espText.TextStrokeColor3 = Color3.new(0, 0, 0)
-        espText.TextYAlignment = Enum.TextYAlignment.Bottom
-        espText.Parent = espBillboard
+			local espText = Instance.new("TextLabel")
+			espText.BackgroundTransparency = 1.0
+			espText.Size = UDim2.new(1, 0, 1, 0)
+			espText.Font = Enum.Font.SourceSansBold
+			espText.TextSize = 14
+			espText.TextStrokeTransparency = 0
+			espText.TextColor3 = ESPTextColor
+			espText.TextStrokeColor3 = Color3.new(0, 0, 0)
+			espText.TextYAlignment = Enum.TextYAlignment.Bottom
+			espText.Parent = espBillboard
 
-        local function UpdateESP()
-            if player.Character and player.Character:FindFirstChild("Humanoid") then
-                local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                local espTextValue = ""
-                if ShowName then
-                    espTextValue = espTextValue .. "Name: " .. player.Name .. "\n"
-                end
-                if ShowHealth then
-                    espTextValue = espTextValue .. "Health: " .. player.Character.Humanoid.Health .. "\n"
-                end
-                if ShowDistance then
-                    espTextValue = espTextValue .. "Distance: " .. string.format("%.1f", distance) .. "\n"
-                end
-                if ShowGlove then
-                  if player.Character:FindFirstChild("entered") and player.Character.IsInDefaultArena.Value == false then
-                    local gloveValue = player.leaderstats.Glove.Value 
-                    espTextValue = espTextValue .. "Glove: " .. gloveValue .. "\n"
-                  end
-                end
-                espText.Text = espTextValue
-            else
-                espText.Text = ""
-            end
-        end
+			local function UpdateESP()
+				if player.Character and player.Character:FindFirstChild("Humanoid") then
+					local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+					local espTextValue = ""
+					if ShowName then
+						espTextValue = espTextValue .. "Name: " .. player.Name .. "\n"
+					end
+					if ShowHealth then
+						espTextValue = espTextValue .. "Health: " .. player.Character.Humanoid.Health .. "\n"
+					end
+					if ShowDistance then
+						espTextValue = espTextValue .. "Distance: " .. string.format("%.1f", distance) .. "\n"
+					end
+					if ShowGlove then
+						if player.Character:FindFirstChild("entered") and player.Character.IsInDefaultArena.Value == false then
+							local gloveValue = player.leaderstats.Glove.Value 
+							espTextValue = espTextValue .. "Glove: " .. gloveValue .. "\n"
+						end
+					end
+					espText.Text = espTextValue
+				else
+					espText.Text = ""
+				end
+			end
 
-        espBillboard:GetPropertyChangedSignal("Adornee"):Connect(function()
-            UpdateESP()
-        end)
+			espBillboard:GetPropertyChangedSignal("Adornee"):Connect(function()
+				UpdateESP()
+			end)
 
-        UpdateESP()
+			UpdateESP()
 
-        espBillboard.AlwaysOnTop = true
-        table.insert(ESPObjects, espBillboard)
-    end
-end
+			espBillboard.AlwaysOnTop = true
+			table.insert(ESPObjects, espBillboard)
+		end
+	end
 
-local function ClearESP()
-    for _, espObject in pairs(ESPObjects) do
-        espObject:Destroy()
-    end
-    ESPObjects = {}
-end
+	local function ClearESP()
+		for _, espObject in pairs(ESPObjects) do
+			espObject:Destroy()
+		end
+		ESPObjects = {}
+	end
 
-local function UpdateESP()
-    ClearESP()
-    for _, player in pairs(Players:GetPlayers()) do
-        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
-            CreateBodyESP(player)
-            CreateHeadESP(player)
-        end
-    end
-end
+	local function UpdateESP()
+		ClearESP()
+		for _, player in pairs(Players:GetPlayers()) do
+			if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+				CreateBodyESP(player)
+				CreateHeadESP(player)
+			end
+		end
+	end
 
-RunService.RenderStepped:Connect(UpdateESP)
+	RunService.RenderStepped:Connect(UpdateESP)
 
 	-- Bypass
 	local bypass;
@@ -492,7 +492,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 						task.wait()
 					end
 				end})
-        
+
 				local AntiNightmare = AntiVisualSection:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiNightmare = Toggle_Bool
 					if getgenv().settings.AntiNightmare == true then
@@ -503,10 +503,10 @@ RunService.RenderStepped:Connect(UpdateESP)
 						nightmare.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
 					end
 				end})
-      end
-      
+			end
+
 			local AntiAccidSection = AntiTab:Section({Name = "Anti Accident Itens",Side = "Right"}) do
-        local AntiVoid = AntiAccidSection:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiVoid = AntiAccidSection:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					game.Workspace.dedBarrier.CanCollide = Toggle_Bool
 					game.Workspace.arenaVoid.CanCollide = Toggle_Bool
 				end})
@@ -539,7 +539,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiBrick = AntiAccidSection:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBrick = AntiAccidSection:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrick = Toggle_Bool
 					while getgenv().settings.AntiBrick do
 						for i,v in pairs(game.Workspace:GetChildren()) do
@@ -551,7 +551,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiBrazil = AntiAccidSection:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBrazil = AntiAccidSection:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrazil = Toggle_Bool
 
 					if getgenv().settings.AntiBrazil == true then
@@ -577,7 +577,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiPusher = AntiAccidSection:Toggle({Name = "Anti Pusher",Flag = "AntiPusher",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiPusher = AntiAccidSection:Toggle({Name = "Anti Pusher",Flag = "AntiPusher",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiPusher = Toggle_Bool
 					while getgenv().settings.AntiPusher do
 						for i,v in pairs(game.Workspace:GetChildren()) do
@@ -601,7 +601,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiRock = AntiAccidSection:Toggle({Name = "Anti Rock",Flag = "AntiRock",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiRock = AntiAccidSection:Toggle({Name = "Anti Rock",Flag = "AntiRock",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiRock = Toggle_Bool
 					while getgenv().settings.AntiRock do
 						for i,v in pairs(game.Workspace:GetDescendants()) do
@@ -614,7 +614,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiIce = AntiAccidSection:Toggle({Name = "Anti Ice",Flag = "AntiIce",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiIce = AntiAccidSection:Toggle({Name = "Anti Ice",Flag = "AntiIce",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiIce = Toggle_Bool
 					local function AntiIceCube()
 						local ice = game.Players.LocalPlayer.Character.Icecube
@@ -627,7 +627,7 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiBarrier = AntiAccidSection:Toggle({Name = "Anti Barrier",Flag = "AntiBarrier",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiBarrier = AntiAccidSection:Toggle({Name = "Anti Barrier",Flag = "AntiBarrier",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBarrier = Toggle_Bool
 					if getgenv().settings.AntiBarrier == false then
 						for i,v in pairs(game.Workspace:GetChildren()) do
@@ -676,15 +676,15 @@ RunService.RenderStepped:Connect(UpdateESP)
 					end
 				end})
 
-        local AntiObby = AntiAccidSection:Toggle({Name = "Anti Obby",Flag = "AntiObby",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiObby = AntiAccidSection:Toggle({Name = "Anti Obby",Flag = "AntiObby",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiObby = Toggle_Bool
-              obby_value = getgenv().settings.AntiObby
-for _, child in pairs(game.Workspace:GetChildren()) do
-    local name = child.Name
-    if (string.find(name, "LavaSpinner") or string.find(name, "LavaBlock")) and getgenv().settings.AntiObby then
-        child.CanTouch = obby_value
-    end
-end
+					obby_value = getgenv().settings.AntiObby
+					for _, child in pairs(game.Workspace:GetChildren()) do
+						local name = child.Name
+						if (string.find(name, "LavaSpinner") or string.find(name, "LavaBlock")) and getgenv().settings.AntiObby then
+							child.CanTouch = obby_value
+						end
+					end
 
 				end})
 			end
@@ -869,20 +869,20 @@ end
 						end
 					end
 				end})
-        local NoGloveCooldown = GloveSection:Button({Name = "No Glove Cooldown",Side = "Left",Callback = function()
+				local NoGloveCooldown = GloveSection:Button({Name = "No Glove Cooldown",Side = "Left",Callback = function()
 					local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local tool = character:FindFirstChildOfClass("Tool") or player.Backpack:FindFirstChildOfClass("Tool")
+					local character = player.Character or player.CharacterAdded:Wait()
+					local tool = character:FindFirstChildOfClass("Tool") or player.Backpack:FindFirstChildOfClass("Tool")
 
-while character.Humanoid.Health ~= 0 do
-local localscript = tool:FindFirstChildOfClass("LocalScript")
-local localscriptclone = localscript:Clone()
-localscriptclone = localscript:Clone()
-localscriptclone:Clone()
-localscript:Destroy()
-localscriptclone.Parent = tool
-wait(0.1)
-end
+					while character.Humanoid.Health ~= 0 do
+						local localscript = tool:FindFirstChildOfClass("LocalScript")
+						local localscriptclone = localscript:Clone()
+						localscriptclone = localscript:Clone()
+						localscriptclone:Clone()
+						localscript:Destroy()
+						localscriptclone.Parent = tool
+						wait(0.1)
+					end
 				end})
 			end
 
@@ -1177,7 +1177,7 @@ end
 						game:GetService("ReplicatedStorage").BerserkCharge:FireServer(game:GetService("Players").LocalPlayer.Character.Berserk)
 						wait(2.1)
 					end
-          while getGlove() == "Meteor" and getgenv().settings.AbilitySpam do
+					while getGlove() == "Meteor" and getgenv().settings.AbilitySpam do
 						game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 						wait()
 					end
@@ -1475,7 +1475,7 @@ end
 
 				local SelfKnockback = ExtraFuncSection:Toggle({Name = "Self Knockback ( ONLY KINETIC )",Flag = "SelfKnockback",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.SelfKnockback = Toggle_Bool
-          while getgenv().settings.SelfKnockback do
+					while getgenv().settings.SelfKnockback do
 						if getGlove() == "Kinetic" and game.Players.LocalPlayer.Character:FindFirstChild("entered") then
 							local settings = {
 								["Force"] = 0,
@@ -1483,114 +1483,108 @@ end
 							}
 							game:GetService("ReplicatedStorage").SelfKnockback:FireServer(settings)
 						end
-                task.wait()
+						task.wait()
 					end
 				end})
 			end
 		end
 		local LocalTab = Window:Tab({Name = "Local"}) do
 			local CharacterMovement = LocalTab:Section({Name = "Character Movement",Side = "Left"}) do
-        local WalkspeedValue = CharacterMovement:Slider({Name = "Walkspeed Value",Flag = "WalkspeedValue",Side = "Left",Min = 20,Max = 1000,Value = 20,Precise = 0,Unit = "",Callback = function(Value_Number) 
+				local WalkspeedValue = CharacterMovement:Slider({Name = "Walkspeed Value",Flag = "WalkspeedValue",Side = "Left",Min = 20,Max = 1000,Value = 20,Precise = 0,Unit = "",Callback = function(Value_Number) 
 					getgenv().settings.Walkspeed = Value_Number
-              game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().settings.Walkspeed
+					game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().settings.Walkspeed
 				end})
-        local AutomaticWalkspeed = CharacterMovement:Toggle({Name = "Automatic Set Walkspeed",Flag = "AutomaticWalkspeed",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local AutomaticWalkspeed = CharacterMovement:Toggle({Name = "Automatic Set Walkspeed",Flag = "AutomaticWalkspeed",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoWalkspeed = Toggle_Bool
 					if getgenv().settings.AutoWalkspeed == true then
-            while getgenv().settings.AutoWalkspeed do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= getgenv().settings.Walkspeed then
-                    Character:FindFirstChild("Humanoid").WalkSpeed = getgenv().settings.Walkspeed
-                end
-            end
-        end
+						while getgenv().settings.AutoWalkspeed do
+							task.wait()
+							local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+							if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.WalkSpeed ~= getgenv().settings.Walkspeed then
+								Character:FindFirstChild("Humanoid").WalkSpeed = getgenv().settings.Walkspeed
+							end
+						end
+					end
 				end})
-        ---------
-        local JumpPowerValue = CharacterMovement:Slider({Name = "JumpPower Value",Flag = "JumpPowerValue",Side = "Left",Min = 50,Max = 1000,Value = 50,Precise = 0,Unit = "",Callback = function(Value_Number) 
+				---------
+				local JumpPowerValue = CharacterMovement:Slider({Name = "JumpPower Value",Flag = "JumpPowerValue",Side = "Left",Min = 50,Max = 1000,Value = 50,Precise = 0,Unit = "",Callback = function(Value_Number) 
 					getgenv().settings.JumpPower = Value_Number
-              game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().settings.JumpPower
+					game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().settings.JumpPower
 				end})
-        local AutomaticJumpPower = CharacterMovement:Toggle({Name = "Automatic Set JumpPower",Flag = "AutomaticJumpPower",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local AutomaticJumpPower = CharacterMovement:Toggle({Name = "Automatic Set JumpPower",Flag = "AutomaticJumpPower",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoJumpPower = Toggle_Bool
 					if getgenv().settings.AutoJumpPower == true then
-            while getgenv().settings.AutoJumpPower do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= getgenv().settings.JumpPower then
-                    Character:FindFirstChild("Humanoid").JumpPower = getgenv().settings.JumpPower
-                end
-            end
-        end
+						while getgenv().settings.AutoJumpPower do
+							task.wait()
+							local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+							if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.JumpPower ~= getgenv().settings.JumpPower then
+								Character:FindFirstChild("Humanoid").JumpPower = getgenv().settings.JumpPower
+							end
+						end
+					end
 				end})
-        
-        local HipHeightValue = CharacterMovement:Slider({Name = "HipHeight Value",Flag = "HipHeightValue",Side = "Left",Min = 0,Max = 100,Value = 0,Precise = 0,Unit = "",Callback = function(Value_Number) 
+
+				local HipHeightValue = CharacterMovement:Slider({Name = "HipHeight Value",Flag = "HipHeightValue",Side = "Left",Min = 0,Max = 100,Value = 0,Precise = 0,Unit = "",Callback = function(Value_Number) 
 					getgenv().settings.HipHeight = Value_Number
-              game.Players.LocalPlayer.Character.Humanoid.HipHeight = getgenv().settings.HipHeight
+					game.Players.LocalPlayer.Character.Humanoid.HipHeight = getgenv().settings.HipHeight
 				end})
-        local AutomaticHipHeight = CharacterMovement:Toggle({Name = "Automatic Set HipHeight",Flag = "AutomaticHipHeight",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local AutomaticHipHeight = CharacterMovement:Toggle({Name = "Automatic Set HipHeight",Flag = "AutomaticHipHeight",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoHipHeight = Toggle_Bool
 					if getgenv().settings.AutoHipHeight == true then
-            while getgenv().settings.AutoHipHeight do
-                task.wait()
-                local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
-                if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= getgenv().settings.HipHeight then
-                    Character:FindFirstChild("Humanoid").HipHeight = getgenv().settings.HipHeight
-                end
-            end
-        end
+						while getgenv().settings.AutoHipHeight do
+							task.wait()
+							local Character = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+							if Character:FindFirstChild("Humanoid") ~= nil and Character.Humanoid.HipHeight ~= getgenv().settings.HipHeight then
+								Character:FindFirstChild("Humanoid").HipHeight = getgenv().settings.HipHeight
+							end
+						end
+					end
 				end})
 
-        local GravityValue = CharacterMovement:Slider({Name = "Gravity Value",Flag = "GravityValue",Side = "Left",Min = 0,Max = 1000,Value = 196.2,Precise = 2,Unit = "",Callback = function(Value_Number) 
+				local GravityValue = CharacterMovement:Slider({Name = "Gravity Value",Flag = "GravityValue",Side = "Left",Min = 0,Max = 1000,Value = 196.2,Precise = 2,Unit = "",Callback = function(Value_Number) 
 					getgenv().settings.Gravity = Value_Number
-              game.Workspace.Gravity = getgenv().settings.Gravity
+					game.Workspace.Gravity = getgenv().settings.Gravity
 				end})
-        local AutomaticGravity = CharacterMovement:Toggle({Name = "Automatic Set Gravity",Flag = "AutomaticGravity",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local AutomaticGravity = CharacterMovement:Toggle({Name = "Automatic Set Gravity",Flag = "AutomaticGravity",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoGravity = Toggle_Bool
 					if getgenv().settings.AutoGravity == true then
-            while getgenv().settings.AutoGravity do
-                task.wait()
-                    game.Workspace.Gravity = getgenv().settings.Gravity
-            end
-        end
+						while getgenv().settings.AutoGravity do
+							task.wait()
+							game.Workspace.Gravity = getgenv().settings.Gravity
+						end
+					end
 				end})
-      end
-      local ESP = LocalTab:Section({Name = "ESP ( wip )",Side = "Right"}) do
-        local ESPE = ESP:Toggle({Name = "Enable ESP",Flag = "ESPE",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+			end
+			local ESP = LocalTab:Section({Name = "ESP ( wip )",Side = "Right"}) do
+				local ESPE = ESP:Toggle({Name = "Enable ESP",Flag = "ESPE",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ESPEnabled = Toggle_Bool
 					if not ESPEnabled then
-           ClearESP()
-         end
+						ClearESP()
+					end
 				end})
-
-        local ShowHe = ESP:Toggle({Name = "Show Health",Flag = "ShowHe",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local ShowHe = ESP:Toggle({Name = "Show Health",Flag = "ShowHe",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ShowHealth = Toggle_Bool
 					UpdateESP()
 				end})
-
-        local ShowDis = ESP:Toggle({Name = "Show Distance",Flag = "ShowDis",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local ShowDis = ESP:Toggle({Name = "Show Distance",Flag = "ShowDis",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ShowDistance = Toggle_Bool
 					UpdateESP()
 				end})
-
-        local ShowNa = ESP:Toggle({Name = "Show Name",Flag = "ShowNa",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local ShowNa = ESP:Toggle({Name = "Show Name",Flag = "ShowNa",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ShowName = Toggle_Bool
 					UpdateESP()
 				end})
-
-        local ShowGlo = ESP:Toggle({Name = "Show Glove",Flag = "ShowGlo",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local ShowGlo = ESP:Toggle({Name = "Show Glove",Flag = "ShowGlo",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ShowGlove = Toggle_Bool
 					UpdateESP()
 				end})
-
-        
-      local ESPBodyColor = ESP:Colorpicker({Name = "Body Color",Flag = "Toggle/BodyC",Value = {1,1,1,0,false},Callback = function(HSVAR_Table,Color3) 
-  ESPColor = Color3
-            end})
-        local ESPTextColor = ESP:Colorpicker({Name = "Text Color",Flag = "Toggle/TextC",Value = {1,1,1,0,false},Callback = function(HSVAR_Table,Color3) 
-  ESPTextColor = Color3
-            end})
-      end
+				local ESPBodyColor = ESP:Colorpicker({Name = "Body Color",Flag = "Toggle/BodyC",Value = {1,1,1,0,false},Callback = function(HSVAR_Table,Color3) 
+					ESPColor = Color3
+				end})
+				local ESPTextColor = ESP:Colorpicker({Name = "Text Color",Flag = "Toggle/TextC",Value = {1,1,1,0,false},Callback = function(HSVAR_Table,Color3) 
+					ESPTextColor = Color3
+				end})
+			end
 		end
 	end
 	print(getGlove())
