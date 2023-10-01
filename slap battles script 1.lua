@@ -134,6 +134,42 @@ AntiLava.CanCollide = Value
 	end    
 })
 
+Tab3:AddToggle({
+                    Name = "Anti Record (Detects chat msgs)",
+                    Default = false,
+                    Callback = function(Value)
+AntiRecord = Value
+end
+})
+for i,p in pairs(game.Players:GetChildren()) do
+if p ~= game.Players.LocalPlayer then
+p.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, v in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..p.Name..")")
+end
+end
+end
+end)
+end
+end
+game.Players.PlayerAdded:Connect(function(Player)
+Player.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, p in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..Player.Name..")")
+end
+end
+end
+end)
+end)
+
 Tab2:AddToggle({
                     Name = "Slap Aura",
                     Default = false,
@@ -953,7 +989,7 @@ end
 Tab4:AddDropdown({
 	Name = "Teleport",
 	Default = "",
-	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
+	Options = {"Safe spot", "Arena",  "Default Arena", "Tournament", "Moai Island", "Slapple Island", "Plate"},
 	Callback = function(Value)
 if Value == "Safe spot" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
@@ -967,6 +1003,8 @@ elseif Value == "Plate" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
 elseif Value == "Tournament" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+elseif Value == "Default Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
 end
 	end    
 })
@@ -1367,6 +1405,40 @@ game.StarterGui:SetCore("SendNotification", {Title = "Error",Duration = 5,Text =
 end
                     })
 
+Tab5:AddToggle({
+	Name = "Jet Farm",
+	Default = false,
+	Callback = function(Value)
+Jetfarm = Value
+while Jetfarm do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "JetOrb" and v:FindFirstChild("TouchInterest") then
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+                    end
+                end
+task.wait()
+end
+	end    
+})
+
+Tab5:AddToggle({
+	Name = "Phase Farm",
+	Default = false,
+	Callback = function(Value)
+Phasefarm = Value
+while Phasefarm do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "PhaseOrb" and v:FindFirstChild("TouchInterest") then
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+                    end
+                end
+task.wait()
+end
+	end    
+})
+
 Tab5:AddButton({
 	Name = "Get Brazil badge",
 	Callback = function()
@@ -1398,11 +1470,12 @@ fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
 Tab3:AddToggle({
                     Name = "Anti Admins",
                     Default = false,
-                    Callback = function(bool)
+                    Callback = function(Value)
 AntiAdmins = Value
 while AntiAdmins do
 for i,v in pairs(game.Players:GetChildren()) do
                     if v:GetRankInGroup(9950771) >= 2 then
+AntiKick = false
                         game.Players.LocalPlayer:Kick("High Rank Player Detected.".." ("..v.Name..")")
                         break
                     end
@@ -1448,6 +1521,7 @@ end
                     end    
                 })
 
+game.Workspace.dedBarrier.Position =  Vector3.new(15, -17, 41.5)
                Tab3:AddToggle({
                     Name = "Anti Void",
                     Default = false,
@@ -1530,6 +1604,42 @@ task.wait()
 end
                     end    
                 })
+
+Tab3:AddToggle({
+                    Name = "Anti Record (Detects chat msgs)",
+                    Default = false,
+                    Callback = function(Value)
+AntiRecord = Value
+end
+})
+for i,p in pairs(game.Players:GetChildren()) do
+if p ~= game.Players.LocalPlayer then
+p.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, v in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..p.Name..")")
+end
+end
+end
+end)
+end
+end
+game.Players.PlayerAdded:Connect(function(Player)
+Player.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, p in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..Player.Name..")")
+end
+end
+end
+end)
+end)
 
 elseif game.PlaceId == 11828384869 then
                 
@@ -1935,6 +2045,13 @@ game:GetService("TeleportService"):Teleport(game.PlaceId)
   	end    
 })
 
+Tab:AddButton({
+	Name = "TP back to Slap Battles",
+	Callback = function()
+      		game:GetService("TeleportService"):Teleport(6403373529)
+  	end    
+})
+
 else
                 
                 local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
@@ -2225,11 +2342,13 @@ end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Shukuchi" do
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
 Target = RandomPlayer
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.Head:FindFirstChild("RedEye") == nil then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
+end
 game:GetService("ReplicatedStorage").SM:FireServer(Target)
-wait(0.01)
+wait(0.05)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Slicer" do
 game:GetService("ReplicatedStorage").Slicer:FireServer("sword")
@@ -2285,8 +2404,7 @@ end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Jet" do
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer and RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil
 Target = RandomPlayer
 game:GetService("ReplicatedStorage").AirStrike:FireServer(Target.Character)
 wait(5.1)
@@ -2333,7 +2451,7 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Track" do
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
 repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer and RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
 Target = RandomPlayer
 game:GetService("ReplicatedStorage").GeneralAbility:FireServer(Target.Character)
 wait(10.1)
@@ -2365,14 +2483,14 @@ for i = 1,100 do
 game.ReplicatedStorage.SelfKnockback:FireServer({["Force"] = 0,["Direction"] = Vector3.new(0,0.01,0)})
 wait(0.05)
 end
-wait(1.5)
+wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 if game.Players.LocalPlayer.Backpack:FindFirstChild("Kinetic") then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Kinetic)
 end
 game:GetService("ReplicatedStorage").KineticExpl:FireServer(game.Players.LocalPlayer.Character.Kinetic, game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
 game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
-wait(2.7)
+wait(2.2)
 end
 while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Dominance" do
 game:GetService("ReplicatedStorage").DominanceAc:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
@@ -2597,7 +2715,7 @@ end
 Tab4:AddDropdown({
 	Name = "Teleport",
 	Default = "",
-	Options = {"Safe spot", "Arena", "Moai Island", "Slapple Island", "Plate", "Tournament"},
+	Options = {"Safe spot", "Arena",  "Default Arena", "Tournament", "Moai Island", "Slapple Island", "Plate"},
 	Callback = function(Value)
 if Value == "Safe spot" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
@@ -2611,6 +2729,8 @@ elseif Value == "Plate" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
 elseif Value == "Tournament" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+elseif Value == "Default Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
 end
 	end    
 })
@@ -3191,8 +3311,7 @@ wait(1.5)
 repeat
 local players = game.Players:GetChildren()
 local RandomPlayer = players[math.random(1, #players)]
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
-repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer and RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
 Target = RandomPlayer
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame * CFrame.new(0,-20,0)
 wait(0.25)
@@ -3338,6 +3457,7 @@ AntiAdmins = Value
 while AntiAdmins do
 for i,v in pairs(game.Players:GetChildren()) do
                     if v:GetRankInGroup(9950771) >= 2 then
+AntiKick = false
                         game.Players.LocalPlayer:Kick("High Rank Player Detected.".." ("..v.Name..")")
                         break
                     end
@@ -3383,6 +3503,7 @@ end
                     end    
                 })
 
+game.Workspace.dedBarrier.Position =  Vector3.new(15, -17, 41.5)
                Tab3:AddToggle({
                     Name = "Anti Void",
                     Default = false,
@@ -3650,9 +3771,44 @@ end
                     end    
                 })
 
+Tab3:AddToggle({
+                    Name = "Anti Record (Detects chat msgs)",
+                    Default = false,
+                    Callback = function(Value)
+AntiRecord = Value
+end
+})
+for i,p in pairs(game.Players:GetChildren()) do
+if p ~= game.Players.LocalPlayer then
+p.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, v in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..p.Name..")")
+end
+end
+end
+end)
+end
+end
+game.Players.PlayerAdded:Connect(function(Player)
+Player.Chatted:Connect(function(message)
+Words = message:split(" ")
+if AntiRecord == true then
+for i, p in pairs(Words) do
+if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+AntiKick = false
+game.Players.LocalPlayer:Kick("Player Recording Detected.".." ("..Player.Name..")")
+end
+end
+end
+end)
+end)
+
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 end
-OrionLib:Init()
 for i,v in pairs(gethui().Orion:GetDescendants()) do
                     if v.ClassName == "Frame" and v.BackgroundTransparency < 0.3 then
 v.BackgroundTransparency = 0.05
