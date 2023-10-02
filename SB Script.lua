@@ -1,9 +1,13 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+
 game:GetService("GuiService"):ClearError()
+
 local game_name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name or "Slap Battles Script"
+
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
+
 	getgenv().settings = {
 		-- Main:
 		AutoFarmSlapple = false,
@@ -33,6 +37,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		AntiObby = false,
 		--Combat
 		SlapAura = false,
+		SlapAuraReach = 25,
 		SlapFarm = false,
 		SlapFarmCooldown = 0.25,
 		GloveExtend = false,
@@ -75,6 +80,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		AutoJumpPower = false,
 		AutoHipHeight = false,
 		AutoGravity = false,
+		-- Badges
+		GetJetOrb = false,
+		GetPhaseOrb = false,
 	}
 	--ESP
 	local Players = game:GetService("Players")
@@ -89,6 +97,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	local ShowHealth = false
 	local ShowDistance = false
 	local ShowGlove = false
+
 	local function CreateBodyESP(player)
 		if not ESPEnabled then return end
 		local character = player.Character
@@ -107,6 +116,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 	end
+
 	local function CreateHeadESP(player)
 		if not ESPEnabled then return end
 		local character = player.Character
@@ -128,6 +138,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			espText.TextStrokeColor3 = Color3.new(0, 0, 0)
 			espText.TextYAlignment = Enum.TextYAlignment.Bottom
 			espText.Parent = espBillboard
+
 			local function UpdateESP()
 				if player.Character and player.Character:FindFirstChild("Humanoid") then
 					local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -152,20 +163,25 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					espText.Text = ""
 				end
 			end
+
 			espBillboard:GetPropertyChangedSignal("Adornee"):Connect(function()
 				UpdateESP()
 			end)
+
 			UpdateESP()
+
 			espBillboard.AlwaysOnTop = true
 			table.insert(ESPObjects, espBillboard)
 		end
 	end
+
 	local function ClearESP()
 		for _, espObject in pairs(ESPObjects) do
 			espObject:Destroy()
 		end
 		ESPObjects = {}
 	end
+
 	local function UpdateESP()
 		ClearESP()
 		for _, player in pairs(Players:GetPlayers()) do
@@ -175,7 +191,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			end
 		end
 	end
+
 	RunService.RenderStepped:Connect(UpdateESP)
+
 	-- Bypass
 	local bypass;
 	bypass = hookmetamethod(game, "__namecall", function(method, ...) 
@@ -188,6 +206,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		end
 		return bypass(method, ...)
 	end)
+
 	-- Variables
 	local Player = game.Players.LocalPlayer.Character.Name
 	local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
@@ -679,13 +698,13 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 				local SlapAura = GloveSection:Toggle({Name = "Slap Aura",Flag = "SlapAura",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.SlapAura = Toggle_Bool
 					while getgenv().settings.SlapAura do
-						for i,v in pairs(game.Players:GetChildren()) do
+						for i, v in pairs(game.Players:GetChildren()) do
 							if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and v.Character then
 								if v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("rock") == nil and v.Character.HumanoidRootPart.BrickColor ~= BrickColor.new("New Yeller") and v.Character:FindFirstChild("Mirage") == nil or v.Character:FindFirstChild("Mirage") == false then
-									if v.Character.Head:FindFirstChild("UnoReverseCard") == nil or game.Players.LocalPlayer.leaderstats.Glove == "Error" then
+									if v.Character.Head:FindFirstChild("UnoReverseCard") == nil or getGlove() == "Error" then
 										Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
-										if 25 >= Magnitude then
-											shared.gloveHits[getGlove()]:FireServer(v.Character:WaitForChild("Head"),true)
+										if SlapAuraReach >= Magnitude then
+											shared.gloveHits[getGlove()]:FireServer(v.Character:WaitForChild("HumanoidRootPart"),true)
 										end
 									end
 								end
@@ -693,6 +712,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end
 						task.wait()
 					end
+				end})
+
+				local SlapAuraReach = GloveSection:Slider({Name = "Slap Aura Reach",Flag = "SlapAuraReach",Side = "Left",Min = 0,Max = 25,Value = 25,Precise = 1,Unit = "",Callback = function(Value_Number) 
+					getgenv().settings.SlapAuraReach = Value_Number
 				end})
 
 				local GodMode = GloveSection:Button({Name = "God Mode ( resets character ) ( breaks ks & reaper )",Side = "Left",Callback = function() 
@@ -974,6 +997,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						wait(5.1)
 					end
 					while getgenv().settings.AbilitySpam and getGlove() == "Jet" do
+						local jetGUI = game.ReplicatedStorage.JetTarget:Clone()
 						local LocalPlayer = game.Players.LocalPlayer
 						local players = game.Players:GetChildren()
 						local closestPlayer = nil
@@ -989,8 +1013,29 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 							end
 						end
 						if closestPlayer then
+							jetGUI.Parent = closestPlayer.Character.HumanoidRootPart
+							for _, v in pairs(jetGUI:GetDescendants()) do
+								if v:IsA("ImageLabel") then 
+									local TweenService = game:GetService("TweenService")
+									local imageLabel = v
+									local initialTransparency = imageLabel.ImageTransparency
+									local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false)
+									local tween = TweenService:Create(imageLabel, tweenInfo, {ImageTransparency = 0})
+									tween:Play()
+								end
+							end
 							game:GetService("ReplicatedStorage").AirStrike:FireServer(closestPlayer.Character)
 							wait(5.3)
+							for _, v in pairs(jetGUI:GetDescendants()) do
+								if v:IsA("ImageLabel") then 
+									local TweenService = game:GetService("TweenService")
+									local imageLabel = v
+									local initialTransparency = imageLabel.ImageTransparency
+									local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false)
+									local tween = TweenService:Create(imageLabel, tweenInfo, {ImageTransparency = 1})
+									tween:Play()
+								end
+							end
 						end
 					end
 					while getGlove() == "Tableflip" or getGlove() == "Shield" and getgenv().settings.AbilitySpam do
@@ -1491,7 +1536,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end
 					end
 				end})
-				---------
 				local JumpPowerValue = CharacterMovement:Slider({Name = "JumpPower Value",Flag = "JumpPowerValue",Side = "Left",Min = 50,Max = 1000,Value = 50,Precise = 0,Unit = "",Callback = function(Value_Number) 
 					getgenv().settings.JumpPower = Value_Number
 					game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().settings.JumpPower
@@ -1569,6 +1613,306 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 				local ESPTextColor = ESP:Colorpicker({Name = "Text Color",Flag = "Toggle/TextC",Value = {1,1,1,0,false},Callback = function(HSVAR_Table,Color3) 
 					ESPTextColor = Color3
 				end})
+			end
+		end
+		local BadgeTab = Window:Tab({Name = "Badges"}) do
+			local BadgesSection = BadgeTab:Section({Name = "Badges",Side = "Left"}) do
+
+				local GetChain = BadgesSection:Button({Name = "Get Chain",Side = "Left",Callback = function()
+					if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
+						local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
+						if teleportFunc then
+							teleportFunc([[
+        if not game:IsLoaded() then
+            game.Loaded:Wait()
+        end
+        repeat wait() until game.Players.LocalPlayer
+ repeat wait() until game.Workspace:FindFirstChild("Map"):FindFirstChild("CodeBrick")
+if game.Workspace.Map.CodeBrick.SurfaceGui:FindFirstChild("IMGTemplate") then
+game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "1st"
+game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "2nd"
+game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "3rd"
+game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "4th"
+end
+for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+                    if v.Name == "1st" then
+                        if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
+                    first = "4"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
+                    first = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
+                    first = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
+                    first = "9"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
+                    first = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
+                    first = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
+                    first = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
+                    first = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
+                    first = "7"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
+                    first = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
+                    first = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
+                    first = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
+                    first = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
+                    first = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
+                    first = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
+                    first = "2"
+                end
+                    end
+                end
+for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+                    if v.Name == "2nd" then
+                        if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
+                    second = "4"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
+                    second = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
+                    second = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
+                    second = "9"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
+                    second = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
+                    second = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
+                    second = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
+                    second = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
+                    second = "7"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
+                    second = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
+                    second = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
+                    second = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
+                    second = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
+                    second = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
+                    second = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
+                    second = "2"
+                end
+                    end
+                end
+for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+                    if v.Name == "3rd" then
+                        if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
+                    third = "4"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
+                    third = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
+                    third = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
+                    third = "9"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
+                    third = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
+                    third = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
+                    third = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
+                    third = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
+                    third = "7"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
+                    third = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
+                    third = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
+                    third = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
+                    third = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
+                    third = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
+                    third = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
+                    third = "2"
+                end
+                    end
+                end
+for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+                    if v.Name == "4th" then
+                        if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
+                    fourth = "4"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
+                    fourth = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
+                    fourth = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
+                    fourth = "9"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
+                    fourth = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
+                    fourth = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
+                    fourth = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
+                    fourth = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
+                    fourth = "7"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
+                    fourth = "8"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
+                    fourth = "2"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
+                    fourth = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
+                    fourth = "3"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
+                    fourth = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
+                    fourth = "6"
+                elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
+                    fourth = "2"
+                end
+                    end
+                end
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons.Reset.ClickDetector)
+wait(0.25)
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons[first].ClickDetector)
+wait(0.25)
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons[second].ClickDetector)
+wait(0.25)
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons[third].ClickDetector)
+wait(0.25)
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons[fourth].ClickDetector)
+wait(0.25)
+fireclickdetector(game.Workspace.Map.OriginOffice.Door.Keypad.Buttons.Enter.ClickDetector)
+game:GetService("TeleportService"):Teleport(6403373529)
+    ]])
+						end
+						game:GetService("TeleportService"):Teleport(9431156611)
+					else
+						Bracket:Notification({Title = "Error",Description = "You don't have 1000 slaps",Duration = 5})
+					end
+				end})
+				local GetTycoon = BadgesSection:Button({Name = "Get Tycoon",Side = "Left",Callback = function()
+					if #game:GetService("Players"):GetPlayers() >= 7 then
+						repeat task.wait()
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,-1.5,0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(0))
+						until game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text == "Plate Counter: 600"
+					else
+						Bracket:Notification({Title = "Error",Description = "This server does not have 7 players",Duration = 5})
+					end
+
+
+				end})
+
+				local GetKinetic = BadgesSection:Button({Name = "Get Kinetic",Side = "Left",Callback = function()
+					if getGlove() == "Stun" then
+						OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+						for i = 1,100 do
+							game.ReplicatedStorage.SelfKnockback:FireServer({["Force"] = 0,["Direction"] = Vector3.new(0,0.01,0)})
+							wait(0.05)
+						end
+						wait(1.5)
+						repeat
+							local players = game.Players:GetChildren()
+							local RandomPlayer = players[math.random(1, #players)]
+							repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer ~= game.Players.LocalPlayer
+							repeat RandomPlayer = players[math.random(1, #players)] until RandomPlayer.Character:FindFirstChild("entered") and RandomPlayer.Character:FindFirstChild("rock") == nil and RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil
+							Target = RandomPlayer
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame * CFrame.new(0,-20,0)
+							wait(0.25)
+							game.ReplicatedStorage.StunR:FireServer(game.Players.LocalPlayer.Character.Stun)
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+							wait(10.3)
+						until game.Players.LocalPlayer.Character:FindFirstChild("EMPStunBadgeCounter") and game.Players.LocalPlayer.Character.EMPStunBadgeCounter.Value >= 50
+					else
+						Bracket:Notification({Title = "Error",Description = "You dont have Stun equipped",Duration = 5})
+					end 
+				end})
+
+				local GetRedacted = BadgesSection:Button({Name = "Get Redacted",Side = "Left",Callback = function()
+					if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
+						Door = 0
+						for i = 1, 10 do
+							Door = Door + 1
+							if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
+							else
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0)
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1)
+								wait(4)
+							end
+						end
+					else
+						Bracket:Notification({Title = "Error",Description = "You don't have 5000 slaps",Duration = 5})
+					end
+				end})
+
+				local GetcourtevidenceBadge = BadgesSection:Button({Name = "Get 'court evidence' Badge",Side = "Left",Callback = function()
+					if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
+						fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector)
+					else
+						Bracket:Notification({Title = "Error",Description = "You already own this badge",Duration = 5})
+					end
+				end})
+
+				local GetduckBadge = BadgesSection:Button({Name = "Get 'duck' Badge",Side = "Left",Callback = function()
+					if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916) then
+						fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
+					else
+						Bracket:Notification({Title = "Error",Description = "You already own this badge",Duration = 5})
+					end
+				end})
+
+				local GetBrazilBadge = BadgesSection:Button({Name = "Get 'Brazil' Badge",Side = "Left",Callback = function()
+					if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124775097) then
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
+					else
+						Bracket:Notification({Title = "Error",Description = "You already own this badge",Duration = 5})
+					end
+				end})
+
+				local GetTheLoneOrangeBadge = BadgesSection:Button({Name = "Get 'The Lone Orange' Badge",Side = "Left",Callback = function()
+					if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) then
+						fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
+					else
+						Bracket:Notification({Title = "Error",Description = "You already own this badge",Duration = 5})
+					end
+				end})
+
+				local AutoGetJetOrb = BadgesSection:Toggle({Name = "AutoGet Jet Orb",Flag = "AutoGetJetOrb",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.GetJetOrb = Toggle_Bool
+					while getgenv().settings.GetJetOrb do
+						for i,v in pairs(game.Workspace:GetChildren()) do
+							if v.Name == "JetOrb" and v:FindFirstChild("TouchInterest") then
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+							end
+						end
+						task.wait()
+					end
+				end})
+
+				local AutoGetPhaseOrb = BadgesSection:Toggle({Name = "AutoGet Phase Orb",Flag = "AutoGetPhaseOrb",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.GetPhaseOrb = Toggle_Bool
+					while getgenv().settings.GetPhaseOrb do
+						for i,v in pairs(game.Workspace:GetChildren()) do
+							if v.Name == "PhaseOrb" and v:FindFirstChild("TouchInterest") then
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 0)
+								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), v, 1)
+							end
+						end
+						task.wait()
+					end
+				end})
+
 			end
 		end
 	end
