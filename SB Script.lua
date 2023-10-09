@@ -525,7 +525,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 
 				local AntiNightmare = Anti1:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiNightmare = Toggle_Bool
-              if Vgetgenv().settings.AntiNightmarealue == true then
+              if getgenv().settings.AntiNightmare == true then
         game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
     else
         game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
