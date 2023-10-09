@@ -66,6 +66,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		GhostSpam = false,
 		GoldenSpam = false,
 		FartSpam = false,
+    ZombieSpam = false,
 		AutoTycoon = false,
 		DestroyTycoon = false,
 		AutoEnter = false,
@@ -1446,6 +1447,15 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					getgenv().settings.FartSpam = Toggle_Bool
 					while getgenv().settings.FartSpam do
 						local rpl = "ReplicateSound"
+						game:GetService("ReplicatedStorage").b:FireServer(rpl)
+						task.wait()
+					end
+				end})
+
+        local ZombieSound = SoundSpamSection:Toggle({Name = "Zombie Sound Spam",Flag = "ZombieSound",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.ZombieSpam = Toggle_Bool
+					while getgenv().settings.ZombieSpam do
+						local rpl = "ReplicateSound_Zombie"
 						game:GetService("ReplicatedStorage").b:FireServer(rpl)
 						task.wait()
 					end
