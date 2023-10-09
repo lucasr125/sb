@@ -66,7 +66,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		GhostSpam = false,
 		GoldenSpam = false,
 		FartSpam = false,
-    ZombieSpam = false,
+		ZombieSpam = false,
 		AutoTycoon = false,
 		DestroyTycoon = false,
 		AutoEnter = false,
@@ -269,6 +269,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
+        AutoFarmSlapple:ToolTip("Pickups slapples for you, this only works if you enter on arena.")
 
 				local AutoFarmCandy = HomeSection:Toggle({Name = "AutoFarm Candy",Flag = "AutoFarmCandy",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AutoFarmCandy = Toggle_Bool
@@ -284,6 +285,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
+        AutoFarmCandy:ToolTip("Pickup candy corns for you, you don't need enter on arena to get candy corns")
 
 				local AutoGetGravestone = HomeSection:Toggle({Name = "Auto Get Gravestone",Flag = "AutoGetGravestone",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AutoGravestone = Toggle_Bool
@@ -302,10 +304,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end)
 					end
 				end})
-
+        AutoGetGravestone:ToolTip("This will click on gravestone, if you die then gravestone has appeared")
 			end
 			local OthersSection = HomeTab:Section({Name = "Others",Side = "Right"}) do
-
 				local Animations = OthersSection:Button({Name = "Free Emotes (Type /e emotename) ( credits: guy that exists )",Side = "Left",Callback = function() 
 					Floss = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, LocalPlayer.Character.Humanoid)
 					Groove = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, LocalPlayer.Character.Humanoid)
@@ -362,15 +363,23 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end
 					end)
 				end})
+        Animations:ToolTip("Gives you free animations, just say in chat '/e emotename'")
+        
 				local Rejoin = OthersSection:Button({Name = "Rejoin",Side = "Left",Callback = function() 
 					game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
 				end})
+Rejoin:ToolTip("Rejoin on the same server, useful if your character is broken")
+        
 				local InfYield = OthersSection:Button({Name = "Infinite Yield",Side = "Left",Callback = function() 
 					loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
 				end})
+        InfYield:ToolTip("Execute Infinite Yield script")
+        
 				local SimpleSpy = OthersSection:Button({Name = "Simple Spy",Side = "Left",Callback = function() 
 					loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))()
 				end})
+SimpleSpy:ToolTip("Execute Simple Spy script")
+        
 			end
 		end
 		local AntiTab = Window:Tab({Name = "Antis"}) do
@@ -387,6 +396,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
+        AntiAdmin:ToolTip("Checks if an administrator has joined the game")
+        --:ToolTip("")
 
 				local AntiKick = Anti1:Toggle({Name = "Anti Kick",Flag = "AntiKick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiKick = Toggle_Bool
@@ -1325,7 +1336,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						getgenv().settings.GuardianPlayer = LocalPlayer.Name
 					end
 					while getgenv().settings.GuardianSpam do
-						game:GetService("ReplicatedStorage").GeneralAbility:FireServer(getgenv().settings.GuardianPlayer)
+						game:GetService("ReplicatedStorage").GeneralAbility:FireServer(game.Players[getgenv().settings.GuardianPlayer])
 						task.wait()
 					end
 				end})
@@ -1396,8 +1407,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
 				local ErrorDeathSound = SoundSpamSection:Toggle({Name = "Error Death Sound Spam",Flag = "ErrorDeathSound",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.ErrorDeathSpam = Toggle_Bool
-					while ErrorSoundSpam do
-						game.ReplicatedStorage.ErrorDeath:FireServer()
+					while getgenv().settings.ErrorDeathSpam do
+						game:GetService("ReplicatedStorage").ErrorDeath:FireServer()
 						task.wait()
 					end
 				end})
@@ -1520,49 +1531,49 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					{
 						Name = "Safe Spot",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
 						end
 					},{
 						Name = "Normal Arena",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
 						end
 					},{
 						Name = "Default Arena",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
 						end
 					},{
 						Name = "Tournament",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
 						end
 					},{
 						Name = "Moai Island",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
 						end
 					},{
 						Name = "Slapple Island",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
 						end
 					},{
 						Name = "Plate",
 						Mode = "Button",
-						Value = true,
+						Value = false,
 						Callback = function(Selected)
 							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
 						end
