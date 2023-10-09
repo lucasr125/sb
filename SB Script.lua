@@ -410,6 +410,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiKick:ToolTip("If you get kicked you will return to the same server, useful if you use Slap Aura function")
 
 				local AntiRagdoll = Anti1:Toggle({Name = "Anti Ragdoll",Flag = "AntiRagdoll",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiRagdoll = Toggle_Bool
@@ -426,6 +427,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						end)
 					end
 				end})
+        AntiRagdoll:ToolTip("Prevents your character from taking knockback, useful if there is God's Hand")
 
 				local AntiTS = Anti1:Toggle({Name = "Anti Timestop",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiTimestop = Toggle_Bool
@@ -438,6 +440,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiTS:ToolTip("Makes your avatar not get stuck in cutscenes and others, like those in Counter or Timestop")
 
 				local AntiSquid = Anti1:Toggle({Name = "Anti Squid",Flag = "AntiSquid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiSquid = Toggle_Bool
@@ -453,18 +456,22 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiSquid:ToolTip("Disables any trace of ink on your screen")
 
 				local AntiHallowJack = Anti1:Toggle({Name = "Anti Hallow Jack",Flag = "AntiHallowJack",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = Toggle_Bool
 				end})
+        AntiHallowJack:ToolTip("Disables the effects of the Jack-O-Lantern ability")
 
 				local AntiConveyor = Anti1:Toggle({Name = "Anti Conveyor",Flag = "AntiConveyor",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = Toggle_Bool
 				end})
+        AntiConveyor:ToolTip("Disables the effect of the Conveyor ability")
 
 				local AntiREDACTED = Anti1:Toggle({Name = "Anti [ REDACTED ]",Flag = "AntiREDACTED",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.Well.Disabled = Toggle_Bool
 				end})
+        AntiREDACTED:ToolTip("Disables the chance of you being sucked in by the REDACTED glove ability")
 
 				local AntiZaHando = Anti1:Toggle({Name = "Anti Za Hando",Flag = "AntiZaHando",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiZaHando = Toggle_Bool
@@ -477,6 +484,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiZaHando:ToolTip("Removes the part of the glove that causes it to be pulled towards the person")
 
 				local AntiReaper = Anti1:Toggle({Name = "Anti Reaper",Flag = "AntiReaper",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiReaper = Toggle_Bool
@@ -490,6 +498,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiReaper:ToolTip("Removes the Reaper's mark and its associated effects")
 
 				local AntiMail = Anti1:Toggle({Name = "Anti Mail",Flag = "AntiMail",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiMail = Toggle_Bool
@@ -501,6 +510,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiMail:ToolTip("It prevents the deadly card from appearing on your screen")
 
 				local AntiStun = Anti1:Toggle({Name = "Anti Stun",Flag = "AntiStun",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiStun = Toggle_Bool
@@ -511,30 +521,30 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+        AntiStun:ToolTip("Removes the shockwave caused by the stun ability")
 
 				local AntiNightmare = Anti1:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiNightmare = Toggle_Bool
-					if getgenv().settings.AntiNightmare == true then
-						local nightmare = LocalPlayer.PlayerScripts.VFXListener.NightmareEffect
-
-						nightmare.Parent = game.Lighting
-					else
-						nightmare.Parent = LocalPlayer.PlayerScripts.VFXListener
-					end
-				end})
+              if Vgetgenv().settings.AntiNightmarealue == true then
+        game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
+    else
+        game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
+    end
+	end
+          end})
+AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 			end
 
 			local Anti2 = AntiTab:Section({Name = "Anti 2",Side = "Right"}) do
 				local AntiVoid = Anti2:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					game.Workspace.dedBarrier.CanCollide = Toggle_Bool
-
 					game.Workspace.arenaVoid.CanCollide = Toggle_Bool
 					TournamentAntiVoid.CanCollide = Toggle_Bool
 				end})
+      AntiVoid:ToolTip("Activates the anti-void to prevent falling directly into the void")
 
 				local AntiDB = Anti2:Toggle({Name = "Anti Death Barrier",Flag = "AntiDB",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiDB = Toggle_Bool
-
 					if getgenv().settings.AntiDB == true then
 						for i,v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
 							if v.ClassName == "Part" and v.Name == "BLOCK" then
@@ -559,6 +569,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						workspace.AntiDefaultArena.CanTouch = true
 					end
 				end})
+      AntiDB:ToolTip("Disables the death barriers that would otherwise result in death")
 
 				local AntiBrick = Anti2:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrick = Toggle_Bool
@@ -571,10 +582,10 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
+      AntiBrick:ToolTip("Prevents the bricks from being touched to prevent the player from being ragdolled")
 
 				local AntiBrazil = Anti2:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrazil = Toggle_Bool
-
 					if getgenv().settings.AntiBrazil == true then
 						for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
 							if v.ClassName == "Part" then
