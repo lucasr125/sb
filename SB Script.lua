@@ -12,8 +12,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		-- Main:
 		AutoFarmSlapple = false,
 		AutoFarmCandy = false,
-		AutoSlapBaller = false, 
-		AutoSlapReplica = false,
+		AutoGravestone = false,
 		-- Antis:
 		AntiAdmin = false,
 		AntiKick = false,
@@ -51,6 +50,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		SlapMinions = false,
 		RojoSpam = false,
 		RojoPlayer = nil,
+		GuardianSpam = false,
+		GuardianPlayer = nil,
+		PunishPlayer = nil,
 		RetroSpam = false,
 		RetroOption = "Ban Hammer",
 		--Misc
@@ -229,13 +231,14 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	SafeSpot.Anchored = true
 	SafeSpot.Transparency = .7
 
-	local AntiVoid = Instance.new("Part", workspace)
-	AntiVoid.Name = "AntiVoid"
-	AntiVoid.Size = Vector3.new(2047, 0.009, 2019)
-	AntiVoid.Position = Vector3.new(-80.5, -10.005, -246.5)
-	AntiVoid.CanCollide = false
-	AntiVoid.Anchored = true
-	AntiVoid.Transparency = 1
+	local TournamentAntiVoid = Instance.new("Part", workspace)
+	TournamentAntiVoid.Name = "TAntiVoid"
+	TournamentAntiVoid.Size = Vector3.new(798, 1, 1290)
+	TournamentAntiVoid.Position = Vector3.new(3450, 59.009, 68)
+	TournamentAntiVoid.CanCollide = false
+	TournamentAntiVoid.Anchored = true
+	TournamentAntiVoid.Material = "ForceField"
+	TournamentAntiVoid.Transparency = 1
 
 	local arenaVoid = Instance.new("Part", workspace)
 	arenaVoid.Name = "arenaVoid"
@@ -250,6 +253,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 	local Window = Bracket:Window({Name = game_name,Enabled = true,Color = Color3.new(1, 0.4, 0.4),Size = UDim2.new(0,296,0,296),Position = UDim2.new(0.5,-248,0.5,-248)}) do
 		local HomeTab = Window:Tab({Name = "Home"}) do
 			local HomeSection = HomeTab:Section({Name = "Automatics",Side = "Left"}) do
+
 				local AutoFarmSlapple = HomeSection:Toggle({Name = "AutoFarm Slapples",Flag = "AutoFarmSlapple",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AutoFarmSlapple = Toggle_Bool
 					while getgenv().settings.AutoFarmSlapple do
@@ -264,6 +268,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
+
 				local AutoFarmCandy = HomeSection:Toggle({Name = "AutoFarm Candy",Flag = "AutoFarmCandy",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AutoFarmCandy = Toggle_Bool
 					while getgenv().settings.AutoFarmCandy do
@@ -271,7 +276,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 							for i, v in pairs(game:GetService("Workspace").CandyCorns:GetDescendants()) do
 								if v.Name == ("TouchInterest") and v.Parent then
 									firetouchinterest(LocalPlayer.Character.Head, v.Parent, 0)
-									task.wait()
 									firetouchinterest(LocalPlayer.Character.Head, v.Parent, 1)
 								end
 							end
@@ -279,28 +283,25 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
-				local AutoSlapBaller = HomeSection:Toggle({Name = "AutoSlap Baller",Flag = "AutoSlapBaller",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AutoSlapBaller = Toggle_Bool
-					while getgenv().settings.AutoSlapBaller do
+
+				local AutoGetGravestone = HomeSection:Toggle({Name = "Auto Get Gravestone",Flag = "AutoGetGravestone",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+					getgenv().settings.AutoGravestone = Toggle_Bool
+					while getgenv().settings.AutoGravestone do
 						task.wait()
-						for _, v in ipairs(workspace:GetChildren()) do
-							if string.sub(v.Name, 3, 8) == "Baller" then
-								game:GetService("ReplicatedStorage").GeneralHit:FireServer(v:WaitForChild("HumanoidRootPart"))
+						pcall(function()
+							for i, v in pairs(game.Workspace:GetDescendants()) do
+								if v.Name == "Gravestone" then
+									for i, g in pairs(v:GetDescendants()) do
+										if g.ClassName == "ClickDetector" then
+											fireclickdetector(g)
+										end
+									end
+								end
 							end
-						end
+						end)
 					end
 				end})
-				local AutoSlapReplica = HomeSection:Toggle({Name = "AutoSlap Replica",Flag = "AutoSlapReplica",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AutoSlapReplica = Toggle_Bool
-					while getgenv().settings.AutoSlapReplica do
-						task.wait()
-						for _, replica in pairs(workspace:GetChildren()) do
-							if string.find(replica.Name, "Å") then
-								game:GetService("ReplicatedStorage").b:FireServer(replica:WaitForChild("HumanoidRootPart"))
-							end
-						end
-					end
-				end})
+
 			end
 			local OthersSection = HomeTab:Section({Name = "Others",Side = "Right"}) do
 
@@ -315,7 +316,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					Parker = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, LocalPlayer.Character.Humanoid)
 					Spasm = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, LocalPlayer.Character.Humanoid)
 					Thriller = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, LocalPlayer.Character.Humanoid)
-					LocalPlayer.Chatted:Connect(function(msg)
+					LocalPlayer.Chatted:connect(function(msg)
 						if LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 							Floss = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Floss, LocalPlayer.Character.Humanoid)
 							Groove = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Groove, LocalPlayer.Character.Humanoid)
@@ -327,25 +328,25 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 							Parker = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Parker, LocalPlayer.Character.Humanoid)
 							Spasm = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Spasm, LocalPlayer.Character.Humanoid)
 							Thriller = LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.AnimationPack.Thriller, LocalPlayer.Character.Humanoid)
-							if string.lower(msg) == "/e Floss" or string.lower(msg) == "/e floss" then
+							if string.lower(msg) == "/e floss" then
 								Floss:Play()
-							elseif string.lower(msg) == "/e Groove" or string.lower(msg) == "/e groove" then
+							elseif string.lower(msg) == "/e groove" then
 								Groove:Play()
-							elseif string.lower(msg) == "/e Headless" or string.lower(msg) == "/e headless" then
+							elseif string.lower(msg) == "/e headless" then
 								Headless:Play()
-							elseif string.lower(msg) == "/e Helicopter" or string.lower(msg) == "/e helicopter" then
+							elseif string.lower(msg) == "/e helicopter" then
 								Helicopter:Play()
-							elseif string.lower(msg) == "/e Kick" or string.lower(msg) == "/e kick" then
+							elseif string.lower(msg) == "/e kick" then
 								Kick:Play()
-							elseif string.lower(msg) == "/e L" or string.lower(msg) == "/e l" then
+							elseif string.lower(msg) == "/e l" then
 								L:Play()
-							elseif string.lower(msg) == "/e Laugh" or string.lower(msg) == "/e laugh" then
+							elseif string.lower(msg) == "/e laugh" then
 								Laugh:Play()
-							elseif string.lower(msg) == "/e Parker" or string.lower(msg) == "/e parker" then
+							elseif string.lower(msg) == "/e parker" then
 								Parker:Play()
-							elseif string.lower(msg) == "/e Spasm" or string.lower(msg) == "/e spasm" then
+							elseif string.lower(msg) == "/e spasm" then
 								Spasm:Play()
-							elseif string.lower(msg) == "/e Thriller" or string.lower(msg) == "/e thriller" then
+							elseif string.lower(msg) == "/e thriller" then
 								Thriller:Play()
 							end
 							EP = LocalPlayer.Character.HumanoidRootPart.Position
@@ -375,12 +376,14 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			local AntiVisualSection = AntiTab:Section({Name = "Anti Visuals",Side = "Left"}) do
 				local AntiAdmin = AntiVisualSection:Toggle({Name = "Anti Admin",Flag = "AntiAdmin",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiAdmin = Toggle_Bool
-					if getgenv().settings.AntiAdmin == true then
-						game.Players.PlayerAdded:Connect(function(Plr)
-							if Plr:GetRankInGroup(9950771) and 2 <= Plr:GetRankInGroup(9950771) and getgenv().settings.AntiAdmin then
-								LocalPlayer:Kick("Admin / High Rank Player Detected")
+					while getgenv().settings.AntiAdmin do
+						for i,v in pairs(game.Players:GetChildren()) do
+							if v:GetRankInGroup(9950771) >= 2 then
+								LocalPlayer:Kick("High Rank Player Detected.".." ("..v.Name..")")
+								break
 							end
-						end)
+						end
+						task.wait()
 					end
 				end})
 
@@ -412,7 +415,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				local AntiTS = AntiVisualSection:Toggle({Name = "Anti Timestop ( credits: guy that exists )",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
+				local AntiTS = AntiVisualSection:Toggle({Name = "Anti Timestop",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiTimestop = Toggle_Bool
 					while getgenv().settings.AntiTimestop do
 						for i,v in pairs(LocalPlayer.Character:GetChildren()) do
@@ -512,7 +515,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			local AntiAccidSection = AntiTab:Section({Name = "Anti Accident Itens",Side = "Right"}) do
 				local AntiVoid = AntiAccidSection:Toggle({Name = "Anti Void",Flag = "AntiVoid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					game.Workspace.dedBarrier.CanCollide = Toggle_Bool
+
 					game.Workspace.arenaVoid.CanCollide = Toggle_Bool
+					TournamentAntiVoid.CanCollide = Toggle_Bool
 				end})
 
 				local AntiDB = AntiAccidSection:Toggle({Name = "Anti Death Barrier",Flag = "AntiDB",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
@@ -574,11 +579,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 				end})
 
 				local AntiCOD = AntiAccidSection:Toggle({Name = "Anti Cube Of Death",Flag = "AntiCOD",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					if Toggle_Bool == true then
-						workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
-					else
-						workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = true
-					end
+					workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = Toggle_Bool
 				end})
 
 				local AntiPusher = AntiAccidSection:Toggle({Name = "Anti Pusher",Flag = "AntiPusher",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
@@ -620,14 +621,14 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
 				local AntiIce = AntiAccidSection:Toggle({Name = "Anti Ice",Flag = "AntiIce",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiIce = Toggle_Bool
-					local function AntiIceCube()
-						local ice = LocalPlayer.Character.Icecube
-						ice:Destroy()
-					end
+
 					while getgenv().settings.AntiIce do
-						local success, error_message = pcall(AntiIceCube)
-						if not success then end
-						wait(0.02)
+						for _, v in pairs(LocalPlayer.Character:GetDescendants()) do
+							if v.Name == "Icecube" then
+								v:Destroy()
+							end
+						end
+						task.wait()
 					end
 				end})
 
@@ -669,14 +670,14 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 
 				local AntiBus = AntiAccidSection:Toggle({Name = "Anti Bus",Flag = "AntiBus",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBus = Toggle_Bool
-					local function AntiBus()
-						local bus = game.Workspace.BusModel
-						bus:Destroy()
-					end
+
 					while getgenv().settings.AntiBus do
-						local success, error_message = pcall(AntiBus)
-						if not success then end
-						wait(0.02)
+						for _, v in pairs(game.Workspace:GetDescendants()) do
+							if v.Name == "BusModel" then
+								v:Destroy()
+							end
+						end
+						task.wait()
 					end
 				end})
 
@@ -913,7 +914,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						localscriptclone:Clone()
 						localscript:Destroy()
 						localscriptclone.Parent = tool
-						wait(0.1)
+						task.wait()
 					end
 				end})
 			end
@@ -1231,6 +1232,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						game:GetService("ReplicatedStorage").BerserkCharge:FireServer(game:GetService("Players").LocalPlayer.Character.Berserk)
 						wait(2.1)
 					end
+					while getgenv().settings.AbilitySpam and getGlove() == "Hallow Jack" do
+						game:GetService("ReplicatedStorage"):WaitForChild("Hallow"):FireServer()
+						wait(4.2)
+					end
 					while getGlove() == "Meteor" and getgenv().settings.AbilitySpam do
 						game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 						wait()
@@ -1276,7 +1281,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 				local SlapMinions = AbilitySection:Toggle({Name = "Slap Null Minions",Flag = "SlapMinions",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.SlapMinions = Toggle_Bool
 					while getgenv().settings.SlapMinions do
-						--game:GetService("ReplicatedStorage").NullAbility:FireServer()
 						for i,v in pairs(game.Workspace:GetChildren()) do
 							if v.Name == "Imp" then
 								if v:FindFirstChild("Body") then
@@ -1306,6 +1310,26 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
+
+				local GuardianPlayer = AbilitySection:Textbox({Name = "Guardian Player",Flag = "GuardianPlayer",Side = "Left",Value = LocalPlayer.Name,Placeholder = "Enter username here",NumberOnly = false,Callback = function(Text_String,EnterPressed) 
+					if Text_String == "Me" or Text_String == "me" or Text_String == "Username" or Text_String == "" then
+						getgenv().settings.GuardianPlayer = LocalPlayer.Name
+					else
+						getgenv().settings.GuardianPlayer = Text_String
+					end
+				end})
+
+				local GuardianSpam = AbilitySection:Toggle({Name = "Guardian Spam",Flag = "GuardianSpam",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+					getgenv().settings.GuardianSpam = Toggle_Bool
+					if getgenv().settings.GuardianPlayer == nil then
+						getgenv().settings.GuardianPlayer = LocalPlayer.Name
+					end
+					while getgenv().settings.GuardianSpam do
+						game:GetService("ReplicatedStorage").GeneralAbility:FireServer(getgenv().settings.GuardianPlayer)
+						task.wait()
+					end
+				end})
+
 
 				local RetroAbility = AbilitySection:Dropdown({Name = "Retro Option",Flag = "RetroAbility",Side = "Left",List = {
 					{
@@ -1419,7 +1443,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				-- it works but YOU cant hear.
 				local FartSound = SoundSpamSection:Toggle({Name = "Fart Sound Spam",Flag = "FartSound",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.FartSpam = Toggle_Bool
 					while getgenv().settings.FartSpam do
@@ -1441,18 +1464,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end 
 					end
 				end})
-				-- i need fix
 				local AutoTycoon = ExtraFuncSection:Toggle({Name = "Auto Tycoon",Flag = "AutoTycoon",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoTycoon = Toggle_Bool
-          --[[local function endbigger()
-					for i,v in pairs(workspace:GetDescendants()) do
-						if v.Name == "End" and v.ClassName == "Part" then
-							v.Size = Vector3.new(28, 0.3, 4)
-						end
-					end
-              end]]
 					while getgenv().settings.AutoTycoon do
-						--endbigger()
 						for i,v in pairs(workspace:GetDescendants()) do
 							if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
 								fireclickdetector(v.ClickDetector)
@@ -1462,7 +1476,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 
-				-- i need fix
 				local DestroyTycoon = ExtraFuncSection:Toggle({Name = "Destroy Tycoon",Flag = "DestroyTycoon",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.DestroyTycoon = Toggle_Bool			
 					while getgenv().settings.DestroyTycoon do
@@ -1492,6 +1505,59 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 							getgenv().settings.ArenaSelected = "Teleport1"
 						end
 					}
+				}})
+
+				local Teleports = ExtraFuncSection:Dropdown({Name = "Teleports",Flag = "Teleports",Side = "Left",List = {
+					{
+						Name = "Safe Spot",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+						end
+					},{
+						Name = "Normal Arena",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
+						end
+					},{
+						Name = "Default Arena",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
+						end
+					},{
+						Name = "Tournament",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
+						end
+					},{
+						Name = "Moai Island",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+						end
+					},{
+						Name = "Slapple Island",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
+						end
+					},{
+						Name = "Plate",
+						Mode = "Button",
+						Value = true,
+						Callback = function(Selected)
+							LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
+						end
+					},
 				}})
 
 				local AutoEnter = ExtraFuncSection:Toggle({Name = "Auto Enter Arena",Flag = "AutoEnter",Side = "Left",Value = false,Callback = function(Toggle_Bool)
@@ -1608,7 +1674,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					end
 				end})
 			end
-			local ESP = LocalTab:Section({Name = "ESP ( wip )",Side = "Right"}) do
+			local ESP = LocalTab:Section({Name = "ESP",Side = "Right"}) do
 				local ESPE = ESP:Toggle({Name = "Enable ESP",Flag = "ESPE",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					ESPEnabled = Toggle_Bool
 					if not ESPEnabled then
