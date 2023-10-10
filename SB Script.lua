@@ -12,7 +12,8 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		-- Main:
 		AutoFarmSlapple = false,
 		AutoFarmCandy = false,
-		AutoGravestone = false,
+		NotifGravestone = false,
+		GetHallowJack = false,
 		-- Antis:
 		AntiAdmin = false,
 		AntiKick = false,
@@ -269,7 +270,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
-        AutoFarmSlapple:ToolTip("Pickups slapples for you, this only works if you enter on arena.")
+				AutoFarmSlapple:ToolTip("Pickups slapples for you, this only works if you enter on arena.")
 
 				local AutoFarmCandy = HomeSection:Toggle({Name = "AutoFarm Candy",Flag = "AutoFarmCandy",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AutoFarmCandy = Toggle_Bool
@@ -285,26 +286,38 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						task.wait()
 					end
 				end})
-        AutoFarmCandy:ToolTip("Pickup candy corns for you, you don't need enter on arena to get candy corns")
+				AutoFarmCandy:ToolTip("Pickup candy corns for you, you don't need enter on arena to get candy corns")
 
-				local AutoGetGravestone = HomeSection:Toggle({Name = "Auto Get Gravestone",Flag = "AutoGetGravestone",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
-					getgenv().settings.AutoGravestone = Toggle_Bool
-					while getgenv().settings.AutoGravestone do
-						task.wait()
-						pcall(function()
-							for i, v in pairs(game.Workspace:GetDescendants()) do
-								if v.Name == "Gravestone" then
-									for i, g in pairs(v:GetDescendants()) do
-										if g.ClassName == "ClickDetector" then
-											fireclickdetector(g)
-										end
-									end
-								end
+				local NotifGravestone = HomeSection:Button({Name = "Notificate Gravestone",Side = "Left",Callback = function() 
+					repeat task.wait() until game.Workspace:FindFirstChild("Gravestone")
+					Bracket:Notification({Title = "Halloween!",Description = "Gravestone spawned, use Get HallowJack if you want Hallow glove! ( Needs killstreak and atleast 10 kills )",Duration = 10})
+				end})
+				NotifGravestone:ToolTip("This will see if gravestone has appeared, you will get a notification when appear")
+
+				local GetHallowJack = HomeSection:Button({Name = "Get Hallow Jack",Side = "Left",Callback = function() 
+
+					if not game.Workspace:FindFirstChild("Gravestone") then
+						Bracket:Notification({Title = "Halloween!",Description = "The gravestone did not spawn",Duration = 10})
+					end
+
+					if getGlove() ~= "Killstreak" then
+						Bracket:Notification({Title = "Halloween!",Description = "You don't have killstreak glove equipped",Duration = 10})
+					end
+					if LocalPlayer.PlayerGui:FindFirstChild("Kills") then
+						Bracket:Notification({Title = "Halloween!",Description = "Your kills are broken, reset your character",Duration = 10})
+					end
+					if LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= "10" then
+						for i,v in pairs(workspace.Gravestone:GetDescendants()) do
+							if v:IsA("ClickDetector") then
+								fireclickdetector(v)
 							end
-						end)
+						end
+					else 
+						Bracket:Notification({Title = "Halloween!",Description = "You don't have atleast 10 kills!",Duration = 10})
 					end
 				end})
-        AutoGetGravestone:ToolTip("This will click on gravestone, if you die then gravestone has appeared")
+				GetHallowJack:ToolTip("If you click on the button you will get hallow jack, you need killstreak glove and atleast 10 kills")
+
 			end
 			local OthersSection = HomeTab:Section({Name = "Others",Side = "Right"}) do
 				local Animations = OthersSection:Button({Name = "Free Emotes (Type /e emotename) ( credits: guy that exists )",Side = "Left",Callback = function() 
@@ -363,23 +376,23 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 						end
 					end)
 				end})
-        Animations:ToolTip("Gives you free animations, just say in chat '/e emotename'")
-        
+				Animations:ToolTip("Gives you free animations, just say in chat '/e emotename'")
+
 				local Rejoin = OthersSection:Button({Name = "Rejoin",Side = "Left",Callback = function() 
 					game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
 				end})
-Rejoin:ToolTip("Rejoin on the same server, useful if your character is broken")
-        
+				Rejoin:ToolTip("Rejoin on the same server, useful if your character is broken")
+
 				local InfYield = OthersSection:Button({Name = "Infinite Yield",Side = "Left",Callback = function() 
 					loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
 				end})
-        InfYield:ToolTip("Execute Infinite Yield script")
-        
+				InfYield:ToolTip("Execute Infinite Yield script")
+
 				local SimpleSpy = OthersSection:Button({Name = "Simple Spy",Side = "Left",Callback = function() 
 					loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))()
 				end})
-SimpleSpy:ToolTip("Execute Simple Spy script")
-        
+				SimpleSpy:ToolTip("Execute Simple Spy script")
+
 			end
 		end
 		local AntiTab = Window:Tab({Name = "Antis"}) do
@@ -396,8 +409,8 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiAdmin:ToolTip("Checks if an administrator has joined the game")
-        --:ToolTip("")
+				AntiAdmin:ToolTip("Checks if an administrator has joined the game")
+				--:ToolTip("")
 
 				local AntiKick = Anti1:Toggle({Name = "Anti Kick",Flag = "AntiKick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiKick = Toggle_Bool
@@ -410,7 +423,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiKick:ToolTip("If you get kicked you will return to the same server, useful if you use Slap Aura function")
+				AntiKick:ToolTip("If you get kicked you will return to the same server, useful if you use Slap Aura function")
 
 				local AntiRagdoll = Anti1:Toggle({Name = "Anti Ragdoll",Flag = "AntiRagdoll",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiRagdoll = Toggle_Bool
@@ -427,7 +440,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						end)
 					end
 				end})
-        AntiRagdoll:ToolTip("Prevents your character from taking knockback, useful if there is God's Hand")
+				AntiRagdoll:ToolTip("Prevents your character from taking knockback, useful if there is God's Hand")
 
 				local AntiTS = Anti1:Toggle({Name = "Anti Timestop",Flag = "AntiTS",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiTimestop = Toggle_Bool
@@ -440,7 +453,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiTS:ToolTip("Makes your avatar not get stuck in cutscenes and others, like those in Counter or Timestop")
+				AntiTS:ToolTip("Makes your avatar not get stuck in cutscenes and others, like those in Counter or Timestop")
 
 				local AntiSquid = Anti1:Toggle({Name = "Anti Squid",Flag = "AntiSquid",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiSquid = Toggle_Bool
@@ -456,22 +469,22 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiSquid:ToolTip("Disables any trace of ink on your screen")
+				AntiSquid:ToolTip("Disables any trace of ink on your screen")
 
 				local AntiHallowJack = Anti1:Toggle({Name = "Anti Hallow Jack",Flag = "AntiHallowJack",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = Toggle_Bool
 				end})
-        AntiHallowJack:ToolTip("Disables the effects of the Jack-O-Lantern ability")
+				AntiHallowJack:ToolTip("Disables the effects of the Jack-O-Lantern ability")
 
 				local AntiConveyor = Anti1:Toggle({Name = "Anti Conveyor",Flag = "AntiConveyor",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = Toggle_Bool
 				end})
-        AntiConveyor:ToolTip("Disables the effect of the Conveyor ability")
+				AntiConveyor:ToolTip("Disables the effect of the Conveyor ability")
 
 				local AntiREDACTED = Anti1:Toggle({Name = "Anti [ REDACTED ]",Flag = "AntiREDACTED",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					LocalPlayer.PlayerScripts.Well.Disabled = Toggle_Bool
 				end})
-        AntiREDACTED:ToolTip("Disables the chance of you being sucked in by the REDACTED glove ability")
+				AntiREDACTED:ToolTip("Disables the chance of you being sucked in by the REDACTED glove ability")
 
 				local AntiZaHando = Anti1:Toggle({Name = "Anti Za Hando",Flag = "AntiZaHando",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiZaHando = Toggle_Bool
@@ -484,7 +497,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiZaHando:ToolTip("Removes the part of the glove that causes it to be pulled towards the person")
+				AntiZaHando:ToolTip("Removes the part of the glove that causes it to be pulled towards the person")
 
 				local AntiReaper = Anti1:Toggle({Name = "Anti Reaper",Flag = "AntiReaper",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiReaper = Toggle_Bool
@@ -498,7 +511,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiReaper:ToolTip("Removes the Reaper's mark and its associated effects")
+				AntiReaper:ToolTip("Removes the Reaper's mark and its associated effects")
 
 				local AntiMail = Anti1:Toggle({Name = "Anti Mail",Flag = "AntiMail",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiMail = Toggle_Bool
@@ -510,7 +523,7 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiMail:ToolTip("It prevents the deadly card from appearing on your screen")
+				AntiMail:ToolTip("It prevents the deadly card from appearing on your screen")
 
 				local AntiStun = Anti1:Toggle({Name = "Anti Stun",Flag = "AntiStun",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiStun = Toggle_Bool
@@ -521,18 +534,17 @@ SimpleSpy:ToolTip("Execute Simple Spy script")
 						task.wait()
 					end
 				end})
-        AntiStun:ToolTip("Removes the shockwave caused by the stun ability")
+				AntiStun:ToolTip("Removes the shockwave caused by the stun ability")
 
 				local AntiNightmare = Anti1:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiNightmare = Toggle_Bool
-              if getgenv().settings.AntiNightmare == true then
-        game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
-    else
-        game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
-    end
-	end
-          end})
-AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
+					if getgenv().settings.AntiNightmare == true then
+						game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
+					else
+						game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
+					end
+				end})
+				AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 			end
 
 			local Anti2 = AntiTab:Section({Name = "Anti 2",Side = "Right"}) do
@@ -541,7 +553,7 @@ AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 					game.Workspace.arenaVoid.CanCollide = Toggle_Bool
 					TournamentAntiVoid.CanCollide = Toggle_Bool
 				end})
-      AntiVoid:ToolTip("Activates the anti-void to prevent falling directly into the void")
+				AntiVoid:ToolTip("Activates the anti-void to prevent falling directly into the void")
 
 				local AntiDB = Anti2:Toggle({Name = "Anti Death Barrier",Flag = "AntiDB",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiDB = Toggle_Bool
@@ -569,7 +581,7 @@ AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 						workspace.AntiDefaultArena.CanTouch = true
 					end
 				end})
-      AntiDB:ToolTip("Disables the death barriers that would otherwise result in death")
+				AntiDB:ToolTip("Disables the death barriers that would otherwise result in death")
 
 				local AntiBrick = Anti2:Toggle({Name = "Anti Brick",Flag = "AntiBrick",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrick = Toggle_Bool
@@ -582,7 +594,7 @@ AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 						task.wait()
 					end
 				end})
-      AntiBrick:ToolTip("Prevents the bricks from being touched to prevent the player from being ragdolled")
+				AntiBrick:ToolTip("Prevents the bricks from being touched to prevent the player from being ragdolled")
 
 				local AntiBrazil = Anti2:Toggle({Name = "Anti Brazil",Flag = "AntiBrazil",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiBrazil = Toggle_Bool
@@ -1087,7 +1099,7 @@ AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 					end
 					while getGlove() == "Tableflip" or getGlove() == "Shield" and getgenv().settings.AbilitySpam do
 						game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
-						wait(3.1)
+						wait(3.2)
 					end
 					while getgenv().settings.AbilitySpam and getGlove() == "Rocky" do
 						game:GetService("ReplicatedStorage").RockyShoot:FireServer()
@@ -1474,7 +1486,7 @@ AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
 					end
 				end})
 
-        local ZombieSound = SoundSpamSection:Toggle({Name = "Zombie Sound Spam",Flag = "ZombieSound",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local ZombieSound = SoundSpamSection:Toggle({Name = "Zombie Sound Spam",Flag = "ZombieSound",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.ZombieSpam = Toggle_Bool
 					while getgenv().settings.ZombieSpam do
 						local rpl = "ReplicateSound_Zombie"
