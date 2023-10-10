@@ -12,8 +12,6 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		-- Main:
 		AutoFarmSlapple = false,
 		AutoFarmCandy = false,
-		NotifGravestone = false,
-		GetHallowJack = false,
 		-- Antis:
 		AntiAdmin = false,
 		AntiKick = false,
@@ -303,7 +301,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					if getGlove() ~= "Killstreak" then
 						Bracket:Notification({Title = "Halloween!",Description = "You don't have killstreak glove equipped",Duration = 10})
 					end
-					if LocalPlayer.PlayerGui:FindFirstChild("Kills") then
+					if not LocalPlayer.PlayerGui:FindFirstChild("Kills") then
 						Bracket:Notification({Title = "Halloween!",Description = "Your kills are broken, reset your character",Duration = 10})
 					end
 					if LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= "10" then
