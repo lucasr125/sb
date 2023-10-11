@@ -85,7 +85,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		-- Badges
 		GetJetOrb = false,
 		GetPhaseOrb = false,
-    BobFarm = false,
+		BobFarm = false,
 	}
 	--ESP
 	local Players = game:GetService("Players")
@@ -952,10 +952,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 			local AbilitySection = CombatTab:Section({Name = "Ability Spam",Side = "Right"}) do
 				local AbilitySpam = AbilitySection:Toggle({Name = "Glove Ability Spam",Flag = "AbilitySpam",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AbilitySpam = Toggle_Bool
-              while getgenv().settings.AbilitySpam and getGlove() == "Sun" do
-game:GetService("ReplicatedStorage").GeneralAbility:FireServer("Cast")
-task.wait()
-end
+					while getgenv().settings.AbilitySpam and getGlove() == "Sun" do
+						game:GetService("ReplicatedStorage").GeneralAbility:FireServer("Cast")
+						task.wait()
+					end
 					while getgenv().settings.AbilitySpam and getGlove() == "Gravity" do
 						game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 						wait()
@@ -1508,20 +1508,20 @@ end
 					end
 				end})
 
-local InfiniteInvis = ExtraFuncSection:Button({Name = "Infinite Invisibility",Side = "Left",Callback = function() 
-if not LocalPlayer.Character:FindFirstChild("entered") == nil then
-              Bracket:Notification({Title = "Error",Description = "You need go to lobby to use Infinite Invisibility",Duration = 5})
-              end
-                if not (LocalPlayer.leaderstats.Slaps.Value >= 666) then
-                 Bracket:Notification({Title = "Error",Description = "You don't have +666 slaps",Duration = 5})
-              end
-OGlove = getGlove()
-fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
-game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
-fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
-               Bracket:Notification({Title = "Warn",Description = "Glove still visible.",Duration = 5})
+				local InfiniteInvis = ExtraFuncSection:Button({Name = "Infinite Invisibility",Side = "Left",Callback = function() 
+					if not LocalPlayer.Character:FindFirstChild("entered") == nil then
+						Bracket:Notification({Title = "Error",Description = "You need go to lobby to use Infinite Invisibility",Duration = 5})
+					end
+					if not (LocalPlayer.leaderstats.Slaps.Value >= 666) then
+						Bracket:Notification({Title = "Error",Description = "You don't have +666 slaps",Duration = 5})
+					end
+					OGlove = getGlove()
+					fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
+					game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
+					fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
+					Bracket:Notification({Title = "Warn",Description = "Glove still visible.",Duration = 5})
 				end})
-        
+
 				local AutoTycoon = ExtraFuncSection:Toggle({Name = "Auto Tycoon",Flag = "AutoTycoon",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.AutoTycoon = Toggle_Bool
 					while getgenv().settings.AutoTycoon do
@@ -2061,21 +2061,21 @@ fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
 					end
 				end})
 
-      local BobFarm = BadgesSection:Toggle({Name = "Bob Farm",Flag = "BobFarm",Side = "Left",Value = false,Callback = function(Toggle_Bool)
+				local BobFarm = BadgesSection:Toggle({Name = "Bob Farm",Flag = "BobFarm",Side = "Left",Value = false,Callback = function(Toggle_Bool)
 					getgenv().settings.BobFarm = Toggle_Bool
 					if getGlove() == "Replica" then
-while getgenv().settings.BobFarm do
-firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
-firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
-repeat task.wait() until LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
-keypress(0x45)
-                keyrelease(0x45)
-game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(LocalPlayer.Character,false)
-wait(3.5)
-end
-            elseif getGlove ~= "Replica" then
-              Bracket:Notification({Title = "Error",Description = "You don't have Replica glove equipped",Duration = 10})
-            end
+						while getgenv().settings.BobFarm do
+							firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
+							firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
+							repeat task.wait() until LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+							keypress(0x45)
+							keyrelease(0x45)
+							game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(LocalPlayer.Character,false)
+							wait(3.5)
+						end
+					elseif getGlove ~= "Replica" then
+						Bracket:Notification({Title = "Error",Description = "You don't have Replica glove equipped",Duration = 10})
+					end
 				end})
 
 			end
