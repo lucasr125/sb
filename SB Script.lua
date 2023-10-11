@@ -535,9 +535,9 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 				local AntiNightmare = Anti1:Toggle({Name = "Anti Nightmare",Flag = "AntiNightmare",Side = "Left",Value = false,Callback = function(Toggle_Bool) 
 					getgenv().settings.AntiNightmare = Toggle_Bool
 					if getgenv().settings.AntiNightmare == true then
-						game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
+						LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting
 					else
-						game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener
+						LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = LocalPlayer.PlayerScripts.VFXListener
 					end
 				end})
 				AntiNightmare:ToolTip("Deactivates the effects caused by the Nightmare glove")
@@ -2065,12 +2065,12 @@ fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
 					getgenv().settings.BobFarm = Toggle_Bool
 					if getGlove() == "Replica" then
 while getgenv().settings.BobFarm do
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
-repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
+firetouchinterest(LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
+repeat task.wait() until LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
 keypress(0x45)
                 keyrelease(0x45)
-game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
+game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(LocalPlayer.Character,false)
 wait(3.5)
 end
             elseif getGlove ~= "Replica" then
