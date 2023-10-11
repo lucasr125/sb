@@ -1512,7 +1512,7 @@ local InfiniteInvis = ExtraFuncSection:Button({Name = "Infinite Invisibility",Si
 if not LocalPlayer.Character:FindFirstChild("entered") == nil then
               Bracket:Notification({Title = "Error",Description = "You need go to lobby to use Infinite Invisibility",Duration = 5})
               end
-                if not LocalPlayer.leaderstats.Slaps.Value >= 666 then
+                if not (LocalPlayer.leaderstats.Slaps.Value >= 666) then
                  Bracket:Notification({Title = "Error",Description = "You don't have +666 slaps",Duration = 5})
               end
 OGlove = getGlove()
