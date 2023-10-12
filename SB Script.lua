@@ -303,7 +303,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 					if not LocalPlayer.PlayerGui:FindFirstChild("Kills") then
 						Bracket:Notification({Title = "Halloween!",Description = "Your kills are broken, reset your character",Duration = 10})
 					end
-					if LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= "10" then
+					if LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text >= 10 then
 						for i,v in pairs(workspace.Gravestone:GetDescendants()) do
 							if v:IsA("ClickDetector") then
 								fireclickdetector(v)
