@@ -1,5 +1,14 @@
+if not game:IsLoaded() then
+  game.Loaded:Wait()
+end
+
+repeat task.wait() until game:GetService("Players")
+repeat task.wait() until game.Players.LocalPlayer
+repeat task.wait() until game.Players.LocalPlayer.Character ~= nil
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
 repeat task.wait()
-until not game.Workspace:FindFirstChild("universaltimestop")
+until game.Workspace:FindFirstChild("universaltimestop") == nil
 
 fireclickdetector(workspace.Lobby["God's Hand"].ClickDetector)
 game:GetService("ReplicatedStorage").TimestopJump:FireServer()
