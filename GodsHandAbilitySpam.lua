@@ -1,18 +1,26 @@
 if not game:IsLoaded() then
-  game.Loaded:Wait()
+	game.Loaded:Wait();
 end
 
-repeat task.wait() until game:GetService("Players")
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer.Character ~= nil
-repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+repeat
+	task.wait();
+until game:GetService("Players") 
+repeat
+	task.wait();
+until game.Players.LocalPlayer 
+repeat
+	task.wait();
+until game.Players.LocalPlayer.Character ~= nil 
+repeat
+	task.wait();
+until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") 
+repeat
+	task.wait();
+until game.Workspace:FindFirstChild("universaltimestop") == nil 
 
-repeat task.wait()
-until game.Workspace:FindFirstChild("universaltimestop") == nil
+fireclickdetector(workspace.Lobby["God's Hand"].ClickDetector);
+game:GetService("ReplicatedStorage").TimestopJump:FireServer();
+game:GetService("ReplicatedStorage").Timestopchoir:FireServer();
+game:GetService("ReplicatedStorage").Timestop:FireServer();
 
-fireclickdetector(workspace.Lobby["God's Hand"].ClickDetector)
-game:GetService("ReplicatedStorage").TimestopJump:FireServer()
-game:GetService("ReplicatedStorage").Timestopchoir:FireServer()
-game:GetService("ReplicatedStorage").Timestop:FireServer()
-
-game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer);
