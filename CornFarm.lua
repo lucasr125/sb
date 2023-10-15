@@ -1,13 +1,18 @@
 if not game:IsLoaded() then
-    game.Loaded:Wait()
+  game.Loaded:Wait()
 end
-for i = 1,10 do
-	for i, v in pairs(workspace.CandyCorns:GetChildren()) do
-		if v:FindFirstChildWhichIsA("TouchTransmitter") then
-			v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		end
+
+repeat task.wait() until game:GetService("Players")
+repeat task.wait() until game.Players.LocalPlayer
+repeat task.wait() until game.Players.LocalPlayer.Character ~= nil
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+for _, v in pairs(game.Workspace.CandyCorns:GetDescendants()) do
+	if v.ClassName == "TouchTransmitter" then
+		v.Parent.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+		firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
 	end
-	task.wait()
 end
 
 local serverList = {}
