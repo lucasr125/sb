@@ -147,7 +147,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -161,7 +161,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
@@ -191,10 +191,13 @@ end
 end
                 })
 
-Tab2:AddButton({
-	Name = "Get all items (Use in bus)",
-	Callback = function()
+Tab2:AddToggle({
+                    Name = "Get all items (Use after bus spawns)",
+                    Default = false,
+                    Callback = function(Value)
+GetAllItems = Value
 if game.Players.LocalPlayer.Character:WaitForChild("inMatch").Value == true then
+                while GetAllItems do
             for i, v in ipairs(game.Workspace:GetChildren()) do
                 if v.ClassName == "Tool" then
  game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
@@ -202,9 +205,13 @@ if game.Players.LocalPlayer.Character:WaitForChild("inMatch").Value == true then
             end
 repeat task.wait() until game.Workspace:FindFirstChildWhichIsA("Tool") == nil
 game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+task.wait()
 end
-  	end    
-})
+elseif GetAllItems == true then
+OrionLib:MakeNotification({Name = "Error",Content = "Match hasn't started yet.",Image = "rbxassetid://7733658504",Time = 5})
+end
+end
+                })
 
 Tab2:AddButton({
 	Name = "Bomb Bus (Use in the lobby)",
@@ -251,6 +258,43 @@ for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                 end
 			end
 })
+
+Tab2:AddToggle({
+                    Name = "Glove ESP",
+                    Default = false,
+                    Callback = function(Value)
+GloveESP = Value
+if GloveESP == false then
+for i, v in ipairs(game.Players:GetChildren()) do
+                if v.Character and v.Character:FindFirstChild("Head") and v.Character.Head:FindFirstChild("GloveEsp") then
+ v.Character.Head.GloveEsp:Destroy()
+                end
+            end
+end
+while GloveESP do
+for i, v in ipairs(game.Players:GetChildren()) do
+                if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Head") and v.Character.inMatch.Value == true and v.Character.Head:FindFirstChild("GloveEsp") == nil then
+GloveEsp = Instance.new("BillboardGui", v.Character.Head)
+GloveEsp.Adornee = v.Character.Head
+GloveEsp.Name = "GloveEsp"
+GloveEsp.Size = UDim2.new(0, 100, 0, 150)
+GloveEsp.StudsOffset = Vector3.new(0, 1, 0)
+GloveEsp.AlwaysOnTop = true
+GloveEsp.StudsOffset = Vector3.new(0, 3, 0)
+GloveEspText = Instance.new("TextLabel", GloveEsp)
+GloveEspText.BackgroundTransparency = 1
+GloveEspText.Size = UDim2.new(0, 100, 0, 100)
+GloveEspText.TextSize = 25
+GloveEspText.Font = Enum.Font.SourceSansSemibold
+GloveEspText.TextColor3 = Color3.new(255, 255, 255)
+GloveEspText.TextStrokeTransparency = 0
+GloveEspText.Text = v.Glove.Value
+                end
+            end
+task.wait()
+end
+end
+                })
 
 Tab4:AddButton({
 	Name = "Get Lab Code",
@@ -1686,7 +1730,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -1700,7 +1744,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
@@ -2183,7 +2227,7 @@ else
                 
 if workspace:FindFirstChild("VoidPart") == nil then
 local VoidPart = Instance.new("Part", workspace)
-VoidPart.Position = Vector3.new(0,-50027.5,0)
+VoidPart.Position = Vector3.new(0,-50026.5,0)
 VoidPart.Name = "VoidPart"
 VoidPart.Size = Vector3.new(2048,50,2048)
 VoidPart.Anchored = true
@@ -2742,24 +2786,13 @@ if Cancel == true then
 break
 end
 if workspace[Value]:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(workspace[Value].HumanoidRootPart.Position.X,-50000,workspace[Value].HumanoidRootPart.Position.Z)
-end
-NewDistance = math.huge
-for i,v in pairs(game.Players:GetChildren()) do
-	if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-		Distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
-if Distance < NewDistance then
-	NewDistance = Distance
-	Closest = v
-task.wait()
-end
-end
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(workspace[Value].HumanoidRootPart.Position.X,-49999,workspace[Value].HumanoidRootPart.Position.Z)
 end
 task.wait(0.01)
 if Timer < 1 then
 Timer = Timer + 0.01
 end
-until game.Players[Value].Character and workspace[Value]:FindFirstChild("HumanoidRootPart") and workspace[Value]:FindFirstChild("entered") and workspace[Value].Ragdolled.Value == false and Closest == game.Players[Value] and Timer >= 1
+until game.Players[Value].Character and workspace[Value]:FindFirstChild("HumanoidRootPart") and workspace[Value]:FindFirstChild("entered") and workspace[Value].Ragdolled.Value == false and Timer >= 1
 if Cancel == false then
 game:GetService("ReplicatedStorage").SLOC:FireServer()
 end
@@ -4084,7 +4117,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -4098,7 +4131,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match("rec") or v:lower():match("record") or v:lower():match("disco") or v:lower():match("disc")  then
+if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
