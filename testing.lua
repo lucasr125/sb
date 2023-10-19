@@ -637,7 +637,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	end});
 	Tab3:AddButton({Name="Get 'duck', 'The Lone Orange' and 'court evidence' Badge",Callback=function()
 		-- Court evdence
-		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
+		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907)) then
 			fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector);
 		else
 			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
