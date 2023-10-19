@@ -602,7 +602,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			game:GetService("TeleportService"):Teleport(9431156611);
 		end
 	end});
-	Tab3:AddButton({Name="Get Elude",Callback=function()
+	Tab3:AddButton({Name="Get Elude Glove",Callback=function()
 		local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport);
 		if teleportFunc then
 			teleportFunc([[
@@ -618,12 +618,13 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 		game:GetService("TeleportService"):Teleport(11828384869);
 	end});
-	Tab3:AddButton({Name="Get [Redacted] [ 5000 Slap ]",Callback=function()
+	Tab3:AddButton({Name="Get REDACTED Glove",Callback=function()
 		if (game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000) then
 			Door = 0;
 			for i = 1, 10 do
 				Door = Door + 1;
 				if game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124847850) then
+					OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
 				else
 					firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 0);
 					firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.PocketDimension.Doors[Door].TouchInterest.Parent, 1);
@@ -631,16 +632,29 @@ game:GetService("TeleportService"):Teleport(6403373529)
 				end
 			end
 		else
-			OrionLib:MakeNotification({Name="Error",Content="You Have 5K Slap Or Then Owner Bagde",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You don't have 5000 slaps",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
-	Tab3:AddButton({Name="Get Duck and Orange and Knife Bagde",Callback=function()
-		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957) and not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916)) then
+	Tab3:AddButton({Name="Get 'duck', 'The Lone Orange' and 'court evidence' Badge",Callback=function()
+		-- Court evdence
+		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907) then
 			fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector);
+		else
+			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
+		end
+
+		-- The Lone Orange
+		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957)) then
 			fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector);
+		else
+			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
+		end
+
+		-- duck
+		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916)) then
 			fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector);
 		else
-			OrionLib:MakeNotification({Name="You Have Owner Bagde",Content="Not Click",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
 	Tab3:AddButton({Name="Get Hallow Jack",Callback=function()
