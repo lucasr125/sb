@@ -263,20 +263,20 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 
 	-- Tabs
 	local Tab = Window:MakeTab({Name="Main",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab1 = Window:MakeTab({Name="Script",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab2 = Window:MakeTab({Name="Anti",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab3 = Window:MakeTab({Name="Bagdes",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab4 = Window:MakeTab({Name="Bagdes Time",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab5 = Window:MakeTab({Name="Local",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab1 = Window:MakeTab({Name="Scripts",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab2 = Window:MakeTab({Name="Antis",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab3 = Window:MakeTab({Name="Badges",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab4 = Window:MakeTab({Name="Badges Time",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab5 = Window:MakeTab({Name="Local Player",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab6 = Window:MakeTab({Name="Auto Enter Lobby",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab7 = Window:MakeTab({Name="Misc",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab7 = Window:MakeTab({Name="Miscellaneous",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab8 = Window:MakeTab({Name="Game",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab9 = Window:MakeTab({Name="Auto Epin Glove",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab10 = Window:MakeTab({Name="Autofram",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab11 = Window:MakeTab({Name="Troller",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab13 = Window:MakeTab({Name="Ability Spams",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab9 = Window:MakeTab({Name="Auto Equip Glove",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab10 = Window:MakeTab({Name="Auto Farm",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab11 = Window:MakeTab({Name="Troll",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab13 = Window:MakeTab({Name="Ability Spam",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab14 = Window:MakeTab({Name="Auto Join Game",Icon="rbxassetid://4483345998",PremiumOnly=false});
-	local Tab15 = Window:MakeTab({Name="Cradit",Icon="rbxassetid://4483345998",PremiumOnly=false});
+	local Tab15 = Window:MakeTab({Name="Credits",Icon="rbxassetid://4483345998",PremiumOnly=false});
 
 	-- Notifications
 	OrionLib:MakeNotification({Name="Script slap battles.",Content=("ID Game [ " .. game.PlaceId .. " ]"),Time=5});
