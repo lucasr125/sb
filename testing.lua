@@ -5,7 +5,7 @@ end
 game:GetService("GuiService"):ClearError()
 
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
-  local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion")))()
+  local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/lucasr125/sb/main/OrionLibrary.lua")))()
   local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
   local Window = OrionLib:MakeWindow({Name = (GameName.." - ".. identifyexecutor()), HidePremium = false, SaveConfig = true, IntroEnabled = false, ConfigFolder = "slap battles"})
 
@@ -33,7 +33,7 @@ if setfpscap then
     setfpscap(12569)
 end
     
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/slap-battles/main/File/Gloves.lua"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
 
 function SpamBaller()
 while BallerFarm do
