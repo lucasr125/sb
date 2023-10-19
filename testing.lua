@@ -2,10 +2,13 @@ if not game:IsLoaded() then
 	game.Loaded:Wait();
 end
 game:GetService("GuiService"):ClearError();
+
 if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceId == 11520107397)) then
 	local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/OrionLibrary.lua"))();
 	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name;
 	local Window = OrionLib:MakeWindow({Name=(GameName .. " - " .. identifyexecutor()),HidePremium=false,SaveConfig=true,IntroEnabled=false,ConfigFolder="slap battles"});
+
+	-- Bypass
 	local Namecall;
 	Namecall = hookmetamethod(game, "__namecall", function(self, ...)
 		if ((getnamecallmethod() == "FireServer") and (tostring(self) == "Ban")) then
@@ -17,8 +20,11 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		end
 		return Namecall(self, ...);
 	end);
+
+	-- Times
 	TimeGhost = 0;
 	TimeMegarock = 0;
+	
 	if setfpscap then
 		setfpscap(12569);
 	end
@@ -75,6 +81,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		end
 	end
 	gethui().Orion.Name = "OrionEdited";
+
+	-- Safe Spot #1
 	if (workspace:FindFirstChild("SafeBox") == nil) then
 		local S = Instance.new("Part");
 		S.Name = "SafeBox";
@@ -127,6 +135,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		S5.Size = Vector3.new(24, 3, 24);
 		S5.Parent = workspace:FindFirstChild("SafeBox");
 	end
+
+	-- Bed
 	if (workspace:FindFirstChild("Bed") == nil) then
 		local Bed = Instance.new("Part");
 		Bed.Name = "Bed";
@@ -170,6 +180,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		B5.BrickColor = BrickColor.new("Dark orange");
 		B5.Parent = workspace:FindFirstChild("Bed");
 	end
+
+	-- Safe Spot #2
 	if (workspace:FindFirstChild("Safespot") == nil) then
 		local Safespot = Instance.new("Part", workspace);
 		Safespot.Name = "Safespot";
@@ -230,6 +242,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		myPart.Size = Vector3.new(90, 3, 90);
 		myPart.CFrame = CFrame.new(21.0028305, -154.978516, -10.9418917, -0.998630345, 0.00382314296, 0.0521808378, 0.0000029338594, 0.997330785, -0.0730154663, -0.0523207076, -0.0729153082, -0.995964825);
 	end
+
+	-- Anti Voids
 	local AntiVoid = Instance.new("Part", workspace);
 	AntiVoid.Name = "WalkVoid";
 	AntiVoid.Size = Vector3.new(2047, 0.009, 2019);
@@ -246,6 +260,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	TournamentAntiVoid.Anchored = true;
 	TournamentAntiVoid.Material = "ForceField";
 	TournamentAntiVoid.Transparency = 1;
+
+	-- Tabs
 	local Tab = Window:MakeTab({Name="Main",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab1 = Window:MakeTab({Name="Script",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab2 = Window:MakeTab({Name="Anti",Icon="rbxassetid://4483345998",PremiumOnly=false});
@@ -261,9 +277,13 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	local Tab13 = Window:MakeTab({Name="Ability Spams",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab14 = Window:MakeTab({Name="Auto Join Game",Icon="rbxassetid://4483345998",PremiumOnly=false});
 	local Tab15 = Window:MakeTab({Name="Cradit",Icon="rbxassetid://4483345998",PremiumOnly=false});
+
+	-- Notifications
 	OrionLib:MakeNotification({Name="Script slap battles.",Content=("ID Game [ " .. game.PlaceId .. " ]"),Time=5});
 	OrionLib:MakeNotification({Name=("Hello [ " .. game.Players.LocalPlayer.Character.Name .. " ]"),Content="ERROR",Time=5});
 	OrionLib:MakeNotification({Name=("Age You [ " .. game.Players.LocalPlayer.AccountAge .. " ]"),Content="ERROR",Time=5});
+
+	-- Others
 	local Section = Tab:AddSection({Name="Main"});
 	Tab:AddButton({Name="Keyboard [ PE ]",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))();
@@ -404,55 +424,56 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 			local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport);
 			if teleportFunc then
 				teleportFunc([[
-        if not game:IsLoaded() then
-            game.Loaded:Wait()
-        end
-        repeat wait() until game.Players.LocalPlayer
- repeat wait() until game.Workspace:FindFirstChild("Map"):FindFirstChild("CodeBrick")
-if game.Workspace.Map.CodeBrick.SurfaceGui:FindFirstChild("IMGTemplate") then
-game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "1st"
-game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "2nd"
-game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "3rd"
-game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "4th"
-end
-for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
-                    if v.Name == "1st" then
-                        if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
-                    first = "4"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
-                    first = "2"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
-                    first = "3"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
-                    first = "9"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
-                    first = "8"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
-                    first = "2"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
-                    first = "8"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
-                    first = "3"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
-                    first = "7"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
-                    first = "8"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
-                    first = "2"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
-                    first = "6"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
-                    first = "3"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
-                    first = "6"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
-                    first = "6"
-                elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
-                    first = "2"
-                end
-                    end
-                end
-for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+				        if not game:IsLoaded() then
+						game.Loaded:Wait()
+					end
+					repeat wait() until game.Players.LocalPlayer
+					repeat wait() until game.Workspace:FindFirstChild("Map"):FindFirstChild("CodeBrick")
+					if game.Workspace.Map.CodeBrick.SurfaceGui:FindFirstChild("IMGTemplate") then
+						game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "1st"
+						game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "2nd"
+						game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "3rd"
+						game.Workspace.Map.CodeBrick.SurfaceGui.IMGTemplate.Name = "4th"
+					end
+
+				        for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
+				        	if v.Name == "1st" then
+				        		if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
+				        			first = "4"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648765536" then
+				        			first = "2"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648762863" then
+				        			first = "3"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648759883" then
+				        			first = "9"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648755440" then
+				        			first = "8"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648752438" then
+				        			first = "2"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648749145" then
+				        			first = "8"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648745618" then
+				        			first = "3"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648742013" then
+				        			first = "7"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648738553" then
+				        			first = "8"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648734698" then
+				        			first = "2"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648730082" then
+				        			first = "6"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648723237" then
+				        			first = "3"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648718450" then
+				        			first = "6"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648715920" then
+				        			first = "6"
+				        		elseif v.Image == "http://www.roblox.com/asset/?id=9648712563" then
+				        			first = "2"
+				        		end
+				        	end
+				        end
+				        for i,v in pairs(game.Workspace.Map.CodeBrick.SurfaceGui:GetChildren()) do
                     if v.Name == "2nd" then
                         if v.Image == "http://www.roblox.com/asset/?id=9648769161" then
                     second = "4"
