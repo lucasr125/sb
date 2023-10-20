@@ -22,7 +22,7 @@ local bypass;
     end)
 if workspace:FindFirstChild("Spot") == nil then
 local SafeSpot = Instance.new("Part", workspace)
-SafeSpot.Position = Vector3.new(math.random(-25000,-2500),100,math.random(-25000,-2500))
+SafeSpot.Position = Vector3.new(math.random(-25000,-2500),500,math.random(-25000,-2500))
 SafeSpot.Name = "Spot"
 SafeSpot.Size = Vector3.new(500,50,500)
 SafeSpot.Anchored = true
@@ -70,7 +70,7 @@ AntiAcid.Anchored = true
 AntiAcid.Transparency = 1
 AntiLava.CanCollide = false
                 
-                local Window = OrionLib:MakeWindow({Name = "Slap Royale hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+                local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists | Slap Royale", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
                 local Tab = Window:MakeTab({
                     Name = "Home",
@@ -147,7 +147,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -161,7 +161,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
@@ -191,7 +191,7 @@ end
 end
                 })
 
-Tab2:AddToggle({
+GAI = Tab2:AddToggle({
                     Name = "Get all items (Use after bus spawns)",
                     Default = false,
                     Callback = function(Value)
@@ -209,6 +209,8 @@ task.wait()
 end
 elseif GetAllItems == true then
 OrionLib:MakeNotification({Name = "Error",Content = "Match hasn't started yet.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+GAI:Set(false)
 end
 end
                 })
@@ -760,7 +762,7 @@ task.wait()
 
 elseif game.PlaceId == 11520107397 then
                 
-                local Window = OrionLib:MakeWindow({Name = "Slap Battles KS Only hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+                local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists | Killstreak Only", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
                 local Tab = Window:MakeTab({
                     Name = "Home",
@@ -865,13 +867,6 @@ Tab4:AddButton({
 	Name = "Fast Slapple Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()")
-                    end    
-                })
-
-Tab4:AddButton({
-	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
-	Callback = function()
-setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
                     end    
                 })
 
@@ -1042,10 +1037,10 @@ end
 Tab4:AddDropdown({
 	Name = "Teleport",
 	Default = "",
-	Options = {"Safe spot", "Arena",  "Default Arena", "Tournament", "Moai Island", "Slapple Island", "Plate"},
+	Options = {"Safe spot", "Arena",  "Default Arena", "Lobby", "Tournament", "Moai Island", "Slapple Island", "Plate"},
 	Callback = function(Value)
 if Value == "Safe spot" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,28,0)
 elseif Value == "Arena" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
 elseif Value == "Moai Island" then
@@ -1058,25 +1053,11 @@ elseif Value == "Tournament" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
 elseif Value == "Default Arena" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
+elseif Value == "Lobby" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-800,328,-2.5)
 end
 	end    
 })
-
-Tab4:AddToggle({
-                    Name = "Candy Corn Farm",
-                    Default = false,
-                    Callback = function(Value)
-CandyCornFarm = Value
-while CandyCornFarm do
-for i, v in pairs(workspace.CandyCorns:GetChildren()) do
-                if v:FindFirstChildWhichIsA("TouchTransmitter") then
-v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                end
-            end
-task.wait()
-end
-end
-                })
 
 Tab4:AddToggle({
                     Name = "Slapple Farm",
@@ -1249,6 +1230,29 @@ task.wait()
             end
 	end    
 })
+
+Tab5:AddButton({
+	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
+	Callback = function()
+setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Candy Corn Farm",
+                    Default = false,
+                    Callback = function(Value)
+CandyCornFarm = Value
+while CandyCornFarm do
+for i, v in pairs(workspace.CandyCorns:GetChildren()) do
+                if v:FindFirstChildWhichIsA("TouchTransmitter") then
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                end
+            end
+task.wait()
+end
+end
+                })
 
 Tab5:AddButton({
 	Name = "Get Elude",
@@ -1730,7 +1734,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -1744,7 +1748,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
@@ -1804,7 +1808,7 @@ end)
 
 elseif game.PlaceId == 11828384869 then
                 
-                local Window = OrionLib:MakeWindow({Name = "Elude Maze hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+                local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists | Elude Maze", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
                 local Tab = Window:MakeTab({
                     Name = "Home",
@@ -1890,13 +1894,6 @@ Tab2:AddButton({
 	Name = "Fast Slapple Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Farm'))()")
-                    end    
-                })
-
-Tab4:AddButton({
-	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
-	Callback = function()
-setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
                     end    
                 })
 
@@ -2167,7 +2164,7 @@ end
 
 elseif game.PlaceId == 9020359053 or game.PlaceId == 9412268818 then
                 
-                local Window = OrionLib:MakeWindow({Name = "SB Testing Server hub that exists", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+                local Window = OrionLib:MakeWindow({Name = "Slap Battles hub that exists | Testing Server", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
                 local Tab = Window:MakeTab({
                     Name = "Home",
@@ -2343,12 +2340,6 @@ setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyus
                     end    
                 })
 
-Tab4:AddButton({
-	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
-	Callback = function()
-setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
-                    end    
-                })
 
 Tab2:AddToggle({
                     Name = "Slap Aura",
@@ -2831,7 +2822,7 @@ game:GetService("ReplicatedStorage").Erase:FireServer()
 wait(0.47)
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = 0
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-485,310,-2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-725,310,-2)
 wait(3.75)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = OGWS
@@ -2967,10 +2958,10 @@ end
 Tab4:AddDropdown({
 	Name = "Teleport",
 	Default = "",
-	Options = {"Safe spot", "Arena",  "Default Arena", "Tournament", "Moai Island", "Slapple Island", "Plate"},
+	Options = {"Safe spot", "Arena",  "Default Arena", "Lobby", "Tournament", "Moai Island", "Slapple Island", "Plate"},
 	Callback = function(Value)
 if Value == "Safe spot" then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,40,0)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Spot.CFrame * CFrame.new(0,28,0)
 elseif Value == "Arena" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
 elseif Value == "Moai Island" then
@@ -2983,25 +2974,11 @@ elseif Value == "Tournament" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0,10,0)
 elseif Value == "Default Arena" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120,360,-3)
+elseif Value == "Lobby" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-800,328,-2.5)
 end
 	end    
 })
-
-Tab4:AddToggle({
-                    Name = "Candy Corn Farm",
-                    Default = false,
-                    Callback = function(Value)
-CandyCornFarm = Value
-while CandyCornFarm do
-for i, v in pairs(workspace.CandyCorns:GetChildren()) do
-                if v:FindFirstChildWhichIsA("TouchTransmitter") then
-v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                end
-            end
-task.wait()
-end
-end
-                })
 
 Tab4:AddToggle({
                     Name = "Slapple Farm",
@@ -3020,8 +2997,59 @@ end
 end
                 })
 
-Tab4:AddToggle({
-                    Name = "Replica Slap Farm (Use in default arena)",
+RBSF = Tab4:AddToggle({
+                    Name = "Replica & Baller Slap Farm (Equip Baller)",
+                    Default = false,
+                    Callback = function(Value)
+ReplicaBallerFarm = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Baller" then
+if ReplicaBallerFarm == true then
+coroutine.wrap(SpamReplicaBaller)()
+end
+while ReplicaBallerFarm do
+for i, v in pairs(workspace:GetChildren()) do
+                if v.Name:match(game.Players.LocalPlayer.Name) and v:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.b:FireServer(v:WaitForChild("HumanoidRootPart"))
+                end
+end
+task.wait()
+                       end
+elseif ReplicaBallerFarm == true then
+OrionLib:MakeNotification({Name = "Error",Content = "You don't have Baller equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+RBSF:Set(false)
+end
+end
+                })
+function SpamReplicaBaller()
+OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+while ReplicaBallerFarm do
+if game.Players.LocalPlayer.Character.IsInDefaultArena.Value == false then
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2, 1)
+wait(0.25)
+end
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+wait(0.25)
+game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+game.ReplicatedStorage.HumanoidDied:FireServer(game.Players.LocalPlayer.Character,false)
+wait(3.75)
+fireclickdetector(workspace.Lobby.Replica.ClickDetector)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport2, 1)
+wait(0.25)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+wait(0.25)
+game:GetService("ReplicatedStorage").Duplicate:FireServer()
+wait(20)
+game.ReplicatedStorage.HumanoidDied:FireServer(game.Players.LocalPlayer.Character,false)
+wait(3.75)
+fireclickdetector(workspace.Lobby.Baller.ClickDetector)
+end
+end
+
+RSF = Tab4:AddToggle({
+                    Name = "Replica Slap Farm (Use default arena portal)",
                     Default = false,
                     Callback = function(Value)
 ReplicaFarm = Value
@@ -3039,18 +3067,16 @@ task.wait()
                        end
 elseif ReplicaFarm == true then
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Replica equipped, or you aren't in the Default arena.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+RSF:Set(false)
 end
 end
                 })
 function SpamReplica()
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" and game.Players.LocalPlayer.Character.IsInDefaultArena.Value == true then
 while ReplicaFarm do
                            game:GetService("ReplicatedStorage").Duplicate:FireServer()
                        wait(19.9)
                        end
-elseif ReplicaFarm == true then
-OrionLib:MakeNotification({Name = "Error",Content = "You don't have Replica equipped, or you aren't in the Default arena.",Image = "rbxassetid://7733658504",Time = 5})
-end
 end
 
 Tab4:AddTextbox({
@@ -3066,7 +3092,7 @@ end
 	end	  
 })
 
-                Tab4:AddToggle({
+RNS = Tab4:AddToggle({
                     Name = "Rhythm Note Spam + Auto Press (Equip Rhythm)",
                     Default = false,
                     Callback = function(Value)
@@ -3080,6 +3106,8 @@ task.wait()
 end
 elseif RhythmNoteSpam == true then
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Rhythm equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+RNS:Set(false)
 end
                     end    
                 })
@@ -3194,7 +3222,7 @@ end
                     end    
                 })
 
-Tab4:AddToggle({
+PPO = Tab4:AddToggle({
                     Name = "Ping Pong Orbit",
                     Default = false,
                     Callback = function(Value)
@@ -3230,6 +3258,8 @@ task.wait(0.01)
 end
 elseif Value == true then
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Ping Pong equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+PPO:Set(false)
 end
 end
                 })
@@ -3364,6 +3394,29 @@ task.wait()
             end
 	end    
 })
+
+Tab5:AddButton({
+	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
+	Callback = function()
+setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Candy Corn Farm",
+                    Default = false,
+                    Callback = function(Value)
+CandyCornFarm = Value
+while CandyCornFarm do
+for i, v in pairs(workspace.CandyCorns:GetChildren()) do
+                if v:FindFirstChildWhichIsA("TouchTransmitter") then
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                end
+            end
+task.wait()
+end
+end
+                })
 
 Tab5:AddButton({
 	Name = "Get Elude",
@@ -3688,8 +3741,8 @@ end
                     end    
                 })
 
-Tab5:AddToggle({
-	Name = "Brick Farm (Use if the 20m version doesnt work)",
+BF = Tab5:AddToggle({
+	Name = "Brick Farm (Use if the fast version doesnt work)",
 	Default = false,
 	Callback = function(Value)
 Brickfarm = Value
@@ -3700,11 +3753,13 @@ task.wait(5.05)
 end
 elseif Value == true then
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Brick equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+BF:Set(false)
 end
 	end    
 })
 
-Tab5:AddToggle({
+BOB = Tab5:AddToggle({
                     Name = "Bob Farm",
                     Default = false,
                     Callback = function(Value)
@@ -3720,6 +3775,8 @@ wait(3.5)
 end
 elseif Value == true then
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Replica equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+BOB:Set(false)
 end
                     end    
                 })
@@ -4117,7 +4174,7 @@ p.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..p.Name..")".." ("..message..")")
 end
@@ -4131,7 +4188,7 @@ Player.Chatted:Connect(function(message)
 Words = message:split(" ")
 if AntiRecord == true then
 for i, v in pairs(Words) do
-if v:lower():match("recording") or v:lower():match(" rec") or v:lower():match("record") or v:lower():match("discor") or v:lower():match("disco") or v:lower():match("disc") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds") or v:lower():match(" dc") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match("clip") or v:lower():match("proof") or v:lower():match("evidence") then
+if v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence") then
 AK:Set(false)
 game.Players.LocalPlayer:Kick("Possible player recording detected.".." ("..Player.Name..")".." ("..message..")")
 end
