@@ -6,7 +6,8 @@ game:GetService("GuiService"):ClearError();
 if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceId == 11520107397)) then
 	local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/OrionLibrary.lua"))();
 	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name;
-	local Window = OrionLib:MakeWindow({Name=(GameName .. " - " .. identifyexecutor()),HidePremium=false,SaveConfig=true,IntroEnabled=false,ConfigFolder="slap battles"});
+	local LocalPlr = game.Players.LocalPlayer
+	local Window = OrionLib:MakeWindow({Name=(GameName .. " - " .. identifyexecutor()),HidePremium=false,SaveConfig=false,IntroEnabled=true,ConfigFolder="slap battles"});
 
 	-- Bypass
 	local Namecall;
@@ -279,7 +280,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	local Tab15 = Window:MakeTab({Name="Credits",Icon="rbxassetid://4483345998",PremiumOnly=false});
 
 	-- Notifications
-	OrionLib:MakeNotification({Name="Script slap battles.",Content=("ID Game [ " .. game.PlaceId .. " ]"),Time=5});
+	OrionLib:MakeNotification({Name="Loading",Content=(GameName..", "..game.PlaceId),Time=5});
 	OrionLib:MakeNotification({Name=("Hello [ " .. game.Players.LocalPlayer.Character.Name .. " ]"),Content="ERROR",Time=5});
 	OrionLib:MakeNotification({Name=("Age You [ " .. game.Players.LocalPlayer.AccountAge .. " ]"),Content="ERROR",Time=5});
 
