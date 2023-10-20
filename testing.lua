@@ -1,3 +1,4 @@
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/testing.lua", true))()
 if not game:IsLoaded() then
 	game.Loaded:Wait();
 end
@@ -281,8 +282,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 
 	-- Notifications
 	OrionLib:MakeNotification({Name="Loading",Content=(GameName..", "..game.PlaceId),Time=5});
-	OrionLib:MakeNotification({Name=("Hello [ " .. game.Players.LocalPlayer.Character.Name .. " ]"),Content="ERROR",Time=5});
-	OrionLib:MakeNotification({Name=("Age You [ " .. game.Players.LocalPlayer.AccountAge .. " ]"),Content="ERROR",Time=5});
+	--OrionLib:MakeNotification({Name=("Hello [ " .. game.Players.LocalPlayer.Character.Name .. " ]"),Content="ERROR",Time=5});
+	--OrionLib:MakeNotification({Name=("Age You [ " .. game.Players.LocalPlayer.AccountAge .. " ]"),Content="ERROR",Time=5});
 
 	-- Others
 	local Section = Tab:AddSection({Name="Main"});
@@ -301,12 +302,14 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab:AddToggle({Name="Autofarm Slapples",Default=false,Callback=function(Value)
 		SlappleFarm = Value;
 		while SlappleFarm do
-			for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
-				if (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and (v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1);
-					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0);
+			spawn(function()
+				for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+					if (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and (v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
+						firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1);
+						firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0);
+					end
 				end
-			end
+			end)
 			task.wait();
 		end
 	end});
@@ -320,7 +323,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 						firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 1);
 						firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 0);
 					end
-				end)
+				end
+			end)
 			task.wait();
 		end
 	end});
@@ -339,7 +343,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab1:AddButton({Name="Kill Player [ PE ]",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Kill%20player"))();
 	end});
-	Tab1:AddButton({Name="Slap battles new R2O",Callback=function()
+	Tab1:AddButton({Name="Slap Battles R2O",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/R2O/main/Games/6403373529.lua"))();
 	end});
 	Tab1:AddButton({Name="CherryUi's SB GUI",Callback=function()
@@ -348,7 +352,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab1:AddButton({Name="drippy hub",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/ZombieGamesYT/DrippyHub-1.1/main/DrippyHub%201.2"))();
 	end});
-	Tab1:AddButton({Name="Fe fly V3",Callback=function()
+	Tab1:AddButton({Name="Fe Fly V3",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Fly_V3.lua"))();
 	end});
 	Tab1:AddButton({Name="MoonUI v10",Callback=function()
@@ -357,7 +361,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab1:AddButton({Name="Cheesy UI",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Cheesy-Ui.lua"))();
 	end});
-	Tab1:AddButton({Name="Btool Cute",Callback=function()
+	Tab1:AddButton({Name="F3X",Callback=function()
 		loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)();
 	end});
 	Tab1:AddButton({Name="Dex V2",Callback=function()
@@ -366,7 +370,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab1:AddButton({Name="Dex V3",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))();
 	end});
-	Tab1:AddButton({Name="TP gui player",Callback=function()
+	Tab1:AddButton({Name="TP Gui",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/TP_Player.lua"))();
 	end});
 	Tab1:AddButton({Name="Turies Spy",Callback=function()
@@ -395,7 +399,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab3:AddButton({Name="Reset Player",Callback=function()
 		game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character, false);
 	end});
-	Tab3:AddButton({Name="Get Glove Kinetic",Callback=function()
+	Tab3:AddButton({Name="Get Kinetic Glove",Callback=function()
 		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Stun") then
 			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
 			for i = 1, 100 do
@@ -417,13 +421,13 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 				wait(0.25);
 				game.ReplicatedStorage.StunR:FireServer(game.Players.LocalPlayer.Character.Stun);
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
-				wait(9.9);
+				wait(10.3);
 			until game.Players.LocalPlayer.Character:FindFirstChild("EMPStunBadgeCounter") and (game.Players.LocalPlayer.Character.EMPStunBadgeCounter.Value >= 50) 
 		else
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Stun equipped",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
-	Tab3:AddButton({Name="Get Chain [ Needs 1k slaps ]",Callback=function()
+	Tab3:AddButton({Name="Get Chain Glove",Callback=function()
 		if (game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000) then
 			local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport);
 			if teleportFunc then
@@ -604,6 +608,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
     ]]);
 			end
 			game:GetService("TeleportService"):Teleport(9431156611);
+		else
+			OrionLib:MakeNotification({Name="Error",Content="You don't have 1000 slaps",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
 	Tab3:AddButton({Name="Get Elude Glove",Callback=function()
@@ -644,21 +650,21 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760907)) then
 			fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector);
 		else
-			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You already own 'court evidence' badge.",Image="rbxassetid://7733658504",Time=5});
 		end
 
 		-- The Lone Orange
 		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2128220957)) then
 			fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector);
 		else
-			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You already own 'The Lone Orange' badge.",Image="rbxassetid://7733658504",Time=5});
 		end
 
 		-- duck
 		if (not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2124760916)) then
 			fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector);
 		else
-			OrionLib:MakeNotification({Name="Error",Content="You already own this badge.",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You already own 'duck' badge.",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
 	Tab3:AddButton({Name="Get Hallow Jack",Callback=function()
@@ -1621,7 +1627,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			TournamentAntiVoid.Transparency = 1;
 		end
 	end});
-	AntiPortal = Tab2:AddToggle({Name="Anti Portal",Default=false,Callback=function(Value)
+	AntiPortal1 = Tab2:AddToggle({Name="Anti Portal",Default=false,Callback=function(Value)
 		AntiPortal = Value;
 		if (AntiPortal == true) then
 			workspace.Lobby.Teleport2.CanTouch = false;
@@ -1696,7 +1702,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end
 	end});
-	AntiObby = Tab2:AddToggle({Name="Anti Obby",Default=false,Callback=function(Value)
+	AntiObby1 = Tab2:AddToggle({Name="Anti Obby",Default=false,Callback=function(Value)
 		AntiObby = Value;
 		if (AntiObby == false) then
 			for _, v in pairs(game.Workspace:GetChildren()) do
@@ -1714,7 +1720,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiRock = Tab2:AddToggle({Name="Anti Megarock / Custom",Default=false,Callback=function(Value)
+	AntiRock1 = Tab2:AddToggle({Name="Anti Megarock / Custom",Default=false,Callback=function(Value)
 		AntiRock = Value;
 		while AntiRock do
 			for i, v in pairs(game.Workspace:GetDescendants()) do
@@ -1726,7 +1732,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiBus = Tab2:AddToggle({Name="Anti Bus",Default=false,Callback=function(Value)
+	AntiBus1 = Tab2:AddToggle({Name="Anti Bus",Default=false,Callback=function(Value)
 		AntiBus = Value;
 		while AntiBus do
 			for i, v in pairs(game.Workspace:GetChildren()) do
@@ -1737,7 +1743,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiMail = Tab2:AddToggle({Name="Anti Mail",Default=false,Callback=function(Value)
+	AntiMail1 = Tab2:AddToggle({Name="Anti Mail",Default=false,Callback=function(Value)
 		game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Value;
 		AntiMail = Value;
 		while AntiMail do
@@ -1780,7 +1786,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		if (Value == true) then
 			game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting;
 		else
-			game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener;
+			game.Lighting.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener;
 		end
 	end});
 	AntiTime = Tab2:AddToggle({Name="Anti Time Stop",Default=false,Callback=function(Value)
@@ -1794,7 +1800,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiNull = Tab2:AddToggle({Name="Anti Null",Default=false,Callback=function(Value)
+	AntiNull1 = Tab2:AddToggle({Name="Anti Null",Default=false,Callback=function(Value)
 		AntiNull = Value;
 		while AntiNull do
 			for i, v in pairs(game.Workspace:GetChildren()) do
@@ -1818,7 +1824,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiRecord = Tab2:AddToggle({Name="Anti Record",Default=false,Callback=function(Value)
+	AntiRecord1 = Tab2:AddToggle({Name="Anti Record",Default=false,Callback=function(Value)
 		AntiRecord = Value;
 	end});
 	for i, p in pairs(game.Players:GetChildren()) do
@@ -1876,7 +1882,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiReaper = Tab2:AddToggle({Name="Anti Reaper",Default=false,Callback=function(Value)
+	AntiReaper1 = Tab2:AddToggle({Name="Anti Reaper",Default=false,Callback=function(Value)
 		AntiReaper = Value;
 		while AntiReaper do
 			for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
@@ -1888,7 +1894,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiPusher = Tab2:AddToggle({Name="Anti Pusher",Default=false,Callback=function(Value)
+	AntiPusher1 = Tab2:AddToggle({Name="Anti Pusher",Default=false,Callback=function(Value)
 		AntiPusher = Value;
 		while AntiPusher do
 			for i, v in pairs(game.Workspace:GetChildren()) do
@@ -1930,7 +1936,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiStun = Tab2:AddToggle({Name="Anti Stun",Default=false,Callback=function(Value)
+	AntiStun1 = Tab2:AddToggle({Name="Anti Stun",Default=false,Callback=function(Value)
 		AntiStun = Value;
 		while AntiStun do
 			if ((game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil) and game.Workspace:FindFirstChild("Shockwave") and (game.Players.LocalPlayer.Character.Ragdolled.Value == false)) then
@@ -1987,7 +1993,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end);
 	end});
-	AntiRagdoll = Tab2:AddToggle({Name="Anti Ragdoll",Default=false,Callback=function(Value)
+	AntiRagdoll1 = Tab2:AddToggle({Name="Anti Ragdoll",Default=false,Callback=function(Value)
 		AntiRagdoll = Value;
 		if AntiRagdoll then
 			game.Players.LocalPlayer.Character.Humanoid.Health = 0;
@@ -2605,7 +2611,7 @@ game:GetService("GuiService"):ClearError()
 		AntiVoidTourn:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiPortal:Set(game.Workspace.Value.Value);
+		AntiPortal1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiAdmin:Set(game.Workspace.Value.Value);
@@ -2614,16 +2620,16 @@ game:GetService("GuiService"):ClearError()
 		AntiAfk:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiObby:Set(game.Workspace.Value.Value);
+		AntiObby1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRock:Set(game.Workspace.Value.Value);
+		AntiRock1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiBus:Set(game.Workspace.Value.Value);
+		AntiBus1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiMail:Set(game.Workspace.Value.Value);
+		AntiMail1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiJack:Set(game.Workspace.Value.Value);
@@ -2644,13 +2650,13 @@ game:GetService("GuiService"):ClearError()
 		AntiTime:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiNull:Set(game.Workspace.Value.Value);
+		AntiNull1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiBrick:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRecord:Set(game.Workspace.Value.Value);
+		AntiRecord1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiReda:Set(game.Workspace.Value.Value);
@@ -2662,10 +2668,10 @@ game:GetService("GuiService"):ClearError()
 		AntiZa:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiReaper:Set(game.Workspace.Value.Value);
+		AntiReaper1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiPusher:Set(game.Workspace.Value.Value);
+		AntiPusher1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiDefend:Set(game.Workspace.Value.Value);
@@ -2674,7 +2680,7 @@ game:GetService("GuiService"):ClearError()
 		AntiBubble:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiStun:Set(game.Workspace.Value.Value);
+		AntiStun1:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiCOD:Set(game.Workspace.Value.Value);
@@ -2686,7 +2692,7 @@ game:GetService("GuiService"):ClearError()
 		AntiName:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRagdoll:Set(game.Workspace.Value.Value);
+		AntiRagdoll1:Set(game.Workspace.Value.Value);
 	end);
 elseif (game.PlaceId == 11828384869) then
 	local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))();
