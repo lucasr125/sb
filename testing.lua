@@ -313,13 +313,14 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab:AddToggle({Name="Autofarm Candy",Default=false,Callback=function(Value)
 		CandyCornsFarm = Value;
 		while CandyCornsFarm do
-			for i, v in pairs(game:GetService("Workspace"):WaitForChild("CandyCorns"):GetChildren()) do
-				if v:FindFirstChildWhichIsA("TouchTransmitter") then
-					v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-					firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 1);
-					firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 0);
-				end
-			end
+			spawn(function()
+				for i, v in pairs(game:GetService("Workspace"):WaitForChild("CandyCorns"):GetChildren()) do
+					if v:FindFirstChildWhichIsA("TouchTransmitter") then
+						v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+						firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 1);
+						firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 0);
+					end
+				end)
 			task.wait();
 		end
 	end});
