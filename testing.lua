@@ -289,10 +289,10 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab:AddButton({Name="Keyboard [ PE ]",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))();
 	end});
-	Tab:AddButton({Name="Rejoin game [ PE ]",Callback=function()
+	Tab:AddButton({Name="Rejoin Game [ PE ]",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Rejoin.lua"))();
 	end});
-	Tab:AddButton({Name="inf yield [ PE ]",Callback=function()
+	Tab:AddButton({Name="Infinite Yield [ PE ]",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
 	end});
 	Tab:AddButton({Name="Hitbox [ PE ]",Callback=function()
@@ -303,8 +303,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		while SlappleFarm do
 			for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
 				if (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and (v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0);
 					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1);
+					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0);
 				end
 			end
 			task.wait();
@@ -316,6 +316,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 			for i, v in pairs(game:GetService("Workspace"):WaitForChild("CandyCorns"):GetChildren()) do
 				if v:FindFirstChildWhichIsA("TouchTransmitter") then
 					v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+					firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 1);
+					firetouchinterest(v, LocalPlr.Character.HumanoidRootPart, 0);
 				end
 			end
 			task.wait();
