@@ -5,7 +5,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-local GameImage = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).IconImageAssetId)
+local GameImage = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).IconImageAssetId
 print(GameImage)
 
 local OrionLib = {
