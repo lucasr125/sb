@@ -31,7 +31,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		setfpscap(12569);
 	end
 	local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))();
-	function PlrGlove()
+	function getGlove()
 		return LocalPlr.leaderstats.Glove.Value
 	end
 	function SpamBaller()
