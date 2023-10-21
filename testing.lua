@@ -704,7 +704,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	Tab3:AddButton({Name="Get Hallow Jack",Callback=function()
-		if (workspace:FindFirstChild("Gravestone") and (game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text == "10")) then
+		if (workspace:FindFirstChild("Gravestone") and (game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills")) and(game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text == "10")) then
 			for i, v in pairs(workspace.Gravestone:GetDescendants()) do
 				if v:IsA("ClickDetector") then
 					fireclickdetector(v);
@@ -712,7 +712,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		else
 			OrionLib:MakeNotification({Name="Error",Content="Server Not Spawn Tomb Hallow and Glove Killstreak and 10 kill",Image="rbxassetid://7733658504",Time=2});
-			OrionLib:MakeNotification({Name="Error",Content=" ONLY OBTAINABLE DURING HALLOWEEN",Image="rbxassetid://7733658504",Time=2});
+			OrionLib:MakeNotification({Name="Error",Content="ONLY OBTAINABLE DURING HALLOWEEN",Image="rbxassetid://7733658504",Time=2});
 		end
 	end});
 	Tab3:AddButton({Name="Get Hammer",Callback=function()
@@ -1417,7 +1417,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") then
 			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
 			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
-			wait(4.2);
+			wait(3.05);
 			local players = game.Players:GetChildren();
 			local RandomPlayer = players[math.random(1, #players)];
 			repeat
@@ -1457,7 +1457,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			wait(0.1);
 		end
 	end});
-	Tab7:AddButton({Name="Infinite Invisibility [ All Glove ]",Callback=function()
+	Tab7:AddButton({Name="Infinite Invisibility",Callback=function()
 		if ((game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) and (game.Players.LocalPlayer.leaderstats.Slaps.Value >= 666)) then
 			OGlove = game.Players.LocalPlayer.leaderstats.Glove.Value;
 			fireclickdetector(workspace.Lobby.Ghost.ClickDetector);
@@ -1477,7 +1477,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	Tab7:AddSlider({Name="Reach Slap Arua",Min=10,Max=50,Default=25,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="Reach",Callback=function(Value)
 		_G.ReachSlapArua = Value;
 	end});
-	Tab7:AddToggle({Name="Slap Aura [ All Glove ]",Default=false,Callback=function(Value)
+	Tab7:AddToggle({Name="Slap Aura",Default=false,Callback=function(Value)
 		SlapAura = Value;
 		while SlapAura do
 			for i, v in pairs(game.Players:GetChildren()) do
@@ -1495,6 +1495,29 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
+	Tab7:AddSlider({Name = "Reach HitBox",Min = 10,Max = 20,Default = 20,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "Reach",Callback = function(Value)
+		_G.ReachHitbox = Value
+	end})
+	Tab7:AddToggle({Name = "Hitbox Player",Default = false,Callback = function(Value)
+		_G.HitboxPlayer = Value
+		if (_G.HitboxPlayer == false) then
+			for i,v in pairs(game.Players:GetChildren()) do
+				if v ~= game.Players.LocalPlayer then
+					v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
+					v.Character.HumanoidRootPart.Transparency = 1
+				end
+			end
+		end
+		while _G.HitboxPlayer do
+			for i,v in pairs(game.Players:GetChildren()) do
+				if v ~= game.Players.LocalPlayer then
+					v.Character.HumanoidRootPart.Size = Vector3.new(_G.ReachHitbox,_G.ReachHitbox,_G.ReachHitbox)
+					v.Character.HumanoidRootPart.Transparency = 0.75
+				end
+			end
+			task.wait()
+		end
+	end})
 	Tab7:AddSlider({Name="Reach Shukuchi",Min=1,Max=130,Default=50,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="Reach",Callback=function(Value)
 		_G.ReachShukuchi = Value;
 	end});
@@ -2266,7 +2289,7 @@ game:GetService("GuiService"):ClearError()
 		while On and (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") do
 			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
 			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
-			wait(2);
+			wait(4.1);
 		end
 		while On and (game.Players.LocalPlayer.leaderstats.Glove.Value == "🗿") do
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(CFrame.new(math.random(-70, 63), -5.72293854, math.random(-90, 93), 0.151493087, -8.891147e-8, 0.988458335, 1.4508956e-9, 1, 8.972727e-8, -0.988458335, -1.2158912e-8, 0.151493087));
