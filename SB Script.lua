@@ -12,6 +12,11 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		-- Main:
 		AutoFarmSlapple = false,
 		AutoFarmCandy = false,
+    AutoGetAlchemistIngredients = false,
+    AlchemistItem = "Jade Stone",
+    AlchemistAmount = 5,
+    PotionSelect = "grug",
+    PotionAmount = 1,
 		-- Antis:
 		AntiAdmin = false,
 		AntiKick = false,
@@ -349,6 +354,113 @@ do
         end
       end});
       GetAlchemist:ToolTip("It will get the Alchemist glove for you.");
+        local AlchemistItemSelect = HomeSection:Dropdown({Name="Select Alchemist Item",Flag="AlchemistItemSelect",Side="Left",List={{Name="Jade Stone",Mode="Button",Value=true,Callback=function(Selected)
+          getgenv().settings.AlchemistItem = "Jade Stone";
+        end},{Name="Elder Wood",Mode="Button",Value=false,Callback=function(Selected)
+                  getgenv().settings.AlchemistItem = "Elder Wood";
+        end},{Name="Hazel Lily",Mode="Button",Value=false,Callback=function(Selected)
+                  getgenv().settings.AlchemistItem = "Hazel Lily";
+        end},{Name="Plane Flower",Mode="Button",Value=false,Callback=function(Selected)
+                  getgenv().settings.AlchemistItem = "Plane Flower";
+        end},{Name="Winter Rose",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Winter Rose";
+            end},{Name="Mushroom",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Mushroom";
+            end},{Name="Blood Rose",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Blood Rose";
+            end},{Name="Red Crystal",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Red Crystal";
+            end},{Name="Blue Crystal",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Blue Crystal";
+            end},{Name="Fire Flower",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Fire Flower";
+            end},{Name="Autumn Sprout",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Autumn Sprout";
+            end},{Name="Dire Flower",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Dire Flower";
+            end},{Name="Glowing Mushroom",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Glowing Mushroom";
+            end},{Name="Lamp Grass",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Lamp Grass";
+            end},{Name="Dark Root",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Dark Root";
+            end},{Name="Wild Vine",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "Wild Vine";
+            end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
+                        getgenv().settings.AlchemistItem = "All";
+            end}}});
+        local AlchemistAmount = HomeSection:Slider({Name="Amount to Give Items",Flag="AlchemistAmount",Side="Left",Min=1,Max=50,Value=5,Precise=0,Unit="",Callback=function(Value_Number)
+          getgenv().settings.AlchemistAmount = Value_Number;
+        end});
+        local GiveAlchemistItem = HomeSection:Button({Name="Give Alchemist Item",Side="Left",Callback=function()
+              if getGlove() == "Alchemist" then
+              if not (getgenv().settings.AlchemistItem == "All") then
+              for i = 1, getgenv().settings.AlchemistAmount do
+              game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", getgenv().settings.AlchemistItem)
+              end
+              else
+                for i = 1, getgenv().settings.AlchemistAmount do
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Jade Stone")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Elder Wood")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Hazel Lily")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Plane Flower")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Winter Rose")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Mushroom")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blood Rose")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Red Crystal")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blue Crystal")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Fire Flower")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Autumn Sprout")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dire Flower")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Glowing Mushroom")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Lamp Grass")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dark Root")
+                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Wild Vine")
+                end
+              end
+              end
+        end});
+        local PotionSelect = HomeSection:Dropdown({Name="Select Potion",Flag="PotionSelect",Side="Left",List={{Name="grug",Mode="Button",Value=true,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "grug";
+            end},{Name="Nightmare",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Nightmare";
+            end},{Name="Confusion",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Confusion";
+            end},{Name="Power",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Power";
+            end},{Name="Paralyzing",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Paralyzing";
+            end},{Name="Haste",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Haste";
+            end},{Name="Invisibility",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Invisibility";
+            end},{Name="Expotion",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Expotion";
+            end},{Name="Invencible",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Invencible";
+            end},{Name="Toxic",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Toxic";
+            end},{Name="Freeze",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Freeze";
+            end},{Name="Feather",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Feather";
+            end},{Name="Speed",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Speed";
+            end},{Name="Lethal",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Lethal";
+            end},{Name="Slow",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "Slow";
+            end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
+              getgenv().settings.PotionSelect = "All";
+            end},}});
+        local PotionAmount = HomeSection:Slider({Name="Amount to Make Potion",Flag="PotionAmount",Side="Left",Min=1,Max=4,Value=1,Precise=0,Unit="",Callback=function(Value_Number)
+          getgenv().settings.PotionAmount = Value_Number;
+        end});
+        local MakePotion = HomeSection:Button({Name="Make Potion",Side="Left",Callback=function()
+              if getGlove() == "Alchemist" then
+              
+              end
+        end});
     end
     local OthersSection = HomeTab:Section({Name="Others",Side="Right"});
     do
@@ -1945,6 +2057,7 @@ do
         end
       end});
     end
+  end
   end
 	print(getGlove())
 	game:GetService("RunService").RenderStepped:Connect(function()
