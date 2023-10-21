@@ -50,6 +50,7 @@ shared.gloveHits = {
 	["Necromancer"] = game.ReplicatedStorage.GeneralHit,
 	["Zombie"] = game.ReplicatedStorage.GeneralHit,
 	["Dual"] = game.ReplicatedStorage.GeneralHit,
+	["Alchemist"] = game.ReplicatedStorage.GeneralHit,
 
 	----------------------------------------
 
