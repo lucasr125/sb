@@ -1,3 +1,23 @@
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Jade Stone")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Elder Wood")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Hazel Lily")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Plane Flower")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Winter Rose")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Mushroom")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blood Rose")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Red Crystal")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blue Crystal")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Fire Flower")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Autumn Sprout")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dire Flower")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Glowing Mushroom")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Lamp Grass")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dark Root")
+game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Wild Vine")
+-- give items
+
+
+
 -- Equip item
 game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom")
 -- Add item
