@@ -31,6 +31,9 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		setfpscap(12569);
 	end
 	local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))();
+	function PlrGlove()
+		return LocalPlr.leaderstats.Glove.Value
+	end
 	function SpamBaller()
 		while BallerFarm do
 			game:GetService("ReplicatedStorage").GeneralAbility:FireServer();
@@ -468,7 +471,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 			local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport);
 			if teleportFunc then
 				teleportFunc([[
-				        if not game:IsLoaded() then
+					if not game:IsLoaded() then
 						game.Loaded:Wait()
 					end
 					repeat wait() until game.Players.LocalPlayer
@@ -652,15 +655,24 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport);
 		if teleportFunc then
 			teleportFunc([[
-        if not game:IsLoaded() then
-            game.Loaded:Wait()
-        end
-        repeat wait() until game.Players.LocalPlayer
-        game:GetService("RunService").RenderStepped:Connect(function()
-           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-502.336, 14.228, -179.597)
-        end)
-game:GetService("TeleportService"):Teleport(6403373529)
-    ]]);
+				if not game:IsLoaded() then
+					game.Loaded:Wait()
+				end
+				repeat wait() until game.Players.LocalPlayer
+				for i, v in pairs(game.Workspace:GetDescendants()) do
+					if v.ClassName == "TouchTransmitter" and not v.Parent.Name == "Glove" then
+						firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+						firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+					end
+				end
+				wait(0.05)
+				for i, v in pairs(game.Workspace:GetDescendants()) do
+					if v.ClassName == "TouchTransmitter" and v.Parent.Name == "Glove" then
+						firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+						firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+					end
+				end
+				game:GetService("TeleportService"):Teleport(6403373529)]]);
 		end
 		game:GetService("TeleportService"):Teleport(11828384869);
 	end});
@@ -712,7 +724,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		else
 			OrionLib:MakeNotification({Name="Error",Content="Server Not Spawn Tomb Hallow and Glove Killstreak and 10 kill",Image="rbxassetid://7733658504",Time=2});
-			OrionLib:MakeNotification({Name="Error",Content="ONLY OBTAINABLE DURING HALLOWEEN",Image="rbxassetid://7733658504",Time=2});
+			--OrionLib:MakeNotification({Name="Error",Content="ONLY OBTAINABLE DURING HALLOWEEN",Image="rbxassetid://7733658504",Time=2});
 		end
 	end});
 	Tab3:AddButton({Name="Get Hammer",Callback=function()
@@ -723,7 +735,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 				end
 			end
 		else
-			OrionLib:MakeNotification({Name="Error",Content="People not the spawn toolbox ☹️",Image="rbxassetid://7733658504",Time=2});
+			OrionLib:MakeNotification({Name="Error",Content="Theres no toolbox available",Image="rbxassetid://7733658504",Time=2});
 		end
 	end});
 	Tab5:AddSlider({Name="WalkSpeed",Min=20,Max=1000,Default=20,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="WalkSpeed",Callback=function(Value)
@@ -766,20 +778,25 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	Tab4:AddToggle({Name="Get Megarock",Default=false,Callback=function(Value)
-		_G.TimeMegarock = Value;
-		if (Value == true) then
-			if (game.Players.LocalPlayer.Character:FindFirstChild("entered") and (game.Players.LocalPlayer.leaderstats.Glove.Value == "Diamond")) then
-				game:GetService("ReplicatedStorage"):WaitForChild("Rockmode"):FireServer();
-			end
-			task.wait(0.05);
-			while _G.TimeMegarock do
-				task.wait(1);
-				if ((game.Players.LocalPlayer.leaderstats.Glove.Value == "Diamond") and game.Players.LocalPlayer.Character:FindFirstChild("rock")) then
-					TimeMegarock = TimeMegarock + 1;
-					OrionLib:MakeNotification({Name=("Time Diamond [ " .. TimeMegarock .. " ]"),Content="Error",Image="rbxassetid://7743873443",Time=0.5});
+		_G.GetMegaRock
+		if _G.GetMegaRock == true then
+			if LocalPlr.Character:FindFirstChild("entered") then
+				if getGlove() == "Diamond" then
+					game:GetService("ReplicatedStorage"):WaitForChild("Rockmode"):FireServer();
 				else
-					TimeMegarock = 0;
+					OrionLib:MakeNotification({Name="Error",Content="You don't have Diamond glove equipped",Image="rbxassetid://7743873443",Time=2});
 				end
+				while _G.GetMegaRock do
+					task.wait(1)
+					if ((getGlove() == "Diamond") and LocalPlr.Character:FindFirstChild("rock")) then
+						TimeMegarock += 1;
+						OrionLib:MakeNotification({Name="Time",Content=("Diamond time: "..TimeMegarock.."s"),Image="rbxassetid://7743873443",Time=1.35});
+					else
+						TimeMegarock = 0
+					end
+				end
+			else
+				OrionLib:MakeNotification({Name="Error",Content="You don't have joined in arena",Image="rbxassetid://7743873443",Time=2});
 			end
 		end
 	end});
