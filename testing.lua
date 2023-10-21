@@ -1814,7 +1814,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiJack = Tab2:AddToggle({Name="Anti Hallow - Jack",Default=false,Callback=function(Value)
+	AntiJack = Tab2:AddToggle({Name="Anti Hallow Jack",Default=false,Callback=function(Value)
 		game.Players.LocalPlayer.PlayerScripts.HallowJackAbilities.Disabled = Value;
 	end});
 	AntiBooster = Tab2:AddToggle({Name="Anti Booster",Default=false,Callback=function(Value)
@@ -1846,9 +1846,11 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	AntiNightmare = Tab2:AddToggle({Name="Anti Nightmare",Default=false,Callback=function(Value)
 		_G.AntiNightmare = Value;
 		if (_G.AntiNightmare == true) then
-			game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting;
-		else
-			game.Lighting.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener;
+			if game.Players.LocalPlayer.PlayerScripts.VFXListener:FindFirstChild("NightmareEffect") then
+				game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting;
+			elseif game.Lighting:FindFirstChild("NightmareEffect") then
+				game.Lighting.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener;
+			end
 		end
 	end});
 	AntiTime = Tab2:AddToggle({Name="Anti Time Stop",Default=false,Callback=function(Value)
@@ -2044,7 +2046,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			workspace.AntiDefaultArena.CanTouch = true;
 		end
 	end});
-	AntiName = Tab2:AddToggle({Name=" Auto Remove nametag",Default=false,Callback=function(Value)
+	AntiName = Tab2:AddToggle({Name=" Auto Remove Nametag",Default=false,Callback=function(Value)
 		_G.AutoRemoveNameTag = Value;
 		if (_G.AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag", true)) then
 			game.Players.LocalPlayer.Character.Head.Nametag:Destroy();
