@@ -704,7 +704,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	Tab3:AddButton({Name="Get Hallow Jack",Callback=function()
-		if (workspace:FindFirstChild("Gravestone") and (game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills")) and(game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text == "10")) then
+		if (workspace:FindFirstChild("Gravestone") and (game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills")) and (game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text == "10")) then
 			for i, v in pairs(workspace.Gravestone:GetDescendants()) do
 				if v:IsA("ClickDetector") then
 					fireclickdetector(v);
