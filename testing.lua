@@ -24,7 +24,8 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	end);
 
 	-- Times
-	TimeGhost = 0;
+	TimeFish = 0;
+	TimeVoodoo = 0;
 	TimeMegarock = 0;
 
 	if setfpscap then
@@ -777,8 +778,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	Tab4:AddToggle({Name="Get Megarock",Default=false,Callback=function(Value)
-		_G.GetMegaRock
+	Tab4:AddToggle({Name="Get Megarock V2",Default=false,Callback=function(Value)
+		_G.GetMegaRock = Value;
 		if _G.GetMegaRock == true then
 			if LocalPlr.Character:FindFirstChild("entered") then
 				if getGlove() == "Diamond" then
@@ -790,9 +791,60 @@ game:GetService("TeleportService"):Teleport(6403373529)
 					task.wait(1)
 					if ((getGlove() == "Diamond") and LocalPlr.Character:FindFirstChild("rock")) then
 						TimeMegarock += 1;
-						OrionLib:MakeNotification({Name="Time",Content=("Diamond time: "..TimeMegarock.."s"),Image="rbxassetid://7743873443",Time=1.35});
+						OrionLib:MakeNotification({Name="Time",Content=("Diamond time: "..TimeMegarock.."s, time left: "..(36000 - TimeMegarock).."s"),Image="rbxassetid://7743873443",Time=1.35});
 					else
 						TimeMegarock = 0
+						game:GetService("ReplicatedStorage"):WaitForChild("Rockmode"):FireServer();
+					end
+				end
+			else
+				OrionLib:MakeNotification({Name="Error",Content="You don't have joined in arena",Image="rbxassetid://7743873443",Time=2});
+			end
+		end
+	end});
+	Tab4:AddToggle({Name="Get Fish V2",Default=false,Callback=function(Value)
+		_G.GetFish = Value;
+		if _G.GetFish == true then
+			if LocalPlr.Character:FindFirstChild("entered") then
+				if getGlove() == "ZZZZZZZ" then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
+					game:GetService("ReplicatedStorage").ZZZZZZZSleep:FireServer();
+				else
+					OrionLib:MakeNotification({Name="Error",Content="You don't have ZZZZZZZ glove equipped",Image="rbxassetid://7743873443",Time=2});
+				end
+				while _G.GetFish do
+					task.wait(1)
+					if ((getGlove() == "ZZZZZZZ") and LocalPlr.Character:FindFirstChild("Ragdolled").Value == true) then
+						TimeFish += 1;
+						OrionLib:MakeNotification({Name="Time",Content=("ZZZZZZZ time: "..TimeFish.."s, time left: "..(3600 - TimeFish).."s"),Image="rbxassetid://7743873443",Time=1.35});
+					else
+						TimeFish = 0
+						game:GetService("ReplicatedStorage").ZZZZZZZSleep:FireServer();
+					end
+				end
+			else
+				OrionLib:MakeNotification({Name="Error",Content="You don't have joined in arena",Image="rbxassetid://7743873443",Time=2});
+			end
+		end
+	end});
+	Tab4:AddToggle({Name="Get Voodoo V2",Default=false,Callback=function(Value)
+		_G.GetVoodoo = Value;
+		if _G.GetVoodoo == true then
+			if LocalPlr.Character:FindFirstChild("entered") then
+				if getGlove() == "Ghost" then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
+					game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer();
+				else
+					OrionLib:MakeNotification({Name="Error",Content="You don't have Ghost glove equipped",Image="rbxassetid://7743873443",Time=2});
+				end
+				while _G.GetVoodoo do
+					task.wait(1)
+					if ((getGlove() == "Ghost")) then
+						TimeVoodoo += 1;
+						OrionLib:MakeNotification({Name="Time",Content=("Ghost time: "..TimeVoodoo.."s, time left: "..(3600 - TimeVoodoo).."s"),Image="rbxassetid://7743873443",Time=1.35});
+					else
+						TimeVoodoo = 0
+						game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer();
 					end
 				end
 			else
@@ -835,48 +887,6 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Replica equipped",Image="rbxassetid://7733658504",Time=5});
 			wait(0.05);
 			FarmBob:Set(false);
-		end
-	end});
-	Tab4:AddToggle({Name="Get Fish",Default=false,Callback=function(Value)
-		_G.FishFarm = Value;
-		if (Value == true) then
-			if (game.Players.LocalPlayer.Character:FindFirstChild("entered") and (game.Players.LocalPlayer.leaderstats.Glove.Value == "ZZZZZZZ")) then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
-				game:GetService("ReplicatedStorage").ZZZZZZZSleep:FireServer();
-			else
-				OrionLib:MakeNotification({Name="Error",Image="rbxassetid://7733658504",Content="You Have Equipped Glove Sleep and Enter Arena",Time=5});
-			end
-			task.wait();
-			while _G.FishFarm and task.wait() do
-				if ((game.Players.LocalPlayer.leaderstats.Glove.Value == "ZZZZZZZ") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and (game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled").Value == true)) then
-					task.wait(1);
-					SleepTime += 1
-					OrionLib:MakeNotification({Name="Error",Image="rbxassetid://7743873443",Content=("You Have Been Sleep For: " .. Time .. " Second. You Have: " .. (3600 - Time) .. " Second Left"),Time=0.5});
-				else
-					SleepTime = 0;
-				end
-			end
-		end
-	end});
-	Tab4:AddToggle({Name="Get Voodoo",Default=false,Callback=function(Value)
-		_G.AutoTimeGhost = Value;
-		if (Value == true) then
-			if (game.Players.LocalPlayer.Character:FindFirstChild("entered") and (game.Players.LocalPlayer.leaderstats.Glove.Value == "Ghost")) then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
-				game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer();
-			else
-				OrionLib:MakeNotification({Name="Error",Image="rbxassetid://7733658504",Content="You Have Equipped Glove Ghost and Enter Arena",Time=5});
-			end
-		end
-		task.wait(0.05);
-		while _G.AutoTimeGhost do
-			task.wait(1);
-			if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Ghost") then
-				TimeGhost = TimeGhost + 1;
-				OrionLib:MakeNotification({Name=("Time Ghost [ " .. TimeGhost .. " ]"),Content="Error",Image="rbxassetid://7743873443",Time=0.5});
-			else
-				TimeGhost = 0;
-			end
 		end
 	end});
 	ReplicaAndBallerFarm = Tab3:AddToggle({Name="Replica & Baller Slap Farm",Default=false,Callback=function(Value)
