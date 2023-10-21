@@ -13,10 +13,10 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
 		AutoFarmSlapple = false,
 		AutoFarmCandy = false,
     AutoGetAlchemistIngredients = false,
-    AlchemistItem = "Jade Stone",
-    AlchemistAmount = 5,
-    PotionSelect = "grug",
-    PotionAmount = 1,
+		AlchemistItem = "Jade Stone",
+		AlchemistAmount = 5,
+		PotionSelect = "grug",
+		PotionAmount = 1,
 		-- Antis:
 		AntiAdmin = false,
 		AntiKick = false,
@@ -318,149 +318,467 @@ do
       end});
       GetHallowJack:ToolTip("If you click on the button you will get hallow jack, you need killstreak glove and atleast 10 kills");
       local GetAlchemist = HomeSection:Button({Name="Get Alchemist",Side="Left",Callback=function()
-        if ((getGlove() == "Plague") and (#game.Players:GetChildren() >= 10)) then
-          OHC = LocalPlayer.Character.HumanoidRootPart.CFrame;
-          task.wait();
-          repeat
-            local players = game.Players:GetChildren();
-            local RandomPlayer = players[math.random(1, #players)];
-            repeat
-              RandomPlayer = players[math.random(1, #players)];
-            until RandomPlayer ~= LocalPlayer 
-            repeat
-              RandomPlayer = players[math.random(1, #players)];
-            until RandomPlayer.Character:FindFirstChild("entered") and (RandomPlayer.Character:FindFirstChild("rock") == nil) and (RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil) 
-            Target = RandomPlayer;
-            LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame;
-            wait(0.05);
-            for i, v in pairs(game.Players:GetChildren()) do
-              if ((v ~= LocalPlayer) and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and v.Character) then
-                if (v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("HumanoidRootPart") and (v.Character:FindFirstChild("rock") == nil) and (v.Character.HumanoidRootPart.BrickColor ~= BrickColor.new("New Yeller"))) then
-                  if (v.Character.Head:FindFirstChild("UnoReverseCard") == nil) then
-                    Magnitude = (LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude;
-                    if (25 >= Magnitude) then
-                      game.ReplicatedStorage.PlagueHit:FireServer(v.Character:WaitForChild("HumanoidRootPart"));
+		if ((getGlove() == "Plague") and (#game.Players:GetChildren() >= 10)) then
+						OHC = LocalPlayer.Character.HumanoidRootPart.CFrame;
+						task.wait();
+						repeat
+							local players = game.Players:GetChildren();
+							local RandomPlayer = players[math.random(1, #players)];
+							repeat
+								RandomPlayer = players[math.random(1, #players)];
+							until RandomPlayer ~= LocalPlayer 
+							repeat
+								RandomPlayer = players[math.random(1, #players)];
+							until RandomPlayer.Character:FindFirstChild("entered") and (RandomPlayer.Character:FindFirstChild("rock") == nil) and (RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil) 
+							Target = RandomPlayer;
+							LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame;
+							wait(0.05);
+							for i, v in pairs(game.Players:GetChildren()) do
+								if ((v ~= LocalPlayer) and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and v.Character) then
+									if (v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("HumanoidRootPart") and (v.Character:FindFirstChild("rock") == nil) and (v.Character.HumanoidRootPart.BrickColor ~= BrickColor.new("New Yeller"))) then
+										if (v.Character.Head:FindFirstChild("UnoReverseCard") == nil) then
+											Magnitude = (LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude;
+											if (25 >= Magnitude) then
+												game.ReplicatedStorage.PlagueHit:FireServer(v.Character:WaitForChild("HumanoidRootPart"));
+											end
+										end
+									end
+								end
+							end
+							task.wait(0.05);
+							LocalPlayer.Character.HumanoidRootPart.CFrame = OHC;
+							task.wait();
+						until game:GetService("BadgeService"):UserHasBadgeAsync(LocalPlayer.UserId, 2153473254) 
+					else
+						Bracket:Notification({Title="Error",Description="You don't have Plague glove equipped or the server don't have 10 players.",Duration=10});
+					end
+				end});
+				GetAlchemist:ToolTip("It will get the Alchemist glove for you.");
+        local GetAlchemistIngredients = HomeSection:Toggle({Name="AutoGet Alchemist Ingredients",Flag="GetAlchemistIngredients",Side="Left",Value=false,Callback=function(Toggle_Bool)
+          getgenv().settings.AutoGetAlchemistIngredients = Toggle_Bool;
+          while getgenv().settings.AutoGetAlchemistIngredients do
+            spawn(function()
+                    for i, v in pairs(game.Workspace.Alchemist_Ingredients_:GetDescendants()) do
+                      if v.ClassName == "ClickDetector" then
+                        fireclickdetector(v)
+                      end
                     end
-                  end
-                end
-              end
-            end
-            task.wait(0.05);
-            LocalPlayer.Character.HumanoidRootPart.CFrame = OHC;
+            end);
             task.wait();
-          until game:GetService("BadgeService"):UserHasBadgeAsync(LocalPlayer.UserId, 2153473254) 
-        else
-          Bracket:Notification({Title="Error",Description="You don't have Plague glove equipped or the server don't have 10 players.",Duration=10});
-        end
-      end});
-      GetAlchemist:ToolTip("It will get the Alchemist glove for you.");
-        local AlchemistItemSelect = HomeSection:Dropdown({Name="Select Alchemist Item",Flag="AlchemistItemSelect",Side="Left",List={{Name="Jade Stone",Mode="Button",Value=true,Callback=function(Selected)
-          getgenv().settings.AlchemistItem = "Jade Stone";
-        end},{Name="Elder Wood",Mode="Button",Value=false,Callback=function(Selected)
-                  getgenv().settings.AlchemistItem = "Elder Wood";
-        end},{Name="Hazel Lily",Mode="Button",Value=false,Callback=function(Selected)
-                  getgenv().settings.AlchemistItem = "Hazel Lily";
-        end},{Name="Plane Flower",Mode="Button",Value=false,Callback=function(Selected)
-                  getgenv().settings.AlchemistItem = "Plane Flower";
-        end},{Name="Winter Rose",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Winter Rose";
-            end},{Name="Mushroom",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Mushroom";
-            end},{Name="Blood Rose",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Blood Rose";
-            end},{Name="Red Crystal",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Red Crystal";
-            end},{Name="Blue Crystal",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Blue Crystal";
-            end},{Name="Fire Flower",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Fire Flower";
-            end},{Name="Autumn Sprout",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Autumn Sprout";
-            end},{Name="Dire Flower",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Dire Flower";
-            end},{Name="Glowing Mushroom",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Glowing Mushroom";
-            end},{Name="Lamp Grass",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Lamp Grass";
-            end},{Name="Dark Root",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Dark Root";
-            end},{Name="Wild Vine",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "Wild Vine";
-            end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
-                        getgenv().settings.AlchemistItem = "All";
-            end}}});
-        local AlchemistAmount = HomeSection:Slider({Name="Amount to Give Items",Flag="AlchemistAmount",Side="Left",Min=1,Max=50,Value=5,Precise=0,Unit="",Callback=function(Value_Number)
-          getgenv().settings.AlchemistAmount = Value_Number;
+          end
         end});
-        local GiveAlchemistItem = HomeSection:Button({Name="Give Alchemist Item",Side="Left",Callback=function()
-              if getGlove() == "Alchemist" then
-              if not (getgenv().settings.AlchemistItem == "All") then
-              for i = 1, getgenv().settings.AlchemistAmount do
-              game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", getgenv().settings.AlchemistItem)
-              end
-              else
-                for i = 1, getgenv().settings.AlchemistAmount do
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Jade Stone")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Elder Wood")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Hazel Lily")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Plane Flower")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Winter Rose")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Mushroom")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blood Rose")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Red Crystal")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blue Crystal")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Fire Flower")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Autumn Sprout")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dire Flower")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Glowing Mushroom")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Lamp Grass")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dark Root")
-                  game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Wild Vine")
-                end
-              end
-              end
-        end});
-        local PotionSelect = HomeSection:Dropdown({Name="Select Potion",Flag="PotionSelect",Side="Left",List={{Name="grug",Mode="Button",Value=true,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "grug";
-            end},{Name="Nightmare",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Nightmare";
-            end},{Name="Confusion",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Confusion";
-            end},{Name="Power",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Power";
-            end},{Name="Paralyzing",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Paralyzing";
-            end},{Name="Haste",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Haste";
-            end},{Name="Invisibility",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Invisibility";
-            end},{Name="Expotion",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Expotion";
-            end},{Name="Invencible",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Invencible";
-            end},{Name="Toxic",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Toxic";
-            end},{Name="Freeze",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Freeze";
-            end},{Name="Feather",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Feather";
-            end},{Name="Speed",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Speed";
-            end},{Name="Lethal",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Lethal";
-            end},{Name="Slow",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "Slow";
-            end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
-              getgenv().settings.PotionSelect = "All";
-            end},}});
-        local PotionAmount = HomeSection:Slider({Name="Amount to Make Potion",Flag="PotionAmount",Side="Left",Min=1,Max=4,Value=1,Precise=0,Unit="",Callback=function(Value_Number)
-          getgenv().settings.PotionAmount = Value_Number;
-        end});
-        local MakePotion = HomeSection:Button({Name="Make Potion",Side="Left",Callback=function()
-              if getGlove() == "Alchemist" then
-              
-              end
-        end});
+				local AlchemistItemSelect = HomeSection:Dropdown({Name="Select Alchemist Item",Flag="AlchemistItemSelect",Side="Left",List={{Name="Jade Stone",Mode="Button",Value=true,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Jade Stone";
+				end},{Name="Elder Wood",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Elder Wood";
+				end},{Name="Hazel Lily",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Hazel Lily";
+				end},{Name="Plane Flower",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Plane Flower";
+				end},{Name="Winter Rose",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Winter Rose";
+				end},{Name="Mushroom",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Mushroom";
+				end},{Name="Blood Rose",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Blood Rose";
+				end},{Name="Red Crystal",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Red Crystal";
+				end},{Name="Blue Crystal",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Blue Crystal";
+				end},{Name="Fire Flower",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Fire Flower";
+				end},{Name="Autumn Sprout",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Autumn Sprout";
+				end},{Name="Dire Flower",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Dire Flower";
+				end},{Name="Glowing Mushroom",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Glowing Mushroom";
+				end},{Name="Lamp Grass",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Lamp Grass";
+				end},{Name="Dark Root",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Dark Root";
+				end},{Name="Wild Vine",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "Wild Vine";
+				end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.AlchemistItem = "All";
+				end}}});
+				local AlchemistAmount = HomeSection:Slider({Name="Amount to Give Items",Flag="AlchemistAmount",Side="Left",Min=1,Max=50,Value=5,Precise=0,Unit="",Callback=function(Value_Number)
+					getgenv().settings.AlchemistAmount = Value_Number;
+				end});
+				local GiveAlchemistItem = HomeSection:Button({Name="Give Alchemist Item",Side="Left",Callback=function()
+					if (getGlove() == "Alchemist") then
+						if not (getgenv().settings.AlchemistItem == "All") then
+							for i = 1, getgenv().settings.AlchemistAmount do
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", getgenv().settings.AlchemistItem);
+							end
+						else
+							for i = 1, getgenv().settings.AlchemistAmount do
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Autumn Sprout");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Lamp Grass");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("AddItem", "Wild Vine");
+							end
+						end
+					end
+				end});
+				local PotionSelect = HomeSection:Dropdown({Name="Select Potion",Flag="PotionSelect",Side="Left",List={{Name="grug",Mode="Button",Value=true,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "grug";
+				end},{Name="Nightmare",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Nightmare";
+				end},{Name="Confusion",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Confusion";
+				end},{Name="Power",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Power";
+				end},{Name="Paralyzing",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Paralyzing";
+				end},{Name="Haste",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Haste";
+				end},{Name="Invisibility",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Invisibility";
+				end},{Name="Expotion",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Expotion";
+				end},{Name="Invencible",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Invencible";
+				end},{Name="Toxic",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Toxic";
+				end},{Name="Freeze",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Freeze";
+				end},{Name="Feather",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Feather";
+				end},{Name="Speed",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Speed";
+				end},{Name="Lethal",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Lethal";
+				end},{Name="Slow",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Slow";
+				end},{Name="Antitoxic",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "Antitoxin";
+				end},{Name="All",Mode="Button",Value=false,Callback=function(Selected)
+					getgenv().settings.PotionSelect = "All";
+				end}}});
+				local PotionAmount = HomeSection:Slider({Name="Amount to Make Potion",Flag="PotionAmount",Side="Left",Min=1,Max=4,Value=1,Precise=0,Unit="",Callback=function(Value_Number)
+					getgenv().settings.PotionAmount = Value_Number;
+				end});
+				local MakePotion = HomeSection:Button({Name="Make Potion",Side="Left",Callback=function()
+					if (getGlove() == "Alchemist") then
+						for i = 1, getgenv().settings.PotionAmount do
+							if (getgenv().settings.PotionSelect == "grug") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Nightmare") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Confusion") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Power") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Paralyzing") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Haste") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Autumn Sprout");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Autumn Sprout");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Invisibility") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Expotion") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Invencible") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Toxic") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Freeze") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Feather") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Speed") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Lethal") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							elseif (getgenv().settings.PotionSelect == "Slow") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								elseif (getgenv().settings.PotionSelect == "Antitoxin") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");	
+							elseif (getgenv().settings.PotionSelect == "All") then
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Autumn Sprout");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Autumn Sprout");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Fire Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Elder Wood");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Red Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Winter Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Wild Vine");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Glowing Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Hazel Lily");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blood Rose");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Dark Root");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Mushroom");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Blue Crystal");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Jade Stone");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("EquipItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("MixItem", "Plane Flower");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("BrewPotion");
+								game:GetService("ReplicatedStorage").AlchemistEvent:FireServer("UnEquipItems");
+							end
+						end
+					end
+				end});
     end
     local OthersSection = HomeTab:Section({Name="Others",Side="Right"});
     do
