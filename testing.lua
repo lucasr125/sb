@@ -287,16 +287,16 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 
 	-- Others
 	local Section = Tab:AddSection({Name="Main"});
-	Tab:AddButton({Name="Keyboard [ PE ]",Callback=function()
+	Tab:AddButton({Name="Keyboard",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))();
 	end});
-	Tab:AddButton({Name="Rejoin Game [ PE ]",Callback=function()
+	Tab:AddButton({Name="Rejoin Game",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Rejoin.lua"))();
 	end});
-	Tab:AddButton({Name="Infinite Yield [ PE ]",Callback=function()
+	Tab:AddButton({Name="Infinite Yield",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
 	end});
-	Tab:AddButton({Name="Hitbox [ PE ]",Callback=function()
+	Tab:AddButton({Name="Hitbox",Callback=function()
 		loadstring(game:HttpGet("https://gist.githubusercontent.com/stellar-4242/430ef3087d8d87eb306ca03e728ffbb8/raw/798429dd908b1f4471a1fa569ff62c5e5a93ec61/SLAP.LUA"))();
 	end});
 	Tab:AddToggle({Name="Autofarm Slapples",Default=false,Callback=function(Value)
@@ -328,19 +328,19 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 			task.wait();
 		end
 	end});
-	Tab1:AddButton({Name="Synapse X [ PE ]",Callback=function()
+	Tab1:AddButton({Name="Synapse X",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH12/EGWGE/main/synapse%20x%20ui.txt"))();
 	end});
-	Tab1:AddButton({Name="Krnl [ PE ]",Callback=function()
+	Tab1:AddButton({Name="Krnl",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Knrl.lua"))();
 	end});
-	Tab1:AddButton({Name="Animation [ PE ]",Callback=function()
+	Tab1:AddButton({Name="Animation",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH12/EGEGESGGH/main/FE%20Animation%20GUI.txt"))();
 	end});
-	Tab1:AddButton({Name="Arceus x [ PE ]",Callback=function()
+	Tab1:AddButton({Name="Arceus x",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Arceus_X_V3.lua"))();
 	end});
-	Tab1:AddButton({Name="Kill Player [ PE ]",Callback=function()
+	Tab1:AddButton({Name="Kill Player",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Kill%20player"))();
 	end});
 	Tab1:AddButton({Name="Slap Battles R2O",Callback=function()
@@ -3099,7 +3099,7 @@ elseif (game.PlaceId == 13833961666) then
 	Tab:AddButton({Name="Fe fly V3",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Fly_V3.lua"))();
 	end});
-	Tab:AddButton({Name="inf yield [ PE ]",Callback=function()
+	Tab:AddButton({Name="inf yield",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
 	end});
 	Tab:AddButton({Name="TP back to Slap Battles",Callback=function()
