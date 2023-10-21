@@ -1667,28 +1667,30 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	if (game.Workspace:FindFirstChild("Value") == nil) then
 		local NoChanged = Instance.new("BoolValue", workspace);
 	end
-	Tab2:AddToggle({Name="All Toggle",Default=false,Callback=function(Value)
+	Tab2:AddToggle({Name="Toggle All Antis",Default=false,Callback=function(Value)
 		game.Workspace.Value.Value = Value;
 	end});
 	AntiVoid = Tab2:AddToggle({Name="Anti Void",Default=false,Callback=function(Value)
+		_G.AntiVoid = Value;
 		AntiVoid.CanCollide = Value;
-		if Value then
+		if _G.AntiVoid then
 			AntiVoid.Transparency = 0.5;
 		else
 			AntiVoid.Transparency = 1;
 		end
 	end});
 	AntiVoidTourn = Tab2:AddToggle({Name="Tournament Anti Void",Default=false,Callback=function(Value)
+		_G.TournamentAntiVoid = Value;
 		TournamentAntiVoid.CanCollide = Value;
-		if Value then
+		if _G.TournamentAntiVoid then
 			TournamentAntiVoid.Transparency = 0.5;
 		else
 			TournamentAntiVoid.Transparency = 1;
 		end
 	end});
-	AntiPortal1 = Tab2:AddToggle({Name="Anti Portal",Default=false,Callback=function(Value)
-		AntiPortal = Value;
-		if (AntiPortal == true) then
+	AntiPortal = Tab2:AddToggle({Name="Anti Portals",Default=false,Callback=function(Value)
+		_G.AntiPortal = Value;
+		if (_G.AntiPortal == true) then
 			workspace.Lobby.Teleport2.CanTouch = false;
 			workspace.Lobby.Teleport3.CanTouch = false;
 			workspace.Lobby.Teleport4.CanTouch = false;
@@ -1701,8 +1703,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	AntiAdmin = Tab2:AddToggle({Name="Anti Admin",Default=false,Callback=function(Value)
-		AntiAdmins = Value;
-		while AntiAdmins do
+		_G.AntiAdmin = Value;
+		while _G.AntiAdmins do
 			for i, v in pairs(game.Players:GetChildren()) do
 				if (v:GetRankInGroup(9950771) >= 2) then
 					_G.AntiKick = false;
@@ -1727,7 +1729,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	end});
 	AntiKick = Tab2:AddToggle({Name="Anti Kick",Default=false,Callback=function(Value)
 		_G.AntiKick = Value;
-		if (Value == true) then
+		if (_G.AntiKick == true) then
 			AntiKickServerhop:Set(false);
 			while _G.AntiKick do
 				for i, v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
@@ -1739,9 +1741,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end
 	end});
-	AntiKickServerhop = Tab2:AddToggle({Name="Anti Kick Serverhop",Default=false,Callback=function(Value)
+	AntiKickServerhop = Tab2:AddToggle({Name="Anti Kick and Serverhop",Default=false,Callback=function(Value)
 		_G.AntiKickServerhop = Value;
-		if (Value == true) then
+		if (_G.AntiKickServerhop == true) then
 			AntiKick:Set(false);
 			while _G.AntiKickServerhop do
 				for i, v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
@@ -1761,16 +1763,16 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end
 	end});
-	AntiObby1 = Tab2:AddToggle({Name="Anti Obby",Default=false,Callback=function(Value)
-		AntiObby = Value;
-		if (AntiObby == false) then
+	AntiObby = Tab2:AddToggle({Name="Anti Obby",Default=false,Callback=function(Value)
+		_G.AntiObby = Value;
+		if (_G.AntiObby == false) then
 			for _, v in pairs(game.Workspace:GetChildren()) do
 				if (string.find(v.Name, "LavaSpinner") or string.find(v.Name, "LavaBlock")) then
 					v.CanTouch = true;
 				end
 			end
 		end
-		while AntiObby do
+		while _G.AntiObby do
 			for _, v in pairs(game.Workspace:GetChildren()) do
 				if (string.find(v.Name, "LavaSpinner") or string.find(v.Name, "LavaBlock")) then
 					v.CanTouch = false;
@@ -1779,9 +1781,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiRock1 = Tab2:AddToggle({Name="Anti Megarock / Custom",Default=false,Callback=function(Value)
-		AntiRock = Value;
-		while AntiRock do
+	AntiRock = Tab2:AddToggle({Name="Anti Megarock / Custom",Default=false,Callback=function(Value)
+		_G.AntiRock = Value;
+		while _G.AntiRock do
 			for i, v in pairs(game.Workspace:GetDescendants()) do
 				if (v.Name == "rock") then
 					v.CanTouch = false;
@@ -1791,9 +1793,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiBus1 = Tab2:AddToggle({Name="Anti Bus",Default=false,Callback=function(Value)
-		AntiBus = Value;
-		while AntiBus do
+	AntiBus = Tab2:AddToggle({Name="Anti Bus",Default=false,Callback=function(Value)
+		_G.AntiBus = Value;
+		while _G.AntiBus do
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if (v.Name == "BusModel") then
 					v.CanTouch = false;
@@ -1802,10 +1804,10 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiMail1 = Tab2:AddToggle({Name="Anti Mail",Default=false,Callback=function(Value)
+	AntiMail = Tab2:AddToggle({Name="Anti Mail",Default=false,Callback=function(Value)
 		game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = Value;
-		AntiMail = Value;
-		while AntiMail do
+		_G.AntiMail = Value;
+		while _G.AntiMail do
 			if game.Players.LocalPlayer.Character:FindFirstChild("YouHaveGotMail") then
 				game.Players.LocalPlayer.Character.YouHaveGotMail.Disabled = true;
 			end
@@ -1842,7 +1844,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		game.Players.LocalPlayer.PlayerScripts.ConveyorVictimized.Disabled = Value;
 	end});
 	AntiNightmare = Tab2:AddToggle({Name="Anti Nightmare",Default=false,Callback=function(Value)
-		if (Value == true) then
+		_G.AntiNightmare = Value;
+		if (_G.AntiNightmare == true) then
 			game.Players.LocalPlayer.PlayerScripts.VFXListener.NightmareEffect.Parent = game.Lighting;
 		else
 			game.Lighting.NightmareEffect.Parent = game.Players.LocalPlayer.PlayerScripts.VFXListener;
@@ -1859,9 +1862,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiNull1 = Tab2:AddToggle({Name="Anti Null",Default=false,Callback=function(Value)
-		AntiNull = Value;
-		while AntiNull do
+	AntiNull = Tab2:AddToggle({Name="Anti Null",Default=false,Callback=function(Value)
+		_G.AntiNull = Value;
+		while _G.AntiNull do
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if (v.Name == "Imp") then
 					if v:FindFirstChild("Body") then
@@ -1883,14 +1886,14 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiRecord1 = Tab2:AddToggle({Name="Anti Record",Default=false,Callback=function(Value)
-		AntiRecord = Value;
+	AntiRecord = Tab2:AddToggle({Name="Anti Record",Default=false,Callback=function(Value)
+		_G.AntiRecord = Value;
 	end});
 	for i, p in pairs(game.Players:GetChildren()) do
 		if (p ~= game.Players.LocalPlayer) then
 			p.Chatted:Connect(function(message)
 				Words = message:split(" ");
-				if (AntiRecord == true) then
+				if (_G.AntiRecord == true) then
 					for i, v in pairs(Words) do
 						if (v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence")) then
 							AntiKick:Set(false);
@@ -1905,7 +1908,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	game.Players.PlayerAdded:Connect(function(Player)
 		Player.Chatted:Connect(function(message)
 			Words = message:split(" ");
-			if (AntiRecord == true) then
+			if (_G.AntiRecord == true) then
 				for i, v in pairs(Words) do
 					if (v:lower():match("recording") or v:lower():match(" rec ") or v:lower():match("record") or v:lower():match("discor") or v:lower():match(" disco ") or v:lower():match(" disc ") or v:lower():match("ticket") or v:lower():match("tickets") or v:lower():match(" ds ") or v:lower():match(" dc ") or v:lower():match("dizzy") or v:lower():match("dizzycord") or v:lower():match(" clip ") or v:lower():match("proof") or v:lower():match("evidence")) then
 						AntiKick:Set(false);
@@ -1920,7 +1923,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		game.Players.LocalPlayer.PlayerScripts.Well.Disabled = Value;
 	end});
 	AntiBrazil = Tab2:AddToggle({Name="Anti Brazil",Default=false,Callback=function(Value)
-		if (Value == true) then
+		_G.AntiBrazil = Value;
+		if (_G.AntiBrazil == true) then
 			for i, v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
 				v.CanTouch = false;
 			end
@@ -1931,8 +1935,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	AntiZa = Tab2:AddToggle({Name="Anti Za Hando",Default=false,Callback=function(Value)
-		AntiZaHando = Value;
-		while AntiZaHando do
+		_G.AntiZaHando = Value;
+		while _G.AntiZaHando do
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if ((v.ClassName == "Part") and (v.Name == "Part")) then
 					v:Destroy();
@@ -1941,9 +1945,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiReaper1 = Tab2:AddToggle({Name="Anti Reaper",Default=false,Callback=function(Value)
-		AntiReaper = Value;
-		while AntiReaper do
+	AntiReaper = Tab2:AddToggle({Name="Anti Reaper",Default=false,Callback=function(Value)
+		_G.AntiReaper = Value;
+		while _G.AntiReaper do
 			for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 				if (v.Name == "DeathMark") then
 					game:GetService("ReplicatedStorage").ReaperGone:FireServer(game:GetService("Players").LocalPlayer.Character.DeathMark);
@@ -1953,9 +1957,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiPusher1 = Tab2:AddToggle({Name="Anti Pusher",Default=false,Callback=function(Value)
-		AntiPusher = Value;
-		while AntiPusher do
+	AntiPusher = Tab2:AddToggle({Name="Anti Pusher",Default=false,Callback=function(Value)
+		_G.AntiPusher = Value;
+		while _G.AntiPusher do
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if (v.Name == "wall") then
 					v.CanCollide = false;
@@ -1995,9 +1999,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	AntiStun1 = Tab2:AddToggle({Name="Anti Stun",Default=false,Callback=function(Value)
-		AntiStun = Value;
-		while AntiStun do
+	AntiStun = Tab2:AddToggle({Name="Anti Stun",Default=false,Callback=function(Value)
+		_G.AntiStun = Value;
+		while _G.AntiStun do
 			if ((game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil) and game.Workspace:FindFirstChild("Shockwave") and (game.Players.LocalPlayer.Character.Ragdolled.Value == false)) then
 				game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false;
 			end
@@ -2005,7 +2009,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	AntiCOD = Tab2:AddToggle({Name="Anti Cube Of Death",Default=false,Callback=function(Value)
-		if (Value == true) then
+		_G.AntiCube = Value;
+		if (_G.AntiCube == true) then
 			if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then
 				workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false;
 			end
@@ -2014,7 +2019,8 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	AntiDeath = Tab2:AddToggle({Name="Anti Death Barriers",Default=false,Callback=function(Value)
-		if (Value == true) then
+		_G.AntiDeathBarrier = Value;
+		if (_G.AntiDeathBarrier == true) then
 			for i, v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
 				if ((v.ClassName == "Part") and (v.Name == "BLOCK")) then
 					v.CanTouch = false;
@@ -2039,12 +2045,12 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	AntiName = Tab2:AddToggle({Name=" Auto Remove nametag",Default=false,Callback=function(Value)
-		AutoRemoveNameTag = Value;
-		if (AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag", true)) then
+		_G.AutoRemoveNameTag = Value;
+		if (_G.AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag", true)) then
 			game.Players.LocalPlayer.Character.Head.Nametag:Destroy();
 		end
 		game.Players.LocalPlayer.CharacterAdded:Connect(function()
-			if AutoRemoveNameTag then
+			if _G.AutoRemoveNameTag then
 				repeat
 					task.wait();
 				until game.Players.LocalPlayer.Character:FindFirstChild("Nametag", true) 
@@ -2052,13 +2058,13 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end);
 	end});
-	AntiRagdoll1 = Tab2:AddToggle({Name="Anti Ragdoll",Default=false,Callback=function(Value)
-		AntiRagdoll = Value;
-		if AntiRagdoll then
+	AntiRagdoll = Tab2:AddToggle({Name="Anti Ragdoll",Default=false,Callback=function(Value)
+		_G.AntiRagdoll = Value;
+		if _G.AntiRagdoll then
 			game.Players.LocalPlayer.Character.Humanoid.Health = 0;
 			game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Changed:Connect(function()
-					if ((game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true) and AntiRagdoll) then
+					if ((game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true) and _G.AntiRagdoll) then
 						repeat
 							task.wait();
 							game.Players.LocalPlayer.Character.Torso.Anchored = true;
@@ -2670,7 +2676,7 @@ game:GetService("GuiService"):ClearError()
 		AntiVoidTourn:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiPortal1:Set(game.Workspace.Value.Value);
+		AntiPortal:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiAdmin:Set(game.Workspace.Value.Value);
@@ -2679,16 +2685,16 @@ game:GetService("GuiService"):ClearError()
 		AntiAfk:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiObby1:Set(game.Workspace.Value.Value);
+		AntiObby:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRock1:Set(game.Workspace.Value.Value);
+		AntiRock:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiBus1:Set(game.Workspace.Value.Value);
+		AntiBus:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiMail1:Set(game.Workspace.Value.Value);
+		AntiMail:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiJack:Set(game.Workspace.Value.Value);
@@ -2709,13 +2715,13 @@ game:GetService("GuiService"):ClearError()
 		AntiTime:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiNull1:Set(game.Workspace.Value.Value);
+		AntiNull:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiBrick:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRecord1:Set(game.Workspace.Value.Value);
+		AntiRecord:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiReda:Set(game.Workspace.Value.Value);
@@ -2727,10 +2733,10 @@ game:GetService("GuiService"):ClearError()
 		AntiZa:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiReaper1:Set(game.Workspace.Value.Value);
+		AntiReaper:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiPusher1:Set(game.Workspace.Value.Value);
+		AntiPusher:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiDefend:Set(game.Workspace.Value.Value);
@@ -2739,7 +2745,7 @@ game:GetService("GuiService"):ClearError()
 		AntiBubble:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiStun1:Set(game.Workspace.Value.Value);
+		AntiStun:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
 		AntiCOD:Set(game.Workspace.Value.Value);
@@ -2751,7 +2757,7 @@ game:GetService("GuiService"):ClearError()
 		AntiName:Set(game.Workspace.Value.Value);
 	end);
 	game.Workspace.Value.Changed:Connect(function()
-		AntiRagdoll1:Set(game.Workspace.Value.Value);
+		AntiRagdoll:Set(game.Workspace.Value.Value);
 	end);
 elseif (game.PlaceId == 11828384869) then
 	local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua"))();
