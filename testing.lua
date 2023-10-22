@@ -1153,14 +1153,14 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Assets.Thor.Animation, game.Players.LocalPlayer.Character.Humanoid):Play();
 		end
 	end});
-	Tab7:AddTextbox({Name="Make Player Spam Rojo",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select Player to Spam Rojo",Default="Username",TextDisappear=false,Callback=function(Value)
 		if ((Value == "Me") or (Value == "me") or (Value == "Username") or (Value == "")) then
 			Person = game.Players.LocalPlayer.Name;
 		else
 			Person = Value;
 		end
 	end});
-	Tab7:AddToggle({Name="Auto Spam Rojo [ All Glove ]",Default=false,Callback=function(Value)
+	Tab7:AddToggle({Name="Spam Rojo",Default=false,Callback=function(Value)
 		if (Person == nil) then
 			Person = game.Players.LocalPlayer.Name;
 		end
@@ -1170,10 +1170,10 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	Tab7:AddTextbox({Name="Make Player Teleport [ Glove Recall ]",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select Player to Teleport",Default="Username",TextDisappear=false,Callback=function(Value)
 		TeleportPlayer = Value;
 	end});
-	Tab7:AddButton({Name="Player Teleport",Callback=function()
+	Tab7:AddButton({Name="Teleport Player",Callback=function()
 		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Recall") then
 			OGLC = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
 			game:GetService("ReplicatedStorage").Recall:InvokeServer(game:GetService("Players").LocalPlayer.Character.Recall);
@@ -1185,20 +1185,20 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Recall equipped.",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
-	Tab7:AddTextbox({Name="Player Teleport",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select teleport to player",Default="Username",TextDisappear=false,Callback=function(Value)
 		_G.PlayerTeleport = Value;
 	end});
-	Tab7:AddButton({Name="Teleport Player",Callback=function()
+	Tab7:AddButton({Name="Teleport to Player",Callback=function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.PlayerTeleport].Character.HumanoidRootPart.CFrame;
 	end});
-	Tab7:AddTextbox({Name="Save The Player [ Glove Guardian Angel ]",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select Player to Spam Guardian Angel",Default="Username",TextDisappear=false,Callback=function(Value)
 		if ((Value == "Me") or (Value == "me") or (Value == "Username") or (Value == "")) then
 			SaveThePlayer = game.Players.LocalPlayer.Name;
 		else
 			SaveThePlayer = Value;
 		end
 	end});
-	SavePlayer = Tab7:AddToggle({Name="Auto Spam Guardian Angel",Default=false,Callback=function(Value)
+	SavePlayer = Tab7:AddToggle({Name="Spam Guardian Angel",Default=false,Callback=function(Value)
 		if (SaveThePlayer == nil) then
 			SaveThePlayer = game.Players.LocalPlayer.Name;
 		end
@@ -1217,7 +1217,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 	Tab7:AddDropdown({Name="Retro Ability",Default="Rocket Launcher",Options={"Rocket Launcher","Ban Hammer","Bomb"},Callback=function(Value)
 		RetroAbility = Value;
 	end});
-	Tab7:AddToggle({Name="Auto Spam Retro [ All Glove ]",Default=false,Callback=function(Value)
+	Tab7:AddToggle({Name="Spam Retro",Default=false,Callback=function(Value)
 		RetroSpam = Value;
 		while RetroSpam do
 			game:GetService("ReplicatedStorage").RetroAbility:FireServer(RetroAbility);
@@ -1225,10 +1225,10 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		end
 	end});
 	Cancel = false;
-	Tab7:AddTextbox({Name="Make Punish Player",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select Player to Punish",Default="Username",TextDisappear=false,Callback=function(Value)
 		_G.PunishPlayer = Value;
 	end});
-	Tab7:AddButton({Name="Get Punish Player",Callback=function()
+	Tab7:AddButton({Name="Punish Player",Callback=function()
 		if (game.Players.LocalPlayer.Character:FindFirstChild("Swapper") or game.Players.LocalPlayer.Backpack:FindFirstChild("Swapper")) then
 			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
 			AntiVoid.CanCollide = true;
@@ -1258,12 +1258,12 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Swapper equipped, or you aren't in the arena.",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
-	Tab7:AddButton({Name="Cancel Punish Player",Callback=function()
+	Tab7:AddButton({Name="Cancel Punishment",Callback=function()
 		Cancel = true;
 		wait(0.1);
 		Cancel = false;
 	end});
-	Tab7:AddTextbox({Name="Select Player To Kill",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select Player to Kill",Default="Username",TextDisappear=false,Callback=function(Value)
 		_G.KillerPlayer = Value;
 	end});
 	Tab7:AddButton({Name="Kill Player",Callback=function()
