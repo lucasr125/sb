@@ -1185,10 +1185,10 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Recall equipped.",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
-	Tab7:AddTextbox({Name="Select teleport to player",Default="Username",TextDisappear=false,Callback=function(Value)
+	Tab7:AddTextbox({Name="Select go to Player",Default="Username",TextDisappear=false,Callback=function(Value)
 		_G.PlayerTeleport = Value;
 	end});
-	Tab7:AddButton({Name="Teleport to Player",Callback=function()
+	Tab7:AddButton({Name="Go to Player",Callback=function()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.PlayerTeleport].Character.HumanoidRootPart.CFrame;
 	end});
 	Tab7:AddTextbox({Name="Select Player to Spam Guardian Angel",Default="Username",TextDisappear=false,Callback=function(Value)
