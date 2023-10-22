@@ -300,9 +300,6 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab:AddButton({Name="Infinite Yield",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
 	end});
-	Tab:AddButton({Name="Hitbox",Callback=function()
-		loadstring(game:HttpGet("https://gist.githubusercontent.com/stellar-4242/430ef3087d8d87eb306ca03e728ffbb8/raw/798429dd908b1f4471a1fa569ff62c5e5a93ec61/SLAP.LUA"))();
-	end});
 	Tab:AddToggle({Name="Autofarm Slapples",Default=false,Callback=function(Value)
 		SlappleFarm = Value;
 		while SlappleFarm do
@@ -384,7 +381,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))();
 	end});
 	Tab3:AddDropdown({Name="Teleport",Default="",Options={"SafeSpotBox 1.0","SafeSpotBox 2.0","Bed","Go Deep Into The Ground"},Callback=function(Value)
-		if (Value == "SafeSpotBox 1.0") then
+		elseif (Value == "SafeSpotBox 1.0") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
 		elseif (Value == "SafeSpotBox 2.0") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['Safespot'].CFrame * CFrame.new(0, 10, 0);
@@ -1109,7 +1106,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end
 	end});
-	Tab7:AddDropdown({Name="Teleport",Default="",Options={"Arena","Lobby","Brazil","Island Slapple","Plate","Tournament","Moai Island","Default Arena","Island 1","Island 2","Island 3"},Callback=function(Value)
+	Tab7:AddDropdown({Name="Teleport",Default="",Options={"Arena","Lobby","Brazil","Island Slapple","Plate","Tournament","Moai Island","Default Arena","Island 1","Island 2","Island 3","SafeSpotBox 1.0","SafeSpotBox 2.0","Bed","Go Deep Into The Ground"},Callback=function(Value)
 		if (Value == "Arena") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0, -5, 0);
 		elseif (Value == "Lobby") then
@@ -1132,6 +1129,20 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741, -0.98216176, -3.4886725e-9, -0.188037917, -4.199878e-9, 1, 3.3838232e-9, 0.188037917, 4.1131982e-9, -0.98216176);
 		elseif (Value == "Island 3") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378, 0.945777893, 2.5209518e-10, 0.324814111, -3.7823856e-8, 1, 1.09357536e-7, -0.324814111, -1.1571366e-7, 0.945777893);
+		elseif (Value == "SafeSpotBox 1.0") then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
+		elseif (Value == "SafeSpotBox 2.0") then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['Safespot'].CFrame * CFrame.new(0, 10, 0);
+		elseif (Value == "Bed") then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['Bed'].Bed3.CFrame * CFrame.new(0, 0, -1);
+		elseif (Value == "Go Deep Into The Ground") then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['default'].CFrame * CFrame.new(0, 5, 0);
+			game.Players.LocalPlayer.Character.Head.Nametag:Destroy();
+			for i, v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
+				if ((v.ClassName == "Part") and (v.Name == "BLOCK")) then
+					v.CanTouch = false;
+				end
+			end
 		end
 	end});
 	Tab7:AddDropdown({Name="Animation Combat",Default="",Options={"Skukuchi Attacker","Skukuchi Target","Bomb Throw","Bubble Shoot","Revolver","Ban Hammer","Bomb","Rocket Launcher","Rojo","Rojo Recoil","Thor"},Callback=function(Value)
@@ -1166,11 +1177,36 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			Person = Value;
 		end
 	end});
+	Tab7:AddToggle({Name="Auto Spam Rojo [ All Glove ]",Default=false,Callback=function(Value)
+		if (Person == nil) then
+			Person = game.Players.LocalPlayer.Name;
+		end
+		_G.RojoSpam = Value;
+		while _G.RojoSpam do
+			game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release", {game.Players[Person].Character.HumanoidRootPart.CFrame});
+			task.wait();
+		end
+	end});
 	Tab7:AddTextbox({Name="Make Player Teleport [ Glove Recall ]",Default="Username",TextDisappear=false,Callback=function(Value)
 		TeleportPlayer = Value;
 	end});
+	Tab7:AddButton({Name="Player Teleport",Callback=function()
+		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Recall") then
+			OGLC = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			game:GetService("ReplicatedStorage").Recall:InvokeServer(game:GetService("Players").LocalPlayer.Character.Recall);
+			task.wait(3.67);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[TeleportPlayer].Character.HumanoidRootPart.CFrame;
+			task.wait(0.2);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGLC;
+		else
+			OrionLib:MakeNotification({Name="Error",Content="You don't have Recall equipped.",Image="rbxassetid://7733658504",Time=5});
+		end
+	end});
 	Tab7:AddTextbox({Name="Player Teleport",Default="Username",TextDisappear=false,Callback=function(Value)
 		_G.PlayerTeleport = Value;
+	end});
+	Tab7:AddButton({Name="Teleport Player",Callback=function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.PlayerTeleport].Character.HumanoidRootPart.CFrame;
 	end});
 	Tab7:AddTextbox({Name="Save The Player [ Glove Guardian Angel ]",Default="Username",TextDisappear=false,Callback=function(Value)
 		if ((Value == "Me") or (Value == "me") or (Value == "Username") or (Value == "")) then
@@ -1178,12 +1214,6 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		else
 			SaveThePlayer = Value;
 		end
-	end});
-	Tab7:AddTextbox({Name="Make Punish Player",Default="Username",TextDisappear=false,Callback=function(Value)
-		_G.PunishPlayer = Value;
-	end});
-	Tab7:AddDropdown({Name="Retro Ability",Default="Rocket Launcher",Options={"Rocket Launcher","Ban Hammer","Bomb"},Callback=function(Value)
-		RetroAbility = Value;
 	end});
 	SavePlayer = Tab7:AddToggle({Name="Auto Spam Guardian Angel",Default=false,Callback=function(Value)
 		if (SaveThePlayer == nil) then
@@ -1201,6 +1231,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			SavePlayer:Set(false);
 		end
 	end});
+	Tab7:AddDropdown({Name="Retro Ability",Default="Rocket Launcher",Options={"Rocket Launcher","Ban Hammer","Bomb"},Callback=function(Value)
+		RetroAbility = Value;
+	end});
 	Tab7:AddToggle({Name="Auto Spam Retro [ All Glove ]",Default=false,Callback=function(Value)
 		RetroSpam = Value;
 		while RetroSpam do
@@ -1208,17 +1241,10 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			task.wait();
 		end
 	end});
-	Tab7:AddToggle({Name="Auto Spam Rojo [ All Glove ]",Default=false,Callback=function(Value)
-		if (Person == nil) then
-			Person = game.Players.LocalPlayer.Name;
-		end
-		_G.RojoSpam = Value;
-		while _G.RojoSpam do
-			game:GetService("ReplicatedStorage"):WaitForChild("RojoAbility"):FireServer("Release", {game.Players[Person].Character.HumanoidRootPart.CFrame});
-			task.wait();
-		end
-	end});
 	Cancel = false;
+	Tab7:AddTextbox({Name="Make Punish Player",Default="Username",TextDisappear=false,Callback=function(Value)
+		_G.PunishPlayer = Value;
+	end});
 	Tab7:AddButton({Name="Get Punish Player",Callback=function()
 		if (game.Players.LocalPlayer.Character:FindFirstChild("Swapper") or game.Players.LocalPlayer.Backpack:FindFirstChild("Swapper")) then
 			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
@@ -1254,26 +1280,47 @@ game:GetService("TeleportService"):Teleport(6403373529)
 		wait(0.1);
 		Cancel = false;
 	end});
-	Tab7:AddButton({Name="Teleport Player",Callback=function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.PlayerTeleport].Character.HumanoidRootPart.CFrame;
+	Tab7:AddTextbox({Name="Select Player To Kill",Default="Username",TextDisappear=false,Callback=function(Value)
+		_G.KillerPlayer = Value;
 	end});
-	Tab7:AddButton({Name="Player Teleport",Callback=function()
-		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Recall") then
-			OGLC = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-			game:GetService("ReplicatedStorage").Recall:InvokeServer(game:GetService("Players").LocalPlayer.Character.Recall);
-			task.wait(3.67);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[TeleportPlayer].Character.HumanoidRootPart.CFrame;
-			task.wait(0.2);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGLC;
+	Tab7:AddButton({Name="Kill Player",Callback=function()
+		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") then
+			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
+			wait(4.2);
+			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
+			task.wait(0.12);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.KillerPlayer].Character.HumanoidRootPart.CFrame;
+			task.wait(0.25);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
 		else
-			OrionLib:MakeNotification({Name="Error",Content="You don't have Recall equipped.",Image="rbxassetid://7733658504",Time=5});
+			OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
+		end
+	end});
+	Tab7:AddButton({Name="Kill Random Player",Callback=function()
+		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") then
+			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
+			wait(3.05);
+			local players = game.Players:GetChildren();
+			local RandomPlayer = players[math.random(1, #players)];
+			repeat
+				RandomPlayer = players[math.random(1, #players)];
+			until RandomPlayer ~= game.Players.LocalPlayer 
+			repeat
+				RandomPlayer = players[math.random(1, #players)];
+			until RandomPlayer.Character:FindFirstChild("entered") and (RandomPlayer.Character:FindFirstChild("rock") == nil) and (RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil) 
+			Target = RandomPlayer;
+			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
+			task.wait(0.12);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame;
+			task.wait(0.25);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
+		else
+			OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
 	Tab7:AddButton({Name="Auto Keypad",Callback=function()
-		if not game:IsLoaded() then
-			game.Loaded:Wait();
-		end
-		wait(1.5);
 		if not workspace:FindFirstChild("Keypad") then
 			for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
 				if ((server.playing < server.maxPlayers) and (server.JobId ~= game.JobId)) then
@@ -1400,7 +1447,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			end
 		end);
 	end});
-	Tab7:AddSlider({Name="Time Give Kill Reaper",Min=1,Max=20,Default=5,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="Kill Reaper",Callback=function(Value)
+	Tab7:AddSlider({Name="Give Kills Reaper",Min=1,Max=20,Default=5,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="Kill Reaper",Callback=function(Value)
 		_G.GiveKillReaper = Value;
 	end});
 	Tab7:AddButton({Name="Give Player Kill Reaper",Callback=function()
@@ -1421,46 +1468,6 @@ game:GetService("TeleportService"):Teleport(6403373529)
 					fireclickdetector(v.ClickDetector);
 				end
 			end
-		end
-	end});
-	Tab7:AddTextbox({Name="Make Kill Player",Default="Username",TextDisappear=false,Callback=function(Value)
-		_G.KillerPlayer = Value;
-	end});
-	Tab7:AddButton({Name="Get Kill Player",Callback=function()
-		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") then
-			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
-			wait(4.2);
-			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
-			task.wait(0.12);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.KillerPlayer].Character.HumanoidRootPart.CFrame;
-			task.wait(0.25);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
-		else
-			OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
-		end
-	end});
-	Tab7:AddButton({Name="Kill Player Random",Callback=function()
-		if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Home Run") then
-			OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-			game:GetService("ReplicatedStorage").HomeRun:FireServer({start=true});
-			wait(3.05);
-			local players = game.Players:GetChildren();
-			local RandomPlayer = players[math.random(1, #players)];
-			repeat
-				RandomPlayer = players[math.random(1, #players)];
-			until RandomPlayer ~= game.Players.LocalPlayer 
-			repeat
-				RandomPlayer = players[math.random(1, #players)];
-			until RandomPlayer.Character:FindFirstChild("entered") and (RandomPlayer.Character:FindFirstChild("rock") == nil) and (RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil) 
-			Target = RandomPlayer;
-			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
-			task.wait(0.12);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame;
-			task.wait(0.25);
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
-		else
-			OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
 		end
 	end});
 	Tab7:AddButton({Name="Destroy Light",Callback=function()
