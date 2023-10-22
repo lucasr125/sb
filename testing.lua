@@ -1295,9 +1295,9 @@ game:GetService("TeleportService"):Teleport(6403373529)
 			until RandomPlayer.Character:FindFirstChild("entered") and (RandomPlayer.Character:FindFirstChild("rock") == nil) and (RandomPlayer.Character.Head:FindFirstChild("UnoReverseCard") == nil) 
 			Target = RandomPlayer;
 			game:GetService("ReplicatedStorage").HomeRun:FireServer({finished=true});
-			task.wait(0.12);
+			task.wait(0.1);
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame;
-			task.wait(0.25);
+			task.wait(0.3);
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL;
 		else
 			OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
