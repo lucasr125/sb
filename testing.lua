@@ -380,23 +380,6 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
 	Tab1:AddButton({Name="Simple Spy",Callback=function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua", true))();
 	end});
-	Tab3:AddDropdown({Name="Teleport",Default="",Options={"SafeSpotBox 1.0","SafeSpotBox 2.0","Bed","Go Deep Into The Ground"},Callback=function(Value)
-		elseif (Value == "SafeSpotBox 1.0") then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['SafeBox'].CFrame * CFrame.new(0, 5, 0);
-		elseif (Value == "SafeSpotBox 2.0") then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['Safespot'].CFrame * CFrame.new(0, 10, 0);
-		elseif (Value == "Bed") then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['Bed'].Bed3.CFrame * CFrame.new(0, 0, -1);
-		elseif (Value == "Go Deep Into The Ground") then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace['default'].CFrame * CFrame.new(0, 5, 0);
-			game.Players.LocalPlayer.Character.Head.Nametag:Destroy();
-			for i, v in pairs(game.Workspace.DEATHBARRIER:GetChildren()) do
-				if ((v.ClassName == "Part") and (v.Name == "BLOCK")) then
-					v.CanTouch = false;
-				end
-			end
-		end
-	end});
 	Tab3:AddButton({Name="Reset Player",Callback=function()
 		game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character, false);
 	end});
