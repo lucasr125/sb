@@ -700,7 +700,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
   Tab3:AddButton({Name="Get Hallow Jack",Callback=function()
     if (game.Workspace:FindFirstChild("Gravestone")) then
       if (game.Players.LocalPlayer.PlayerGui:FindFirstChild("Kills")) then
-        if (tostring((game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text == "10"))) then
+        if ((tostring(game.Players.LocalPlayer.PlayerGui.Kills.Frame.TextLabel.Text) == "10")) then
           for i, v in pairs(workspace.Gravestone:GetDescendants()) do
             if v:IsA("ClickDetector") then
               fireclickdetector(v);
@@ -731,7 +731,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value;
     Walkspeed = Value;
   end});
-  Tab5:AddToggle({Name="Walkspeed Set Auto",Default=false,Callback=function(Value)
+  Tab5:AddToggle({Name="AutoSet Walkspeed",Default=false,Callback=function(Value)
     KeepWalkspeed = Value;
     while KeepWalkspeed do
       if ((game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil) and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed)) then
@@ -744,7 +744,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value;
     Jumppower = Value;
   end});
-  Tab5:AddToggle({Name="Jumppower Set Auto",Default=false,Callback=function(Value)
+  Tab5:AddToggle({Name="AutoSet JumpPower",Default=false,Callback=function(Value)
     KeepJumppower = Value;
     while KeepJumppower do
       if ((game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil) and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower)) then
@@ -757,7 +757,7 @@ game:GetService("TeleportService"):Teleport(6403373529)
     game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value;
     HipHeight = Value;
   end});
-  Tab5:AddToggle({Name="Hip Height Set Auto",Default=false,Callback=function(Value)
+  Tab5:AddToggle({Name="AutoSet HipHeight",Default=false,Callback=function(Value)
     KeepHipHeight = Value;
     while KeepHipHeight do
       if ((game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil) and (game.Players.LocalPlayer.Character.Humanoid.HipHeight ~= HipHeight)) then
