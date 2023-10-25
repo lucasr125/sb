@@ -13,7 +13,12 @@ repeat
 until game.Players.LocalPlayer.Character ~= nil 
 repeat
 	task.wait();
-until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") 
+until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+getgenv().settings = {
+	GetCandyCorns = true
+	GetSlapples = true
+}
 
 if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
 	repeat
@@ -23,18 +28,22 @@ if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
 	until game.Players.LocalPlayer.Character:FindFirstChild("entered") 
 end
 
-for _, v in pairs(game.Workspace.CandyCorns:GetDescendants()) do
-	if (v.ClassName == "TouchTransmitter") then
-		v.Parent.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-		firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
-		firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+if (getgenv().settings.GetCandyCorns == true) then
+	for _, v in pairs(game.Workspace.CandyCorns:GetDescendants()) do
+		if (v.ClassName == "TouchTransmitter") then
+			v.Parent.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
+			firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+		end
 	end
 end
 
-for _, v in ipairs(game.Workspace.Arena.island5.Slapples:GetDescendants()) do
-	if ((v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-		firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
-		firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+if (getgenv().settings.GetSlapples == true) then
+	for _, v in ipairs(game.Workspace.Arena.island5.Slapples:GetDescendants()) do
+		if ((v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+		end
 	end
 end
 
