@@ -870,6 +870,23 @@ setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyus
                     end    
                 })
 
+Tab4:AddToggle({
+                    Name = "Slapple Farm (Only works in arena)",
+                    Default = false,
+                    Callback = function(Value)
+SlappleFarm = Value
+while SlappleFarm do
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
+                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+                end
+            end
+task.wait()
+end
+end
+                })
+
 Tab2:AddToggle({
                     Name = "Slap Aura",
                     Default = false,
@@ -1017,22 +1034,43 @@ end
 end
                 })
 
+if game.Workspace:FindFirstChild("NametagChanged") == nil then
+local NametagChanged = Instance.new("StringValue", workspace)
+NametagChanged.Name = "NametagChanged"
+NametagChanged.Value = ""
+end
 Tab4:AddToggle({
-                    Name = "Auto Remove Nametag (Breaks killstreak) (Clientside)",
+                    Name = "Auto Change Nametag (Clientside)",
                     Default = false,
                     Callback = function(Value)
-AutoRemoveNameTag = Value
-        if AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
-        game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+AutoChangeNameTag = Value
+        if AutoChangeNameTag == true and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+print(workspace.NametagChanged.Value)
+        game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
 end
+workspace.NametagChanged.Changed:Connect(function()
+        if AutoChangeNameTag == true and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+print(workspace.NametagChanged.Value)
+        game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
+end
+end)
             game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                if AutoRemoveNameTag then
+                if AutoChangeNameTag == true then
 repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true)
-                game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+                game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
                 end
             end)
 end
                 })
+
+Tab4:AddTextbox({
+	Name = "Auto Change Nametag (Clientside)",
+	Default = "Nametag",
+	TextDisappear = false,
+	Callback = function(Value)
+workspace.NametagChanged.Value = Value
+	end	  
+})
 
 Tab4:AddDropdown({
 	Name = "Teleport",
@@ -1058,23 +1096,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-800,328
 end
 	end    
 })
-
-Tab4:AddToggle({
-                    Name = "Slapple Farm",
-                    Default = false,
-                    Callback = function(Value)
-SlappleFarm = Value
-while SlappleFarm do
-for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
-                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
-                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
-        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
-                end
-            end
-task.wait()
-end
-end
-                })
 
 Tab4:AddButton({
 	Name = "Free Emotes (Type /e emotename)",
@@ -1554,12 +1575,13 @@ fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
 
 if game.Workspace:FindFirstChild("Value") == nil then
 local NoChanged = Instance.new("BoolValue", workspace)
+NoChanged.Name = "NoChanged"
 end
 Tab3:AddToggle({
                     Name = "Toggle All Antis",
                     Default = false,
                     Callback = function(Value)
-game.Workspace.Value.Value = Value
+game.Workspace.NoChanged.Value = Value
 end
 })
 
@@ -1757,53 +1779,53 @@ end
 end)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
-AA:Set(game.Workspace.Value.Value)
+game.Workspace.NoChanged.Changed:Connect(function()
+AA:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.05)
-AK:Set(game.Workspace.Value.Value)
+AK:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.1)
-APL:Set(game.Workspace.Value.Value)
+APL:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.15)
-AR:Set(game.Workspace.Value.Value)
+AR:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.2)
-AV:Set(game.Workspace.Value.Value)
+AV:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.25)
-ADB:Set(game.Workspace.Value.Value)
+ADB:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.3)
-AB:Set(game.Workspace.Value.Value)
+AB:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.35)
-ACOD:Set(game.Workspace.Value.Value)
+ACOD:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.4)
-AN:Set(game.Workspace.Value.Value)
+AN:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.45)
-AREC:Set(game.Workspace.Value.Value)
+AREC:Set(game.Workspace.NoChanged.Value)
 end)
 
 elseif game.PlaceId == 11828384869 then
@@ -2259,12 +2281,18 @@ end
                 })
 
                 local Tab5 = Window:MakeTab({
+                    Name = "Gloves",
+                    Icon = "http://www.roblox.com/asset/?id=7733955740",
+                    PremiumOnly = false
+                })
+
+                local Tab6 = Window:MakeTab({
                     Name = "Badges",
                     Icon = "http://www.roblox.com/asset/?id=7733673987",
                     PremiumOnly = false
                 })
 
-                local Tab6 = Window:MakeTab({
+                local Tab7 = Window:MakeTab({
                     Name = "Player",
                     Icon = "http://www.roblox.com/asset/?id=4335489011",
                     PremiumOnly = false
@@ -2340,6 +2368,22 @@ setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyus
                     end    
                 })
 
+Tab4:AddToggle({
+                    Name = "Slapple Farm (Only works in arena)",
+                    Default = false,
+                    Callback = function(Value)
+SlappleFarm = Value
+while SlappleFarm do
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
+                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+                end
+            end
+task.wait()
+end
+end
+                })
 
 Tab2:AddToggle({
                     Name = "Slap Aura",
@@ -2759,6 +2803,10 @@ while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Whirlwind" do
 game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 task.wait()
 end
+while On and game.Players.LocalPlayer.leaderstats.Glove.Value == "Guardian Angel" do
+game.ReplicatedStorage.GeneralAbility:FireServer(game.Players.LocalPlayer)
+task.wait()
+end
                     end   
 })
 
@@ -2836,42 +2884,6 @@ end
                     end    
                 })
 
-Tab4:AddButton({
-	Name = "Give reaper 20 kills (Use after they slap you)",
-	Callback = function()
-for i = 1, 20 do
-        game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(x,false)
-end
-for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v.Name == "DeathMark" then
-                    game.ReplicatedStorage.ReaperGone:FireServer(v)
-                    game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
-                    end 
-                end
-                    end    
-                })
-
-                Tab4:AddToggle({
-                    Name = "Auto Click Tycoon",
-                    Default = false,
-                    Callback = function(Value)
-AutoTycoon = Value
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v.Name == "End" and v.ClassName == "Part" then
-            v.Size = Vector3.new(28, 0.3, 4)
-        end
-    end
-while AutoTycoon do
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
-            fireclickdetector(v.ClickDetector)
-        end
-    end
-    task.wait()
-end
-                    end    
-                })
-
 Tab2:AddToggle({
                     Name = "Auto Enter Arena",
                     Default = false,
@@ -2924,22 +2936,58 @@ end
 end
                 })
 
+Tab4:AddButton({
+	Name = "Give reaper 20 kills (Use after they slap you)",
+	Callback = function()
+for i = 1, 20 do
+        game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(x,false)
+end
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v.Name == "DeathMark" then
+                    game.ReplicatedStorage.ReaperGone:FireServer(v)
+                    game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
+                    end 
+                end
+                    end    
+                })
+
+if game.Workspace:FindFirstChild("NametagChanged") == nil then
+local NametagChanged = Instance.new("StringValue", workspace)
+NametagChanged.Name = "NametagChanged"
+NametagChanged.Value = ""
+end
 Tab4:AddToggle({
-                    Name = "Auto Remove Nametag (Breaks killstreak) (Clientside)",
+                    Name = "Auto Change Nametag (Clientside)",
                     Default = false,
                     Callback = function(Value)
-AutoRemoveNameTag = Value
-        if AutoRemoveNameTag and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
-        game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+AutoChangeNameTag = Value
+        if AutoChangeNameTag == true and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+print(workspace.NametagChanged.Value)
+        game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
 end
+workspace.NametagChanged.Changed:Connect(function()
+        if AutoChangeNameTag == true and game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true) then
+print(workspace.NametagChanged.Value)
+        game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
+end
+end)
             game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                if AutoRemoveNameTag then
+                if AutoChangeNameTag == true then
 repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Nametag",true)
-                game.Players.LocalPlayer.Character.Head.Nametag:Destroy()
+                game.Players.LocalPlayer.Character.Head.Nametag.TextLabel.Text = workspace.NametagChanged.Value
                 end
             end)
 end
                 })
+
+Tab4:AddTextbox({
+	Name = "Auto Change Nametag (Clientside)",
+	Default = "Nametag",
+	TextDisappear = false,
+	Callback = function(Value)
+workspace.NametagChanged.Value = Value
+	end	  
+})
 
 Tab4:AddButton({
 	Name = "Infinite Invisibility (Use in lobby) (Glove still visible)",
@@ -2980,24 +3028,7 @@ end
 	end    
 })
 
-Tab4:AddToggle({
-                    Name = "Slapple Farm",
-                    Default = false,
-                    Callback = function(Value)
-SlappleFarm = Value
-while SlappleFarm do
-for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
-                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
-                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
-        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
-                end
-            end
-task.wait()
-end
-end
-                })
-
-RBSF = Tab4:AddToggle({
+RBSF = Tab5:AddToggle({
                     Name = "Replica & Baller Slap Farm (Equip Baller)",
                     Default = false,
                     Callback = function(Value)
@@ -3048,7 +3079,7 @@ fireclickdetector(workspace.Lobby.Baller.ClickDetector)
 end
 end
 
-RSF = Tab4:AddToggle({
+RSF = Tab5:AddToggle({
                     Name = "Replica Slap Farm (Use default arena portal)",
                     Default = false,
                     Callback = function(Value)
@@ -3091,26 +3122,6 @@ OrionLib:MakeNotification({Name = "Error",Content = "You aren't in the lobby.",I
 end
 	end	  
 })
-
-RNS = Tab4:AddToggle({
-                    Name = "Rhythm Note Spam + Auto Press (Equip Rhythm)",
-                    Default = false,
-                    Callback = function(Value)
-RhythmNoteSpam = Value
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Rhythm" then
-while RhythmNoteSpam do
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
-game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
-game.Players.LocalPlayer.Character.Rhythm:Activate()
-task.wait()
-end
-elseif RhythmNoteSpam == true then
-OrionLib:MakeNotification({Name = "Error",Content = "You don't have Rhythm equipped.",Image = "rbxassetid://7733658504",Time = 5})
-wait(0.05)
-RNS:Set(false)
-end
-                    end    
-                })
 
 Tab4:AddButton({
 	Name = "Free Emotes (Type /e emotename)",
@@ -3172,6 +3183,128 @@ end)
                     end    
                 })
 
+Tab5:AddButton({
+	Name = "Infinite Golden (Use in arena)",
+	Callback = function()
+game:GetService("ReplicatedStorage").Goldify:FireServer(true)
+                    end    
+                })
+
+GG = Tab5:AddToggle({
+	Name = "Give godmode (Needs guardian angel)",
+	Default = false,
+	Callback = function(Value)
+GiveGodmode = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Guardian Angel" then
+while GiveGodmode do
+game.ReplicatedStorage.GeneralAbility:FireServer(game.Players[GodmodePlayer])
+task.wait()
+end
+elseif GiveGodmode == true then
+OrionLib:MakeNotification({Name = "Error",Content = "You don't have Guardian Angel equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+GG:Set(false)
+end
+	end    
+})
+
+Tab5:AddTextbox({
+	Name = "Player to give godmode to",
+	Default = "Username",
+	TextDisappear = false,
+	Callback = function(Value)
+GodmodePlayer = Value
+	end	  
+})
+
+GAAI = Tab5:AddToggle({
+                    Name = "Get all alchemist ingredients",
+                    Default = false,
+                    Callback = function(Value)
+AlchemistIngredients = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Alchemist" then
+while AlchemistIngredients do
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Mushroom")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Glowing Mushroom")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Fire Flower")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Winter Rose")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Dark Root")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Dire Flower")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Autumn Sprout")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Elder Wood")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Hazel Lily")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Wild Vine")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Jade Stone")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Lamp Grass")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Plane Flower")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Blood Rose")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Red Crystal")
+game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem","Blue Crystal")
+task.wait()
+end
+elseif AlchemistIngredients == true then
+OrionLib:MakeNotification({Name = "Error",Content = "You don't have Alchemist equipped.",Image = "rbxassetid://7733658504",Time = 5})
+task.wait()
+GAAI:Set(false)
+end
+                    end    
+                })
+
+RNS = Tab5:AddToggle({
+                    Name = "Rhythm Note Spam + Auto Press (Equip Rhythm)",
+                    Default = false,
+                    Callback = function(Value)
+RhythmNoteSpam = Value
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Rhythm" then
+while RhythmNoteSpam do
+game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = false
+game.Players.LocalPlayer.PlayerGui.Rhythm.LocalScript.Disabled = true
+game.Players.LocalPlayer.Character.Rhythm:Activate()
+task.wait()
+end
+elseif RhythmNoteSpam == true then
+OrionLib:MakeNotification({Name = "Error",Content = "You don't have Rhythm equipped.",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+RNS:Set(false)
+end
+                    end    
+                })
+
+                Tab5:AddToggle({
+                    Name = "Auto Click Tycoon",
+                    Default = false,
+                    Callback = function(Value)
+AutoTycoon = Value
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v.Name == "End" and v.ClassName == "Part" then
+            v.Size = Vector3.new(28, 0.3, 4)
+        end
+    end
+while AutoTycoon do
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Click" and v:FindFirstChild("ClickDetector") then
+            fireclickdetector(v.ClickDetector)
+        end
+    end
+    task.wait()
+end
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Rainbow Character (Needs Golden)",
+                    Default = false,
+                    Callback = function(Value)
+Rainbow = Value
+while Rainbow do
+for i = 0,1,0.001*25 do
+game:GetService("ReplicatedStorage").Goldify:FireServer(false, BrickColor.new(Color3.fromHSV(i,1,1)))
+task.wait()
+end
+end
+end
+                })
+
 Tab4:AddDropdown({
 	Name = "Rojo Charge VFX (Will fling you if spammed)",
 	Default = "",
@@ -3188,27 +3321,6 @@ end
 })
 
 Tab4:AddButton({
-	Name = "Infinite Golden (Use in arena)",
-	Callback = function()
-game:GetService("ReplicatedStorage").Goldify:FireServer(true)
-                    end    
-                })
-
-Tab4:AddToggle({
-                    Name = "Rainbow Character (Needs Golden)",
-                    Default = false,
-                    Callback = function(Value)
-Rainbow = Value
-while Rainbow do
-for i = 0,1,0.001*25 do
-game:GetService("ReplicatedStorage").Goldify:FireServer(false, BrickColor.new(Color3.fromHSV(i,1,1)))
-task.wait()
-end
-end
-end
-                })
-
-Tab4:AddButton({
 	Name = "Destroy all tycoons",
 	Callback = function()
 for i = 1, 110 do
@@ -3221,61 +3333,6 @@ task.wait()
 end
                     end    
                 })
-
-PPO = Tab4:AddToggle({
-                    Name = "Ping Pong Orbit",
-                    Default = false,
-                    Callback = function(Value)
-PingPongOrbit = Value
-if game.Players.LocalPlayer.leaderstats.Glove.Value == "Ping Pong" then
-game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = game.Players.LocalPlayer.Character.HumanoidRootPart.Rotation
-Orbit = "0"
-PingPongBall = game.Players.LocalPlayer.Name.."_PingPongBall"
-while PingPongOrbit do
-game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
-Orbit = Orbit + OrbitSpeed
-game.Players.LocalPlayer.Character.Torso.RadioPart.Rotation = Vector3.new(-180, Orbit, -180)
-if game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,-15) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
-                    end
-                end
-for i,v in pairs(game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-                        v.CFrame = game.Players.LocalPlayer.Character.Torso.RadioPart.CFrame * CFrame.new(0,0,15) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
-                    end
-                end
-elseif game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[1] or game.Players.LocalPlayer.Character.Torso.RadioPart:GetChildren()[2] then
-for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v.ClassName == "Part" and v.Name == PingPongBall then
-v.Parent = game.Players.LocalPlayer.Character.Torso.RadioPart
-break
-                    end
-                end
-end
-task.wait(0.01)
-end
-elseif Value == true then
-OrionLib:MakeNotification({Name = "Error",Content = "You don't have Ping Pong equipped.",Image = "rbxassetid://7733658504",Time = 5})
-wait(0.05)
-PPO:Set(false)
-end
-end
-                })
-
-Tab4:AddSlider({
-	Name = "Ping Pong Orbit Speed",
-	Min = 0,
-	Max = 50,
-	Default = 10,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Speed",
-	Callback = function(Value)
-		OrbitSpeed = Value
-	end    
-})
 
                 Tab4:AddToggle({
                     Name = "Spam Zombie Sound (All gloves)",
@@ -3301,7 +3358,7 @@ end
                     end    
                 })
 
-                Tab4:AddToggle({
+                Tab5:AddToggle({
                     Name = "Spam Glove Sound",
                     Default = false,
                     Callback = function(Value)
@@ -3330,7 +3387,7 @@ end
                     end    
                 })
 
-Tab4:AddDropdown({
+Tab5:AddDropdown({
 	Name = "Glove Sound",
 	Default = "Ghost",
 	Options = {"Ghost", "Thanos", "Space", "Golden", "Hitman"},
@@ -3339,7 +3396,7 @@ GloveSound = Value
 	end    
 })
 
-Tab6:AddSlider({
+Tab7:AddSlider({
 	Name = "Walkspeed",
 	Min = 20,
 	Max = 1000,
@@ -3353,7 +3410,7 @@ Walkspeed = Value
 	end    
 })
 
-Tab6:AddToggle({
+Tab7:AddToggle({
 	Name = "Keep Walkspeed",
 	Default = false,
 	Callback = function(Value)
@@ -3367,7 +3424,7 @@ task.wait()
 	end    
 })
 
-Tab6:AddSlider({
+Tab7:AddSlider({
 	Name = "Jumppower",
 	Min = 50,
 	Max = 1000,
@@ -3381,7 +3438,7 @@ Jumppower = Value
 	end    
 })
 
-Tab6:AddToggle({
+Tab7:AddToggle({
 	Name = "Keep Jumppower",
 	Default = false,
 	Callback = function(Value)
@@ -3395,14 +3452,14 @@ task.wait()
 	end    
 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Fast Candy Corn Farm (Copies script, put in autoexec)",
 	Callback = function()
 setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Candy%20Corn%20Farm'))()")
                     end    
                 })
 
-Tab5:AddToggle({
+Tab6:AddToggle({
                     Name = "Candy Corn Farm",
                     Default = false,
                     Callback = function(Value)
@@ -3418,7 +3475,7 @@ end
 end
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get Elude",
 	Callback = function()
 local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
@@ -3438,9 +3495,9 @@ game:GetService("TeleportService"):Teleport(11828384869)
   	end    
 })
 
-Tab5:AddLabel("When in the elude maze there is a counter feature")
+Tab6:AddLabel("When in the elude maze there is a counter feature")
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get Chain (Needs 1k slaps)",
 	Callback = function()
 if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 1000 then
@@ -3625,7 +3682,7 @@ end
   	end    
 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get Tycoon",
 	Callback = function()
       		repeat task.wait()
@@ -3634,7 +3691,7 @@ until game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text == "Plate
                     end    
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
                     Name = "Get [REDACTED] (Needs 5k slaps)",
 Callback = function()
 if game.Players.LocalPlayer.leaderstats.Slaps.Value >= 5000 then
@@ -3654,7 +3711,7 @@ OrionLib:MakeNotification({Name = "Error",Content = "You need 5000+ slaps.",Imag
 end
                     })
 
-Tab5:AddButton({
+Tab6:AddButton({
                     Name = "Get Kinetic (~10 mins) (Blatant)",
 Callback = function()
 if game.Players.LocalPlayer.leaderstats.Glove.Value == "Stun" then
@@ -3681,7 +3738,7 @@ end
 end
                     })
 
-Tab5:AddToggle({
+Tab6:AddToggle({
 	Name = "Jet Farm",
 	Default = false,
 	Callback = function(Value)
@@ -3698,7 +3755,7 @@ end
 	end    
 })
 
-Tab5:AddToggle({
+Tab6:AddToggle({
 	Name = "Phase Farm",
 	Default = false,
 	Callback = function(Value)
@@ -3715,7 +3772,7 @@ end
 	end    
 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get Trap (~25-30 mins)",
 	Callback = function()
 if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" then
@@ -3741,7 +3798,7 @@ end
                     end    
                 })
 
-BF = Tab5:AddToggle({
+BF = Tab6:AddToggle({
 	Name = "Brick Farm (Use if the fast version doesnt work)",
 	Default = false,
 	Callback = function(Value)
@@ -3759,7 +3816,7 @@ end
 	end    
 })
 
-BOB = Tab5:AddToggle({
+BOB = Tab6:AddToggle({
                     Name = "Bob Farm",
                     Default = false,
                     Callback = function(Value)
@@ -3781,42 +3838,43 @@ end
                     end    
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get Brazil badge",
 	Callback = function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
                     end    
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get court evidence badge",
 	Callback = function()
 fireclickdetector(game.Workspace.Lobby.Scene.knofe.ClickDetector)
                     end    
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get duck badge",
 	Callback = function()
 fireclickdetector(game.Workspace.Arena["default island"]["Rubber Ducky"].ClickDetector)
                     end    
                 })
 
-Tab5:AddButton({
+Tab6:AddButton({
 	Name = "Get The Lone Orange badge",
 	Callback = function()
 fireclickdetector(game.Workspace.Arena.island5.Orange.ClickDetector)
                     end    
                 })
 
-if game.Workspace:FindFirstChild("Value") == nil then
+if game.Workspace:FindFirstChild("NoChanged") == nil then
 local NoChanged = Instance.new("BoolValue", workspace)
+NoChanged.Name = "NoChanged"
 end
 Tab3:AddToggle({
                     Name = "Toggle All Antis",
                     Default = false,
                     Callback = function(Value)
-game.Workspace.Value.Value = Value
+game.Workspace.NoChanged.Value = Value
 end
 })
 
@@ -4197,118 +4255,118 @@ end
 end)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
-AA:Set(game.Workspace.Value.Value)
+game.Workspace.NoChanged.Changed:Connect(function()
+AA:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.05)
-AK:Set(game.Workspace.Value.Value)
+AK:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.1)
-APL:Set(game.Workspace.Value.Value)
+APL:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.15)
-AR:Set(game.Workspace.Value.Value)
+AR:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.2)
-AV:Set(game.Workspace.Value.Value)
+AV:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.25)
-ADB:Set(game.Workspace.Value.Value)
+ADB:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.3)
-AB:Set(game.Workspace.Value.Value)
+AB:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.35)
-ACOD:Set(game.Workspace.Value.Value)
+ACOD:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.4)
-AT:Set(game.Workspace.Value.Value)
+AT:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.45)
-AS:Set(game.Workspace.Value.Value)
+AS:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.5)
-AHJ:Set(game.Workspace.Value.Value)
+AHJ:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.55)
-AC:Set(game.Workspace.Value.Value)
+AC:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.6)
-ABK:Set(game.Workspace.Value.Value)
+ABK:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.65)
-AN:Set(game.Workspace.Value.Value)
+AN:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.7)
-ARD:Set(game.Workspace.Value.Value)
+ARD:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.75)
-AZ:Set(game.Workspace.Value.Value)
+AZ:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.8)
-ARR:Set(game.Workspace.Value.Value)
+ARR:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.85)
-AP:Set(game.Workspace.Value.Value)
+AP:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.9)
-ABR:Set(game.Workspace.Value.Value)
+ABR:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(.95)
-AM:Set(game.Workspace.Value.Value)
+AM:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(1)
-ASN:Set(game.Workspace.Value.Value)
+ASN:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(1.05)
-AMC:Set(game.Workspace.Value.Value)
+AMC:Set(game.Workspace.NoChanged.Value)
 end)
 
-game.Workspace.Value.Changed:Connect(function()
+game.Workspace.NoChanged.Changed:Connect(function()
 wait(1.1)
-AREC:Set(game.Workspace.Value.Value)
+AREC:Set(game.Workspace.NoChanged.Value)
 end)
 
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))()
