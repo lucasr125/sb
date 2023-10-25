@@ -1319,6 +1319,26 @@ game:GetService("TeleportService"):Teleport(6403373529)
       OrionLib:MakeNotification({Name="Error",Content="You don't have Home Run equipped",Image="rbxassetid://7733658504",Time=5});
     end
   end});
+  Tab7:AddSlider({Name = "Set Cloud Speed",Min = 0.1,Max = 1.2,Default = 0.5,Color = Color3.fromRGB(255,255,255),Increment = 0.1,ValueName = "Speed",Callback = function(Value)
+    _G.SetSpeedCloud = Value;
+  end});
+  CloudSpeed = Tab7:AddToggle({Name = "Enable Custom Cloud Speed",Default = false,Callback = function(Value)
+    _G.CloudSpeed = Value
+    if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Cloud") then
+      while (_G.CloudSpeed) do
+        for i,v in pairs(game.Workspace:GetChildren()) do
+          if (v.Name:match(game.Players.LocalPlayer.Name)) and (v:FindFirstChild("BodyVelocity")) then
+            v.BodyVelocity.Velocity = v.BodyVelocity.Velocity * _G.SetSpeedCloud
+          end
+        end
+        task.wait(0.1);
+      end
+    elseif (_G.CloudSpeed == true) then
+      OrionLib:MakeNotification({Name = "Error",Content = "You don't have Cloud glove equipped.",Image = "rbxassetid://7733658504",Time = 5});
+      wait(0.05);
+      CloudSpeed:Set(false);
+    end
+  end});
   Tab7:AddButton({Name="Auto Keypad",Callback=function()
     if not workspace:FindFirstChild("Keypad") then
       for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
