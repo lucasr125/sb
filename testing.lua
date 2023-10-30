@@ -283,6 +283,7 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
   local Tab11 = Window:MakeTab({Name="Troll",Icon="rbxassetid://4483345998",PremiumOnly=false});
   local Tab13 = Window:MakeTab({Name="Ability Spam",Icon="rbxassetid://4483345998",PremiumOnly=false});
   local Tab14 = Window:MakeTab({Name="Auto Join Game",Icon="rbxassetid://4483345998",PremiumOnly=false});
+  local GloveTab = Window:MakeTab({Name="Glove",Icon="rbxassetid://4483345998",PremiumOnly=false});
   local Tab15 = Window:MakeTab({Name="Credits",Icon="rbxassetid://4483345998",PremiumOnly=false});
 
   -- Notifications
@@ -1036,6 +1037,22 @@ game:GetService("TeleportService"):Teleport(6403373529)
       AutoTycoon:Set(false);
     end
   end});
+  GloveTab:AddDropdown({Name = "Ingredient",Default = "",Options = {"Autumn Sprout", "Blood Rose", "Blue Crystal", "Dark Root", "Dire Flower","Elder Wood", "Fire Flower", "Glowing Mushroom", "Hazel Lily", "Jade Stone","Lamp Grass", "Mushroom", "Plane Flower", "Red Crystal", "Wild Vine", "Winter Rose"},Callback = function(Value)
+    AlchemistIngredientsGet = Value;
+  end});
+  GetAlchemist = GloveTab:AddToggle({Name = "Get Alchemist Ingredients",Default = false,Callback = function(Value)
+    AlchemistIngredients = Value;
+    if (game.Players.LocalPlayer.leaderstats.Glove.Value == "Alchemist") then
+      while AlchemistIngredients do
+        game.ReplicatedStorage.AlchemistEvent:FireServer("AddItem", AlchemistIngredientsGet);
+        task.wait();
+      end
+    elseif (AlchemistIngredients == true) then
+      OrionLib:MakeNotification({Name = "Error",Content = "You don't have Alchemist glove equipped.",Image = "rbxassetid://7733658504",Time = 5});
+      task.wait();
+      GetAlchemist:Set(false);
+    end
+	end});
   Tab7:AddDropdown({Name="Godmode",Default="",Options={"Godmode","Godmode + Invisibility"},Callback=function(Value)
     if (Value == "Godmode") then
       if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
@@ -1556,19 +1573,27 @@ game:GetService("TeleportService"):Teleport(6403373529)
     if (_G.HitboxPlayer == false) then
       for i,v in pairs(game.Players:GetChildren()) do
         if v ~= game.Players.LocalPlayer then
-          v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
-          v.Character.HumanoidRootPart.Transparency = 1
+          if v.Character then
+            if v.Character:FindFirstChild("HumanoidRootPart") then
+              v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1);
+              v.Character.HumanoidRootPart.Transparency = 1
+            end
+          end
         end
       end
     end
     while _G.HitboxPlayer do
       for i,v in pairs(game.Players:GetChildren()) do
         if v ~= game.Players.LocalPlayer then
-          v.Character.HumanoidRootPart.Size = Vector3.new(_G.ReachHitbox,_G.ReachHitbox,_G.ReachHitbox)
-          v.Character.HumanoidRootPart.Transparency = 0.75
+          if v.Character then
+            if v.Character:FindFirstChild("HumanoidRootPart") then
+              v.Character.HumanoidRootPart.Size = Vector3.new(_G.ReachHitbox,_G.ReachHitbox,_G.ReachHitbox);
+              v.Character.HumanoidRootPart.Transparency = 0.75
+            end
+          end
         end
       end
-      task.wait()
+      task.wait();
     end
   end})
   Tab7:AddSlider({Name="Reach Shukuchi",Min=1,Max=130,Default=50,Color=Color3.fromRGB(255, 255, 255),Increment=1,ValueName="Reach",Callback=function(Value)
@@ -2653,6 +2678,10 @@ game:GetService("GuiService"):ClearError()
     end
     while On and (game.Players.LocalPlayer.leaderstats.Glove.Value == "Whirlwind") do
       game:GetService("ReplicatedStorage").GeneralAbility:FireServer();
+      task.wait();
+    end
+    while On and (game.Players.LocalPlayer.leaderstats.Glove.Value == "Parry") do
+      game.ReplicatedStorage.GeneralAbility:FireServer()
       task.wait();
     end
   end});
