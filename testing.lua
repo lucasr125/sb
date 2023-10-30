@@ -29,9 +29,6 @@ if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceI
   TimeVoodoo = 0;
   TimeMegarock = 0;
 
-  if setfpscap then
-    setfpscap(12569);
-  end
   local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB"))();
   function getGlove()
     return LocalPlr.leaderstats.Glove.Value
