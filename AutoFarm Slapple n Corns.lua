@@ -16,7 +16,7 @@ repeat
 until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
 getgenv().settings = {
-	GetCandyCorns = true
+	GetCandyCorns = true,
 	GetSlapples = true
 }
 
