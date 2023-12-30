@@ -43,7 +43,7 @@ shared.gloveHits = {
     ["Jebaited"] = game.ReplicatedStorage.GeneralHit,
     ["Meteor"] = game.ReplicatedStorage.GeneralHit,
     ["Tinkerer"] = game.ReplicatedStorage.GeneralHit,
-	["Guardian Angel"] = game.ReplicatedStorage.GeneralHit,
+    ["Guardian Angel"] = game.ReplicatedStorage.GeneralHit,
     ["Sun"] = game.ReplicatedStorage.GeneralHit,
     ["Necromancer"] = game.ReplicatedStorage.GeneralHit,
     ["Zombie"] = game.ReplicatedStorage.GeneralHit,
@@ -54,6 +54,11 @@ shared.gloveHits = {
     ["Oven"] = game.ReplicatedStorage.GeneralHit,
     ["Jester"] = game.ReplicatedStorage.GeneralHit,
     ["Ferryman"] = game.ReplicatedStorage.GeneralHit,
+    ["Scythe"] = game.ReplicatedStorage.GeneralHit,
+    ["Blackhole"] = game.ReplicatedStorage.GeneralHit,
+    ["Santa"] = game.ReplicatedStorage.GeneralHit,
+    ["Grapple"] = game.ReplicatedStorage.GeneralHit,
+    ["Iceskate"] = game.ReplicatedStorage.GeneralHit,
     ----------------------------------------
     ["ZZZZZZZ"] = game.ReplicatedStorage.ZZZZZZZHit,
     ["Brick"] = game.ReplicatedStorage.BrickHit,
@@ -128,7 +133,6 @@ shared.gloveHits = {
     ["Retro"] = game.ReplicatedStorage.RetroHit,
     ["Cloud"] = game.ReplicatedStorage.CloudHit,
     ["Null"] = game.ReplicatedStorage.NullHit,
-    ["Custom"] = game.ReplicatedStorage.CustomHit,
     ["spin"] = game.ReplicatedStorage.spinhit,
     ----------------------------------------
     ["Kinetic"] = game.ReplicatedStorage.HtStun,
@@ -150,6 +154,7 @@ shared.gloveHits = {
     ----------------------------------------
     ["OVERKILL"] = game.ReplicatedStorage.Overkillhit,
     ["The Flex"] = game.ReplicatedStorage.FlexHit,
+    ["Custom"] = game.ReplicatedStorage.CustomHit,
     ["God's Hand"] = game.ReplicatedStorage.Godshand,
     ["Error"] = game.ReplicatedStorage.Errorhit
 }
