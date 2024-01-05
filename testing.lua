@@ -1,4 +1,4 @@
---loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/testing.lua", true))()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/temp.lua", true))()
 if not game:IsLoaded() then
 	game.Loaded:Wait();
 end
