@@ -553,6 +553,30 @@ local Tab15 = Window:MakeTab({
 	PremiumOnly = false
 })
 
+					Tab:AddButton({
+	Name = "Get Glove Elude",
+	Callback = function()
+if not workspace:FindFirstChild("Keypad") then
+	for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+    	if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
+        	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
+    	end
+	end
+else
+fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
+local digits = tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7)
+for i = 1, #digits do
+task.wait(0.8)
+local digit = digits:sub(i, i)
+fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
+end
+task.wait(1)
+fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
+end
+  	end    
+})
+
+
 local InfoServer = Tab:AddSection({Name = "Info"})
 CanYouFps = Tab:AddLabel("Can You Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
 CanYouPing = Tab:AddLabel("Can You Ping [ "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString().." ]")
@@ -1110,31 +1134,6 @@ if not workspace:FindFirstChild("Keypad") then
     	end
 	end
 else
-local teleportFunc = queueonteleport or queue_on_teleport or syn and syn.queue_on_teleport
-if teleportFunc then
-    teleportFunc([[
-        if not game:IsLoaded() then
-            game.Loaded:Wait()
-        end
-        repeat wait() until game.Players.LocalPlayer
-    task.wait(5)
-Time = 121
-fireclickdetector(game.Workspace.CounterLever.ClickDetector)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,100,0)
-wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-for i = 1,Time do
-Time = Time - 1
-game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Error",Text = "You wait time [ "..Time.." ] receive.",Icon = "rbxassetid://7733658504",Duration = 2})
-wait(1)
-end
-for i,v in pairs(workspace.Maze:GetDescendants()) do
-if v:IsA("ClickDetector") then
-fireclickdetector(v)
-end
-end
-    ]])
-end
 fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
 local digits = tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7)
 for i = 1, #digits do
