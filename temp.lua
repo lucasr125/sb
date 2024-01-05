@@ -578,6 +578,11 @@ end
 
 
 local InfoServer = Tab:AddSection({Name = "Info"})
+					if not workspace:FindFirstChild("Keypad") then
+						elude = Tab:AddLabel("No Keypad")
+					else
+						elude = Tab:AddLabel("Keypad available")
+					end
 CanYouFps = Tab:AddLabel("Can You Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
 CanYouPing = Tab:AddLabel("Can You Ping [ "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString().." ]")
 ServerPlayer = Tab:AddLabel("Player Server [ "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers.." ]")
