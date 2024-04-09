@@ -23,8 +23,7 @@ getgenv().settings = {
 if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
 	repeat
 		task.wait();
-		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 0);
-		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport1, 1);
+		game.Players.LocalPlayer.Character:MoveTo(workspace.Lobby.Teleport1.CFrame.Position);
 	until game.Players.LocalPlayer.Character:FindFirstChild("entered") 
 end
 
@@ -41,8 +40,7 @@ end
 if (getgenv().settings.GetSlapples == true) then
 	for _, v in ipairs(game.Workspace.Arena.island5.Slapples:GetDescendants()) do
 		if ((v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
-			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+			game.Players.LocalPlayer.Character:MoveTo(v.CFrame.Position);
 		end
 	end
 end
