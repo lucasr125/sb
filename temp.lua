@@ -4,17 +4,17 @@ end
 
 if _G.AutoExecuter == true then
 	local ScriptSpawn = queueonteleport or queue_on_teleport
-if ScriptSpawn then
-    ScriptSpawn([[
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
-repeat wait() until game.Players.LocalPlayer
-wait(0.25)
-_G.AutoExecuter = true
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Slap_Battles/main/Slap_Battles.lua"))()
-    ]])
-end
+	if ScriptSpawn then
+		ScriptSpawn([[
+			if not game:IsLoaded() then
+				game.Loaded:Wait()
+			end
+			repeat wait() until game.Players.LocalPlayer
+			wait(0.25)
+			_G.AutoExecuter = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Slap_Battles/main/Slap_Battles.lua"))()
+		]])
+	end
 end
 
 game:GetService("GuiService"):ClearError()
@@ -29,14 +29,14 @@ local Window = OrionLib:MakeWindow({IntroText = "Slap Battles 👏", IntroIcon =
 
 local Namecall
 Namecall = hookmetamethod(game, "__namecall", function(self, ...)
-   if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
-       return
-   elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
-       return
-   elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
-       return
-   end
-   return Namecall(self, ...)
+	if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+		return
+	elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+		return
+	elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+		return
+	end
+	return Namecall(self, ...)
 end)
 
 ---Potion---
@@ -7475,7 +7475,7 @@ end
 Tab11:AddDropdown({
 	Name = "Glove Sound",
 	Default = "Ghost",
-	Options = {"Ghost", "Thanos", "Space", "Scythe", "Golden", "Hitman", "Prop", "Error Death", "Zombie"},
+	Options = {"Ghost", "Thanos", "Space", "Scythe", "Golden", "Hitman", "Prop", "Error", "Zombie"},
 	Callback = function(Value)
 GloveSound = Value
 	end    
@@ -7485,45 +7485,31 @@ Tab11:AddToggle({
 	Name = "Auto Spam Glove Sound",
 	Default = false,
 	Callback = function(Value)
-		GloveSoundSpam = Value
-while GloveSoundSpam and GloveSound == "Ghost" do
+		SpamGloveSound = Value
+		while SpamGloveSound do
+			if GloveSound == "Ghost" then
 game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
 game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer()
-task.wait()
+	elseif GloveSound == "Thanos" then
+		game:GetService("ReplicatedStorage").Illbeback:FireServer()
+	elseif GloveSound == "Space" then
+		game:GetService("ReplicatedStorage").ZeroGSound:FireServer()
+	elseif GloveSound == "Scythe" then
+		game:GetService("ReplicatedStorage").Scythe:FireServer("ScytheWeapon")
+	elseif GloveSound == "Golden" then
+		game:GetService("ReplicatedStorage").Goldify:FireServer(true)
+	elseif GloveSound == "Hitman" then
+		game:GetService("ReplicatedStorage"):WaitForChild("HitmanAbility"):FireServer("ReplicateGoldenRevolver",{0})
+	elseif GloveSound == "Prop" then
+		game:GetService("ReplicatedStorage").Prop:FireServer()
+	elseif GloveSound == "Error" then
+		game.ReplicatedStorage.ErrorDeath:FireServer()
+	elseif GloveSound == "Zombie" then
+		game:GetService("ReplicatedStorage").b:FireServer("ReplicateSound_Zombie")
+	end
+	task.wait()
 end
-while GloveSoundSpam and GloveSound == "Thanos" do
-game:GetService("ReplicatedStorage").Illbeback:FireServer()
-task.wait()
 end
-while GloveSoundSpam and GloveSound == "Space" do
-game:GetService("ReplicatedStorage").ZeroGSound:FireServer()
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Scythe" do
-game:GetService("ReplicatedStorage").Scythe:FireServer("ScytheWeapon")
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Golden" do
-game:GetService("ReplicatedStorage").Goldify:FireServer(true)
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Hitman" do
-game:GetService("ReplicatedStorage"):WaitForChild("HitmanAbility"):FireServer("ReplicateGoldenRevolver",{0})
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Prop" do
-game:GetService("ReplicatedStorage").Prop:FireServer()
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Error Death" do
-game.ReplicatedStorage.ErrorDeath:FireServer()
-task.wait()
-end
-while GloveSoundSpam and GloveSound == "Zombie" do
-game:GetService("ReplicatedStorage").b:FireServer("ReplicateSound_Zombie")
-task.wait()
-end
-	end    
 })
 
 Tab15:AddParagraph("Share Link Zalo","Join Link Zalo Message All People Or Friend")
