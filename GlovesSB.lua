@@ -1,4 +1,4 @@
-shared.gloveHits = {
+gloveHits = {
     ["Default"] = game.ReplicatedStorage.b,
     ["Extended"] = game.ReplicatedStorage.b,
     ----------------------------------------
