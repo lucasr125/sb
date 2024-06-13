@@ -19,7 +19,7 @@ end
 
 game:GetService("GuiService"):ClearError()
 
-local gloveHits = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB.lua"))()
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/GlovesSB.lua"))()
 local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
@@ -325,38 +325,6 @@ wait(3.75)
 fireclickdetector(workspace.Lobby.Blink.ClickDetector)
 end
 end
-
-if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil then
-local bv = Instance.new("BodyVelocity")
-bv.Name = "VelocityHandler"
-bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-bv.MaxForce = Vector3.new(0,0,0)
-bv.Velocity = Vector3.new(0,0,0)
-end
-
-if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
-local bg = Instance.new("BodyGyro")
-bg.Name = "GyroHandler"
-bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-bg.MaxTorque = Vector3.new(0,0,0)
-bg.P = 1000
-bg.D = 50
-end
-
-game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(NewChar)
-local bv = Instance.new("BodyVelocity")
-bv.Name = "VelocityHandler"
-bv.Parent = NewChar:WaitForChild("Humanoid").RootPart
-bv.MaxForce = Vector3.new(0,0,0)
-bv.Velocity = Vector3.new(0,0,0)
-
-local bg = Instance.new("BodyGyro")
-bg.Name = "GyroHandler"
-bg.Parent = NewChar:WaitForChild("Humanoid").RootPart
-bg.MaxTorque = Vector3.new(0,0,0)
-bg.P = 1000
-bg.D = 50
-end)
 
 ---SafeSpotBox---
 
@@ -769,6 +737,8 @@ local Tab = Window:MakeTab({
 	Icon = "rbxassetid://7734053426",
 	PremiumOnly = false
 })
+local InfoServer = Tab:AddSection({Name = "Info"})
+local LPLayer = Tab:AddSection({Name = "Local Player"})
 
 local Tab1 = Window:MakeTab({
 	Name = "Script",
@@ -826,94 +796,106 @@ local Tab60 = Window:MakeTab({
 
 Tab:AddLabel("Owner Credits Script By Giang And DonjoSx")
 Tab:AddLabel("Bạn muốn vào nhóm zalo thì vào Credit nhé")
-local InfoServer = Tab:AddSection({Name = "Info"})
-CanYouFps = Tab:AddLabel("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
-CanYouPing = Tab:AddLabel("Your Ping [ "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString().." ]")
-ServerPlayer = Tab:AddLabel("Player In Server [ "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers.." ]")
-TimeServer = Tab:AddLabel("Server Time [ "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour | "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute | "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second ]")
-TimeNow = Tab:AddLabel("Now Time [ "..os.date("%X").." ]")
-AgeAccYou = Tab:AddLabel("You Account Age [ "..game.Players.LocalPlayer.AccountAge.." ]")
-ViewAgeServer = Tab:AddLabel("Server's Age [ "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text.." ]")
-if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-ResetTime = Tab:AddLabel("Time Spawn [ "..game.Players.RespawnTime.." ]")
-else
-ResetTime = Tab:AddLabel("Time Spawn [ Not Dead ]")
-end
-CodeKeypad = Tab:AddLabel("Code Keypad [ "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7).." ]")
-if not game.Workspace:FindFirstChild("Keypad") then
-KeypadSpawn = Tab:AddLabel("Keypad Spawn [ No ]")
-else
-KeypadSpawn = Tab:AddLabel("Keypad Spawn [ Yes ]")
-end
-if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
-GoldenSlappleSpawn = Tab:AddLabel("Golden Slapple Spawn [ No ]")
-else
-GoldenSlappleSpawn = Tab:AddLabel("Golden Slapple Spawn [ Yes ]")
-end
-CheckSlap = Tab:AddLabel("Check Slap [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
-Glove = Tab:AddLabel("You're Using Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
-PlateTime = Tab:AddLabel("Plate Time [ "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text.." ]")
-Tab:AddParagraph("Game's ID [ "..game.PlaceId.." ]","Server ID [ "..game.JobId.." ]")
-local InfoServer = Tab:AddSection({Name = "Local Player"})
-if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
-WalkspeedYou = Tab:AddLabel("Walk Speed [ Not Walk then rock ]")
-JumppowerYou = Tab:AddLabel("Jump Power [ Not Jump Power then rock ]")
-HealthYou = Tab:AddLabel("Health You [ Not Health then rock ]")
-HipHeightYou = Tab:AddLabel("Hip Height [ Not Hip then rock ]")
-else
-WalkspeedYou = Tab:AddLabel("Walk Speed [ "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed.." ]")
-JumppowerYou = Tab:AddLabel("Jump Power [ "..game.Players.LocalPlayer.Character.Humanoid.JumpPower.." ]")
-HealthYou = Tab:AddLabel("Health You [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
-HipHeightYou = Tab:AddLabel("Hip Height [ "..game.Players.LocalPlayer.Character.Humanoid.HipHeight.." ]")
-end
-GravityYou = Tab:AddLabel("Gravity [ "..game.Workspace.Gravity.." ]")
-PositionYou = Tab:AddLabel("Position In Your [ "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)).." ]")
+CanYouFps = LPLayer:AddLabel("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
+CanYouPing = LPLayer:AddLabel("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
+ServerPlayer = InfoServer:AddLabel("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
+TimeServer = InfoServer:AddLabel("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
+TimeNow = InfoServer:AddLabel("Time: "..os.date("%X"))
+AgeAccYou = LPLayer:AddLabel("Account age: "..game.Players.LocalPlayer.AccountAge)
+ViewAgeServer = InfoServer:AddLabel("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
 
-AutoSetInfo = Tab:AddToggle({
+if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+ResetTime = LPLayer:AddLabel("Time Spawn: "..game.Players.RespawnTime)
+else
+ResetTime = LPLayer:AddLabel("Time Spawn: not dead")
+end
+
+CodeKeypad = InfoServer:AddLabel("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
+if not game.Workspace:FindFirstChild("Keypad") then
+KeypadSpawn = InfoServer:AddLabel("Keypad not spawned")
+else
+KeypadSpawn = InfoServer:AddLabel("Keypad spawned")
+end
+
+if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
+GoldenSlappleSpawn = InfoServer:AddLabel("Golden Slapple not spawned")
+else
+GoldenSlappleSpawn = InfoServer:AddLabel("Golden Slapple spawned")
+end
+
+CheckSlap = LPLayer:AddLabel("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
+Glove = LPLayer:AddLabel("Glove: "..game.Players.LocalPlayer.leaderstats.Glove.Value)
+PlateTime = LPLayer:AddLabel("Plate Time: "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text)
+GameID = InfoServer:AddLabel("Game Id: "..game.PlaceId)
+ServerID = InfoServer:AddLabel("Server Id: "..game.JobId)
+
+if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
+WalkspeedYou = LPLayer:AddLabel("Walkspeed: unavailable as a rock")
+JumppowerYou = LPLayer:AddLabel("JumpPower: unavailable as a rock")
+HealthYou = LPLayer:AddLabel("Health: unavailable as a rock")
+HipHeightYou = LPLayer:AddLabel("Hip Height: unavailable as a rock")
+else
+WalkspeedYou = LPLayer:AddLabel("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
+JumppowerYou = LPLayer:AddLabel("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
+HealthYou = LPLayer:AddLabel("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
+HipHeightYou = LPLayer:AddLabel("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
+end
+GravityYou = LPLayer:AddLabel("Gravity: "..game.Workspace.Gravity)
+PositionYou = LPLayer:AddLabel("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
+
+Tab:AddToggle({
 	Name = "Auto Set Info",
 	Default = false,
 	Callback = function(Value)
 _G.AutoSetInfo = Value
 while _G.AutoSetInfo do
-CanYouFps:Set("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
-ServerPlayer:Set("Player In Server [ "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers.." ]")
-TimeServer:Set("Server Time [ "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour | "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minutes | "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second ]")
-CanYouPing:Set("Your Ping [ "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString().." ]")
-AgeAccYou:Set("Your Account Age [ "..game.Players.LocalPlayer.AccountAge.." ]")
-TimeNow:Set("Now Time [ "..os.date("%X").." ]")
-ViewAgeServer:Set("Server's Age [ "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text.." ]")
-PlateTime:Set("Plate Time [ "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text.." ]")
-if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-ResetTime:Set("Time Spawn [ "..game.Players.RespawnTime.." ]")
-else
-ResetTime:Set("Time Spawn [ Not Dead ]")
-end
-PositionYou:Set("Position In You [ "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)).." ]")
-CodeKeypad:Set("Code Keypad [ "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7).." ]")
-CheckSlap:Set("Check Slap [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
-Glove:Set("You're Using Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
-if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
-WalkspeedYou:Set("Walk Speed [ Not Walk then rock ]")
-JumppowerYou:Set("Jump Power [ Not Jump Power then rock ]")
-HealthYou:Set("Health You [ Not Health then rock ]")
-HipHeightYou:Set("Hip Height [ Not Hip then rock ]")
-else
-WalkspeedYou:Set("Walk Speed [ "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed.." ]")
-JumppowerYou:Set("Jump Power [ "..game.Players.LocalPlayer.Character.Humanoid.JumpPower.." ]")
-HealthYou:Set("Health You [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
-HipHeightYou:Set("Hip Height [ "..game.Players.LocalPlayer.Character.Humanoid.HipHeight.." ]")
-end
-GravityYou:Set("Gravity [ "..game.Workspace.Gravity.." ]")
-if not game.Workspace:FindFirstChild("Keypad") then
-KeypadSpawn:Set("Keypad Spawn [ No ]")
-else
-KeypadSpawn:Set("Keypad Spawn [ Yes ]")
-end
-if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
-GoldenSlappleSpawn:Set("Golden Slapple Spawn [ No ]")
-else
-GoldenSlappleSpawn:Set("Golden Slapple Spawn [ Yes ]")
-end
+    CanYouFps:Set("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
+    CanYouPing:Set("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
+    ServerPlayer:Set("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
+    TimeServer:Set("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
+    TimeNow:Set("Time: "..os.date("%X"))
+    AgeAccYou:Set("Account age: "..game.Players.LocalPlayer.AccountAge)
+    ViewAgeServer:Set("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
+    
+    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+    ResetTime:Set("Time Spawn: "..game.Players.RespawnTime)
+    else
+    ResetTime:Set("Time Spawn: not dead")
+    end
+    
+    CodeKeypad:Set("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
+    if not game.Workspace:FindFirstChild("Keypad") then
+    KeypadSpawn:Set("Keypad not spawned")
+    else
+    KeypadSpawn:Set("Keypad spawned")
+    end
+    
+    if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
+    GoldenSlappleSpawn:Set("Golden Slapple not spawned")
+    else
+    GoldenSlappleSpawn:Set("Golden Slapple spawned")
+    end
+    
+    CheckSlap:Set("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
+    Glove:Set("Glove: "..game.Players.LocalPlayer.leaderstats.Glove.Value)
+    PlateTime:Set("Plate Time: "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text)
+    --GameID:Set("Game Id: "..game.PlaceId)
+    --ServerID:Set("Server Id: "..game.JobId)
+    
+    if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
+    WalkspeedYou:Set("Walkspeed: unavailable as a rock")
+    JumppowerYou:Set("JumpPower: unavailable as a rock")
+    HealthYou:Set("Health: unavailable as a rock")
+    HipHeightYou:Set("Hip Height: unavailable as a rock")
+    else
+    WalkspeedYou:Set("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
+    JumppowerYou:Set("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
+    HealthYou:Set("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
+    HipHeightYou:Set("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
+    end
+    GravityYou:Set("Gravity: "..game.Workspace.Gravity)
+    PositionYou:Set("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
+    
 task.wait()
 end
 	end    
@@ -2727,10 +2709,10 @@ firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), works
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
 until game.Players.LocalPlayer.Character:FindFirstChild("entered")
 end
-wait(0.5)
+wait(0.27)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227, 48, 169)
-wait(0.53)
-for i,v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+wait(0.25)
+for i,v in ipairs(game.Workspace.Arena.CannonIsland:GetDescendants()) do
             if v.ClassName == "ProximityPrompt" then
                 fireproximityprompt(v)
             end
@@ -2767,10 +2749,10 @@ firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), works
 firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
 until game.Players.LocalPlayer.Character:FindFirstChild("entered")
 end
-wait(0.5)
+wait(0.27)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227, 48, 169)
-wait(0.53)
-for i,v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+wait(0.25)
+for i,v in ipairs(game.Workspace.Arena.CannonIsland:GetDescendants()) do
             if v.ClassName == "ProximityPrompt" then
                 fireproximityprompt(v)
             end
@@ -2864,16 +2846,16 @@ until game.Players.LocalPlayer.Character:FindFirstChild("entered")
 end
 wait(0.2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227, 48, 169)
-wait(0.5)
-for i,v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+wait(0.25)
+for i,v in ipairs(game.Workspace.Arena.CannonIsland:GetDescendants()) do
             if v.ClassName == "ProximityPrompt" then
                 fireproximityprompt(v)
             end
         end
 elseif game.Players.LocalPlayer.Character:FindFirstChild("entered") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227, 48, 169)
-wait(0.5)
-for i,v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+wait(0.25)
+for i,v in ipairs(game.Workspace.Arena.CannonIsland:GetDescendants()) do
             if v.ClassName == "ProximityPrompt" then
                 fireproximityprompt(v)
             end
@@ -4857,38 +4839,54 @@ Tab7:AddToggle({
 	Name = "Start Fly",
 	Default = false,
 	Callback = function(Value)
-	 _G.StartFly = Value
-if _G.StartFly == false then
-if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(0,0,0)
-game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(0,0,0)
-game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-end
-end
-while _G.StartFly do
-if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
-game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
-game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
-game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
-if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
-end
-if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
-end
-if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
-end
-if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
-game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
-end
-end
-task.wait()
-end
-	end    
-})
+        _G.StartFly = Value
+   if _G.StartFly == false then
+   if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+   game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+   end
+   elseif _G.StartFly == true then
+   if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
+   local bv = Instance.new("BodyVelocity")
+   local bg = Instance.new("BodyGyro")
+   
+   bv.Name = "VelocityHandler"
+   bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+   bv.MaxForce = Vector3.new(0,0,0)
+   bv.Velocity = Vector3.new(0,0,0)
+   
+   bg.Name = "GyroHandler"
+   bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+   bg.MaxTorque = Vector3.new(0,0,0)
+   bg.P = 1000
+   bg.D = 50
+   end
+   end
+   while _G.StartFly do
+   if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+   game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+   game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+   if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+   end
+   if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+   end
+   if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+   end
+   if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+   end
+   end
+   task.wait()
+   end
+       end    
+   })
 
 Tab7:AddDropdown({
 	Name = "Pocket",
@@ -6210,7 +6208,7 @@ SlapAuraCharacter = Value
 })
 
 Tab7:AddToggle({
-	Name = "Slap Aura",
+	Name = "Slap Aura [ patched >:( ]",
 	Default = false,
 	Callback = function(Value)
 		SlapAura = Value
@@ -7537,7 +7535,11 @@ OrionLib:Destroy()
 if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ToggleUi") ~= nil then
 game.Players.LocalPlayer.PlayerGui:FindFirstChild("ToggleUi"):Destroy()
 end
+if _G.AutoSetInfoGet then
+_G.AutoSetInfoGet:Disconnect()
+_G.AutoSetInfoGet = nil
   	end 
+    end
 })
 
 game.Workspace.NoChanged.Changed:Connect(function()
@@ -7599,6 +7601,5 @@ elseif (game.PlaceId == 16034567693) then
 elseif (game.PlaceId == 17290438723) then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/public-scripts/main/SlapBattles_IceTrials.lua"))();
 end
-AutoSetInfo:Set(true)
 ------------------------------------------------------------------------
 loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/Bracket_Orion/main/OrionUIChanger.lua"))()
