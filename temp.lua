@@ -5892,7 +5892,7 @@ AbilitySpamAllGlove = Value
 	end    
 })
 
-Tab7:AddToggle({
+SpamAllAbility = Tab7:AddToggle({
 	Name = "Spam Ability All Glove",
 	Default = false,
 	Callback = function(Value)
@@ -7126,11 +7126,14 @@ AntiNull = Tab2:AddToggle({
 	Callback = function(Value)
 _G.AntiNull = Value
 while _G.AntiNull do
-for i,v in pairs(game.Workspace:GetChildren()) do
-                if v.Name == "Imp" and v:FindFirstChild("Body") then
-                       gloveHits[game.Players.LocalPlayer.leaderstats.Glove.Value]:FireServer(v.Body,true)
-                 end
-            end
+for i, v in pairs(game.Workspace:GetChildren()) do
+							if (v.Name == "Imp") then
+								if v:FindFirstChild("Body") then
+									gloveHits[getGlove()]:FireServer(v.Body);
+								end
+							end
+						end
+
 task.wait()
 end
 	end    
@@ -7540,6 +7543,17 @@ _G.AutoSetInfoGet:Disconnect()
 _G.AutoSetInfoGet = nil
   	end 
     end
+})
+
+Tab11:AddToggle({
+	Name = "Spam SUN ( MAX ) // ( test )",
+	Default = false,
+	Callback = function(Value)
+	_G.SpamSunMAX = Value
+AntiNull:Set(Value)
+SpamAllAbility:Set(Value)
+_G.OnAbility = Value
+end
 })
 
 game.Workspace.NoChanged.Changed:Connect(function()
