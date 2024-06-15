@@ -1879,8 +1879,7 @@ end
 task.wait()
 end
 while _G.AutoFarmBob and Autobob == "Normal" do
-repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
 for i,v in pairs(game.Workspace.Lobby:GetChildren()) do
 if v.Name == "Teleport1" and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
 game.Players.LocalPlayer.Character.Humanoid.WalkToPoint = v.Position
@@ -2881,7 +2880,7 @@ Tab14:AddToggle({
 _G.TeleportBlackHole = Value
 while _G.TeleportBlackHole do
 if game.Players.LocalPlayer.Character:FindFirstChild("entered") then
-if game.Workspace.Blackhole_Particles ~= nil and game.Workspace.Blackhole_Particles.BlackHole ~= nil then
+if game.Workspace:FindFirstChild("Blackhole_Particles") and game.Workspace.Blackhole_Particles:FindFirstChild("BlackHole") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Blackhole_Particles.BlackHole.CFrame
 end
 end
@@ -3079,9 +3078,9 @@ end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-725,310,-2)
 task.wait(0.25)
 game:GetService("ReplicatedStorage").Recall:InvokeServer(game:GetService("Players").LocalPlayer.Character.Recall)
-wait(2.682)
+wait(2.684)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerKickRecall].Character.HumanoidRootPart.CFrame
-task.wait(0.3)
+task.wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
 v.CanTouch = true
@@ -3091,7 +3090,6 @@ OrionLib:MakeNotification({Name = "Error",Content = "You don't have Recall equip
 end
   	end    
 })
-
 Tab14:AddButton({
 	Name = "Kick Random Player Recall",
 	Callback = function()
@@ -3103,13 +3101,13 @@ end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-725,310,-2)
 task.wait(0.25)
 game:GetService("ReplicatedStorage").Recall:InvokeServer(game:GetService("Players").LocalPlayer.Character.Recall)
-wait(2.682)
+wait(2.684)
 local players = game.Players:GetChildren()
 local randomPlayer = players[math.random(1, #players)]
 repeat randomPlayer = players[math.random(1, #players)] until randomPlayer ~= game.Players.LocalPlayer and randomPlayer.Character:FindFirstChild("entered") and randomPlayer.Character:FindFirstChild("ded") == nil and randomPlayer.Character:FindFirstChild("InLabyrinth") == nil and randomPlayer.Character:FindFirstChild("rock") == nil
 Target = randomPlayer
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
-task.wait(0.3)
+task.wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
 for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
 v.CanTouch = true
@@ -4129,7 +4127,9 @@ game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
 fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
 task.wait(1)
 for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v.Name  ~= "Humanoid" then
 v.Transparency = 0
+end
 end
 else
 OrionLib:MakeNotification({Name = "Error",Content = "You need to be in lobby and have 666+ slaps.",Image = "rbxassetid://7733658504",Time = 5})
@@ -5890,6 +5890,12 @@ game:GetService("ReplicatedStorage").GeneralAbility:FireServer({["state"] = "vfx
 game:GetService("ReplicatedStorage").GeneralAbility:FireServer({["state"] = "vfx",["cf"] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(-2.1319260597229004, 0.651054859161377, 2.3744168281555176),["vfx"] = "crash"})
 task.wait()
 end
+while _G.OnAbility and game.Players.LocalPlayer.leaderstats.Glove.Value == "UFO" do
+if game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s UFO VFX") == nil or game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s UFO") == nil then
+game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+end
+task.wait(0.3)
+end
 	end    
 })
 
@@ -7107,6 +7113,8 @@ while _G.AntiIce do
                 v:Destroy()
                 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
                 game.Players.LocalPlayer.Character.Humanoid.AutoRotate = true
+	elseif v.Name ~= "Icecube" then
+                game.Players.LocalPlayer.Character.Humanoid.AutoRotate = false
             end
        end
 task.wait()
@@ -7469,13 +7477,11 @@ end)
 end)
 end
 while _G.AntiRagdoll and RagdollGetAnti == "Not Reset" do
-if game.Players.LocalPlayers.Character.Humanoid.Heath ~= 0 then
-if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:WaitForChild("Ragdolled") then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("Torso") and game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled") then
 if game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true then
 repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
 until game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
 game.Players.LocalPlayer.Character.Torso.Anchored = false
-end
 end
 end
 task.wait()
