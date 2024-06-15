@@ -39,6 +39,16 @@ Namecall = hookmetamethod(game, "__namecall", function(self, ...)
 	return Namecall(self, ...)
 end)
 
+	local function getGlove()
+		return LocalPlayer.leaderstats.Glove.Value
+	end
+	local function getTool()
+		local tool = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool") or game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):FindFirstChildOfClass("Tool")
+		if tool ~= nil and tool:FindFirstChild("Glove") ~= nil then
+			return tool
+		end
+	end
+
 ---Potion---
 
 _G.GetPotion = {
