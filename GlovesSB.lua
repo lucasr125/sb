@@ -86,6 +86,7 @@ gloveHits = {
     ["Spoonful"] = game.ReplicatedStorage.GeneralHit,
     ["Grab"] = game.ReplicatedStorage.GeneralHit,
     ["the schlop"] = game.ReplicatedStorage.GeneralHit,
+    ["UFO"] = game.ReplicatedStorage.GeneralHit,
     ----------------------------------------
     ["ZZZZZZZ"] = game.ReplicatedStorage.ZZZZZZZHit,
     ["Brick"] = game.ReplicatedStorage.BrickHit,
