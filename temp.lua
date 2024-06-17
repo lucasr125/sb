@@ -5658,7 +5658,7 @@ end
 _G.OnAbility = false
 Tab7:AddToggle({
 	Name = "Auto Spam Ability",
-	Default = false,
+	Default = _G.OnAbility,
 	Callback = function(Value)
 		_G.OnAbility = Value
 while _G.OnAbility and game.Players.LocalPlayer.leaderstats.Glove.Value == "Fort" do
@@ -6399,7 +6399,7 @@ Tab7:AddSlider({
 	Max = 2,
 	Default = 0.1,
 	Color = Color3.fromRGB(255,255,255),
-	Increment = 0.1,
+	Increment = 0.01,
 	ValueName = "cooldown",
 	Callback = function(Value)
 		_G.SlapAuraCooldown = Value
@@ -7763,16 +7763,29 @@ _G.AutoSetInfoGet = nil
     end
 })
 
---[[Tab11:AddToggle({
-	Name = "Spam SUN ( MAX ) // ( test )",
+Tab11:AddButton({
+	Name = "Spam SUN // ( test )",
 	Default = false,
-	Callback = function(Value)
-	_G.SpamSunMAX = Value
+	Callback = function()
+	sunSpamDebounce = false
+	if sunSpamDebounce == false then
+		sunSpamDebounce = true
 	game.Players.LocalPlayer.Character.Humanoid.Health = 0
-	repeat task.wait() until game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and 
+	repeat
+		task.wait()
+	until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0	
 	fireclickdetector(workspace.Lobby.Sun.ClickDetector)
+	repeat task.wait()
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)
+	until game.Players.LocalPlayer.Character:FindFirstChild("entered")
+	game:GetService("ReplicatedStorage").NullAbility:FireServer()
+	AntiNull:Set(true)
+	wait(2)
+	sunSpamDebounce = false
 end
-})]]
+end
+})
 
 game.Workspace.NoChanged.Changed:Connect(function()
 AntiAdmin:Set(game.Workspace.NoChanged.Value)
