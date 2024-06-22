@@ -20,6 +20,11 @@ end
 game:GetService("GuiService"):ClearError()
 
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
+local Window = OrionLib:MakeWindow({IntroText = GameName, IntroIcon = "rbxassetid://15315284749",Name = (GameName.." | ".. identifyexecutor()),IntroToggleIcon = "rbxassetid://7734091286", HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "slap battles"})
+
 gloveHits = {
     ["Default"] = game.ReplicatedStorage.b,
     ["Extended"] = game.ReplicatedStorage.b,
@@ -109,6 +114,7 @@ gloveHits = {
     ["Grab"] = game.ReplicatedStorage.GeneralHit,
     ["the schlop"] = game.ReplicatedStorage.GeneralHit,
     ["UFO"] = game.ReplicatedStorage.GeneralHit,
+	["el gato"] = game.ReplicatedStorage.GeneralHit,
     ----------------------------------------
     ["ZZZZZZZ"] = game.ReplicatedStorage.ZZZZZZZHit,
     ["Brick"] = game.ReplicatedStorage.BrickHit,
@@ -209,10 +215,6 @@ gloveHits = {
     ["Error"] = game.ReplicatedStorage.Errorhit
 }
 
-local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
-if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
-local Window = OrionLib:MakeWindow({IntroText = GameName, IntroIcon = "rbxassetid://15315284749",Name = (GameName.." | ".. identifyexecutor()),IntroToggleIcon = "rbxassetid://7734091286", HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "slap battles"})
-
 ---Bypass---
 
 local Namecall
@@ -230,6 +232,7 @@ end)
 	local function getGlove()
 		return game.Players.LocalPlayer.leaderstats.Glove.Value
 	end
+
 	local function getTool()
 		local tool = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool") or game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):FindFirstChildOfClass("Tool")
 		if tool ~= nil and tool:FindFirstChild("Glove") ~= nil then
@@ -986,8 +989,8 @@ local Tab15 = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local Tab60 = Window:MakeTab({
-	Name = "Notify Update",
+local ExperimentalTab = Window:MakeTab({
+	Name = "Experimental",
 	Icon = "rbxassetid://7733771472",
 	PremiumOnly = false
 })
@@ -1077,8 +1080,6 @@ while _G.AutoSetInfo do
     CheckSlap:Set("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
     Glove:Set("Glove: "..game.Players.LocalPlayer.leaderstats.Glove.Value)
     PlateTime:Set("Plate Time: "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text)
-    --GameID:Set("Game Id: "..game.PlaceId)
-    --ServerID:Set("Server Id: "..game.JobId)
     
     if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
     WalkspeedYou:Set("Walkspeed: unavailable as a rock")
@@ -1099,152 +1100,21 @@ end
 	end    
 })
 
-Tab1:AddButton({
-	Name = "Synapse X [ PE Delta ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/delta-hydro/secret-host-haha/main/syn_ui_new.lua"))()
-  	end    
-})
 
 Tab1:AddButton({
-	Name = "Codex [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Codex.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Kiwi [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Kiwi-Ui.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Krypton [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Krypton.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Krnl [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Knrl.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Animation [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/IlikeyocutgHAH12/EGEGESGGH/main/FE%20Animation%20GUI.txt'))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Arceus x [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Arceus_X_V3.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Execute | Ui Library [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Execute%20%7C%20UI%20Library.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Kill Player [ PE ]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Kill%20player"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Keyboard",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Rejoin Gui",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Rejoin.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Inf yield Delta",
+	Name = "Inf Yield Delta",
 	Callback = function()
       		loadstring(game:HttpGet("https://gist.githubusercontent.com/lxnnydev/c533c374ca4c1dcef4e1e10e33fa4a0c/raw/03e74f184f801dad77d3ebe1e2f18c6ac87ca612/delta___IY.gistfile1.txt.lua",true))()
   	end    
 })
 
 Tab1:AddButton({
-	Name = "Inf yield",
+	Name = "Inf Yield",
 	Callback = function()
       	loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()	
   	end    
 })
 
-Tab1:AddButton({
-	Name = "Hitbox",
-	Callback = function()
-      		loadstring(game:HttpGet(("https://gist.githubusercontent.com/stellar-4242/430ef3087d8d87eb306ca03e728ffbb8/raw/798429dd908b1f4471a1fa569ff62c5e5a93ec61/SLAP.LUA")))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Slap battles new R2O",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/R2O/main/Games/6403373529.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "CherryUi's SB GUI",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomScriptr3/gggggggg/main/lolez.txt", true))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Position Gui",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Position_Gui.lua", true))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Fe Fly V3",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Fly_V3.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "MoonUI v10",
-	Callback = function()
-      		loadstring(game:HttpGet('https://raw.githubusercontent.com/IlikeyocutgHAH12/MoonUI-v10-/main/MoonUI%20v10'))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Btool Cute",
-	Callback = function()
-      		loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Dex V2",
-	Callback = function()
-      		loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
-  	end    
-})
 
 Tab1:AddButton({
 	Name = "Dex V3",
@@ -1253,39 +1123,6 @@ Tab1:AddButton({
   	end    
 })
 
-Tab1:AddButton({
-	Name = "TP gui player",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/TP_Player.lua"))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Turies Spy",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Reamsrpy.lua", true))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Simple Spy",
-	Callback = function()
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/RemoteSpy-V2.lua", true))()
-  	end    
-})
-
-Tab1:AddButton({
-	Name = "Hydroxide",
-	Callback = function()
-local owner = "Upbolt"
-local branch = "revision"
-local function webImport(file)
-return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
-end
-webImport("init")
-webImport("ui/main")
-  	end    
-})
 
 Tab3:AddDropdown({
 	Name = "Teleport Safe",
@@ -1373,7 +1210,7 @@ Tab3:AddButton({
 if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
 game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
 else
-OrionLib:MakeNotification({Name = "Error",Content = "You have dead",Image = "rbxassetid://7733658504",Time = 5})
+OrionLib:MakeNotification({Name = "Error",Content = "You died",Image = "rbxassetid://7733658504",Time = 5})
 end
   	end    
 })
@@ -1404,7 +1241,7 @@ wait(0.5)
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("EMPStunBadgeCounter") then
 OrionLib:MakeNotification({Name = "Error",Content = "Counter Stun [ "..game.Players.LocalPlayer.Character.EMPStunBadgeCounter.Value.." ]",Image = "rbxassetid://7733658504",Time = 5})
 end
-wait(12.3)
+wait(10.2)
 until game.Players.LocalPlayer.Character:FindFirstChild("EMPStunBadgeCounter") and game.Players.LocalPlayer.Character.EMPStunBadgeCounter.Value >= 50
 else
 OrionLib:MakeNotification({Name = "Error",Content = "You don't have Stun equipped, or you aren't in the arena",Image = "rbxassetid://7733658504",Time = 5})
@@ -6082,6 +5919,10 @@ game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
 end
 task.wait(0.3)
 end
+while _G.OnAbility and game.Players.LocalPlayer.leaderstats.Glove.Value == "el gato" do
+	game:GetService("ReplicatedStorage").GeneralAbility:FireServer()
+	task.wait()
+	end
 	end    
 })
 
@@ -6634,53 +6475,54 @@ end
 	end    
 })
 
-Tab7:AddSlider({
-	Name = "Extend Glove",
-	Min = 2,
-	Max = 50,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Extend",
-	Callback = function(Value)
+ExperimentalTab:AddSlider({Name = "Extend Glove",Min = 0,Max = 50,Default = 5,Color = Color3.fromRGB(255,255,255),Increment = 1,ValueName = "Extend",Callback = function(Value)
 		_G.GloveExtendReach = Value
-	end    
-})
+	end})
 
-Tab7:AddDropdown({
+ExperimentalTab:AddDropdown({
 	Name = "Extend Option",
-	Default = "Meat Stick",
-	Options = {"Meat Stick","Pancake","Growth","North Korea Wall","Slight Extend"},
+	Default = "x, y & z",
+	Options = {"x & y", "x & z", "y & z", "x, y & z"},
 	Callback = function(Value)
 GloveExtendOption = Value
 	end    
 })
 
-Tab7:AddToggle({
+ExperimentalTab:AddToggle({
+    Name = "Extend Glove",
+    Default = false,
+    Callback = function(Value)
+        extendGloveValue = Value
+        while extendGloveValue do
+            task.wait()
+            local tool = getTool()
+            if tool then
+                if extendGloveValue then
+					if GloveExtendOption == "x & y" then
+						tool.Glove.Size = Vector3.new(_G.GloveExtendReach, _G.GloveExtendReach, 0)
+					elseif GloveExtendOption == "x & z" then
+						tool.Glove.Size = Vector3.new(_G.GloveExtendReach, 0, _G.GloveExtendReach)
+					elseif GloveExtendOption == "y & z" then
+						tool.Glove.Size = Vector3.new(0, _G.GloveExtendReach, _G.GloveExtendReach)
+					elseif GloveExtendOption == "x, y & z" then
+						tool.Glove.Size = Vector3.new(_G.GloveExtendReach, _G.GloveExtendReach, _G.GloveExtendReach)
+					end
+                else
+                    tool.Glove.Size = Vector3.new(2.5, 2.5, 1.7)
+                end
+            end
+        end
+    end
+})
+
+
+--[[Tab7:AddToggle({
 	Name = "Extend Glove",
 	Default = false,
 	Callback = function(Value)
 _G.GloveExtendGet = Value
 while _G.GloveExtendGet do
-if game.Players.LocalPlayer:WaitForChild("Backpack"):FindFirstChildOfClass("Tool") ~= nil then
-for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") and v.Name ~= "Radio" then
-                        if v:FindFirstChild("Glove") ~= nil then
-                          if GloveExtendOption == "Meat Stick" then
-                            v:FindFirstChild("Glove").Size = Vector3.new(0, _G.GloveExtendReach, 2)
-                            elseif GloveExtendOption == "Pancake" then
-                            v:FindFirstChild("Glove").Size = Vector3.new(0, _G.GloveExtendReach, _G.GloveExtendReach)
-                            elseif GloveExtendOption == "Growth" then
-                            v:FindFirstChild("Glove").Size = Vector3.new(_G.GloveExtendReach,_G.GloveExtendReach,_G.GloveExtendReach)
-                            elseif GloveExtendOption == "North Korea Wall" then
-                            v:FindFirstChild("Glove").Size = Vector3.new(_G.GloveExtendReach,0,_G.GloveExtendReach)
-                            elseif GloveExtendOption == "Slight Extend" then
-                            v:FindFirstChild("Glove").Size = Vector3.new(3, 3, 3.7)
-                            end
-                            v:FindFirstChild("Glove").Transparency = 0.5
-                        end
-                    end
-                end
+getTool().Size = Vector3.new(_G.GloveExtendReach,_G.GloveExtendReach,_G.GloveExtendReach)
 else
 for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
                     if v:IsA("Tool") and v.Name ~= "Radio" then
@@ -6725,7 +6567,7 @@ for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
 end
 end
 	end    
-})
+})]]
 
 Tab7:AddColorpicker({
 	Name = "Color ESP",
@@ -7713,10 +7555,12 @@ end)
 end)
 end
 while _G.AntiRagdoll and RagdollGetAnti == "Not Reset" do
-	if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("Torso") and game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled") then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("Torso") and game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled") then
+if game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled") and game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == true then
 repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
-until game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
+until game.Players.LocalPlayer.Character:FindFirstChild("Ragdolled") and game.Players.LocalPlayer.Character:WaitForChild("Ragdolled").Value == false
 game.Players.LocalPlayer.Character.Torso.Anchored = false
+end
 end
 task.wait()
 end
@@ -7761,24 +7605,6 @@ game.ReplicatedStorage.Ghostinvisibilitydeactivated:FireServer()
 	task.wait()
 end
 end
-})
-
-Tab15:AddParagraph("Share Link Zalo","Join Link Zalo Message All People Or Friend")
-Tab15:AddParagraph("Message Zalo","You Have To Message Zalo In VietNamese")
-Tab15:AddParagraph("Deputy Group Zalo","[ Tấn Lộc ( Owner ) ] or [ Giang ] or [ Tiến ] or [ Hoàng Kha ]")
-
-Tab15:AddButton({
-	Name = "Copy Join Zalo",
-	Callback = function()
-            setclipboard("https://zalo.me/g/qlukiy407")
-  	end    
-})
-
-Tab15:AddButton({
-	Name = "Copy Subscribe DonjoSx [ DonjoScript ]",
-	Callback = function()
-            setclipboard("www.youtube.com/@DonjoScript")
-  	end    
 })
 
 Tab15:AddButton({
