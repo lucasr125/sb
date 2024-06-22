@@ -1,2 +1,0 @@
-# sb
-- Slap Battles things
