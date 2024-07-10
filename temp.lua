@@ -12,7 +12,7 @@ if _G.AutoExecuter == true then
 			repeat wait() until game.Players.LocalPlayer
 			wait(0.25)
 			_G.AutoExecuter = true
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Slap_Battles/main/Slap_Battles.lua"))()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/main/temp.lua"))()
 		]])
 	end
 end
@@ -23,7 +23,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
 
 local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
-local Window = OrionLib:MakeWindow({IntroText = GameName, IntroIcon = "rbxassetid://15315284749",Name = (GameName.." | ".. identifyexecutor()),IntroToggleIcon = "rbxassetid://7734091286", HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "slap battles"})
+local Window = OrionLib:MakeWindow({IntroText = GameName, IntroIcon = "rbxassetid://15315284749",Name = (GameName.." - ".. identifyexecutor()),IntroToggleIcon = "rbxassetid://7734091286", HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "slap battles"})
 
 gloveHits = {
     ["Default"] = game.ReplicatedStorage.b,
@@ -116,6 +116,7 @@ gloveHits = {
     ["UFO"] = game.ReplicatedStorage.GeneralHit,
     ["el gato"] = game.ReplicatedStorage.GeneralHit,
     ["Siphon"] = game.ReplicatedStorage.GeneralHit,
+    ["Hive"] = game.ReplicatedStorage.GeneralHit,
     ----------------------------------------
     ["ZZZZZZZ"] = game.ReplicatedStorage.ZZZZZZZHit,
     ["Brick"] = game.ReplicatedStorage.BrickHit,
@@ -933,7 +934,6 @@ TournamentAntiVoid.Transparency = 1
 TournamentAntiVoid.CanCollide = false
 end
 
---Tab1 - 15
 local Tab = Window:MakeTab({
 	Name = "Info",
 	Icon = "rbxassetid://7734053426",
@@ -996,15 +996,13 @@ local ExperimentalTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-Tab:AddLabel("Owner Credits Script By Giang And DonjoSx")
-Tab:AddLabel("Bạn muốn vào nhóm zalo thì vào Credit nhé")
-CanYouFps = LPLayer:AddLabel("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
-CanYouPing = LPLayer:AddLabel("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
-ServerPlayer = InfoServer:AddLabel("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
-TimeServer = InfoServer:AddLabel("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
-TimeNow = InfoServer:AddLabel("Time: "..os.date("%X"))
-AgeAccYou = LPLayer:AddLabel("Account age: "..game.Players.LocalPlayer.AccountAge)
-ViewAgeServer = InfoServer:AddLabel("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
+FPS = LPLayer:AddLabel("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
+Ping = LPLayer:AddLabel("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
+Players = InfoServer:AddLabel("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
+ServerTime = InfoServer:AddLabel("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
+Time = InfoServer:AddLabel("Time: "..os.date("%X"))
+AccountAge = LPLayer:AddLabel("Account age: "..game.Players.LocalPlayer.AccountAge)
+ServerAge = InfoServer:AddLabel("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
 
 if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 ResetTime = LPLayer:AddLabel("Time Spawn: "..game.Players.RespawnTime)
@@ -1012,50 +1010,50 @@ else
 ResetTime = LPLayer:AddLabel("Time Spawn: not dead")
 end
 
-CodeKeypad = InfoServer:AddLabel("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
+KeypadCode = InfoServer:AddLabel("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
 if not game.Workspace:FindFirstChild("Keypad") then
-KeypadSpawn = InfoServer:AddLabel("Keypad not spawned")
+KeypadSpawned = InfoServer:AddLabel("Keypad not spawned")
 else
-KeypadSpawn = InfoServer:AddLabel("Keypad spawned")
+KeypadSpawned = InfoServer:AddLabel("Keypad spawned")
 end
 
 if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
-GoldenSlappleSpawn = InfoServer:AddLabel("Golden Slapple not spawned")
+GSSpawned = InfoServer:AddLabel("Golden Slapple not spawned")
 else
-GoldenSlappleSpawn = InfoServer:AddLabel("Golden Slapple spawned")
+GSSpawned = InfoServer:AddLabel("Golden Slapple spawned")
 end
 
 if not game.Workspace:FindFirstChild("Toolbox") then
-	ToolboxSpawn = InfoServer:AddLabel("Toolbox not spawned")
+	ToolboxSpawned = InfoServer:AddLabel("Toolbox not spawned")
 else
-	ToolboxSpawn = InfoServer:AddLabel("Toolbox spawned")
+	ToolboxSpawned = InfoServer:AddLabel("Toolbox spawned")
 end
 
 if not game.Workspace:FindFirstChild("SiphonOrb") then
-	SiphonOrbSpawn = InfoServer:AddLabel("Siphon Orb not spawned")
+	SiphonOrbSpawned = InfoServer:AddLabel("Siphon Orb not spawned")
 else
-	SiphonOrbSpawn = InfoServer:AddLabel("Siphon Orb spawned")
+	SiphonOrbSpawned = InfoServer:AddLabel("Siphon Orb spawned")
 end
 
-CheckSlap = LPLayer:AddLabel("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
+Slaps = LPLayer:AddLabel("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
 Glove = LPLayer:AddLabel("Glove: "..game.Players.LocalPlayer.leaderstats.Glove.Value)
 PlateTime = LPLayer:AddLabel("Plate Time: "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text)
 GameID = InfoServer:AddLabel("Game Id: "..game.PlaceId)
 ServerID = InfoServer:AddLabel("Server Id: "..game.JobId)
 
 if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
-WalkspeedYou = LPLayer:AddLabel("Walkspeed: unavailable as a rock")
-JumppowerYou = LPLayer:AddLabel("JumpPower: unavailable as a rock")
-HealthYou = LPLayer:AddLabel("Health: unavailable as a rock")
-HipHeightYou = LPLayer:AddLabel("Hip Height: unavailable as a rock")
+PlrWalkspeed = LPLayer:AddLabel("Walkspeed: unavailable as a rock")
+PlrJumppower = LPLayer:AddLabel("JumpPower: unavailable as a rock")
+PlrHealth = LPLayer:AddLabel("Health: unavailable as a rock")
+PlrHipHeight = LPLayer:AddLabel("Hip Height: unavailable as a rock")
 else
-WalkspeedYou = LPLayer:AddLabel("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
-JumppowerYou = LPLayer:AddLabel("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
-HealthYou = LPLayer:AddLabel("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
-HipHeightYou = LPLayer:AddLabel("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
+PlrWalkspeed = LPLayer:AddLabel("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
+PlrJumppower = LPLayer:AddLabel("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
+PlrHealth = LPLayer:AddLabel("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
+PlrHipHeight = LPLayer:AddLabel("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
 end
-GravityYou = LPLayer:AddLabel("Gravity: "..game.Workspace.Gravity)
-PositionYou = LPLayer:AddLabel("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
+ServerGravity = LPLayer:AddLabel("Gravity: "..game.Workspace.Gravity)
+PlrPosition = LPLayer:AddLabel("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
 
 Tab:AddToggle({
 	Name = "Auto Set Info",
@@ -1063,13 +1061,13 @@ Tab:AddToggle({
 	Callback = function(Value)
 _G.AutoSetInfo = Value
 while _G.AutoSetInfo do
-    CanYouFps:Set("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
-    CanYouPing:Set("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
-    ServerPlayer:Set("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
-    TimeServer:Set("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
-    TimeNow:Set("Time: "..os.date("%X"))
-    AgeAccYou:Set("Account age: "..game.Players.LocalPlayer.AccountAge)
-    ViewAgeServer:Set("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
+    FPS:Set("FPS: "..math.floor(workspace:GetRealPhysicsFPS()))
+    Ping:Set("Ping: "..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString())
+    Players:Set("Players: "..#game.Players:GetPlayers().." / "..game.Players.MaxPlayers)
+    ServerTime:Set("Server time: "..math.floor(workspace.DistributedGameTime / 60 / 60).." Hour(s) ; "..math.floor(workspace.DistributedGameTime / 60) - (math.floor(workspace.DistributedGameTime / 60 / 60) * 60).." Minute(s) ; "..math.floor(workspace.DistributedGameTime) - (math.floor(workspace.DistributedGameTime / 60) * 60).." Second(s)")
+    Time:Set("Time: "..os.date("%X"))
+    AccountAge:Set("Account age: "..game.Players.LocalPlayer.AccountAge)
+    ServerAge:Set("Server age: "..game.Workspace.Lobby.ServerAge.Text.SurfaceGui.TextLabel.Text)
     
     if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
     ResetTime:Set("Time Spawn: "..game.Players.RespawnTime)
@@ -1077,48 +1075,48 @@ while _G.AutoSetInfo do
     ResetTime:Set("Time Spawn: not dead")
     end
     
-    CodeKeypad:Set("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
+    KeypadCode:Set("Keypad code: "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7))
     if not game.Workspace:FindFirstChild("Keypad") then
-    KeypadSpawn:Set("Keypad not spawned")
+    KeypadSpawned:Set("Keypad not spawned")
     else
-    KeypadSpawn:Set("Keypad spawned")
+    KeypadSpawned:Set("Keypad spawned")
     end
     
     if game.Workspace.Arena.island5.Slapples.GoldenSlapple.Glove:FindFirstChildWhichIsA("TouchTransmitter") == nil then
-    GoldenSlappleSpawn:Set("Golden Slapple not spawned")
+    GSSpawned:Set("Golden Slapple not spawned")
     else
-    GoldenSlappleSpawn:Set("Golden Slapple spawned")
+    GSSpawned:Set("Golden Slapple spawned")
     end
 
 	if not game.Workspace:FindFirstChild("Toolbox") then
-		ToolboxSpawn:Set("Toolbox not spawned")
+		ToolboxSpawned:Set("Toolbox not spawned")
 	else
-		ToolboxSpawn:Set("Toolbox spawned")
+		ToolboxSpawned:Set("Toolbox spawned")
 	end
 	
 	if not game.Workspace:FindFirstChild("SiphonOrb") then
-		SiphonOrbSpawn:Set("Siphon Orb not spawned")
+		SiphonOrbSpawned:Set("Siphon Orb not spawned")
 	else
-		SiphonOrbSpawn:Set("Siphon Orb spawned")
+		SiphonOrbSpawned:Set("Siphon Orb spawned")
 	end
     
-    CheckSlap:Set("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
+    Slaps:Set("Slaps: "..game.Players.LocalPlayer.leaderstats.Slaps.Value)
     Glove:Set("Glove: "..game.Players.LocalPlayer.leaderstats.Glove.Value)
     PlateTime:Set("Plate Time: "..game.Players.LocalPlayer.PlayerGui.PlateIndicator.TextLabel.Text)
     
     if game.Players.LocalPlayer.Character:FindFirstChild("rock") then
-    WalkspeedYou:Set("Walkspeed: unavailable as a rock")
-    JumppowerYou:Set("JumpPower: unavailable as a rock")
-    HealthYou:Set("Health: unavailable as a rock")
-    HipHeightYou:Set("Hip Height: unavailable as a rock")
+    PlrWalkspeed:Set("Walkspeed: unavailable as a rock")
+    PlrJumppower:Set("JumpPower: unavailable as a rock")
+    PlrHealth:Set("Health: unavailable as a rock")
+    PlrHipHeight:Set("Hip Height: unavailable as a rock")
     else
-    WalkspeedYou:Set("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
-    JumppowerYou:Set("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
-    HealthYou:Set("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
-    HipHeightYou:Set("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
+    PlrWalkspeed:Set("Walkspeed: "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed)
+    PlrJumppower:Set("JumpPower: "..game.Players.LocalPlayer.Character.Humanoid.JumpPower)
+    PlrHealth:Set("Health: "..game.Players.LocalPlayer.Character.Humanoid.Health)
+    PlrHipHeight:Set("Hip Height: "..game.Players.LocalPlayer.Character.Humanoid.HipHeight)
     end
-    GravityYou:Set("Gravity: "..game.Workspace.Gravity)
-    PositionYou:Set("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
+    ServerGravity:Set("Gravity: "..game.Workspace.Gravity)
+    PlrPosition:Set("Position: "..tostring(math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X)..", ".. math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y)..", "..math.round(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)))
     
 task.wait()
 end
@@ -1127,14 +1125,14 @@ end
 
 
 Tab1:AddButton({
-	Name = "Inf Yield Delta",
+	Name = "Infinite Yield ( Delta ver. )",
 	Callback = function()
       		loadstring(game:HttpGet("https://gist.githubusercontent.com/lxnnydev/c533c374ca4c1dcef4e1e10e33fa4a0c/raw/03e74f184f801dad77d3ebe1e2f18c6ac87ca612/delta___IY.gistfile1.txt.lua",true))()
   	end    
 })
 
 Tab1:AddButton({
-	Name = "Inf Yield",
+	Name = "Infinite Yield",
 	Callback = function()
       	loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()	
   	end    
@@ -1142,7 +1140,7 @@ Tab1:AddButton({
 
 
 Tab1:AddButton({
-	Name = "Dex V3",
+	Name = "Bypassed DexV3",
 	Callback = function()
       		loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
   	end    
