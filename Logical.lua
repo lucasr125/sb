@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 
 if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 11520107397 then
-    local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport)
+    local teleportFunc = queueonteleport or queue_on_teleport
     if teleportFunc then
         teleportFunc([[
             repeat task.wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
@@ -26,7 +26,7 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 1
                 end  
             end  
             task.wait(0.6)
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Slap-Battles-and-Ability-wars/main/AutoFarm%20Candy%20Slapple.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/refs/heads/main/Logical.lua"))()
         ]])
     end
 
