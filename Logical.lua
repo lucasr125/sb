@@ -1,11 +1,16 @@
-if not isfile("lastRequest.txt") then
-    createfile("lastRequest.txt")
-    writefile("lastRequest.txt", tostring(os.time()))
+local isfileFunc = isfile or function(file) return false end
+local createfileFunc = createfile or function(file) error("createfile not available") end
+local readfileFunc = readfile or function(file) error("readfile not available") end
+local writefileFunc = writefile or function(file, content) error("writefile not available") end
+
+if not isfileFunc("lastRequest.txt") then
+    createfileFunc("lastRequest.txt")
+    writefileFunc("lastRequest.txt", tostring(os.time()))
 end
 
 local function safeHttpGet(url)
     local cooldown = 5
-    local lastTime = tonumber(readfile("lastRequest.txt")) or 0
+    local lastTime = tonumber(readfileFunc("lastRequest.txt")) or 0
     local currentTime = os.time()
     if currentTime - lastTime < cooldown then
         task.wait(cooldown - (currentTime - lastTime))
@@ -15,7 +20,7 @@ local function safeHttpGet(url)
         response = game:HttpGet(url)
     end)
     if success and response then
-        writefile("lastRequest.txt", tostring(os.time()))
+        writefileFunc("lastRequest.txt", tostring(os.time()))
         return response
     elseif response and response:find("429") then
         task.wait(cooldown)
@@ -33,14 +38,19 @@ if game.PlaceId == 6403373529 or game.PlaceId == 9015014224 or game.PlaceId == 1
     local teleportFunc = queueonteleport or queue_on_teleport or (syn and syn.queue_on_teleport)
     if teleportFunc then
         teleportFunc([[
-if not isfile("lastRequest.txt") then
-    createfile("lastRequest.txt")
-    writefile("lastRequest.txt", tostring(os.time()))
+local isfileFunc = isfile or function(file) return false end
+local createfileFunc = createfile or function(file) error("createfile not available") end
+local readfileFunc = readfile or function(file) error("readfile not available") end
+local writefileFunc = writefile or function(file, content) error("writefile not available") end
+
+if not isfileFunc("lastRequest.txt") then
+    createfileFunc("lastRequest.txt")
+    writefileFunc("lastRequest.txt", tostring(os.time()))
 end
 
 local function safeHttpGet(url)
     local cooldown = 5
-    local lastTime = tonumber(readfile("lastRequest.txt")) or 0
+    local lastTime = tonumber(readfileFunc("lastRequest.txt")) or 0
     local currentTime = os.time()
     if currentTime - lastTime < cooldown then
         task.wait(cooldown - (currentTime - lastTime))
@@ -50,7 +60,7 @@ local function safeHttpGet(url)
         response = game:HttpGet(url)
     end)
     if success and response then
-        writefile("lastRequest.txt", tostring(os.time()))
+        writefileFunc("lastRequest.txt", tostring(os.time()))
         return response
     elseif response and response:find("429") then
         task.wait(cooldown)
