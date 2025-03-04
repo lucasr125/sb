@@ -1,1 +1,23 @@
-error'nil'
+local LocalPlayer = game.Players.LocalPlayer
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/lucasr125/Bracket_Orion/main/orionlib.lua')))();
+local Window = OrionLib:MakeWindow({Name = "SB Mastery", HidePremium = false, SaveConfig = false, ConfigFolder = "nil", IntroEnabled = false});
+local RunTab = Window:MakeTab({Name = "Run Mastery", Icon = "rbxassetid://4483345998", PremiumOnly = false});
+
+local equipLolbomb = RunTab:AddButton({Name = "Equip LOLBOMB (+2 kills)", Callback = function()
+	LocalPlayer:WaitForChild("Reset"):FireServer()
+  fireclickdetector(game.Workspace.Lobby["L.O.L.B.O.M.B"].ClickDetector)
+end});
+local selectPlayerRun = RunTab:AddTextbox({Name = "Select player to help", Default = "username here!", TextDisappear = false, Callback = function(Value)
+	if game.Players:FindFirstChild(Value) ~= nil then
+    runPlayerHelper = game.Players:FindFirstChild(Value)
+  else
+    OrionLib:MakeNotification({Name = "Error",Content = "Invalid user.",Image = "rbxassetid://4483345998",Time = 5});
+  end
+end});
+local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default = false, Callback = function(Value)
+	while task.wait() do
+    if LocalPlayer.Character:FindFirstChild("InLabyrinth").Value == true then
+      LocalPlayer.Character.HumanoidRootPart.CFrame = runPlayerHelper.Character.HumanoidRootPart.CFrame
+    end
+  end
+end});
