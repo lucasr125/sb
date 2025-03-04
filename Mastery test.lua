@@ -24,3 +24,4 @@ local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default
 	end
 end});
 --19039.978515625, 6624.5029296875, 19538.009765625
+-- ÅMoyaiStatue..
