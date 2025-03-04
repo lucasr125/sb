@@ -16,7 +16,7 @@ local selectPlayerRun = RunTab:AddTextbox({Name = "Select player to help", Defau
 end});
 local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default = false, Callback = function(Value)
 	while task.wait() do
-    if LocalPlayer.Character:FindFirstChild("InLabyrinth").Value == true then
+		if LocalPlayer.Character:FindFirstChild("InLabyrinth") and LocalPlayer.Character:FindFirstChild("InLabyrinth").Value == true then
       LocalPlayer.Character.HumanoidRootPart.CFrame = runPlayerHelper.Character.HumanoidRootPart.CFrame
     end
   end
