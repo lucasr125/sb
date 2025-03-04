@@ -1,4 +1,3 @@
--- loadstring(game:HttpGet(("https://raw.githubusercontent.com/lucasr125/sb/main/AutoFarm%20Slapple%20n%20Corns.lua")))();
 if not game:IsLoaded() then
 	game.Loaded:Wait();
 end
@@ -54,6 +53,7 @@ for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("
 	end
 end
 if #serverList > 0 then
+	task.wait(7) -- Rate limit uh
 	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverList[math.random(1, #serverList)])
 else
     error("No servers found")
