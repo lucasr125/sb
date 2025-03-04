@@ -14,7 +14,7 @@ local selectPlayerRun = RunTab:AddTextbox({Name = "Select player to help", Defau
     OrionLib:MakeNotification({Name = "Error",Content = "Invalid user.",Image = "rbxassetid://4483345998",Time = 5});
   end
 end});
-local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default = false, Callback = function(Value)
+local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run (broken, why)", Default = false, Callback = function(Value)
 	while task.wait() and Value == true do
 		if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and runPlayerHelper and runPlayerHelper.Character and runPlayerHelper.Character:FindFirstChild("HumanoidRootPart") then
 			if LocalPlayer.Character:FindFirstChild("InLabyrinth") and LocalPlayer.Character.InLabyrinth.Value == true then
@@ -24,4 +24,16 @@ local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default
 	end
 end});
 --19039.978515625, 6624.5029296875, 19538.009765625
--- ÅMoyaiStatue..
+
+local MoaiTab = Window:MakeTab({Name = "Tab Mastery", Icon = "rbxassetid://4483345998", PremiumOnly = false});
+local selectPlayerMoai = MoaiTab:AddTextbox({Name = "Select player to help", Default = "username here!", TextDisappear = false, Callback = function(Value)
+	if game.Players:FindFirstChild(Value) ~= nil then
+    moaiPlayerHelper = game.Players:FindFirstChild(Value)
+  else
+    OrionLib:MakeNotification({Name = "Error",Content = "Invalid user.",Image = "rbxassetid://4483345998",Time = 5});
+  end
+end});
+local autoInvisible = MoaiTab:AddToggle({Name = "Be invisible (ghost required)", Default = false, Callback = function(Value)
+	makesMoaiHelperInvis = Value
+end});
+-- ÅMoyaiStatue
