@@ -15,12 +15,12 @@ local selectPlayerRun = RunTab:AddTextbox({Name = "Select player to help", Defau
   end
 end});
 local autoGetKilled = RunTab:AddToggle({Name = "Auto get killed by Run", Default = false, Callback = function(Value)
-	while task.wait() do
-		if LocalPlayer.Character:FindFirstChild("InLabyrinth") ~= nil then
-			if LocalPlayer.Character:FindFirstChild("InLabyrinth").Value == true then
-      	LocalPlayer.Character.HumanoidRootPart.CFrame = runPlayerHelper.Character.HumanoidRootPart.CFrame
-    	end
+	while task.wait() and Value == true do
+		if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and runPlayerHelper and runPlayerHelper.Character and runPlayerHelper.Character:FindFirstChild("HumanoidRootPart") then
+			if LocalPlayer.Character:FindFirstChild("InLabyrinth") and LocalPlayer.Character.InLabyrinth.Value == true then
+				LocalPlayer.Character.HumanoidRootPart.CFrame = runPlayerHelper.Character.HumanoidRootPart.CFrame
+			end
 		end
-  end
+	end
 end});
--- 19039.978515625, 6624.5029296875, 19538.009765625
+--19039.978515625, 6624.5029296875, 19538.009765625
