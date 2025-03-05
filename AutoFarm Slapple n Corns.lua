@@ -3,15 +3,6 @@ if not game:IsLoaded() then
 end
 repeat
 	task.wait();
-until game:GetService("Players") 
-repeat
-	task.wait();
-until game.Players.LocalPlayer 
-repeat
-	task.wait();
-until game.Players.LocalPlayer.Character ~= nil 
-repeat
-	task.wait();
 until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
 getgenv().settings = {
@@ -22,7 +13,7 @@ getgenv().settings = {
 if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
 	repeat
 		task.wait();
-		game.Players.LocalPlayer.Character:MoveTo(workspace.Lobby.Teleport1.CFrame.Position);
+		game.Players.LocalPlayer.Character:MoveTo(workspace.Lobby.Teleport2.CFrame.Position);
 	until game.Players.LocalPlayer.Character:FindFirstChild("entered") 
 end
 
@@ -39,8 +30,10 @@ end
 if (getgenv().settings.GetSlapples == true) then
 	for _, v in ipairs(game.Workspace.Arena.island5.Slapples:GetDescendants()) do
 		if ((v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-			repeat game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-			task.wait(.1)
+			repeat --game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+			task.wait()
             until v.Transparency ~= 0
 		end
 	end
