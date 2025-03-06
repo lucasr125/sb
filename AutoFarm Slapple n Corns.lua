@@ -1,53 +1,41 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait();
 end
-repeat
-	task.wait();
-until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-
-getgenv().settings = {
-	GetCandyCorns = false,
-	GetSlapples = true
-}
-
-if (game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil) then
-	repeat
-		task.wait();
-		game.Players.LocalPlayer.Character:MoveTo(workspace.Lobby.Teleport2.CFrame.Position);
-	until game.Players.LocalPlayer.Character:FindFirstChild("entered") 
+if ((game.PlaceId == 6403373529) or (game.PlaceId == 9015014224) or (game.PlaceId == 11520107397)) then
+	local teleportFunc = queueonteleport or queue_on_teleport;
+	if teleportFunc then
+		teleportFunc([[
+repeat task.wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+for i, v in pairs(game:GetService("Workspace"):WaitForChild("CandyCorns"):GetChildren()) do  
+	if v:FindFirstChildWhichIsA("TouchTransmitter") then  
+		firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 0)  
+		firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 1)  
+	end  
+end  
+task.wait(0.1)
+if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then
+	firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport2, 0) 
+	firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.Lobby.Teleport2, 1) 
 end
-
-if (getgenv().settings.GetCandyCorns == true) then
-	for _, v in pairs(game.Workspace.CandyCorns:GetDescendants()) do
-		if (v.ClassName == "TouchTransmitter") then
-			v.Parent.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-			firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
-			firetouchinterest(v.Parent, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
+task.wait(0.1)  
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do  
+	if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then  
+		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)  
+		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)  
+	end  
+end  
+task.wait(0.6)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/refs/heads/main/AutoFarm%20Slapple%20n%20Corns.lua"))()
+            ]]);
+	end
+	local serverList = {};
+	for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+		if (v.playing and (type(v) == "table") and (v.maxPlayers > v.playing) and (v.id ~= game.JobId)) then
+			serverList[#serverList + 1] = v.id;
 		end
 	end
-end
-
-if (getgenv().settings.GetSlapples == true) then
-	for _, v in ipairs(game.Workspace.Arena.island5.Slapples:GetDescendants()) do
-		if ((v.Name == "Glove") and v:FindFirstChildWhichIsA("TouchTransmitter")) then
-			repeat --game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1);
-			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0);
-			task.wait()
-            until v.Transparency ~= 0
-		end
+	if (#serverList > 0) then
+		task.wait(7);
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverList[math.random(1, #serverList)]);
 	end
-end
-
-local serverList = {}
-for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-	if v.playing and type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
-		serverList[#serverList + 1] = v.id
-	end
-end
-if #serverList > 0 then
-	task.wait(7) -- Rate limit uh
-	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverList[math.random(1, #serverList)])
-else
-    error("No servers found")
 end
