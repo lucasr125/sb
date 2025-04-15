@@ -1,7 +1,4 @@
-if not game:IsLoaded() then
-	game.Loaded:Wait();
-end
-
+repeat task.wait() until game:IsLoaded() == true
 repeat task.wait() until game.Workspace:FindFirstChild("universaltimestop") == nil 
 
 fireclickdetector(workspace.Lobby["God's Hand"].ClickDetector);
