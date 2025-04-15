@@ -35,7 +35,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/lucasr125/sb/refs/hea
 		end
 	end
 	if (#serverList > 0) then
-		task.wait(7);
+		task.wait(3.5);
 		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverList[math.random(1, #serverList)]);
 	end
 end
