@@ -9,7 +9,7 @@ for i = 1, 5 do
 	if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 		local targetCFrame = player.Character.HumanoidRootPart.CFrame
         RootPart.CFrame = targetCFrame + Vector3.new(-2, -2, -2)
-           game:GetService("ReplicatedStorage"):WaitForChild("PusherWall"):FireServer()
+           game:GetService("ReplicatedStorage"):WaitForChild("PusherWall"):FireServer() -- or busmoment
            task.wait()
     end
     end
