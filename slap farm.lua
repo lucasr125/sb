@@ -21,8 +21,7 @@ for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("
 	end
 end
 if #serverList > 0 then
-  task.wait(3.5)
 	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverList[math.random(1, #serverList)])
 else
-    error("No servers found")
+	error("No servers found")
 end
